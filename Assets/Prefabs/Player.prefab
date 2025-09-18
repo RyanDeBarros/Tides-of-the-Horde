@@ -140,7 +140,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 5445867534279781679}
   body: {fileID: 6650955198508928502}
-  speed: 10
+  moveSpeed: 10
+  panSpeed: 500
 --- !u!1001 &6650955198508829512
 PrefabInstance:
   m_ObjectHideFlags: 0

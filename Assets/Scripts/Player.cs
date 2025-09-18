@@ -7,7 +7,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject body;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] private float moveSpeed = 10f;
+    [SerializeField] private float panSpeed = 0.5f;
+
+    private float panX = 0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -18,6 +21,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         Assert.IsNotNull(body);
+        panX = Input.mousePosition.x;
     }
 
     // Update is called once per frame
@@ -30,7 +34,9 @@ public class Player : MonoBehaviour
 
     void UpdateCamera()
     {
-        float pan = Input.mousePositionDelta.x;
+        float pan = Input.mousePosition.x - panX;
+        panX = Input.mousePosition.x;
+        pan *= panSpeed;
         cam.transform.RotateAround(transform.position, Vector3.up, pan);
     }
 
@@ -49,8 +55,9 @@ public class Player : MonoBehaviour
         float inputAngle = Mathf.Atan2(z, x);
         float moveAngle = inputAngle - Mathf.PI / 2 + cameraAngle;
         Vector3 moveVector = new(Mathf.Cos(moveAngle), 0f, Mathf.Sin(moveAngle));
-        moveVector *= Time.deltaTime * speed;
+        moveVector *= Time.deltaTime * moveSpeed;
         
         transform.position += moveVector;
+        body.transform.forward = moveVector.normalized;
     }
 }
