@@ -141,7 +141,7 @@ MonoBehaviour:
   cam: {fileID: 5445867534279781679}
   body: {fileID: 6650955198508928502}
   moveSpeed: 10
-  panSpeed: 500
+  panSpeed: 0.5
 --- !u!1001 &6650955198508829512
 PrefabInstance:
   m_ObjectHideFlags: 0
