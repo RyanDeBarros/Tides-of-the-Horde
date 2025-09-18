@@ -127,10 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1563976600490383831, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: m_Name
-      value: Camera
-      objectReference: {fileID: 0}
     - target: {fileID: 1836143556417962073, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -175,33 +171,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 8242276565798616951, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242276565798616951, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8242276565798616951, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+    - target: {fileID: 6650955198509224406, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9659258
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8242276565798616951, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+    - target: {fileID: 6650955198509224406, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.2588191
+      value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8242276565798616951, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+    - target: {fileID: 6650955198509224406, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8242276565798616951, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+    - target: {fileID: 6650955198509224406, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8242276565798616951, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 30
+    - target: {fileID: 6650955198509224406, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
