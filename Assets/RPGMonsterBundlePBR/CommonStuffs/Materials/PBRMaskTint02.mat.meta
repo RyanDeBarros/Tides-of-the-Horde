@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ca3b0d5f43e5471bacca33179adc4630
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260493
+  packageName: RPG Monster BUNDLE PBR
+  packageVersion: 1.0
+  assetPath: Assets/RPGMonsterBundlePBR/CommonStuffs/Materials/PBRMaskTint02.mat
+  uploadId: 681971

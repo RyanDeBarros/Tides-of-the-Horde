@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 2a211c71e73e4519a152ae43a8274e64
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  preprocessorOverride: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260493
+  packageName: RPG Monster BUNDLE PBR
+  packageVersion: 1.0
+  assetPath: Assets/RPGMonsterBundlePBR/CommonStuffs/Shader/PBRMaskTint.shader
+  uploadId: 681971

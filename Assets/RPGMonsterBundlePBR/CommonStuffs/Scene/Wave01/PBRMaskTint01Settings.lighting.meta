@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: b1f0a2ebe2ed4064b9a69dac6cb1d7b2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260493
+  packageName: RPG Monster BUNDLE PBR
+  packageVersion: 1.0
+  assetPath: Assets/RPGMonsterBundlePBR/CommonStuffs/Scene/Wave01/PBRMaskTint01Settings.lighting
+  uploadId: 681971

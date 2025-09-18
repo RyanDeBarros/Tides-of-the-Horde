@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 7c45e6fe0f5a4fb7861a47c6851c7dcc
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 4890085278179872738
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260493
+  packageName: RPG Monster BUNDLE PBR
+  packageVersion: 1.0
+  assetPath: Assets/RPGMonsterBundlePBR/CommonStuffs/Scene/Wave01/PBRDefaultSettings.lighting
+  uploadId: 681971
