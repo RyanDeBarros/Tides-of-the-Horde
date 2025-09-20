@@ -3,21 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Player : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private GameObject body;
-    [SerializeField] private GameObject groundCheck;
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float gravity = -10f;
-    [SerializeField] private float groundDistance = 0.4f;
-    [SerializeField] private LayerMask groundMask;
 
     private CharacterController characterController;
     private PlayerCamera cam;
     
-    private Vector3 velocity;
-    private bool isGrounded;
-
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
@@ -27,22 +20,13 @@ public class Player : MonoBehaviour
     void Start()
     {
         Assert.IsNotNull(body);
-        Assert.IsNotNull(groundCheck);
+        Assert.IsNotNull(characterController);
+        Assert.IsNotNull(cam);
     }
 
     void Update()
     {
-        UpdateGravity();
         UpdateMovement();
-    }
-
-    private void UpdateGravity()
-    {
-        isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundDistance, groundMask);
-        if (isGrounded && velocity.y < 0)
-            velocity.y = -2f; // small negative to stick to ground
-
-        velocity.y += gravity * Time.deltaTime;
     }
 
     private void UpdateMovement()
@@ -61,7 +45,7 @@ public class Player : MonoBehaviour
         float moveAngle = inputAngle - Mathf.PI / 2 + cameraAngle;
         Vector3 moveVector = new Vector3(Mathf.Cos(moveAngle), 0f, Mathf.Sin(moveAngle)) * moveSpeed;
 
-        characterController.Move((velocity + moveVector) * Time.deltaTime);
+        characterController.Move(moveVector * Time.deltaTime);
         body.transform.forward = moveVector.normalized;
     }
 }
