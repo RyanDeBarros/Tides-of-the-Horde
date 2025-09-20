@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1836143556417962073}
   - component: {fileID: 2926611446450896628}
+  - component: {fileID: 5323173174553920161}
   - component: {fileID: 1743212581410189318}
   m_Layer: 0
   m_Name: Player
@@ -171,17 +172,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e4df0c111a653348b9a0d5ff9414eca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 5445867534279781679}
-  characterController: {fileID: 1743212581410189318}
   body: {fileID: 6650955198508928502}
   groundCheck: {fileID: 2095391740114139063}
   moveSpeed: 10
-  panSpeed: 0.5
-  gravity: -10
+  gravity: -5
   groundDistance: 0.4
   groundMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &5323173174553920161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381584739051638850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 845d393f37fbf5d4da02153768df08d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cam: {fileID: 5445867534279781679}
+  panSpeed: 0.5
 --- !u!143 &1743212581410189318
 CharacterController:
   m_ObjectHideFlags: 0
@@ -222,7 +234,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
     - target: {fileID: 100030, guid: a87c7d244a3c4896a26261cc18acd499, type: 3}
       propertyPath: m_Name
-      value: Mesh
+      value: Model
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: a87c7d244a3c4896a26261cc18acd499, type: 3}
       propertyPath: m_LocalPosition.x
