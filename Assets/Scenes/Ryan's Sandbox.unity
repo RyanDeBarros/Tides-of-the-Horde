@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6650955198508928502, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: m_Name
+      value: Model
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -281,7 +285,7 @@ GameObject:
   - component: {fileID: 1238931761}
   - component: {fileID: 1238931760}
   - component: {fileID: 1238931759}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
