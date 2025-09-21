@@ -15,21 +15,25 @@ public class PlayerAnimatorController : MonoBehaviour
 
     void Update()
     {
-        // Check if any movement key is currently pressed
-        bool isWalking = Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A)
-                      || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D);
-
-        // Running if holding shift while walking
-        bool isRunning = isWalking && Input.GetKey(KeyCode.LeftShift);
-
-        // Update animator parameters directly
-        playerAnimator.SetBool("isWalkingFWD", isWalking);
-        playerAnimator.SetBool("isRunning", isRunning);
-
         // Attack (Left Mouse Button)
         if (Input.GetMouseButtonDown(0))  // 0 = left click
         {
-            playerAnimator.SetTrigger("Attack1");
+            ExecuteAttack1();
         }
+    }
+
+    public void SetWalking(bool isWalking)
+    {
+        playerAnimator.SetBool("isWalkingFWD", isWalking);
+    }
+
+    public void SetRunning(bool isRunning)
+    {
+        playerAnimator.SetBool("isRunning", isRunning);
+    }
+
+    public void ExecuteAttack1()
+    {
+        playerAnimator.SetTrigger("Attack1");
     }
 }

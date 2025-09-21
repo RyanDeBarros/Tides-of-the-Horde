@@ -28,7 +28,7 @@ public class Gravity : MonoBehaviour
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundDistance, groundMask);
+        isGrounded = Physics.Raycast(groundCheck.transform.position, Vector3.down, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0)
             velocity.y = -2f; // small negative to stick to ground
 
