@@ -17,6 +17,11 @@ public class PlayerAnimatorController : MonoBehaviour
     {
     }
 
+    public void SetGrounded(bool isGrounded)
+    {
+        // TODO if isGrounded is false, then cancel walking and running animations.
+    }
+
     public void SetWalking(bool isWalking)
     {
         playerAnimator.SetBool("isWalkingFWD", isWalking);

@@ -11,6 +11,7 @@ public class Gravity : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     private CharacterController characterController;
+    private PlayerAnimatorController animator;
 
     private Vector3 velocity;
     private bool isGrounded = false;
@@ -18,12 +19,14 @@ public class Gravity : MonoBehaviour
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<PlayerAnimatorController>();
     }
 
     void Start()
     {
         Assert.IsNotNull(groundCheck);
         Assert.IsNotNull(characterController);
+        Assert.IsNotNull(animator);
     }
 
     void Update()
@@ -34,5 +37,7 @@ public class Gravity : MonoBehaviour
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+
+        animator.SetGrounded(isGrounded);
     }
 }
