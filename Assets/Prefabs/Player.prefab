@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 5445867534279781679}
-  panSpeed: 0.5
+  panSpeed: 2
 --- !u!114 &3457600730889820102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,7 +206,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 6650955198508928502}
-  moveSpeed: 10
+  moveSpeed: 8
+  rotationSpeed: 10
+  inputDeadzone: 0.15
 --- !u!143 &1743212581410189318
 CharacterController:
   m_ObjectHideFlags: 0
