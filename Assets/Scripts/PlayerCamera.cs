@@ -6,9 +6,7 @@ using UnityEngine.Assertions;
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private Camera cam;
-    [SerializeField] private float panSpeed = 0.5f;
-
-    private float panX = 0f;
+    [SerializeField] private float panSpeed = 2f; // sensitivity
 
     void Awake()
     {
@@ -18,15 +16,17 @@ public class PlayerCamera : MonoBehaviour
     void Start()
     {
         Assert.IsNotNull(cam);
-        panX = Input.mousePosition.x;
+
+        // Lock the cursor so it never hits screen edges
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
-    
+
     void Update()
     {
-        float pan = Input.mousePosition.x - panX;
-        panX = Input.mousePosition.x;
-        pan *= panSpeed;
-        cam.transform.RotateAround(transform.position, Vector3.up, pan);
+        float mouseX = Input.GetAxis("Mouse X") * panSpeed;
+
+        transform.Rotate(Vector3.up, mouseX);
     }
 
     public Vector3 GetForwardVector()
