@@ -25,5 +25,11 @@ public class PlayerAnimatorController : MonoBehaviour
         // Update animator parameters directly
         playerAnimator.SetBool("isWalkingFWD", isWalking);
         playerAnimator.SetBool("isRunning", isRunning);
+
+        // Attack (Left Mouse Button)
+        if (Input.GetMouseButtonDown(0))  // 0 = left click
+        {
+            playerAnimator.SetTrigger("Attack1");
+        }
     }
 }
