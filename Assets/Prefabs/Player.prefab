@@ -208,7 +208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 6650955198508928502}
   walkingSpeed: 10
-  runningSpeed: 20
+  runningSpeed: 16
   rotationSpeed: 10
   inputDeadzone: 0.15
 --- !u!114 &7622766684650392044
