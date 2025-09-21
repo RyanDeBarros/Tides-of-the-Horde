@@ -46,6 +46,17 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveVector = new Vector3(Mathf.Cos(moveAngle), 0f, Mathf.Sin(moveAngle)) * moveSpeed;
 
         characterController.Move(moveVector * Time.deltaTime);
-        body.transform.forward = moveVector.normalized;
+
+        // Smooth rotation
+        if (moveVector.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(moveVector.normalized);
+            body.transform.rotation = Quaternion.Slerp(
+                body.transform.rotation,
+                targetRotation,
+                Time.deltaTime * 10f // can be tweaked for smoothness
+            );
+        }
     }
+
 }
