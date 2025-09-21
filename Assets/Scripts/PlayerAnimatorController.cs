@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerAnimatorController : MonoBehaviour
 {
-    Animator playerAnimator;
+    private Animator playerAnimator;
 
     void Start()
     {
@@ -15,11 +15,6 @@ public class PlayerAnimatorController : MonoBehaviour
 
     void Update()
     {
-        // Attack (Left Mouse Button)
-        if (Input.GetMouseButtonDown(0))  // 0 = left click
-        {
-            ExecuteAttack1();
-        }
     }
 
     public void SetWalking(bool isWalking)
