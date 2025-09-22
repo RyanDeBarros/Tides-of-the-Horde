@@ -11,6 +11,7 @@ public class Gravity : MonoBehaviour
     [SerializeField] private LayerMask groundMask;
 
     private CharacterController characterController;
+    private PlayerAnimatorController animator;
 
     private Vector3 velocity;
     private bool isGrounded = false;
@@ -18,21 +19,25 @@ public class Gravity : MonoBehaviour
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        animator = GetComponentInChildren<PlayerAnimatorController>();
     }
 
     void Start()
     {
         Assert.IsNotNull(groundCheck);
         Assert.IsNotNull(characterController);
+        Assert.IsNotNull(animator);
     }
 
     void Update()
     {
-        isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundDistance, groundMask);
+        isGrounded = Physics.Raycast(groundCheck.transform.position, Vector3.down, groundDistance, groundMask);
         if (isGrounded && velocity.y < 0)
             velocity.y = -2f; // small negative to stick to ground
 
         velocity.y += gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
+
+        animator.SetGrounded(isGrounded);
     }
 }
