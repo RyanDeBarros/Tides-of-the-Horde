@@ -5,6 +5,7 @@ using UnityEngine;
 public class SpawnZone : MonoBehaviour
 {
     [SerializeField] private Vector3 size = new(5, 1, 5);
+    [SerializeField] private bool spawnable = true;
     
     private void OnDrawGizmos()
     {
@@ -19,5 +20,10 @@ public class SpawnZone : MonoBehaviour
             Random.Range(-size.y, size.y),
             Random.Range(-size.z, size.z)
         );
+    }
+
+    public bool IsSpawnable()
+    {
+        return spawnable;
     }
 }
