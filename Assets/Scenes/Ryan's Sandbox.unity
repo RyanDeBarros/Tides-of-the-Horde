@@ -206,6 +206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 5, y: 1, z: 5}
+  spawnable: 1
 --- !u!4 &212136086
 Transform:
   m_ObjectHideFlags: 0
@@ -251,6 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 5, y: 1, z: 5}
+  spawnable: 1
 --- !u!4 &422886064
 Transform:
   m_ObjectHideFlags: 0
@@ -495,6 +497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4471a3a9a7121245a09b94fc50638b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnRate: 3
 --- !u!4 &1976850412
 Transform:
   m_ObjectHideFlags: 0
