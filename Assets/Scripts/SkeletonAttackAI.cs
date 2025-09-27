@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAttackAI : MonoBehaviour
+public class SkeletonAttackAI : MonoBehaviour
 {
     [SerializeField] private Animator animator;   
 

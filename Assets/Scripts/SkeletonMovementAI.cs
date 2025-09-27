@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class SkeletonMovementAI : MonoBehaviour
 {
     public Transform player;
     public float moveSpeed = 5f;
