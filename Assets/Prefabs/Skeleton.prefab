@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 4433923307364158376}
   - component: {fileID: 5840853363918661323}
   - component: {fileID: 5430280978657833039}
+  - component: {fileID: 2143102535228542233}
+  - component: {fileID: 1374632408338838039}
   m_Layer: 0
   m_Name: Skeleton
   m_TagString: Untagged
@@ -96,6 +98,56 @@ MonoBehaviour:
   moveSpeed: 5
   chaseRange: 10
   stoppingDistance: 2
+--- !u!114 &2143102535228542233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877391312677472464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c12f55cff27d0c4b919222af6a25d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: Player
+  ignoreVertical: 1
+  attackRange: 4.57
+  attackInterval: 1
+  OnCanAttack:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1374632408338838039}
+        m_TargetAssemblyTypeName: SkeletonAttackAI, Assembly-CSharp
+        m_MethodName: TryAttack
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnDistanceUpdated:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1374632408338838039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877391312677472464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150200c67a2501a4a938ab76528a6807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 452747318334901099}
+  attackTrigger: Fire
+  attackTag: Attack
+  fallbackAttackStateName: Attack01
 --- !u!1 &4069443703503164984
 GameObject:
   m_ObjectHideFlags: 0
@@ -179,11 +231,20 @@ PrefabInstance:
       propertyPath: m_Name
       value: SkeletonPBRDefault
       objectReference: {fileID: 0}
+    - target: {fileID: 6285209290506305774, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2712a77dee1ff524990fcea6004110c3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
+--- !u!95 &452747318334901099 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6285209290506305774, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
+  m_PrefabInstance: {fileID: 5868744215218998149}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &452747318342067351 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6285209290496798482, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
