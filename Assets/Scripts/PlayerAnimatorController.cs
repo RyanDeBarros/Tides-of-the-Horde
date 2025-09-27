@@ -3,13 +3,20 @@ using UnityEngine;
 public class PlayerAnimatorController : MonoBehaviour
 {
     private Animator playerAnimator;
+    private Gravity gravity; 
 
-    void Start()
+    void Awake()
     {
         playerAnimator = GetComponent<Animator>();
         if (playerAnimator == null)
         {
             Debug.LogError("Animator component not found on " + gameObject.name);
+        }
+
+        gravity = GetComponentInParent<Gravity>();
+        if (gravity == null)
+        {
+            Debug.LogError("gravity script not found on " + gameObject.name);
         }
     }
 
@@ -17,23 +24,14 @@ public class PlayerAnimatorController : MonoBehaviour
     {
     }
 
-    public void SetGrounded(bool isGrounded)
-    {
-        if (!isGrounded)
-        {
-            SetWalking(false);
-            SetRunning(false);
-        }
-    }
-
     public void SetWalking(bool isWalking)
     {
-        playerAnimator.SetBool("isWalkingFWD", isWalking);
+        playerAnimator.SetBool("isWalkingFWD", isWalking && gravity.GetIsGrounded());
     }
 
     public void SetRunning(bool isRunning)
     {
-        playerAnimator.SetBool("isRunning", isRunning);
+        playerAnimator.SetBool("isRunning", isRunning && gravity.GetIsGrounded());
     }
 
     public void ExecuteAttack1()
