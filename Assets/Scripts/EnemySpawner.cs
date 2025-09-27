@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private float spawnRate = 3f;
+    [SerializeField] private GameObject skeletonPrefab;
 
     private List<SpawnZone> spawnZones = new();
 
@@ -39,10 +40,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnAtPoint(Vector3 point)
     {
-        float hw = 1f;
-        float time = 1f;
-        Debug.DrawLine(point - Vector3.up * hw, point + Vector3.up * hw, Color.blue, time);
-        Debug.DrawLine(point - Vector3.right * hw, point + Vector3.right * hw, Color.blue, time);
-        Debug.DrawLine(point - Vector3.forward * hw, point + Vector3.forward * hw, Color.blue, time);
+        SpawnSkeleton(point);
+    }
+
+    private void SpawnSkeleton(Vector3 point)
+    {
+        Instantiate(skeletonPrefab, point, Quaternion.identity);
     }
 }
