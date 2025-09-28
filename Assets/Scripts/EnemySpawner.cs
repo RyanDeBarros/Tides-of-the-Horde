@@ -1,8 +1,6 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -29,7 +27,9 @@ public class EnemySpawner : MonoBehaviour
 
     public void SpawnEnemies(int numEnemies)
     {
-        List<SpawnZone> activeSpawnZones = spawnZones.Where(z => z.IsSpawnable()).ToList();
+        List<SpawnZone> activeSpawnZones = spawnZones.Where(spawner => spawner.IsSpawnable()).ToList();
+        if (activeSpawnZones.Count == 0) return;
+
         for (int i = 0; i < numEnemies; ++i)
         {
             int zoneIndex = Random.Range(0, activeSpawnZones.Count());
