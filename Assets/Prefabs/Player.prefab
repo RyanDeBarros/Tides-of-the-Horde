@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7384602760923124823}
   - component: {fileID: 305771518911750985}
+  - component: {fileID: 418721645132185829}
   m_Layer: 0
   m_Name: SpellCaster
   m_TagString: Untagged
@@ -45,12 +46,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 5248948003974826257, guid: 948b7ff8563479b45aa4f39abb15a176, type: 3}
-  moveSpeed: 5
+  cooldown: 0.5
   damage: 35
   bounceBackStrength: 200
+  animationSpeedMultiplier: 2
   lifetime: 0.3
-  shockwaveGrowSpeed: 10
+  moveSpeed: 5
+  shockwaveGrowSpeed: 5
   blastGrowSpeed: 6
+  shockwaveForwardOffset: 1
+--- !u!114 &418721645132185829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857112562463998939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b70ec1e0a6fecd48a3468a08d84a2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellPrefab: {fileID: 8438370997894918911, guid: fe5862a82cb4a934c81eb33eb45a8472, type: 3}
+  cooldown: 0.5
+  damage: 35
+  bounceBackStrength: 200
+  aoeRadius: 10
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  animationSpeedMultiplier: 3
+  gravity: -10
+  initialVerticalVelocity: 5
+  initialForwardVelocity: 10
 --- !u!1 &1563976600490383831
 GameObject:
   m_ObjectHideFlags: 0

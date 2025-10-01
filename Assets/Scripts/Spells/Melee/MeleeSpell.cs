@@ -14,7 +14,7 @@ public class MeleeSpell : MonoBehaviour
     public MeleeSpell_Blast blast;
     private float timeElapsed = 0f;
 
-    private HashSet<GameObject> hitEnemies = new();
+    private readonly HashSet<GameObject> hitEnemies = new();
 
     void Awake()
     {
@@ -61,5 +61,4 @@ public class MeleeSpell : MonoBehaviour
             health.TakeDamage(damage);
         }
     }
-
 }

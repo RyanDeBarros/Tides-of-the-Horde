@@ -11,12 +11,12 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
     [SerializeField] private float bounceBackStrength = 200f;
 
     [Header("Locomotion")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float lifetime = 0.3f;
     [SerializeField] private float animationSpeedMultiplier = 2f;
-    [SerializeField] private float shockwaveGrowSpeed = 8f;
+    [SerializeField] private float lifetime = 0.3f;
+    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float shockwaveGrowSpeed = 5f;
     [SerializeField] private float blastGrowSpeed = 6f;
-    [SerializeField] private float shockwaveForwardOffset = 0f;
+    [SerializeField] private float shockwaveForwardOffset = 1f;
 
     private PlayerAnimatorController animator;
     private float cooldownLeft = 0f;

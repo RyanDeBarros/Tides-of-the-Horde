@@ -7,17 +7,22 @@ public class PlayerSpellAttack : MonoBehaviour
 {
     [SerializeField] private GameObject body;
 
-    private ISpellCaster activeSpell;
+    private List<ISpellCaster> spellCasters = new();
+
+    private int activeSpellIndex = 1;
     private PlayerCamera cam;
     private Transform staffTip;
 
     private void Awake()
     {
-        activeSpell = GetComponentInChildren<MeleeSpellCaster>();
+        spellCasters.Add(GetComponentInChildren<MeleeSpellCaster>());
+        spellCasters.Add(GetComponentInChildren<BombSpellCaster>());
+        foreach (ISpellCaster spellCaster in spellCasters)
+            Assert.IsNotNull(spellCaster);
+
         cam = GetComponent<PlayerCamera>();
         staffTip = FindStaffTip(transform);
         Assert.IsNotNull(body);
-        Assert.IsNotNull(activeSpell);
         Assert.IsNotNull(cam);
         Assert.IsNotNull(staffTip);
     }
@@ -40,7 +45,13 @@ public class PlayerSpellAttack : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))  // 0 = left click
         {
-            activeSpell.CastSpell(body.transform.position, staffTip.position, body.transform.forward, cam.transform.forward);
+            Vector3 cameraDirection = cam.transform.forward;
+            spellCasters[activeSpellIndex].CastSpell(body.transform.position, staffTip.position, body.transform.forward, new Vector3(cameraDirection.x, 0f, cameraDirection.z));
         }
+    }
+
+    public void SetActiveSpellIndex(int index)
+    {
+        activeSpellIndex = index;
     }
 }
