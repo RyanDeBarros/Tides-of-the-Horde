@@ -45,10 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 5248948003974826257, guid: 948b7ff8563479b45aa4f39abb15a176, type: 3}
+  moveSpeed: 10
+  damage: 35
+  bounceBackStrength: 30
   lifetime: 0.3
   shockwaveGrowSpeed: 10
   blastGrowSpeed: 6
-  moveSpeed: 10
 --- !u!1 &1563976600490383831
 GameObject:
   m_ObjectHideFlags: 0

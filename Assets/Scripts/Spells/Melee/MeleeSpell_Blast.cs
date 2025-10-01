@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public class MeleeSpell_Blast : MonoBehaviour
 {
+    private MeleeSpell spell;
     public float growSpeed = 6f;
     public float moveSpeed = 10f;
 
@@ -12,6 +13,9 @@ public class MeleeSpell_Blast : MonoBehaviour
 
     private void Awake()
     {
+        spell = GetComponentInParent<MeleeSpell>();
+        Assert.IsNotNull(spell);
+
         collider = GetComponent<SphereCollider>();
         Assert.IsNotNull(collider);
         collider.radius = 0.0f;
@@ -25,7 +29,7 @@ public class MeleeSpell_Blast : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // TODO
+        spell.Hit(other);
     }
 
     private void OnDrawGizmos()
