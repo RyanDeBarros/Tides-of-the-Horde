@@ -7,14 +7,16 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
 {
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private float cooldown = 0.5f;
-
-    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private int damage = 35;
     [SerializeField] private float bounceBackStrength = 200f;
 
+    [Header("Locomotion")]
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float lifetime = 0.3f;
-    [SerializeField] private float shockwaveGrowSpeed = 10f;
+    [SerializeField] private float animationSpeedMultiplier = 2f;
+    [SerializeField] private float shockwaveGrowSpeed = 8f;
     [SerializeField] private float blastGrowSpeed = 6f;
+    [SerializeField] private float shockwaveForwardOffset = 0f;
 
     private PlayerAnimatorController animator;
     private float cooldownLeft = 0f;
@@ -36,8 +38,9 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
         if (cooldownLeft > 0f) return;
 
         cooldownLeft = cooldown;
+        animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         animator.ExecuteAttack1();
-        GameObject instance = Instantiate(spellPrefab, playerPosition, Quaternion.LookRotation(playerDirection));
+        GameObject instance = Instantiate(spellPrefab, playerPosition + playerDirection.normalized * shockwaveForwardOffset, Quaternion.LookRotation(playerDirection));
         MeleeSpell spell = instance.GetComponent<MeleeSpell>();
         Assert.IsNotNull(spell);
         spell.blastPosition = staffPosition;

@@ -34,8 +34,18 @@ public class PlayerAnimatorController : MonoBehaviour
         playerAnimator.SetBool("isRunning", isRunning && gravity.GetIsGrounded());
     }
 
+    public void SetAttackAnimSpeed(float speedMultiplier)
+    {
+        playerAnimator.SetFloat("AttackAnimSpeed", speedMultiplier);
+    }
+
     public void ExecuteAttack1()
     {
         playerAnimator.SetTrigger("Attack1");
+    }
+
+    public void ExecuteAttack2()
+    {
+        playerAnimator.SetTrigger("Attack2");
     }
 }
