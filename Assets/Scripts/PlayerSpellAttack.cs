@@ -16,6 +16,10 @@ public class PlayerSpellAttack : MonoBehaviour
         activeSpell = GetComponentInChildren<MeleeSpellCaster>();
         cam = GetComponent<PlayerCamera>();
         staffTip = FindStaffTip(transform);
+        Assert.IsNotNull(body);
+        Assert.IsNotNull(activeSpell);
+        Assert.IsNotNull(cam);
+        Assert.IsNotNull(staffTip);
     }
 
     private Transform FindStaffTip(Transform parent)
@@ -30,14 +34,6 @@ public class PlayerSpellAttack : MonoBehaviour
                 return grandchild;
         }
         return null;
-    }
-
-    void Start()
-    {
-        Assert.IsNotNull(body);
-        Assert.IsNotNull(activeSpell);
-        Assert.IsNotNull(cam);
-        Assert.IsNotNull(staffTip);
     }
 
     void Update()

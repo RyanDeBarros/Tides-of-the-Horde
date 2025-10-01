@@ -7,8 +7,8 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
 {
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private float lifetime = 0.3f;
-    [SerializeField] private float shockwaveGrowSpeed = 20f;
-    [SerializeField] private float blastGrowSpeed = 10f;
+    [SerializeField] private float shockwaveGrowSpeed = 10f;
+    [SerializeField] private float blastGrowSpeed = 6f;
     [SerializeField] private float moveSpeed = 10f;
 
     private PlayerAnimatorController animator;
@@ -16,10 +16,6 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
     void Awake()
     {
         animator = transform.parent.GetComponentInChildren<PlayerAnimatorController>();
-    }
-
-    void Start()
-    {
         Assert.IsNotNull(animator);
         Assert.IsNotNull(spellPrefab);
     }
@@ -32,8 +28,8 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
         Assert.IsNotNull(spell);
         spell.blastPosition = staffPosition;
         spell.lifetime = lifetime;
-        spell.shockwaveGrowSpeed = shockwaveGrowSpeed;
-        spell.blastGrowSpeed = blastGrowSpeed;
-        spell.moveSpeed = moveSpeed;
+        spell.shockwave.growSpeed = shockwaveGrowSpeed;
+        spell.blast.growSpeed = blastGrowSpeed;
+        spell.blast.moveSpeed = moveSpeed;
     }
 }
