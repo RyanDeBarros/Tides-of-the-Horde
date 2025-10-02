@@ -29,6 +29,11 @@ public class PlayerCamera : MonoBehaviour
         transform.Rotate(Vector3.up, mouseX);
     }
 
+    public Camera GetCamera()
+    {
+        return cam;
+    }
+
     public Vector3 GetForwardVector()
     {
         return cam.transform.forward;

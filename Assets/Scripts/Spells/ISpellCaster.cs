@@ -9,5 +9,6 @@ public enum SpellType
 {
     Melee,
     Bomb,
-    Bubble
+    Bubble,
+    Sniper
 }

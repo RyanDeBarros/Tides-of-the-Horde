@@ -7,7 +7,7 @@ public class SpellManager : MonoBehaviour
 {
     [SerializeField] private GameObject body;
     [SerializeField] private Transform staffTip;
-    [SerializeField] private SpellType activeSpell = SpellType.Bubble;
+    [SerializeField] private SpellType activeSpell = SpellType.Sniper;
 
     private Dictionary<SpellType, ISpellCaster> spellCasters = new();
 
@@ -18,6 +18,7 @@ public class SpellManager : MonoBehaviour
         spellCasters[SpellType.Melee] = GetComponentInChildren<MeleeSpellCaster>();
         spellCasters[SpellType.Bomb] = GetComponentInChildren<BombSpellCaster>();
         spellCasters[SpellType.Bubble] = GetComponentInChildren<BubbleSpellCaster>();
+        spellCasters[SpellType.Sniper] = GetComponentInChildren<SniperSpellCaster>();
         foreach (ISpellCaster spellCaster in spellCasters.Values)
             Assert.IsNotNull(spellCaster);
 
@@ -32,8 +33,7 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))  // 0 = left click
         {
-            Vector3 cameraDirection = cam.transform.forward;
-            spellCasters[activeSpell].CastSpell(body.transform.position, staffTip.position, body.transform.forward, new Vector3(cameraDirection.x, 0f, cameraDirection.z), transform);
+            spellCasters[activeSpell].CastSpell(body.transform.position, staffTip.position, body.transform.forward, cam.GetCamera().transform.forward, transform);
         }
     }
 

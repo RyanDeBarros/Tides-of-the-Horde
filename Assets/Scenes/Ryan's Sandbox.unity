@@ -127,14 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 530851904224757, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: repelRadius
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 530851904224757, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: bounceBackStrength
-      value: 200
-      objectReference: {fileID: 0}
     - target: {fileID: 1836143556417962073, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -178,6 +170,14 @@ PrefabInstance:
     - target: {fileID: 4381584739051638850, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856031086102374026, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: acceleration
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856031086102374026, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: initialSpeed
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

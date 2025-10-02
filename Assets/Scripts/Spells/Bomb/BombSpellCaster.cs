@@ -41,6 +41,8 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         animator.ExecuteAttack2();
+        cameraDirection.y = 0f;
+        cameraDirection.Normalize();
         GameObject instance = Instantiate(spellPrefab, staffPosition, Quaternion.LookRotation(cameraDirection));
         BombSpell spell = instance.GetComponent<BombSpell>();
         Assert.IsNotNull(spell);

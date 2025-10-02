@@ -25,7 +25,7 @@ public class HUDController : MonoBehaviour
         if (playerHealth != null)
         {
             playerHealth.onHealthChanged.AddListener(UpdateHealthHUD);
-            UpdateHealthHUD(playerHealth.currentHealth, playerHealth.maxHealth);
+            UpdateHealthHUD(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
         }
 
         // Initialize EXP bar with demo values
