@@ -16,8 +16,8 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
     [Header("Locomotion")]
     [SerializeField] private float animationSpeedMultiplier = 3f;
     [SerializeField] private float gravity = -10f;
-    [SerializeField] private float initialVerticalVelocity = 5f;
-    [SerializeField] private float initialForwardVelocity = 10f;
+    [SerializeField] private float initialVerticalVelocity = 10f;
+    [SerializeField] private float initialForwardVelocity = 20f;
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
@@ -42,16 +42,15 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
         crosshairsController.SetShowing(true);
     }
 
-    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Vector3 cameraDirection, Transform player)
+    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Transform player)
     {
         if (cooldownLeft > 0f) return;
 
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         animator.ExecuteAttack2();
-        cameraDirection.y = 0f;
-        cameraDirection.Normalize();
-        GameObject instance = Instantiate(spellPrefab, staffPosition, Quaternion.LookRotation(cameraDirection));
+        Vector3 direction = crosshairsController.GetWorldDirection();
+        GameObject instance = Instantiate(spellPrefab, staffPosition, Quaternion.LookRotation(direction));
         BombSpell spell = instance.GetComponent<BombSpell>();
         Assert.IsNotNull(spell);
         spell.innerDamage = innerDamage;
@@ -60,6 +59,6 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
         spell.aoeRadius = aoeRadius;
         spell.enemyLayerMask = enemyLayerMask;
         spell.gravity = gravity;
-        spell.velocity = cameraDirection * initialForwardVelocity + Vector3.up * initialVerticalVelocity;
+        spell.velocity = direction * initialForwardVelocity + Vector3.up * initialVerticalVelocity;
     }
 }

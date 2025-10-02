@@ -17,8 +17,8 @@ public class CrosshairsController : MonoBehaviour
         image.gameObject.SetActive(show);
     }
 
-    public Ray GetWorldRay()
+    public Vector3 GetWorldDirection()
     {
-        return Camera.main.ScreenPointToRay(transform.position);
+        return Camera.main.ScreenPointToRay(transform.position).direction.normalized;
     }
 }

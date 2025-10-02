@@ -77,7 +77,7 @@ MonoBehaviour:
   aoeRadius: 1
   enemyLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   animationSpeedMultiplier: 3
   gravity: -10
   initialVerticalVelocity: 5
@@ -119,3 +119,5 @@ MonoBehaviour:
   damage: 20
   animationSpeedMultiplier: 2.5
   verticalSpawnOffset: 0.3
+  initialSpeed: 50
+  acceleration: 50

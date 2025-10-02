@@ -41,7 +41,7 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
         crosshairsController.SetShowing(false);
     }
 
-    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Vector3 cameraDirection, Transform player)
+    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Transform player)
     {
         if (cooldownLeft > 0f) return;
 

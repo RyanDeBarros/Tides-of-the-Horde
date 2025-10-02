@@ -53,7 +53,7 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         crosshairsController.SetShowing(true);
     }
 
-    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Vector3 cameraDirection, Transform player)
+    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Transform player)
     {
         if (cooldownLeft > 0f) return;
 
@@ -64,7 +64,7 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         spellCastSetup = new()
         {
             staffPosition = staffPosition,
-            direction = crosshairsController.GetWorldRay().direction.normalized
+            direction = crosshairsController.GetWorldDirection()
         };
         animator.ExecuteAttack2();
     }

@@ -208,7 +208,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 5445867534279781679}
-  panSpeed: 2
+  horizontalPanSpeed: 2
+  verticalPanSpeed: 2
+  verticalPanMin: -15
+  verticalPanMax: 30
 --- !u!114 &3457600730889820102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,10 +315,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1836143556417962073}
     m_Modifications:
-    - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: enemyLayerMask.m_Bits
-      value: 256
-      objectReference: {fileID: 0}
     - target: {fileID: 4923396060290730105, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -355,14 +354,6 @@ PrefabInstance:
     - target: {fileID: 4923396060290730105, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5717765672750204481, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: acceleration
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5717765672750204481, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: initialSpeed
-      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 7551558017530756215, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: m_Name

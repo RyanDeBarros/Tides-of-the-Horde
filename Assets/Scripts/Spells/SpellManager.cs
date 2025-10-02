@@ -35,7 +35,7 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))  // 0 = left click
         {
-            GetActiveSpellCaster().CastSpell(body.transform.position, staffTip.position, body.transform.forward, cam.GetCamera().transform.forward, transform);
+            GetActiveSpellCaster().CastSpell(body.transform.position, staffTip.position, body.transform.forward, transform);
         }
     }
 
