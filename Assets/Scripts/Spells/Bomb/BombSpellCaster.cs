@@ -42,15 +42,15 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
         crosshairsController.SetShowing(true);
     }
 
-    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Transform player)
+    public void CastSpell(SpellManager manager)
     {
         if (cooldownLeft > 0f) return;
 
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         animator.ExecuteAttack2();
-        Vector3 direction = crosshairsController.GetWorldDirection();
-        GameObject instance = Instantiate(spellPrefab, staffPosition, Quaternion.LookRotation(direction));
+        Vector3 direction = crosshairsController.GetWorldDirection(manager.GetStaffTipPosition());
+        GameObject instance = Instantiate(spellPrefab, manager.GetStaffTipPosition(), Quaternion.LookRotation(direction));
         BombSpell spell = instance.GetComponent<BombSpell>();
         Assert.IsNotNull(spell);
         spell.innerDamage = innerDamage;

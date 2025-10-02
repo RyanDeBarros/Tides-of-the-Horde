@@ -18,16 +18,9 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
+    private SpellManager spellManager;
     private float cooldownLeft = 0f;
     private bool attacking = false;
-
-    private class SpellCastSetup
-    {
-        public Vector3 staffPosition;
-        public Vector3 direction;
-    }
-
-    private SpellCastSetup spellCastSetup;
 
     void Awake()
     {
@@ -53,19 +46,14 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         crosshairsController.SetShowing(true);
     }
 
-    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Transform player)
+    public void CastSpell(SpellManager manager)
     {
         if (cooldownLeft > 0f) return;
 
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         attacking = true;
-        // delay casting spell
-        spellCastSetup = new()
-        {
-            staffPosition = staffPosition,
-            direction = crosshairsController.GetWorldDirection()
-        };
+        spellManager = manager;
         animator.ExecuteAttack2();
     }
 
@@ -75,7 +63,8 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         {
             attacking = false;
             // cast spell on climax
-            GameObject instance = Instantiate(spellPrefab, spellCastSetup.staffPosition + verticalSpawnOffset * Vector3.up, Quaternion.LookRotation(spellCastSetup.direction));
+            GameObject instance = Instantiate(spellPrefab, spellManager.GetStaffTipPosition() + verticalSpawnOffset * Vector3.up,
+                Quaternion.LookRotation(crosshairsController.GetWorldDirection(spellManager.GetStaffTipPosition(), clip: 50f)));
             SniperSpell spell = instance.GetComponent<SniperSpell>();
             Assert.IsNotNull(spell);
             spell.lifespan = lifespan;

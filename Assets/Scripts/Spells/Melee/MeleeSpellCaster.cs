@@ -41,17 +41,17 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
         crosshairsController.SetShowing(false);
     }
 
-    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Transform player)
+    public void CastSpell(SpellManager manager)
     {
         if (cooldownLeft > 0f) return;
 
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         animator.ExecuteAttack1();
-        GameObject instance = Instantiate(spellPrefab, playerPosition + playerDirection.normalized * shockwaveForwardOffset, Quaternion.LookRotation(playerDirection));
+        GameObject instance = Instantiate(spellPrefab, manager.GetPlayerPosition() + manager.GetPlayerForwardVector() * shockwaveForwardOffset, Quaternion.LookRotation(manager.GetPlayerForwardVector()));
         MeleeSpell spell = instance.GetComponent<MeleeSpell>();
         Assert.IsNotNull(spell);
-        spell.blastPosition = staffPosition;
+        spell.blastPosition = manager.GetStaffTipPosition();
         spell.lifetime = lifetime;
         spell.damage = damage;
         spell.bounceBackStrength = bounceBackStrength;

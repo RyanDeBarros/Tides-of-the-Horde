@@ -38,14 +38,14 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
         crosshairsController.SetShowing(false);
     }
 
-    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Transform player)
+    public void CastSpell(SpellManager manager)
     {
         if (cooldownLeft > 0f) return;
 
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         animator.ExecuteAttack2();
-        GameObject instance = Instantiate(spellPrefab, playerPosition, Quaternion.LookRotation(playerDirection), parent: player);
+        GameObject instance = Instantiate(spellPrefab, manager.GetPlayerPosition(), Quaternion.LookRotation(manager.GetPlayerForwardVector()), parent: manager.transform);
         BubbleSpell spell = instance.GetComponent<BubbleSpell>();
         Assert.IsNotNull(spell);
         spell.duration = duration;

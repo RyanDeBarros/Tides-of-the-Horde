@@ -35,7 +35,7 @@ public class SpellManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))  // 0 = left click
         {
-            GetActiveSpellCaster().CastSpell(body.transform.position, staffTip.position, body.transform.forward, transform);
+            GetActiveSpellCaster().CastSpell(this);
         }
     }
 
@@ -48,5 +48,20 @@ public class SpellManager : MonoBehaviour
     private ISpellCaster GetActiveSpellCaster()
     {
         return spellCasters[activeSpell];
+    }
+
+    public Vector3 GetPlayerPosition()
+    {
+        return body.transform.position;
+    }
+
+    public Vector3 GetPlayerForwardVector()
+    {
+        return body.transform.forward.normalized;
+    }
+
+    public Vector3 GetStaffTipPosition()
+    {
+        return staffTip.position;
     }
 }
