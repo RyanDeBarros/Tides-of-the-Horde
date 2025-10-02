@@ -261,7 +261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 6650955198508928502}
   staffTip: {fileID: 5956717040792033509}
-  activeSpell: 3
+  activeSpell: 1
 --- !u!143 &1743212581410189318
 CharacterController:
   m_ObjectHideFlags: 0

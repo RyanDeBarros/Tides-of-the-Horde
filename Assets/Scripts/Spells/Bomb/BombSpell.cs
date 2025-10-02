@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Rendering;
 
 public class BombSpell : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class BombSpell : MonoBehaviour
     public float bounceBackStrength = 50f;
     public float aoeRadius = 11f;
     public LayerMask enemyLayerMask;
+    public GameObject explosionFX;
 
     public float gravity = -10f;
     public Vector3 velocity = Vector3.zero;
@@ -41,6 +43,7 @@ public class BombSpell : MonoBehaviour
             TryBouncingBack(target, new Vector3(direction.x, 0f, direction.z).normalized);
             TryDamaging(target);
         }
+        SpawnExplosion();
         Destroy(gameObject);
     }
 
@@ -60,6 +63,22 @@ public class BombSpell : MonoBehaviour
             float distance = Vector3.Distance(transform.position, closestPoint);
             int damage = Mathf.RoundToInt(Mathf.Lerp(innerDamage, outerDamage, distance / aoeRadius));
             health.TakeDamage(damage);
+        }
+    }
+
+    private void SpawnExplosion()
+    {
+        GameObject explosion = Instantiate(explosionFX, transform.position, transform.rotation);
+
+        if (explosion.TryGetComponent<ParticleSystem>(out var ps))
+        {
+            ps.Play();
+            explosion.transform.localScale = Vector3.one * aoeRadius;
+            Destroy(explosion, ps.main.duration);
+        }
+        else
+        {
+            Destroy(explosion);
         }
     }
 

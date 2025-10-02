@@ -74,14 +74,15 @@ MonoBehaviour:
   innerDamage: 120
   outerDamage: 50
   bounceBackStrength: 50
-  aoeRadius: 1
+  aoeRadius: 3
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  explosionFX: {fileID: 0}
   animationSpeedMultiplier: 3
   gravity: -10
-  initialVerticalVelocity: 10
-  initialForwardVelocity: 20
+  initialVerticalVelocity: 5
+  initialForwardVelocity: 15
 --- !u!114 &-2295139256518842974
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -46,12 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2c403be37e0b1d439382395452a7dbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 120
-  bounceBackSpeed: 50
+  innerDamage: 120
+  outerDamage: 50
+  bounceBackStrength: 50
   aoeRadius: 10
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  explosionFX: {fileID: 4979637674263650540, guid: b8bcb63e9438b7148bb2c273d333ba06, type: 3}
   gravity: -10
   velocity: {x: 0, y: 0, z: 0}
 --- !u!135 &842051815952284954

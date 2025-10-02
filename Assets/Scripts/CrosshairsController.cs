@@ -22,10 +22,12 @@ public class CrosshairsController : MonoBehaviour
         return Camera.main.ScreenPointToRay(transform.position).direction.normalized;
     }
 
-    public Vector3 GetWorldDirection(Vector3 fromPosition, float clip = 1000f)
+    public Vector3 GetWorldDirection(Vector3 fromPosition, float maxClip = 1000f)
     {
         Ray ray = Camera.main.ScreenPointToRay(transform.position);
-        Vector3 targetPoint = ray.origin + ray.direction * clip;
-        return (targetPoint - fromPosition).normalized;
+        if (Physics.Raycast(ray, out RaycastHit hit, maxClip))
+            return (hit.point - fromPosition).normalized;
+        else
+            return ray.direction.normalized;
     }
 }
