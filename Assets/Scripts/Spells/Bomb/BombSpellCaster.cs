@@ -20,18 +20,26 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
     [SerializeField] private float initialForwardVelocity = 10f;
 
     private PlayerAnimatorController animator;
+    private CrosshairsController crosshairsController;
     private float cooldownLeft = 0f;
 
     void Awake()
     {
         animator = transform.parent.GetComponentInChildren<PlayerAnimatorController>();
         Assert.IsNotNull(animator);
+        crosshairsController = FindFirstObjectByType<CrosshairsController>();
+        Assert.IsNotNull(crosshairsController);
         Assert.IsNotNull(spellPrefab);
     }
 
     void Update()
     {
         if (cooldownLeft > 0f) cooldownLeft -= Time.deltaTime;
+    }
+
+    public void Select()
+    {
+        crosshairsController.SetShowing(true);
     }
 
     public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Vector3 cameraDirection, Transform player)

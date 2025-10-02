@@ -27,18 +27,26 @@ public class SpellManager : MonoBehaviour
 
         Assert.IsNotNull(body);
         Assert.IsNotNull(staffTip);
+
+        SetActiveSpell(activeSpell);
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))  // 0 = left click
         {
-            spellCasters[activeSpell].CastSpell(body.transform.position, staffTip.position, body.transform.forward, cam.GetCamera().transform.forward, transform);
+            GetActiveSpellCaster().CastSpell(body.transform.position, staffTip.position, body.transform.forward, cam.GetCamera().transform.forward, transform);
         }
     }
 
     public void SetActiveSpell(SpellType spellType)
     {
         activeSpell = spellType;
+        GetActiveSpellCaster().Select();
+    }
+
+    private ISpellCaster GetActiveSpellCaster()
+    {
+        return spellCasters[activeSpell];
     }
 }

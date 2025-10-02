@@ -16,18 +16,26 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
     [SerializeField] private float growDuration = 0.2f;
 
     private PlayerAnimatorController animator;
+    private CrosshairsController crosshairsController;
     private float cooldownLeft = 0f;
 
     void Awake()
     {
         animator = transform.parent.GetComponentInChildren<PlayerAnimatorController>();
         Assert.IsNotNull(animator);
+        Assert.IsNotNull(animator);
+        crosshairsController = FindFirstObjectByType<CrosshairsController>();
         Assert.IsNotNull(spellPrefab);
     }
 
     void Update()
     {
         if (cooldownLeft > 0f) cooldownLeft -= Time.deltaTime;
+    }
+
+    public void Select()
+    {
+        crosshairsController.SetShowing(false);
     }
 
     public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Vector3 cameraDirection, Transform player)

@@ -17,13 +17,14 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
     [SerializeField] private float acceleration = 50f;
 
     private PlayerAnimatorController animator;
+    private CrosshairsController crosshairsController;
     private float cooldownLeft = 0f;
     private bool attacking = false;
 
     private class SpellCastSetup
     {
         public Vector3 staffPosition;
-        public Vector3 cameraDirection;
+        public Vector3 direction;
     }
 
     private SpellCastSetup spellCastSetup;
@@ -32,6 +33,8 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
     {
         animator = transform.parent.GetComponentInChildren<PlayerAnimatorController>();
         Assert.IsNotNull(animator);
+        crosshairsController = FindFirstObjectByType<CrosshairsController>();
+        Assert.IsNotNull(crosshairsController);
         Assert.IsNotNull(spellPrefab);
     }
 
@@ -45,6 +48,11 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         if (!attacking && cooldownLeft > 0f) cooldownLeft -= Time.deltaTime;
     }
 
+    public void Select()
+    {
+        crosshairsController.SetShowing(true);
+    }
+
     public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Vector3 cameraDirection, Transform player)
     {
         if (cooldownLeft > 0f) return;
@@ -52,12 +60,11 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         attacking = true;
-        cameraDirection.y = 0f;
         // delay casting spell
         spellCastSetup = new()
         {
             staffPosition = staffPosition,
-            cameraDirection = cameraDirection.normalized
+            direction = crosshairsController.GetWorldRay().direction.normalized
         };
         animator.ExecuteAttack2();
     }
@@ -68,7 +75,7 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         {
             attacking = false;
             // cast spell on climax
-            GameObject instance = Instantiate(spellPrefab, spellCastSetup.staffPosition + verticalSpawnOffset * Vector3.up, Quaternion.LookRotation(spellCastSetup.cameraDirection));
+            GameObject instance = Instantiate(spellPrefab, spellCastSetup.staffPosition + verticalSpawnOffset * Vector3.up, Quaternion.LookRotation(spellCastSetup.direction));
             SniperSpell spell = instance.GetComponent<SniperSpell>();
             Assert.IsNotNull(spell);
             spell.lifespan = lifespan;
