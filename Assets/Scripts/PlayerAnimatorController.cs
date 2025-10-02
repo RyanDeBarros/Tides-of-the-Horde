@@ -1,9 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimatorController : MonoBehaviour
 {
     private Animator playerAnimator;
-    private Gravity gravity; 
+    private Gravity gravity;
+
+    private List<ICallbackOnAttack2Climax> onAttack2ClimaxCallbacks = new();
 
     void Awake()
     {
@@ -18,10 +22,6 @@ public class PlayerAnimatorController : MonoBehaviour
         {
             Debug.LogError("gravity script not found on " + gameObject.name);
         }
-    }
-
-    void Update()
-    {
     }
 
     public void SetWalking(bool isWalking)
@@ -47,5 +47,16 @@ public class PlayerAnimatorController : MonoBehaviour
     public void ExecuteAttack2()
     {
         playerAnimator.SetTrigger("Attack2");
+    }
+
+    public void RegisterOnAttack2Climax(ICallbackOnAttack2Climax callback)
+    {
+        onAttack2ClimaxCallbacks.Add(callback);
+    }
+
+    public void OnAttack2Climax()
+    {
+        foreach (var c in onAttack2ClimaxCallbacks)
+            c.OnAttack2Climax();
     }
 }
