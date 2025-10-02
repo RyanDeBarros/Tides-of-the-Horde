@@ -7,6 +7,7 @@ public class PlayerAnimatorController : MonoBehaviour
     private Animator playerAnimator;
     private Gravity gravity;
 
+    private List<ICallbackOnAttack1Climax> onAttack1ClimaxCallbacks = new();
     private List<ICallbackOnAttack2Climax> onAttack2ClimaxCallbacks = new();
 
     void Awake()
@@ -42,6 +43,17 @@ public class PlayerAnimatorController : MonoBehaviour
     public void ExecuteAttack1()
     {
         playerAnimator.SetTrigger("Attack1");
+    }
+
+    public void RegisterOnAttack1Climax(ICallbackOnAttack1Climax callback)
+    {
+        onAttack1ClimaxCallbacks.Add(callback);
+    }
+
+    public void OnAttack1Climax()
+    {
+        foreach (var c in onAttack1ClimaxCallbacks)
+            c.OnAttack1Climax();
     }
 
     public void ExecuteAttack2()

@@ -1,9 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
+public class MeleeSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack1Climax
 {
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private float cooldown = 0.5f;
@@ -20,7 +21,9 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
+    private SpellManager spellManager;
     private float cooldownLeft = 0f;
+    private bool attacking = false;
 
     void Awake()
     {
@@ -29,6 +32,11 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
         Assert.IsNotNull(animator);
         crosshairsController = FindFirstObjectByType<CrosshairsController>();
         Assert.IsNotNull(spellPrefab);
+    }
+
+    void Start()
+    {
+        animator.RegisterOnAttack1Climax(this);
     }
 
     void Update()
@@ -47,16 +55,28 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster
 
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
+        attacking = true;
+        spellManager = manager;
         animator.ExecuteAttack1();
-        GameObject instance = Instantiate(spellPrefab, manager.GetPlayerPosition() + manager.GetPlayerForwardVector() * shockwaveForwardOffset, Quaternion.LookRotation(manager.GetPlayerForwardVector()));
-        MeleeSpell spell = instance.GetComponent<MeleeSpell>();
-        Assert.IsNotNull(spell);
-        spell.blastPosition = manager.GetStaffTipPosition();
-        spell.lifetime = lifetime;
-        spell.damage = damage;
-        spell.bounceBackStrength = bounceBackStrength;
-        spell.shockwave.growSpeed = shockwaveGrowSpeed;
-        spell.blast.growSpeed = blastGrowSpeed;
-        spell.blast.moveSpeed = moveSpeed;
+    }
+
+    public void OnAttack1Climax()
+    {
+        if (attacking)
+        {
+            attacking = false;
+            // cast spell on climax
+            GameObject instance = Instantiate(spellPrefab, spellManager.GetPlayerPosition() + spellManager.GetPlayerForwardVector() * shockwaveForwardOffset,
+                Quaternion.LookRotation(spellManager.GetPlayerForwardVector()));
+            MeleeSpell spell = instance.GetComponent<MeleeSpell>();
+            Assert.IsNotNull(spell);
+            spell.blastPosition = spellManager.GetStaffTipPosition();
+            spell.lifetime = lifetime;
+            spell.damage = damage;
+            spell.bounceBackStrength = bounceBackStrength;
+            spell.shockwave.growSpeed = shockwaveGrowSpeed;
+            spell.blast.growSpeed = blastGrowSpeed;
+            spell.blast.moveSpeed = moveSpeed;
+        }
     }
 }

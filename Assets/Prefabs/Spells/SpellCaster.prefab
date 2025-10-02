@@ -80,8 +80,8 @@ MonoBehaviour:
     m_Bits: 256
   animationSpeedMultiplier: 3
   gravity: -10
-  initialVerticalVelocity: 5
-  initialForwardVelocity: 10
+  initialVerticalVelocity: 10
+  initialForwardVelocity: 20
 --- !u!114 &-2295139256518842974
 MonoBehaviour:
   m_ObjectHideFlags: 0
