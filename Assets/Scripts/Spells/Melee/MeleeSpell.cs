@@ -19,8 +19,8 @@ public class MeleeSpell : MonoBehaviour
     void Awake()
     {
         shockwave = GetComponentInChildren<MeleeSpell_Shockwave>();
-        blast = GetComponentInChildren<MeleeSpell_Blast>();
         Assert.IsNotNull(shockwave);
+        blast = GetComponentInChildren<MeleeSpell_Blast>();
         Assert.IsNotNull(blast);
     }
 

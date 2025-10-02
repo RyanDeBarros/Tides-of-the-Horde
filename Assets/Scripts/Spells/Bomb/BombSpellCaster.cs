@@ -34,7 +34,7 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
         if (cooldownLeft > 0f) cooldownLeft -= Time.deltaTime;
     }
 
-    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Vector3 cameraDirection)
+    public void CastSpell(Vector3 playerPosition, Vector3 staffPosition, Vector3 playerDirection, Vector3 cameraDirection, Transform player)
     {
         if (cooldownLeft > 0f) return;
 

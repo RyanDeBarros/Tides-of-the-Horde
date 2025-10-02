@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
-using static UnityEngine.GraphicsBuffer;
 
 public class BombSpell : MonoBehaviour
 {
@@ -35,7 +34,7 @@ public class BombSpell : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Collider[] hits = Physics.OverlapSphere(transform.position, aoeRadius, enemyLayerMask); // TODO friendly fire?
+        Collider[] hits = Physics.OverlapSphere(transform.position, aoeRadius, enemyLayerMask);
         foreach (Collider target in hits)
         {
             Vector3 direction = target.transform.position - transform.position;
