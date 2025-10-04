@@ -78,11 +78,12 @@ MonoBehaviour:
   enemyLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  explosionFX: {fileID: 0}
+  explosionFX: {fileID: 4979637674263650540, guid: b8bcb63e9438b7148bb2c273d333ba06, type: 3}
   animationSpeedMultiplier: 3
   gravity: -10
   initialVerticalVelocity: 5
   initialForwardVelocity: 15
+  crosshairAimingClip: 30
 --- !u!114 &-2295139256518842974
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -118,7 +119,10 @@ MonoBehaviour:
   cooldown: 0.5
   lifespan: 3
   damage: 20
+  vfxExplosionRadius: 1
+  explosionFX: {fileID: 4979637674263650540, guid: b8bcb63e9438b7148bb2c273d333ba06, type: 3}
   animationSpeedMultiplier: 2.5
   verticalSpawnOffset: 0.3
   initialSpeed: 50
   acceleration: 50
+  crosshairAimingClip: 50

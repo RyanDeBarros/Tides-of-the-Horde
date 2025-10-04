@@ -27,7 +27,10 @@ public class SpellManager : MonoBehaviour
 
         Assert.IsNotNull(body);
         Assert.IsNotNull(staffTip);
+    }
 
+    private void Start()
+    {
         SetActiveSpell(activeSpell);
     }
 

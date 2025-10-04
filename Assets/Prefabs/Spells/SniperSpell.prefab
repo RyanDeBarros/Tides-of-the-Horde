@@ -112,6 +112,18 @@ PrefabInstance:
       value: Spell-trails-purple
       objectReference: {fileID: 0}
     - target: {fileID: 6812015264638739367, guid: 826d442f3cbbb2b479aa8f425ec00b95, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812015264638739367, guid: 826d442f3cbbb2b479aa8f425ec00b95, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812015264638739367, guid: 826d442f3cbbb2b479aa8f425ec00b95, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6812015264638739367, guid: 826d442f3cbbb2b479aa8f425ec00b95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Assertions;
 
 public class CrosshairsController : MonoBehaviour
 {
@@ -10,11 +11,12 @@ public class CrosshairsController : MonoBehaviour
     private void Awake()
     {
         image = GetComponent<RawImage>();
+        Assert.IsNotNull(image);
     }
 
     public void SetShowing(bool show)
     {
-        image.gameObject.SetActive(show);
+        image.enabled = show;
     }
 
     public Vector3 GetWorldDirection()

@@ -8,7 +8,10 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
     [SerializeField] private GameObject spellPrefab;
     [SerializeField] private float cooldown = 0.5f;
     [SerializeField] private float lifespan = 3f;
+    [SerializeField] private int maxEnemiesCanHit = 3;
     [SerializeField] private int damage = 20;
+    [SerializeField] private float vfxExplosionRadius = 1f;
+    [SerializeField] private GameObject explosionFX;
 
     [Header("Locomotion")]
     [SerializeField] private float animationSpeedMultiplier = 2.5f;
@@ -69,9 +72,12 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
             SniperSpell spell = instance.GetComponent<SniperSpell>();
             Assert.IsNotNull(spell);
             spell.lifespan = lifespan;
+            spell.maxEnemiesCanHit = maxEnemiesCanHit;
             spell.damage = damage;
             spell.speed = initialSpeed;
             spell.acceleration = acceleration;
+            spell.vfxExplosionRadius = vfxExplosionRadius;
+            spell.explosionFX = explosionFX;
         }
     }
 }

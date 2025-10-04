@@ -40,7 +40,6 @@ public class BubbleSpell : MonoBehaviour
             direction.y = 0f;
             direction.Normalize();
 
-            Debug.Log($"Bounce {bounceBackStrength}");
             bounceBack.Bounce(direction, bounceBackStrength);
         }
     }
