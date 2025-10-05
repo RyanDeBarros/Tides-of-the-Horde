@@ -167,13 +167,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2222206866782075771, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: gravity
+      value: -13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222206866782075771, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: initialForwardVelocity
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222206866782075771, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: initialVerticalVelocity
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2222206866782075771, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: animationSpeedMultiplier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4381584739051638850, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7622766684650392044, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: activeSpell
-      value: 3
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856031086102374026, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: damage
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856031086102374026, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: cooldown
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7856031086102374026, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: acceleration
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

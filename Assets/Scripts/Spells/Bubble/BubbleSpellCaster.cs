@@ -44,7 +44,7 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
 
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
-        animator.ExecuteAttack2();
+        animator.ExecuteAttack1();
         GameObject instance = Instantiate(spellPrefab, manager.GetPlayerPosition(), Quaternion.LookRotation(manager.GetPlayerForwardVector()), parent: manager.transform);
         BubbleSpell spell = instance.GetComponent<BubbleSpell>();
         Assert.IsNotNull(spell);

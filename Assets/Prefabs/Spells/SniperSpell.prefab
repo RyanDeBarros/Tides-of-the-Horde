@@ -48,9 +48,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifespan: 3
+  maxEnemiesCanHit: 3
   damage: 20
   speed: 50
   acceleration: 50
+  vfxExplosionRadius: 1
+  explosionFX: {fileID: 0}
 --- !u!135 &4535018396254777966
 SphereCollider:
   m_ObjectHideFlags: 0
