@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public interface ISpellCaster
 {
@@ -12,4 +13,16 @@ public enum SpellType
     Bomb,
     Bubble,
     Sniper
+}
+
+public class UnlockableSpellCaster
+{
+    public ISpellCaster caster;
+    public bool locked = true;
+
+    public UnlockableSpellCaster(ISpellCaster caster)
+    {
+        this.caster = caster;
+        Assert.IsNotNull(this.caster);
+    }
 }
