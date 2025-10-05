@@ -51,7 +51,7 @@ public class PlayerCamera : MonoBehaviour
         cam.transform.RotateAround(transform.position, transform.right, deltaPitch);
 
         // Always look at player
-        cam.transform.LookAt(transform.position);
+        //cam.transform.LookAt(transform.position);
     }
 
     public Vector3 GetForwardVector()

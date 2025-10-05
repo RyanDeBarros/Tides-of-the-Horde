@@ -210,8 +210,8 @@ MonoBehaviour:
   cam: {fileID: 5445867534279781679}
   horizontalPanSpeed: 2
   verticalPanSpeed: 2
-  verticalPanMin: -15
-  verticalPanMax: 30
+  verticalPanMin: -25
+  verticalPanMax: 5
 --- !u!114 &3457600730889820102
 MonoBehaviour:
   m_ObjectHideFlags: 0
