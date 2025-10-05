@@ -10,8 +10,11 @@ public class BubbleSpell : MonoBehaviour
     public float growDuration = 0.2f;
     public float bounceBackStrength = 200f;
 
-    private float timeElapsed = 0f;
+    [Header("Visual Settings")]
+    public GameObject bubbleVisualPrefab;
+    private GameObject bubbleVisualInstance;
 
+    private float timeElapsed = 0f;
     private new SphereCollider collider;
 
     private void Awake()
@@ -19,17 +22,37 @@ public class BubbleSpell : MonoBehaviour
         collider = GetComponent<SphereCollider>();
         Assert.IsNotNull(collider);
         collider.radius = 0f;
+
+        // Spawn the visual
+        if (bubbleVisualPrefab != null)
+        {
+            bubbleVisualInstance = Instantiate(bubbleVisualPrefab, transform);
+            bubbleVisualInstance.transform.localPosition = Vector3.zero;
+            bubbleVisualInstance.transform.localScale = Vector3.zero; // start small
+        }
     }
 
     void Update()
     {
         timeElapsed += Time.deltaTime;
-        if (timeElapsed > duration) Destroy(gameObject);
+        if (timeElapsed > duration)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
-        if (timeElapsed < growDuration)
-            collider.radius = Mathf.Lerp(0f, repelRadius, timeElapsed / growDuration);
-        else
-            collider.radius = repelRadius;
+        float currentRadius = (timeElapsed < growDuration)
+            ? Mathf.Lerp(0f, repelRadius, timeElapsed / growDuration)
+            : repelRadius;
+
+        collider.radius = currentRadius;
+
+        // Update visual scale (sphere) to match collider
+        if (bubbleVisualInstance != null)
+        {
+            bubbleVisualInstance.transform.localScale = Vector3.one * currentRadius * 2f;
+            // multiply by 2 since Unity sphere scale = diameter, collider.radius = radius
+        }
     }
 
     private void OnTriggerEnter(Collider target)
@@ -46,7 +69,10 @@ public class BubbleSpell : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawWireSphere(transform.position, collider.radius);
+        if (collider != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, collider.radius);
+        }
     }
 }

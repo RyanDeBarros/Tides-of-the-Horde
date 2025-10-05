@@ -55,7 +55,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   explosionFX: {fileID: 4979637674263650540, guid: b8bcb63e9438b7148bb2c273d333ba06, type: 3}
-  gravity: -10
+  gravity: -18
   velocity: {x: 0, y: 0, z: 0}
 --- !u!135 &842051815952284954
 SphereCollider:

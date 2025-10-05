@@ -48,6 +48,8 @@ MonoBehaviour:
   duration: 0.3
   repelRadius: 1
   growDuration: 0.2
+  bounceBackStrength: 200
+  bubbleVisualPrefab: {fileID: 570057491059776938, guid: ceaf9a400993eaa459027be9a873422e, type: 3}
 --- !u!135 &3655717874909740800
 SphereCollider:
   m_ObjectHideFlags: 0
