@@ -83,11 +83,10 @@ public class BombSpell : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-
-        if (collider == null)
-            collider = GetComponent<SphereCollider>();
-
-        Gizmos.DrawWireSphere(transform.position, collider.radius);
+        if (collider != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, collider.radius);
+        }
     }
 }
