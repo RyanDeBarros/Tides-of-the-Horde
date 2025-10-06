@@ -279,6 +279,7 @@ MonoBehaviour:
   expBarSlider: {fileID: 8968765466937104246}
   expText: {fileID: 6817451336817785820}
   playerHealth: {fileID: 0}
+  activeSpellImage: {fileID: 7287794407864027527}
   maxExp: 1000
   currentExp: 0
 --- !u!1 &1378154475179732455

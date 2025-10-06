@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 using TMPro;
 
@@ -15,9 +16,17 @@ public class HUDController : MonoBehaviour
     [Header("Player References")]
     public Health playerHealth; // Assign in inspector
 
+    [Header("Spells")]
+    public RawImage activeSpellImage;
+
     [Header("Demo EXP Values")]
     public int maxExp = 1000;
     public int currentExp = 0;
+
+    private void Awake()
+    {
+        Assert.IsNotNull(activeSpellImage);
+    }
 
     void Start()
     {
