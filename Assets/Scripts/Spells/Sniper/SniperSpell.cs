@@ -17,7 +17,7 @@ public class SniperSpell : MonoBehaviour
     private new Rigidbody rigidbody;
     private float timeElapsed = 0f;
 
-    private HashSet<Collider> hitEnemies = new();
+    private readonly HashSet<Collider> hitEnemies = new();
 
     private void Awake()
     {
@@ -67,7 +67,10 @@ public class SniperSpell : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, collider.radius);
+        if (collider != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, collider.radius);
+        }
     }
 }

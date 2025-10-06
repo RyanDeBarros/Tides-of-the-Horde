@@ -33,7 +33,10 @@ public class MeleeSpell_Shockwave : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, collider.radius);
+        if (collider != null)
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position, collider.radius);
+        }
     }
 }
