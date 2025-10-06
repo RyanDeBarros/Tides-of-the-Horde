@@ -34,7 +34,10 @@ public class MeleeSpell_Blast : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, collider.radius);
+        if (collider != null)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, collider.radius);
+        }
     }
 }
