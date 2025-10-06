@@ -53,4 +53,9 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
         spell.growDuration = growDuration;
         spell.bounceBackStrength = bounceBackStrength;
     }
+
+    public float GetNormalizedCooldown()
+    {
+        return Mathf.Clamp01(cooldownLeft / cooldown);
+    }
 }
