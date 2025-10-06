@@ -63,4 +63,9 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
         spell.gravity = gravity;
         spell.velocity = direction * initialForwardVelocity + Vector3.up * initialVerticalVelocity;
     }
+
+    public float GetNormalizedCooldown()
+    {
+        return Mathf.Clamp01(cooldownLeft / cooldown);
+    }
 }

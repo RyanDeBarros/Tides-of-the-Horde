@@ -80,4 +80,9 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
             spell.explosionFX = explosionFX;
         }
     }
+
+    public float GetNormalizedCooldown()
+    {
+        return Mathf.Clamp01(cooldownLeft / cooldown);
+    }
 }
