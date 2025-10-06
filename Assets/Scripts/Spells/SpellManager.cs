@@ -10,6 +10,13 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private Transform staffTip;
     [SerializeField] private SpellType activeSpell = SpellType.Sniper;
 
+    [Header("UI")]
+    [SerializeField] private HUDController hud;
+    [SerializeField] private Texture meleeSpellIcon;
+    [SerializeField] private Texture bombSpellIcon;
+    [SerializeField] private Texture bubbleSpellIcon;
+    [SerializeField] private Texture sniperSpellIcon;
+
     private readonly Dictionary<SpellType, UnlockableSpellCaster> spellCasters = new();
 
     private PlayerCamera cam;
@@ -31,6 +38,12 @@ public class SpellManager : MonoBehaviour
 
         Assert.IsNotNull(body);
         Assert.IsNotNull(staffTip);
+
+        Assert.IsNotNull(hud);
+        Assert.IsNotNull(meleeSpellIcon);
+        Assert.IsNotNull(bombSpellIcon);
+        Assert.IsNotNull(bubbleSpellIcon);
+        Assert.IsNotNull(sniperSpellIcon);
     }
 
     private void Start()
@@ -40,6 +53,12 @@ public class SpellManager : MonoBehaviour
 
     void Update()
     {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll > 0)
+            ToggleActiveSpellUp();
+        else if (scroll < 0)
+            ToggleActiveSpellDown();
+
         if (Input.GetMouseButtonDown(0))  // 0 = left click
         {
             GetActiveSpellCaster().CastSpell(this);
@@ -66,6 +85,16 @@ public class SpellManager : MonoBehaviour
         Assert.IsTrue(IsUnlocked(spellType));
         activeSpell = spellType;
         GetActiveSpellCaster().Select();
+
+        // TODO Animate the cooldown on icon using GetNormalizedCooldown()
+        hud.activeSpellImage.texture = activeSpell switch
+        {
+            SpellType.Melee => meleeSpellIcon,
+            SpellType.Bomb => bombSpellIcon,
+            SpellType.Bubble => bubbleSpellIcon,
+            SpellType.Sniper => sniperSpellIcon,
+            _ => null
+        };
     }
 
     private ISpellCaster GetActiveSpellCaster()
