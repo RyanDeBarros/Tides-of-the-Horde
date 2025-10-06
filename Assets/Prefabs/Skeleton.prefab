@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1374632408338838039}
   - component: {fileID: 2787592504715518654}
   - component: {fileID: 1906600784215877830}
+  - component: {fileID: 5751742081959470242}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Untagged
@@ -163,7 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -184,6 +184,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resistance: 1
   duration: 0.1
+--- !u!114 &5751742081959470242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877391312677472464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e12f0ab43624449890b3abb9f845d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpAmount: 10
+  playerTag: Player
 --- !u!1 &4069443703503164984
 GameObject:
   m_ObjectHideFlags: 0
