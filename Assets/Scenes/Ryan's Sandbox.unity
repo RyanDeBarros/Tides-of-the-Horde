@@ -171,6 +171,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 7622766684650392044, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: hud
+      value: 
+      objectReference: {fileID: 1059471284}
+    - target: {fileID: 7622766684650392044, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: bombSpellIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: 3ada41d904892d64a9905734e889490a, type: 3}
+    - target: {fileID: 7622766684650392044, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: meleeSpellIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: c89e6c7d0af05674592e8d72f4b58a3b, type: 3}
+    - target: {fileID: 7622766684650392044, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: bubbleSpellIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: f26b168fa1f89274e8f6e565297c2882, type: 3}
+    - target: {fileID: 7622766684650392044, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: sniperSpellIcon
+      value: 
+      objectReference: {fileID: 2800000, guid: 68fea59bcd9ad084bb0639f88f77ec16, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -489,6 +509,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+--- !u!114 &1059471284 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1839483178472882230, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+  m_PrefabInstance: {fileID: 1059471283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 922bcf3ddd00c28dc9fe0985f1e3b43e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1238931758
 GameObject:
   m_ObjectHideFlags: 0
