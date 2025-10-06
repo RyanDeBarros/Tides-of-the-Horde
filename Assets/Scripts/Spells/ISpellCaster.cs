@@ -5,6 +5,7 @@ public interface ISpellCaster
 {
     public void Select();
     public void CastSpell(SpellManager manager);
+    public float GetNormalizedCooldown();
 }
 
 public enum SpellType

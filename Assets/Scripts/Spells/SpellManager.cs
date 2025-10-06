@@ -63,6 +63,8 @@ public class SpellManager : MonoBehaviour
         {
             GetActiveSpellCaster().CastSpell(this);
         }
+
+        hud.SetActiveSpellCooldown(GetActiveSpellCaster().GetNormalizedCooldown());
     }
 
     public Vector3 GetPlayerPosition()
@@ -86,7 +88,6 @@ public class SpellManager : MonoBehaviour
         activeSpell = spellType;
         GetActiveSpellCaster().Select();
 
-        // TODO Animate the cooldown on icon using GetNormalizedCooldown()
         hud.activeSpellImage.texture = activeSpell switch
         {
             SpellType.Melee => meleeSpellIcon,

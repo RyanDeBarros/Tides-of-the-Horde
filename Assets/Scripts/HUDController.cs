@@ -18,6 +18,7 @@ public class HUDController : MonoBehaviour
 
     [Header("Spells")]
     public RawImage activeSpellImage;
+    public Transform activeSpellCooldown;
 
     [Header("Demo EXP Values")]
     public int maxExp = 1000;
@@ -26,6 +27,7 @@ public class HUDController : MonoBehaviour
     private void Awake()
     {
         Assert.IsNotNull(activeSpellImage);
+        Assert.IsNotNull(activeSpellCooldown);
     }
 
     void Start()
@@ -39,8 +41,8 @@ public class HUDController : MonoBehaviour
 
         // Initialize EXP bar with demo values
         UpdateExpHUD(currentExp, maxExp);
+        SetActiveSpellCooldown(0f);
     }
-
 
     public void UpdateHealthHUD(int currentHP, int maxHP)
     {
@@ -54,7 +56,6 @@ public class HUDController : MonoBehaviour
             healthText.text = $"{currentHP}/{maxHP}";
     }
 
-
     public void UpdateExpHUD(int currentEXP, int maxEXP)
     {
         if (expBarSlider != null)
@@ -65,5 +66,10 @@ public class HUDController : MonoBehaviour
 
         if (expText != null)
             expText.text = $"{currentEXP}/{maxEXP}";
+    }
+
+    public void SetActiveSpellCooldown(float cooldown)
+    {
+        activeSpellCooldown.localScale = new Vector3(1f, cooldown, 1f);
     }
 }

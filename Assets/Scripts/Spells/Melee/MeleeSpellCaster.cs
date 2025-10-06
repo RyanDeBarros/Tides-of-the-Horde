@@ -79,4 +79,9 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack1C
             spell.blast.moveSpeed = moveSpeed;
         }
     }
+
+    public float GetNormalizedCooldown()
+    {
+        return Mathf.Clamp01(cooldownLeft / cooldown);
+    }
 }
