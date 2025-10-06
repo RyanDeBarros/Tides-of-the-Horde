@@ -30,7 +30,6 @@ public class BombSpell : MonoBehaviour
     {
         velocity.y += gravity * Time.deltaTime;
         rigidbody.MovePosition(rigidbody.position + velocity * Time.deltaTime);
-        // TODO DeathZone script that will despawn automatically if it gets too far from stage.
     }
 
     private void OnTriggerEnter(Collider other)
