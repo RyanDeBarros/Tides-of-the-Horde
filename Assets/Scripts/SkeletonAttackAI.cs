@@ -2,27 +2,44 @@ using UnityEngine;
 
 public class SkeletonAttackAI : MonoBehaviour
 {
-    [SerializeField] private Animator animator;   
+    [SerializeField] private Animator animator;
+    [SerializeField] private MeleeHitbox hitbox;   
 
     public string attackTrigger = "Fire";
     public string attackTag = "Attack";
     public string fallbackAttackStateName = "Attack01";
 
     int trigHash;
+    bool wasInAttack = false;
 
     void Reset() { if (!animator) animator = GetComponentInChildren<Animator>(); }
-    void Awake() { if (!animator) animator = GetComponentInChildren<Animator>(); trigHash = Animator.StringToHash(attackTrigger); }
+    void Awake() { if (!animator) animator = GetComponentInChildren<Animator>(); trigHash = Animator.StringToHash(attackTrigger);
+                   if (!hitbox) hitbox = GetComponentInChildren<MeleeHitbox>();
+    }
 
     public void TryAttack()
     {
-        if (!animator) return;
         if (!IsAttackingNow())
         {
-            Debug.Log("[AI] TryAttack()");
             animator.ResetTrigger(trigHash);
             animator.SetTrigger(trigHash);
         }
     }
+
+    void Update()
+    {
+        bool inAttack = IsAttackingNow();
+
+        
+        if (wasInAttack && !inAttack && hitbox != null)
+        {
+            Debug.Log("[AI] Attack ended ¡ú DealDamage()");
+            hitbox.DealDamage();
+        }
+
+        wasInAttack = inAttack;
+    }
+
 
     bool IsAttackingNow()
     {
