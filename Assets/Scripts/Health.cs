@@ -17,13 +17,13 @@ public class Health : MonoBehaviour
         onHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(1))  // 1 = right click
-        {
-            TakeDamage(10);
-        }
-    }
+    //private void Update()
+    //{
+    //    if (Input.GetMouseButtonDown(1))  // 1 = right click
+    //    {
+    //        TakeDamage(10);
+    //    }
+    //}
 
     public int GetCurrentHealth()
     {
