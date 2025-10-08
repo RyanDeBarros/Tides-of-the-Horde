@@ -48,4 +48,9 @@ public class MeleeHitbox : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(center, range);
     }
+
+    public void AnimationEvent_DealDamage()
+    {
+        DealDamage();
+    }
 }
