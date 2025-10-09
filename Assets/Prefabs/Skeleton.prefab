@@ -151,8 +151,6 @@ MonoBehaviour:
   animator: {fileID: 452747318334901099}
   hitbox: {fileID: 0}
   attackTrigger: Fire
-  attackTag: Attack
-  fallbackAttackStateName: Attack01
 --- !u!114 &2787592504715518654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -166,7 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  currentHealth: 0
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -310,6 +307,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6285209290496832306, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6247926122410824145}
+    - targetCorrespondingSourceObject: {fileID: 6285209290496832306, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8569633022711133693}
   m_SourcePrefab: {fileID: 100100000, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
 --- !u!95 &452747318334901099 stripped
 Animator:
@@ -345,3 +345,28 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   origin: {fileID: 0}
+  halfAngle: 60
+  useAngleGate: 1
+--- !u!136 &8569633022711133693
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452747318342301879}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2, z: 0}
