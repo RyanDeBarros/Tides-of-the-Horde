@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -17,18 +18,11 @@ public class HUDController : MonoBehaviour
     public Health playerHealth; // Assign in inspector
 
     [Header("Spells")]
-    public RawImage activeSpellImage;
-    public Transform activeSpellCooldown;
+    public List<SpellSelectController> spells;
 
     [Header("Demo EXP Values")]
     public int maxExp = 1000;
     public int currentExp = 0;
-
-    private void Awake()
-    {
-        Assert.IsNotNull(activeSpellImage);
-        Assert.IsNotNull(activeSpellCooldown);
-    }
 
     void Start()
     {
@@ -41,7 +35,6 @@ public class HUDController : MonoBehaviour
 
         // Initialize EXP bar with demo values
         UpdateExpHUD(currentExp, maxExp);
-        SetActiveSpellCooldown(0f);
     }
 
     public void UpdateHealthHUD(int currentHP, int maxHP)
@@ -66,10 +59,5 @@ public class HUDController : MonoBehaviour
 
         if (expText != null)
             expText.text = $"{currentEXP}/{maxEXP}";
-    }
-
-    public void SetActiveSpellCooldown(float cooldown)
-    {
-        activeSpellCooldown.localScale = new Vector3(1f, cooldown, 1f);
     }
 }
