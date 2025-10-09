@@ -9,7 +9,7 @@ public class SpellManager : MonoBehaviour
 {
     [SerializeField] private GameObject body;
     [SerializeField] private Transform staffTip;
-    [SerializeField] private SpellType activeSpell = SpellType.Sniper;
+    [SerializeField] private SpellType activeSpell = SpellType.Melee;
 
     [Header("UI")]
     [SerializeField] private HUDController hud;
@@ -18,8 +18,8 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private Texture bubbleSpellIcon;
     [SerializeField] private Texture sniperSpellIcon;
 
+    private static readonly int LMB = 0;
     private readonly Dictionary<SpellType, UnlockableSpellCaster> spellCasters = new();
-
     private PlayerCamera cam;
 
     private void Awake()
@@ -49,26 +49,47 @@ public class SpellManager : MonoBehaviour
 
     private void Start()
     {
-        SetActiveSpell(activeSpell);
+        UnlockSpell(activeSpell);
+        GetActiveSpellCaster().Select();
+        hud.spells.ForEach(spell => {
+            if (spell.GetSpellType() == activeSpell)
+                spell.ShowSelected();
+            else
+                spell.ShowDeselected();
+        });
     }
 
     void Update()
+    {
+        CheckForToggleInput();
+
+        if (Input.GetMouseButtonDown(LMB))
+            GetActiveSpellCaster().CastSpell(this);
+
+        hud.spells.ForEach(spell => {
+            if (spellCasters.TryGetValue(spell.GetSpellType(), out UnlockableSpellCaster caster))
+                spell.SetCooldown(caster.caster.GetNormalizedCooldown());
+        });
+    }
+
+    private void CheckForToggleInput()
     {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
         if (scroll > 0)
             ToggleActiveSpellUp();
         else if (scroll < 0)
             ToggleActiveSpellDown();
-
-        if (Input.GetMouseButtonDown(0))  // 0 = left click
+        else
         {
-            GetActiveSpellCaster().CastSpell(this);
+            for (int i = 0; i < Math.Min(9, hud.spells.Count); ++i)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha0 + (i + 1) % 10))
+                {
+                    SetActiveSpell(hud.spells[i].GetSpellType());
+                    break;
+                }
+            }
         }
-
-        hud.spells.ForEach(spell => {
-            if (spellCasters.TryGetValue(spell.GetSpellType(), out UnlockableSpellCaster caster))
-                spell.SetCooldown(caster.caster.GetNormalizedCooldown());
-        });
     }
 
     public Vector3 GetPlayerPosition()
@@ -88,6 +109,9 @@ public class SpellManager : MonoBehaviour
 
     public void SetActiveSpell(SpellType spellType)
     {
+        if (activeSpell == spellType)
+            return;
+
         Assert.IsTrue(IsUnlocked(spellType));
         activeSpell = spellType;
         GetActiveSpellCaster().Select();
@@ -132,6 +156,9 @@ public class SpellManager : MonoBehaviour
 
     public void UnlockSpell(SpellType spellType)
     {
+        if (IsUnlocked(spellType))
+            return;
+
         spellCasters[spellType].locked = false;
         var spellUI = hud.spells.Where(spell => spell.GetSpellType() == spellType);
         Assert.IsTrue(spellUI.Any());
@@ -140,6 +167,9 @@ public class SpellManager : MonoBehaviour
 
     public void LockSpell(SpellType spellType)
     {
+        if (!IsUnlocked(spellType))
+            return;
+
         spellCasters[spellType].locked = true;
         var spellUI = hud.spells.Where(spell => spell.GetSpellType() == spellType);
         Assert.IsTrue(spellUI.Any());
