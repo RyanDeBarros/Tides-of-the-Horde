@@ -262,7 +262,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   body: {fileID: 6650955198508928502}
   staffTip: {fileID: 5956717040792033509}
-  activeSpell: 1
+  activeSpell: 0
+  hud: {fileID: 0}
+  meleeSpellIcon: {fileID: 0}
+  bombSpellIcon: {fileID: 0}
+  bubbleSpellIcon: {fileID: 0}
+  sniperSpellIcon: {fileID: 0}
 --- !u!143 &1743212581410189318
 CharacterController:
   m_ObjectHideFlags: 0
@@ -560,7 +565,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: a87c7d244a3c4896a26261cc18acd499, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.42
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400030, guid: a87c7d244a3c4896a26261cc18acd499, type: 3}
       propertyPath: m_LocalRotation.w

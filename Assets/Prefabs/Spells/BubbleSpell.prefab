@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2110312707189800430}
   - component: {fileID: 4903219265092326226}
   - component: {fileID: 3655717874909740800}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BubbleSpell
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,10 +60,10 @@ SphereCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 704
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0

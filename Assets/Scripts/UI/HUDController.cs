@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 using TMPro;
 
@@ -15,6 +17,9 @@ public class HUDController : MonoBehaviour
     [Header("Player References")]
     public Health playerHealth; // Assign in inspector
 
+    [Header("Spells")]
+    public List<SpellSelectController> spells;
+
     [Header("Demo EXP Values")]
     public int maxExp = 1000;
     public int currentExp = 0;
@@ -30,8 +35,10 @@ public class HUDController : MonoBehaviour
 
         // Initialize EXP bar with demo values
         UpdateExpHUD(currentExp, maxExp);
-    }
 
+        for (int i = 0; i < spells.Count; ++i)
+            spells[i].SetKeyHint(i + 1);
+    }
 
     public void UpdateHealthHUD(int currentHP, int maxHP)
     {
@@ -44,7 +51,6 @@ public class HUDController : MonoBehaviour
         if (healthText != null)
             healthText.text = $"{currentHP}/{maxHP}";
     }
-
 
     public void UpdateExpHUD(int currentEXP, int maxEXP)
     {

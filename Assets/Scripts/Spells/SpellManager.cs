@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -8,10 +9,17 @@ public class SpellManager : MonoBehaviour
 {
     [SerializeField] private GameObject body;
     [SerializeField] private Transform staffTip;
-    [SerializeField] private SpellType activeSpell = SpellType.Sniper;
+    [SerializeField] private SpellType activeSpell = SpellType.Melee;
 
+    [Header("UI")]
+    [SerializeField] private HUDController hud;
+    [SerializeField] private Texture meleeSpellIcon;
+    [SerializeField] private Texture bombSpellIcon;
+    [SerializeField] private Texture bubbleSpellIcon;
+    [SerializeField] private Texture sniperSpellIcon;
+
+    private static readonly int LMB = 0;
     private readonly Dictionary<SpellType, UnlockableSpellCaster> spellCasters = new();
-
     private PlayerCamera cam;
 
     private void Awake()
@@ -21,28 +29,66 @@ public class SpellManager : MonoBehaviour
         spellCasters[SpellType.Bubble] = new UnlockableSpellCaster(GetComponentInChildren<BubbleSpellCaster>());
         spellCasters[SpellType.Sniper] = new UnlockableSpellCaster(GetComponentInChildren<SniperSpellCaster>());
 
-        UnlockSpell(SpellType.Melee);
-        UnlockSpell(SpellType.Bomb);
-        UnlockSpell(SpellType.Bubble);
-        UnlockSpell(SpellType.Sniper);
-
         cam = GetComponent<PlayerCamera>();
         Assert.IsNotNull(cam);
 
         Assert.IsNotNull(body);
         Assert.IsNotNull(staffTip);
+
+        Assert.IsNotNull(hud);
+        Assert.IsNotNull(meleeSpellIcon);
+        Assert.IsNotNull(bombSpellIcon);
+        Assert.IsNotNull(bubbleSpellIcon);
+        Assert.IsNotNull(sniperSpellIcon);
     }
 
     private void Start()
     {
-        SetActiveSpell(activeSpell);
+        UnlockSpell(activeSpell);
+        GetActiveSpellCaster().Select();
+        hud.spells.ForEach(spell => {
+            if (spell.GetSpellType() == activeSpell)
+                spell.ShowSelected();
+            else
+                spell.ShowDeselected();
+        });
+
+        UnlockSpell(SpellType.Melee);
+        UnlockSpell(SpellType.Bomb);
+        UnlockSpell(SpellType.Bubble);
+        UnlockSpell(SpellType.Sniper);
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))  // 0 = left click
-        {
+        CheckForToggleInput();
+
+        if (Input.GetMouseButtonDown(LMB))
             GetActiveSpellCaster().CastSpell(this);
+
+        hud.spells.ForEach(spell => {
+            if (spellCasters.TryGetValue(spell.GetSpellType(), out UnlockableSpellCaster caster))
+                spell.SetCooldown(caster.caster.GetNormalizedCooldown());
+        });
+    }
+
+    private void CheckForToggleInput()
+    {
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll > 0)
+            ToggleActiveSpellUp();
+        else if (scroll < 0)
+            ToggleActiveSpellDown();
+        else
+        {
+            for (int i = 0; i < Math.Min(9, hud.spells.Count); ++i)
+            {
+                if (Input.GetKeyDown(KeyCode.Alpha0 + (i + 1) % 10))
+                {
+                    SetActiveSpell(hud.spells[i].GetSpellType());
+                    break;
+                }
+            }
         }
     }
 
@@ -63,9 +109,19 @@ public class SpellManager : MonoBehaviour
 
     public void SetActiveSpell(SpellType spellType)
     {
+        if (activeSpell == spellType)
+            return;
+
         Assert.IsTrue(IsUnlocked(spellType));
         activeSpell = spellType;
         GetActiveSpellCaster().Select();
+
+        hud.spells.ForEach(spell => {
+            if (spell.GetSpellType() == activeSpell)
+                spell.ShowSelected();
+            else
+                spell.ShowDeselected();
+        });
     }
 
     private ISpellCaster GetActiveSpellCaster()
@@ -100,12 +156,24 @@ public class SpellManager : MonoBehaviour
 
     public void UnlockSpell(SpellType spellType)
     {
+        if (IsUnlocked(spellType))
+            return;
+
         spellCasters[spellType].locked = false;
+        var spellUI = hud.spells.Where(spell => spell.GetSpellType() == spellType);
+        Assert.IsTrue(spellUI.Any());
+        spellUI.First().ShowUnlocked();
     }
 
     public void LockSpell(SpellType spellType)
     {
+        if (!IsUnlocked(spellType))
+            return;
+
         spellCasters[spellType].locked = true;
+        var spellUI = hud.spells.Where(spell => spell.GetSpellType() == spellType);
+        Assert.IsTrue(spellUI.Any());
+        spellUI.First().ShowLocked();
     }
 
     public bool IsUnlocked(SpellType spellType)
