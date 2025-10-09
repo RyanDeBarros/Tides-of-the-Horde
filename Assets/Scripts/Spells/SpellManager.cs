@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -64,7 +65,10 @@ public class SpellManager : MonoBehaviour
             GetActiveSpellCaster().CastSpell(this);
         }
 
-        hud.SetActiveSpellCooldown(GetActiveSpellCaster().GetNormalizedCooldown());
+        hud.spells.ForEach(spell => {
+            if (spellCasters.TryGetValue(spell.GetSpellType(), out UnlockableSpellCaster caster))
+                spell.SetCooldown(caster.caster.GetNormalizedCooldown());
+        });
     }
 
     public Vector3 GetPlayerPosition()
@@ -88,14 +92,12 @@ public class SpellManager : MonoBehaviour
         activeSpell = spellType;
         GetActiveSpellCaster().Select();
 
-        hud.activeSpellImage.texture = activeSpell switch
-        {
-            SpellType.Melee => meleeSpellIcon,
-            SpellType.Bomb => bombSpellIcon,
-            SpellType.Bubble => bubbleSpellIcon,
-            SpellType.Sniper => sniperSpellIcon,
-            _ => null
-        };
+        hud.spells.ForEach(spell => {
+            if (spell.GetSpellType() == activeSpell)
+                spell.ShowSelected();
+            else
+                spell.ShowDeselected();
+        });
     }
 
     private ISpellCaster GetActiveSpellCaster()
@@ -131,11 +133,17 @@ public class SpellManager : MonoBehaviour
     public void UnlockSpell(SpellType spellType)
     {
         spellCasters[spellType].locked = false;
+        var spellUI = hud.spells.Where(spell => spell.GetSpellType() == spellType);
+        Assert.IsTrue(spellUI.Any());
+        spellUI.First().ShowUnlocked();
     }
 
     public void LockSpell(SpellType spellType)
     {
         spellCasters[spellType].locked = true;
+        var spellUI = hud.spells.Where(spell => spell.GetSpellType() == spellType);
+        Assert.IsTrue(spellUI.Any());
+        spellUI.First().ShowLocked();
     }
 
     public bool IsUnlocked(SpellType spellType)
