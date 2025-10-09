@@ -29,11 +29,6 @@ public class SpellManager : MonoBehaviour
         spellCasters[SpellType.Bubble] = new UnlockableSpellCaster(GetComponentInChildren<BubbleSpellCaster>());
         spellCasters[SpellType.Sniper] = new UnlockableSpellCaster(GetComponentInChildren<SniperSpellCaster>());
 
-        UnlockSpell(SpellType.Melee);
-        UnlockSpell(SpellType.Bomb);
-        UnlockSpell(SpellType.Bubble);
-        UnlockSpell(SpellType.Sniper);
-
         cam = GetComponent<PlayerCamera>();
         Assert.IsNotNull(cam);
 
@@ -57,6 +52,11 @@ public class SpellManager : MonoBehaviour
             else
                 spell.ShowDeselected();
         });
+
+        UnlockSpell(SpellType.Melee);
+        UnlockSpell(SpellType.Bomb);
+        UnlockSpell(SpellType.Bubble);
+        UnlockSpell(SpellType.Sniper);
     }
 
     void Update()
