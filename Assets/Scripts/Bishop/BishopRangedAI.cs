@@ -47,36 +47,52 @@ public class BishopRangedAI : MonoBehaviour
     }
 
     void HandleMovement()
+{
+    float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+    
+    // Move towards player if outside attack range
+    if (distanceToPlayer > attackRange)
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        // Calculate direction to player
+        Vector3 direction = (player.position - transform.position).normalized;
+        direction.y = 0;
         
-        // Move towards player if outside attack range
-        if (distanceToPlayer > attackRange)
-        {
-            // Calculate direction to player
-            Vector3 direction = (player.position - transform.position).normalized;
-            direction.y = 0; // Keep movement horizontal
-            
-            // Move ONLY horizontally - let Gravity script handle vertical movement
-            Vector3 moveDirection = direction * moveSpeed;
-            controller.Move(moveDirection * Time.deltaTime);
-            
-            // Face the movement direction
-            if (direction != Vector3.zero)
-            {
-                transform.rotation = Quaternion.LookRotation(direction);
-            }
-        }
-        // If we're in attack range but too close, back away slightly
-        else if (distanceToPlayer < stoppingDistance)
-        {
-            Vector3 directionAway = (transform.position - player.position).normalized;
-            directionAway.y = 0;
-            Vector3 moveDirection = directionAway * moveSpeed * 0.5f; // Slower backing away
-            controller.Move(moveDirection * Time.deltaTime);
-        }
-        // Otherwise, we're in perfect attack position - don't move horizontally
+        // Move toward player
+        Vector3 moveDirection = direction * moveSpeed;
+        controller.Move(moveDirection * Time.deltaTime);
+        
+        // Face the player
+        FacePlayer();
     }
+    // If we're in attack range but too close, back away slightly
+    else if (distanceToPlayer < stoppingDistance)
+    {
+        Vector3 directionAway = (transform.position - player.position).normalized;
+        directionAway.y = 0;
+        Vector3 moveDirection = directionAway * moveSpeed * 0.5f;
+        controller.Move(moveDirection * Time.deltaTime);
+        
+        // IMPORTANT: Still face the player while backing away!
+        FacePlayer();
+    }
+    // Otherwise, we're in perfect attack position - don't move but face player
+    else
+    {
+        FacePlayer();
+    }
+}
+
+void FacePlayer()
+{
+    if (player == null) return;
+    
+    Vector3 lookPos = player.position - transform.position;
+    lookPos.y = 0;
+    if (lookPos != Vector3.zero)
+    {
+        transform.rotation = Quaternion.LookRotation(lookPos);
+    }
+}
 
     void HandleAttack()
     {
@@ -92,16 +108,6 @@ public class BishopRangedAI : MonoBehaviour
                 Attack();
                 lastAttackTime = Time.time;
             }
-        }
-    }
-
-    void FacePlayer()
-    {
-        Vector3 lookPos = player.position - transform.position;
-        lookPos.y = 0;
-        if (lookPos != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(lookPos);
         }
     }
 
