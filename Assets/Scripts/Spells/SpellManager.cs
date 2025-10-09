@@ -53,6 +53,7 @@ public class SpellManager : MonoBehaviour
                 spell.ShowDeselected();
         });
 
+        // TODO eventually, don't unlock all spells.
         UnlockSpell(SpellType.Melee);
         UnlockSpell(SpellType.Bomb);
         UnlockSpell(SpellType.Bubble);
