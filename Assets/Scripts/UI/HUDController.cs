@@ -35,6 +35,9 @@ public class HUDController : MonoBehaviour
 
         // Initialize EXP bar with demo values
         UpdateExpHUD(currentExp, maxExp);
+
+        for (int i = 0; i < spells.Count; ++i)
+            spells[i].SetKeyHint(i + 1);
     }
 
     public void UpdateHealthHUD(int currentHP, int maxHP)
