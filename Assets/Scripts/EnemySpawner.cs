@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,12 +12,17 @@ public class EnemySpawner : MonoBehaviour
 
     private float spawnDebt = 0f;
 
-    void Start()
+    private void Awake()
+    {
+        Assert.IsNotNull(skeletonPrefab);
+    }
+
+    private void Start()
     {
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
     }
 
-    void Update()
+    private void Update()
     {
         spawnDebt += Time.deltaTime;
         int toSpawn = (int)(spawnDebt * spawnRate);
