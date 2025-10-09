@@ -46,9 +46,10 @@ GameObject:
   - component: {fileID: 2721521129437341166}
   - component: {fileID: 3620802734628203079}
   - component: {fileID: 7141805754503058821}
+  - component: {fileID: 4827767595385447344}
   m_Layer: 8
   m_Name: Bishop
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,6 +184,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xpAmount: 20
   playerTag: Player
+--- !u!114 &4827767595385447344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329783544436130698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3faaa8f7b6d037b4bb5fa81c53779513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  onHealthChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  onDeath:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &3424555026866121806
 GameObject:
   m_ObjectHideFlags: 0
