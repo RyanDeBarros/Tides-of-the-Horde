@@ -5,15 +5,21 @@ using UnityEngine.Assertions;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private TextAsset waveFile;
     [SerializeField] private float spawnRate = 3f;
+
+    [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
 
+    private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones = new();
 
     private float spawnDebt = 0f;
 
     private void Awake()
     {
+        Assert.IsNotNull(waveFile);
+        waveTimeline = WaveTimeline.Read(waveFile);
         Assert.IsNotNull(skeletonPrefab);
     }
 
