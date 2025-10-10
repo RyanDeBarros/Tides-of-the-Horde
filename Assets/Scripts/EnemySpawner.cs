@@ -6,10 +6,11 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private float spawnRate = 3f;
     [SerializeField] private GameObject skeletonPrefab;
+    [SerializeField] private GameObject bishopPrefab;
 
     private List<SpawnZone> spawnZones = new();
-
     private float spawnDebt = 0f;
+    private int spawnCounter = 0; // Track how many enemies we've spawned
 
     void Start()
     {
@@ -40,11 +41,25 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnAtPoint(Vector3 point)
     {
-        SpawnSkeleton(point);
+        // Every 4th enemy is a bishop (25% chance for bishop)
+        spawnCounter++;
+        if (spawnCounter % 4 == 0)
+        {
+            SpawnBishop(point);
+        }
+        else
+        {
+            SpawnSkeleton(point);
+        }
     }
 
     private void SpawnSkeleton(Vector3 point)
     {
         Instantiate(skeletonPrefab, point, Quaternion.identity);
+    }
+
+    private void SpawnBishop(Vector3 point)
+    {
+        Instantiate(bishopPrefab, point, Quaternion.identity);
     }
 }

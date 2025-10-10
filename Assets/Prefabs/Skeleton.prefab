@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   moveSpeed: 5
-  chaseRange: 10
+  chaseRange: 30
   stoppingDistance: 2
 --- !u!114 &2143102535228542233
 MonoBehaviour:
