@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 1743212581410189318}
   - component: {fileID: 2302053948118948893}
   - component: {fileID: 784144791415049494}
+  - component: {fileID: 5650140055875109725}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -264,10 +265,10 @@ MonoBehaviour:
   staffTip: {fileID: 5956717040792033509}
   activeSpell: 0
   hud: {fileID: 0}
-  meleeSpellIcon: {fileID: 0}
-  bombSpellIcon: {fileID: 0}
-  bubbleSpellIcon: {fileID: 0}
-  sniperSpellIcon: {fileID: 0}
+  meleeSpellIcon: {fileID: 2800000, guid: c89e6c7d0af05674592e8d72f4b58a3b, type: 3}
+  bombSpellIcon: {fileID: 2800000, guid: 3ada41d904892d64a9905734e889490a, type: 3}
+  bubbleSpellIcon: {fileID: 2800000, guid: f26b168fa1f89274e8f6e565297c2882, type: 3}
+  sniperSpellIcon: {fileID: 2800000, guid: 68fea59bcd9ad084bb0639f88f77ec16, type: 3}
 --- !u!143 &1743212581410189318
 CharacterController:
   m_ObjectHideFlags: 0
@@ -329,6 +330,21 @@ MonoBehaviour:
   OnXPChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5650140055875109725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381584739051638850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bacde1ef564ef4f96e6a8fb18033e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundsX: {x: -500, y: 500}
+  boundsY: {x: -100, y: 100}
+  boundsZ: {x: -500, y: 500}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0
