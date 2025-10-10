@@ -3,7 +3,8 @@ using UnityEngine;
 
 public enum EnemyType
 {
-    Skeleton
+    Skeleton,
+    Bishop,
 }
 
 [System.Serializable]

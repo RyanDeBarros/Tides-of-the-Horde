@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(waveFile);
         waveTimeline = WaveTimeline.Read(waveFile);
         Assert.IsNotNull(skeletonPrefab);
+        Assert.IsNotNull(bishopPrefab);
     }
 
     private void Start()
@@ -52,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject prefab = type switch {
             EnemyType.Skeleton => skeletonPrefab,
+            EnemyType.Bishop => bishopPrefab,
             _ => null
         };
         Assert.IsNotNull(prefab);
