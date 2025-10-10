@@ -1,0 +1,15 @@
+{
+    "waves": [
+        {
+            "preWaveWaitTime": 1.0,
+            "postWaveWaitTime": 1.0,
+            "subwaves": [
+                {
+                    "duration": 10.0,
+                    "type": "Skeleton",
+                    "spawnRate": 1.0
+                }
+            ]
+        }
+    ]
+}
