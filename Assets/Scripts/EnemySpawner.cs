@@ -6,15 +6,12 @@ using UnityEngine.Assertions;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private TextAsset waveFile;
-    [SerializeField] private float spawnRate = 3f;
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
 
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones = new();
-
-    private float spawnDebt = 0f;
 
     private void Awake()
     {
@@ -30,15 +27,15 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        spawnDebt += Time.deltaTime;
-        int toSpawn = (int)(spawnDebt * spawnRate);
-        spawnDebt -= toSpawn / spawnRate;
-
-        if (toSpawn > 0) SpawnEnemies(toSpawn);
+        waveTimeline.ManualUpdate();
+        foreach ((EnemyType type, int toSpawn) in waveTimeline.GetEnemiesToSpawn())
+            if (toSpawn > 0)
+                SpawnEnemies(type, toSpawn);
     }
 
-    public void SpawnEnemies(int numEnemies)
+    public void SpawnEnemies(EnemyType type, int numEnemies)
     {
+        if (numEnemies <= 0) return;
         List<SpawnZone> activeSpawnZones = spawnZones.Where(spawner => spawner.IsSpawnable()).ToList();
         if (activeSpawnZones.Count == 0) return;
 
@@ -46,17 +43,17 @@ public class EnemySpawner : MonoBehaviour
         {
             int zoneIndex = Random.Range(0, activeSpawnZones.Count());
             Vector3 spawnPoint = activeSpawnZones[zoneIndex].GetRandomPoint();
-            SpawnAtPoint(spawnPoint);
+            SpawnAtPoint(type, spawnPoint);
         }
     }
 
-    private void SpawnAtPoint(Vector3 point)
+    private void SpawnAtPoint(EnemyType type, Vector3 point)
     {
-        SpawnSkeleton(point);
-    }
-
-    private void SpawnSkeleton(Vector3 point)
-    {
-        Instantiate(skeletonPrefab, point, Quaternion.identity);
+        GameObject prefab = type switch {
+            EnemyType.Skeleton => skeletonPrefab,
+            _ => null
+        };
+        Assert.IsNotNull(prefab);
+        Instantiate(prefab, point, Quaternion.identity);
     }
 }
