@@ -536,6 +536,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 922bcf3ddd00c28dc9fe0985f1e3b43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1059471285 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 616531569822295816, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+  m_PrefabInstance: {fileID: 1059471283}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a98d920abb82154f8a559f5ec6f643d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1238931758
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,6 +666,10 @@ PrefabInstance:
       propertyPath: waveFile
       value: 
       objectReference: {fileID: 4900000, guid: 35bbbdfd7cc9ffd43b7a961c701b6d06, type: 3}
+    - target: {fileID: 1425429705884659240, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
+      propertyPath: uiController
+      value: 
+      objectReference: {fileID: 1059471285}
     - target: {fileID: 3804423857881519981, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public enum EnemyType
 {
@@ -98,9 +98,16 @@ public class WaveTimeline
     private WaveState waveState = WaveState.PreSpawn;
     private readonly Dictionary<EnemyType, int> toSpawn = new();
 
+    public UnityEvent<int> onWaveNumberChanged;
+
     public static WaveTimeline Read(TextAsset file)
     {
         return JsonUtility.FromJson<WaveTimeline>(file.text);
+    }
+
+    public void Init()
+    {
+        onWaveNumberChanged.Invoke(waveNumber + 1);
     }
 
     public void ManualUpdate()
@@ -165,12 +172,8 @@ public class WaveTimeline
         waveState = WaveState.PreSpawn;
         waveTimeElapsed -= waves[waveNumber].postWaveWaitTime;
         ++waveNumber;
+        onWaveNumberChanged.Invoke(waveNumber + 1);
         SyncTimeline();
-    }
-
-    public int WaveNumber() // TODO use in UI
-    {
-        return waveNumber;
     }
 
     public Dictionary<EnemyType, int> GetEnemiesToSpawn()

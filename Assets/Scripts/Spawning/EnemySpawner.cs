@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [SerializeField] private SpawnWaveUIController uiController;
     [SerializeField] private TextAsset waveFile;
 
     [Header("Enemy Prefabs")]
@@ -16,10 +17,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
+        Assert.IsNotNull(uiController);
         Assert.IsNotNull(waveFile);
         waveTimeline = WaveTimeline.Read(waveFile);
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
+
+        waveTimeline.onWaveNumberChanged.AddListener(OnWaveNumberChanged);
+        waveTimeline.Init();
     }
 
     private void Start()
@@ -58,8 +63,8 @@ public class EnemySpawner : MonoBehaviour
         Instantiate(prefab, point, Quaternion.identity);
     }
 
-    private void SpawnBishop(Vector3 point)
+    private void OnWaveNumberChanged(int waveNumber)
     {
-        Instantiate(bishopPrefab, point, Quaternion.identity);
+        uiController.SetWaveNumber(waveNumber);
     }
 }
