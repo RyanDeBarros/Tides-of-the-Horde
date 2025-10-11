@@ -45,8 +45,8 @@ GameObject:
   - component: {fileID: 1001082693539445144}
   - component: {fileID: 2721521129437341166}
   - component: {fileID: 3620802734628203079}
-  - component: {fileID: 7141805754503058821}
-  - component: {fileID: 4827767595385447344}
+  - component: {fileID: 8206471672496910239}
+  - component: {fileID: 7973393213740813088}
   m_Layer: 8
   m_Name: Bishop
   m_TagString: Enemy
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resistance: 2
   duration: 0.1
---- !u!114 &7141805754503058821
+--- !u!114 &8206471672496910239
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,12 +179,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3329783544436130698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39e12f0ab43624449890b3abb9f845d9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a86c09021ee4ae489948cce0d48eec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpAmount: 20
+  xpAmount: 10
   playerTag: Player
---- !u!114 &4827767595385447344
+--- !u!114 &7973393213740813088
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,16 +193,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3329783544436130698}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3faaa8f7b6d037b4bb5fa81c53779513, type: 3}
+  m_Script: {fileID: 11500000, guid: 60bacde1ef564ef4f96e6a8fb18033e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 200
-  onHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  onDeath:
-    m_PersistentCalls:
-      m_Calls: []
+  boundsX: {x: -500, y: 500}
+  boundsY: {x: -100, y: 100}
+  boundsZ: {x: -500, y: 500}
 --- !u!1 &3424555026866121806
 GameObject:
   m_ObjectHideFlags: 0
