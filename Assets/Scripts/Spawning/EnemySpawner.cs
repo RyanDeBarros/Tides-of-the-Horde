@@ -35,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         waveTimeline.ManualUpdate();
+        uiController.SetNormalizedSpawningTimeLeft(waveTimeline.GetNormalizedSpawningTimeLeft());
+        uiController.SetNormalizedWaitTime(waveTimeline.GetNormalizedWaitTime());
         foreach ((EnemyType type, int toSpawn) in waveTimeline.GetEnemiesToSpawn()) SpawnEnemies(type, toSpawn);
     }
 
@@ -65,6 +67,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnWaveNumberChanged(int waveNumber)
     {
-        uiController.SetWaveNumber(waveNumber);
+        if (waveNumber <= waveTimeline.NumberOfWaves())
+            uiController.SetWaveNumber(waveNumber);
+        else
+            uiController.HideUI();
     }
 }

@@ -180,4 +180,32 @@ public class WaveTimeline
     {
         return toSpawn;
     }
+
+    public float GetNormalizedSpawningTimeLeft()
+    {
+        if (waveNumber >= waves.Count || waveState != WaveState.Spawning)
+            return 0f;
+        else
+            return 1f - waveTimeElapsed / waves[waveNumber].FullSpawnDuration();
+    }
+
+    public float GetNormalizedWaitTime()
+    {
+        if (waveNumber >= waves.Count)
+            return 0f;
+
+        Wave wave = waves[waveNumber];
+        return waveState switch
+        {
+            WaveState.PreSpawn => waveTimeElapsed / wave.preWaveWaitTime,
+            WaveState.Spawning => 1f,
+            WaveState.PostSpawn => 1f - waveTimeElapsed / wave.postWaveWaitTime,
+            _ => 0f
+        };
+    }
+
+    public int NumberOfWaves()
+    {
+        return waves.Count;
+    }
 }
