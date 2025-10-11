@@ -171,6 +171,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5323173174553920161, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: verticalPanMax
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5323173174553920161, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: verticalPanMin
+      value: -45
+      objectReference: {fileID: 0}
     - target: {fileID: 7622766684650392044, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: hud
       value: 
