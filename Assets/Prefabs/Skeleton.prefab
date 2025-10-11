@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 381224887220896308}
   m_Layer: 8
   m_Name: Skeleton
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   moveSpeed: 5
-  chaseRange: 10
+  chaseRange: 30
   stoppingDistance: 2
 --- !u!114 &2143102535228542233
 MonoBehaviour:
