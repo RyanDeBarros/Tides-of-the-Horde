@@ -6,7 +6,7 @@
             "subwaves": [
                 {
                     "duration": 10.0,
-                    "type": "Skeleton",
+                    "enemy": "Skeleton",
                     "spawnRate": 1.0
                 }
             ]
@@ -17,8 +17,14 @@
             "subwaves": [
                 {
                     "duration": 10.0,
-                    "type": "Skeleton",
+                    "enemy": "Skeleton",
                     "spawnRate": 2.0
+                },
+                {
+                    "timeOffset": 5.0,
+                    "duration": 10.0,
+                    "enemy": "Bishop",
+                    "spawnRate": 0.5
                 }
             ]
         }

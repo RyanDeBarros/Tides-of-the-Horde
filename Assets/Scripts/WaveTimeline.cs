@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public enum EnemyType
 {
@@ -11,16 +14,29 @@ public enum EnemyType
 public class WaveTimeline
 {
     [System.Serializable]
-    private class Subwave
+    private class Subwave : ISerializationCallbackReceiver
     {
         public float timeOffset = 0f;
         public float duration;
+        [SerializeField] private string enemy;
         public EnemyType type;
         public float spawnRate;
 
         private float spawnDebt = 0f;
         private float elapsed = 0f;
         private int toSpawn = 0;
+
+        public void OnAfterDeserialize()
+        {
+            if (enemy == EnemyType.Skeleton.ToString())
+                type = EnemyType.Skeleton;
+            else if (enemy == EnemyType.Bishop.ToString())
+                type = EnemyType.Bishop;
+            else
+                throw new Exception($"Enemy \"{enemy}\" does not correspond to a known enemy type.");
+        }
+
+        public void OnBeforeSerialize() { }
 
         public void Sync(float waveTimeElapsed)
         {
@@ -41,11 +57,6 @@ public class WaveTimeline
                 toSpawn = 0;
         }
 
-        public bool Finished()
-        {
-            return elapsed >= duration;
-        }
-
         public int GetNumberToSpawn()
         {
             return toSpawn;
@@ -53,11 +64,25 @@ public class WaveTimeline
     }
 
     [System.Serializable]
-    private class Wave
+    private class Wave : ISerializationCallbackReceiver
     {
         public float preWaveWaitTime;
         public float postWaveWaitTime;
         public List<Subwave> subwaves;
+
+        private float fullSpawnDuration;
+
+        public void OnAfterDeserialize()
+        {
+            fullSpawnDuration = subwaves.Count > 0 ? subwaves.Select(subwave => subwave.timeOffset + subwave.duration).Max() : 0f;
+        }
+
+        public void OnBeforeSerialize() { }
+
+        public float FullSpawnDuration()
+        {
+            return fullSpawnDuration;
+        }
     }
 
     private enum WaveState
@@ -95,54 +120,52 @@ public class WaveTimeline
         {
             case WaveState.PreSpawn:
                 if (waveTimeElapsed > wave.preWaveWaitTime)
-                {
-                    // Finish initial waiting -> start wave
-                    waveState = WaveState.Spawning;
-                    waveTimeElapsed -= wave.preWaveWaitTime;
-                    SyncTimeline();
-                }
+                    TransitionToSpawning();
                 break;
             case WaveState.Spawning:
-                if (wave.subwaves.Count > 0)
-                {
-                    bool finishWave = true;
-                    float fullDuration = 0f;
-                    wave.subwaves.ForEach(subwave => {
-                        subwave.Sync(waveTimeElapsed); // Sync subwave data
-                        if (!subwave.Finished()) // Check if subwave can continue spawning
-                            finishWave = false;
-                        else
-                            fullDuration = Mathf.Max(fullDuration, subwave.timeOffset + subwave.duration);
-                        if (toSpawn.ContainsKey(subwave.type)) // Increase the number of enemies to spawn for this frame
-                            toSpawn[subwave.type] += subwave.GetNumberToSpawn();
-                        else
-                            toSpawn[subwave.type] = subwave.GetNumberToSpawn();
-                    });
-                    if (finishWave)
-                    {
-                        // Finish wave -> start closing wait time
-                        waveState = WaveState.PostSpawn;
-                        waveTimeElapsed -= fullDuration;
-                        SyncTimeline();
-                    }
-                }
-                else
-                {
-                    waveState = WaveState.PostSpawn;
-                    SyncTimeline();
-                }
+                ProcessSubwaves();
+                if (waveTimeElapsed > wave.FullSpawnDuration())
+                    TransitionToPostSpawn();
                 break;
             case WaveState.PostSpawn:
                 if (waveTimeElapsed > wave.postWaveWaitTime)
-                {
-                    // Finish wave -> move to next wave
-                    waveState = WaveState.PreSpawn;
-                    waveTimeElapsed -= wave.postWaveWaitTime;
-                    ++waveNumber;
-                    SyncTimeline();
-                }
+                    TransitionToPreSpawn();
                 break;
         }
+    }
+
+    private void TransitionToSpawning()
+    {
+        Wave wave = waves[waveNumber];
+        waveState = wave.subwaves.Count > 0 ? WaveState.Spawning : WaveState.PostSpawn;
+        waveTimeElapsed -= wave.preWaveWaitTime;
+        SyncTimeline();
+    }
+
+    private void ProcessSubwaves()
+    {
+        waves[waveNumber].subwaves.ForEach(subwave => {
+            subwave.Sync(waveTimeElapsed);
+            if (toSpawn.ContainsKey(subwave.type))
+                toSpawn[subwave.type] += subwave.GetNumberToSpawn();
+            else
+                toSpawn[subwave.type] = subwave.GetNumberToSpawn();
+        });
+    }
+
+    private void TransitionToPostSpawn()
+    {
+        waveState = WaveState.PostSpawn;
+        waveTimeElapsed -= waves[waveNumber].FullSpawnDuration();
+        SyncTimeline();
+    }
+
+    private void TransitionToPreSpawn()
+    {
+        waveState = WaveState.PreSpawn;
+        waveTimeElapsed -= waves[waveNumber].postWaveWaitTime;
+        ++waveNumber;
+        SyncTimeline();
     }
 
     public int WaveNumber() // TODO use in UI

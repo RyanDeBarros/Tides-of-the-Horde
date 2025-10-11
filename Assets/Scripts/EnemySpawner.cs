@@ -30,9 +30,7 @@ public class EnemySpawner : MonoBehaviour
     private void Update()
     {
         waveTimeline.ManualUpdate();
-        foreach ((EnemyType type, int toSpawn) in waveTimeline.GetEnemiesToSpawn())
-            if (toSpawn > 0)
-                SpawnEnemies(type, toSpawn);
+        foreach ((EnemyType type, int toSpawn) in waveTimeline.GetEnemiesToSpawn()) SpawnEnemies(type, toSpawn);
     }
 
     public void SpawnEnemies(EnemyType type, int numEnemies)
