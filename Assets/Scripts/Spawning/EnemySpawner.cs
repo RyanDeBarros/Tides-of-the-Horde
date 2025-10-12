@@ -3,6 +3,16 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+class OnDestroyHandler : MonoBehaviour
+{
+    public System.Action<GameObject> onDestroyed;
+
+    private void OnDestroy()
+    {
+        onDestroyed?.Invoke(gameObject);
+    }
+}
+
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private SpawnWaveUIController uiController;
@@ -13,7 +23,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject bishopPrefab;
 
     private WaveTimeline waveTimeline;
-    private List<SpawnZone> spawnZones = new();
+    private List<SpawnZone> spawnZones;
+    private readonly HashSet<GameObject> spawnedEnemies = new();
 
     private void Awake()
     {
@@ -23,7 +34,8 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
 
-        waveTimeline.onWaveNumberChanged.AddListener(OnWaveNumberChanged);
+        waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
+        waveTimeline.doEnemiesRemain = DoEnemiesRemain;
         waveTimeline.Init();
     }
 
@@ -62,7 +74,9 @@ public class EnemySpawner : MonoBehaviour
             _ => null
         };
         Assert.IsNotNull(prefab);
-        Instantiate(prefab, point, Quaternion.identity);
+        GameObject instance = Instantiate(prefab, point, Quaternion.identity);
+        spawnedEnemies.Add(instance);
+        instance.AddComponent<OnDestroyHandler>().onDestroyed = go => spawnedEnemies.Remove(go);
     }
 
     private void OnWaveNumberChanged(int waveNumber)
@@ -71,5 +85,10 @@ public class EnemySpawner : MonoBehaviour
             uiController.SetWaveNumber(waveNumber);
         else
             uiController.HideUI();
+    }
+
+    private bool DoEnemiesRemain()
+    {
+        return spawnedEnemies.Count > 0;
     }
 }

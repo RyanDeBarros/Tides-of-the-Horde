@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundsX: {x: -500, y: 500}
-  boundsY: {x: -100, y: 100}
+  boundsY: {x: -50, y: 100}
   boundsZ: {x: -500, y: 500}
 --- !u!1001 &2476890956049948875
 PrefabInstance:

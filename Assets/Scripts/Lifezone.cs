@@ -6,7 +6,7 @@ using UnityEngine.Assertions;
 public class Lifezone : MonoBehaviour
 {
     [SerializeField] private Vector2 boundsX = new(-500, 500);
-    [SerializeField] private Vector2 boundsY = new(-100, 100);
+    [SerializeField] private Vector2 boundsY = new(-50, 100);
     [SerializeField] private Vector2 boundsZ = new(-500, 500);
 
     private void Awake()

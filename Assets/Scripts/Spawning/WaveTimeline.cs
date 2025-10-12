@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 public enum EnemyType
@@ -28,11 +29,7 @@ public class WaveTimeline
 
         public void OnAfterDeserialize()
         {
-            if (enemy == EnemyType.Skeleton.ToString())
-                type = EnemyType.Skeleton;
-            else if (enemy == EnemyType.Bishop.ToString())
-                type = EnemyType.Bishop;
-            else
+            if (!Enum.TryParse(enemy, true, out type))
                 throw new Exception($"Enemy \"{enemy}\" does not correspond to a known enemy type.");
         }
 
@@ -89,6 +86,7 @@ public class WaveTimeline
     {
         PreSpawn,
         Spawning,
+        EnemiesRemain,
         PostSpawn
     }
 
@@ -98,7 +96,8 @@ public class WaveTimeline
     private WaveState waveState = WaveState.PreSpawn;
     private readonly Dictionary<EnemyType, int> toSpawn = new();
 
-    public UnityEvent<int> onWaveNumberChanged;
+    public Action<int> onWaveNumberChanged;
+    public Func<bool> doEnemiesRemain;
 
     public static WaveTimeline Read(TextAsset file)
     {
@@ -107,13 +106,18 @@ public class WaveTimeline
 
     public void Init()
     {
+        Assert.IsNotNull(onWaveNumberChanged);
+        Assert.IsNotNull(doEnemiesRemain);
         onWaveNumberChanged.Invoke(waveNumber + 1);
     }
 
     public void ManualUpdate()
     {
         toSpawn.Clear();
-        waveTimeElapsed += Time.deltaTime;
+        if (waveState != WaveState.EnemiesRemain)
+            waveTimeElapsed += Time.deltaTime;
+        else
+            waveTimeElapsed = Mathf.Max(waveTimeElapsed - Time.deltaTime, 0f);
         SyncTimeline();
     }
 
@@ -132,6 +136,10 @@ public class WaveTimeline
             case WaveState.Spawning:
                 ProcessSubwaves();
                 if (waveTimeElapsed > wave.FullSpawnDuration())
+                    TransitionToEnemiesRemain();
+                break;
+            case WaveState.EnemiesRemain:
+                if (!doEnemiesRemain.Invoke())
                     TransitionToPostSpawn();
                 break;
             case WaveState.PostSpawn:
@@ -160,10 +168,16 @@ public class WaveTimeline
         });
     }
 
+    private void TransitionToEnemiesRemain()
+    {
+        waveState = WaveState.EnemiesRemain;
+        waveTimeElapsed -= waves[waveNumber].FullSpawnDuration();
+        SyncTimeline();
+    }
+
     private void TransitionToPostSpawn()
     {
         waveState = WaveState.PostSpawn;
-        waveTimeElapsed -= waves[waveNumber].FullSpawnDuration();
         SyncTimeline();
     }
 
@@ -199,6 +213,7 @@ public class WaveTimeline
         {
             WaveState.PreSpawn => waveTimeElapsed / wave.preWaveWaitTime,
             WaveState.Spawning => 1f,
+            WaveState.EnemiesRemain => 1f,
             WaveState.PostSpawn => 1f - waveTimeElapsed / wave.postWaveWaitTime,
             _ => 0f
         };
