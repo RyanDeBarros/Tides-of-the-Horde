@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundsX: {x: -500, y: 500}
-  boundsY: {x: -100, y: 100}
+  boundsY: {x: -50, y: 100}
   boundsZ: {x: -500, y: 500}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
@@ -359,15 +359,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: gravity
-      value: -27
+      value: -150
+      objectReference: {fileID: 0}
+    - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
+      propertyPath: aoeRadius
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: initialForwardVelocity
-      value: 190
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: initialVerticalVelocity
-      value: 6
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4923396060290730105, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: m_LocalPosition.x

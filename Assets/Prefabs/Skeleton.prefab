@@ -211,7 +211,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundsX: {x: -500, y: 500}
-  boundsY: {x: -100, y: 100}
+  boundsY: {x: -50, y: 100}
   boundsZ: {x: -500, y: 500}
 --- !u!1 &4069443703503164984
 GameObject:

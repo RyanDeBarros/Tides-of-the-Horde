@@ -1,0 +1,32 @@
+{
+    "waves": [
+        {
+            "preWaveWaitTime": 1.0,
+            "postWaveWaitTime": 1.0,
+            "subwaves": [
+                {
+                    "duration": 10.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 1.0
+                }
+            ]
+        },
+        {
+            "preWaveWaitTime": 1.0,
+            "postWaveWaitTime": 1.0,
+            "subwaves": [
+                {
+                    "duration": 10.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 2.0
+                },
+                {
+                    "timeOffset": 5.0,
+                    "duration": 10.0,
+                    "enemy": "Bishop",
+                    "spawnRate": 0.5
+                }
+            ]
+        }
+    ]
+}
