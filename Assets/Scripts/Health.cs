@@ -5,7 +5,7 @@ public class Health : MonoBehaviour
 {
     [Header("Health Settings")]
     public int maxHealth = 100;
-    public int currentHealth;
+    private int currentHealth;
 
     [Header("Events")]
     public UnityEvent<int, int> onHealthChanged; // (current, max)
@@ -15,6 +15,12 @@ public class Health : MonoBehaviour
     {
         currentHealth = maxHealth;
         onHealthChanged?.Invoke(currentHealth, maxHealth);
+    }
+
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 
     public void TakeDamage(int amount)
