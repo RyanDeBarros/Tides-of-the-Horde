@@ -257,8 +257,8 @@ MonoBehaviour:
   cam: {fileID: 5445867534279781679}
   horizontalPanSpeed: 2
   verticalPanSpeed: 2
-  verticalPanMin: -15
-  verticalPanMax: 15
+  verticalPanMin: -45
+  verticalPanMax: 20
 --- !u!114 &3457600730889820102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,8 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c83d5e9552d2964e9aa78e1ba9bacdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentXP: 0
-  OnXPChanged:
+  currency: 0
+  onCurrencyChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5650140055875109725
