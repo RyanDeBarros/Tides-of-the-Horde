@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8050667922773458604}
   - component: {fileID: 8663417708849071734}
   - component: {fileID: 5107691224228692533}
+  - component: {fileID: 327978903166375256}
   m_Layer: 0
   m_Name: crystal-pink-sharp
   m_TagString: Untagged
@@ -85,3 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &327978903166375256
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8644746944121711804}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.16398615, y: 0.3855159, z: 0.13520546}
+  m_Center: {x: 0, y: 0.19275795, z: 0}

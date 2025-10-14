@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2417795120231819413}
   - component: {fileID: 2430317959257165898}
   - component: {fileID: 8131741035595461229}
+  - component: {fileID: 2878896487280322151}
   m_Layer: 0
   m_Name: Flower-duo-red
   m_TagString: Untagged
@@ -85,3 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2878896487280322151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4696751348409087103}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.06282746, y: 0.08645876, z: 0.107106395}
+  m_Center: {x: 0.012267178, y: -0.036408417, z: 0.038503505}

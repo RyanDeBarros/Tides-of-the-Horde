@@ -70,10 +70,39 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 08d2ce66949381a4fbea5d679f1f6a6e, type: 2}
     - target: {fileID: 919132149155446097, guid: b99de37e5f714bf4f8adb39077e55fb6, type: 3}
       propertyPath: m_Name
-      value: _Wizard_tower_LVL_2
+      value: _Wizard_tower_purple-green
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b99de37e5f714bf4f8adb39077e55fb6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1011605040112302677}
   m_SourcePrefab: {fileID: 100100000, guid: b99de37e5f714bf4f8adb39077e55fb6, type: 3}
+--- !u!1 &2792578847365599737 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b99de37e5f714bf4f8adb39077e55fb6, type: 3}
+  m_PrefabInstance: {fileID: 3026509640385047720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1011605040112302677
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2792578847365599737}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.519122, y: 20.463322, z: 5.519121}
+  m_Center: {x: -0.00000011920929, y: 10.192827, z: 0.00000333786}

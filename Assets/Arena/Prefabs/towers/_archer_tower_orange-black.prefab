@@ -70,10 +70,39 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: b7516251d0dbacf449ca8922c8394c01, type: 2}
     - target: {fileID: 919132149155446097, guid: 4a2193cb95aa23e4c80d451acc03ba6e, type: 3}
       propertyPath: m_Name
-      value: _archer_tower_LVL_2 (1)
+      value: _archer_tower_orange-black
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a2193cb95aa23e4c80d451acc03ba6e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 506894801397105875}
   m_SourcePrefab: {fileID: 100100000, guid: 4a2193cb95aa23e4c80d451acc03ba6e, type: 3}
+--- !u!1 &6282463632116678452 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4a2193cb95aa23e4c80d451acc03ba6e, type: 3}
+  m_PrefabInstance: {fileID: 6624410990896398949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &506894801397105875
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6282463632116678452}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.953274, y: 14.944991, z: 5.9532733}
+  m_Center: {x: 0, y: 7.4503665, z: 0.00000333786}

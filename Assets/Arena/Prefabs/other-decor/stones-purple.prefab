@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9214352112389212835}
   - component: {fileID: 3163623282137609387}
   - component: {fileID: 1011996566741194676}
+  - component: {fileID: 6927485597532434465}
   m_Layer: 0
   m_Name: stones-purple
   m_TagString: Untagged
@@ -85,3 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6927485597532434465
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7939128708051244732}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.37625968, y: 0.017938849, z: 0.31752226}
+  m_Center: {x: 0, y: 0.008969424, z: 0}

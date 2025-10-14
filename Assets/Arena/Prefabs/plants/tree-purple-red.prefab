@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 299215013426733078}
   - component: {fileID: 2758181541742118595}
   - component: {fileID: 1278109491858505982}
+  - component: {fileID: 5105237815816064330}
   m_Layer: 0
   m_Name: tree-purple-red
   m_TagString: Untagged
@@ -85,3 +86,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &5105237815816064330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5411341150129820969}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.290403, y: 3.8693461, z: 4.3853645}
+  m_Center: {x: 0.17992228, y: 1.9346731, z: -0.046294093}
