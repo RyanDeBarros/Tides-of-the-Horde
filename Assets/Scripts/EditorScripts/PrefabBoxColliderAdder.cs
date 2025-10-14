@@ -1,8 +1,5 @@
-// Place this file in AnyFolderNamedEditor, e.g. Assets/Editor/AddBoxColliderToPrefabs.cs
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.SceneManagement;
-using UnityEngine.AI;
 
 public static class AddBoxColliderToPrefabs
 {
@@ -53,12 +50,7 @@ public static class AddBoxColliderToPrefabs
                     // Add BoxCollider to root of prefab
                     prefabRoot.AddComponent<BoxCollider>();
 
-                    // Save changes to the prefab asset
-#if UNITY_2018_3_OR_NEWER
                     PrefabUtility.SaveAsPrefabAsset(prefabRoot, assetPath);
-#else
-                    PrefabUtility.ReplacePrefab(prefabRoot, PrefabUtility.GetPrefabParent(prefabRoot), ReplacePrefabOptions.ConnectToPrefab);
-#endif
                     modified++;
                     Debug.Log($"Added BoxCollider to prefab: {assetPath}");
                 }
