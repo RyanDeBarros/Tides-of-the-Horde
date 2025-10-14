@@ -1,30 +1,27 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [RequireComponent(typeof(Health))]
 public class RewardOnDeath : MonoBehaviour
 {
-    [Min(1)] public int xpAmount = 10;
+    [Min(1)] public int reward = 10;
     [SerializeField] private string playerTag = "Player";
 
     private Health health;
-    private PlayerXP playerXP;
+    private PlayerCurrency playerCurrency;
 
     void Awake()
     {
         health = GetComponent<Health>();
 
-        
-        var playerGO = GameObject.FindWithTag(playerTag);
-        if (playerGO != null)
-            playerXP = playerGO.GetComponentInChildren<PlayerXP>();
-
-        if (playerXP == null)
-            Debug.LogWarning("[RewardOnDeath] PlayerXP not found on player.");
+        GameObject playerGO = GameObject.FindWithTag(playerTag);
+        Assert.IsNotNull(playerGO);
+        playerCurrency = playerGO.GetComponentInChildren<PlayerCurrency>();
+        Assert.IsNotNull(playerCurrency);
     }
 
     void OnEnable()
     {
-        
         health.onDeath.AddListener(GrantXP);
     }
 
@@ -35,14 +32,6 @@ public class RewardOnDeath : MonoBehaviour
 
     private void GrantXP()
     {
-        if (playerXP != null)
-        {
-            playerXP.AddXP(xpAmount);
-        }
-        else
-        {
-            Debug.LogWarning("[RewardOnDeath] No PlayerXP to grant XP to.");
-        }
-        
+        playerCurrency.AddCurrency(reward);
     }
 }

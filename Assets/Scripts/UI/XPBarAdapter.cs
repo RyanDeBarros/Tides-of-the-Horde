@@ -1,12 +1,14 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 using TMPro;
 
+// TODO don't use bar
 [RequireComponent(typeof(Slider))]
 [DefaultExecutionOrder(1000)] 
 public class SimpleXPBar : MonoBehaviour
 {
-    public PlayerXP player;
+    public PlayerCurrency currency;
     public TextMeshProUGUI xpText;
 
     [Min(1)] public int goal = 100;   
@@ -31,23 +33,22 @@ public class SimpleXPBar : MonoBehaviour
             f.offsetMin = Vector2.zero;
             f.offsetMax = Vector2.zero;
         }
-    }
 
-    void OnEnable()
-    {
-        if (!player)
-            player = GameObject.FindWithTag("Player")?.GetComponentInChildren<PlayerXP>();
-
-        if (player)
+        if (!currency)
         {
-            player.OnXPChanged.AddListener(UpdateBar);
-            UpdateBar(player.currentXP); 
+            GameObject player = GameObject.FindWithTag("Player");
+            Assert.IsNotNull(player);
+            currency = player.GetComponentInChildren<PlayerCurrency>();
+            Assert.IsNotNull(currency);
         }
+
+        currency.onCurrencyChanged.AddListener(UpdateBar);
+        UpdateBar(currency.GetCurrency()); 
     }
 
     void OnDisable()
     {
-        if (player) player.OnXPChanged.RemoveListener(UpdateBar);
+        currency.onCurrencyChanged.RemoveListener(UpdateBar);
     }
 
     void LateUpdate()
@@ -60,7 +61,7 @@ public class SimpleXPBar : MonoBehaviour
     {
         if (autoExpand && total > s.maxValue)
         {
-            var newMax = Mathf.Ceil(total / (float)expandStep) * expandStep;
+            float newMax = Mathf.Ceil(total / (float)expandStep) * expandStep;
             s.maxValue = Mathf.Max(newMax, goal);
         }
 
