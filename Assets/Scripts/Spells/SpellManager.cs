@@ -127,7 +127,12 @@ public class SpellManager : MonoBehaviour
 
     private ISpellCaster GetActiveSpellCaster()
     {
-        return spellCasters[activeSpell].caster;
+        return GetSpellCaster(activeSpell);
+    }
+
+    public ISpellCaster GetSpellCaster(SpellType spellType)
+    {
+        return spellCasters[spellType].caster;
     }
 
     public void ToggleActiveSpellUp()
