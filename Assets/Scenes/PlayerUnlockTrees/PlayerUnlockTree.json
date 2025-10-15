@@ -1,0 +1,52 @@
+{
+    "nodes": [
+        {
+            "name": "MeleeSpell-Unlock",
+            "cost": 0,
+            "preRequisiteNames": [],
+            "unlockID": "f-MeleeSpell-Unlock"
+        },
+        {
+            "name": "BombSpell-Unlock",
+            "cost": 100,
+            "preRequisiteNames": ["MeleeSpell-Unlock"],
+            "unlockID": "f-BombSpell-Unlock"
+        },
+        {
+            "name": "BubbleSpell-Unlock",
+            "cost": 100,
+            "preRequisiteNames": ["MeleeSpell-Unlock"],
+            "unlockID": "f-BubbleSpell-Unlock"
+        },
+        {
+            "name": "SniperSpell-Unlock",
+            "cost": 100,
+            "preRequisiteNames": ["MeleeSpell-Unlock"],
+            "unlockID": "f-SniperSpell-Unlock"
+        },
+        {
+            "name": "MeleeSpell-Upgrade-Damage-1",
+            "cost": 100,
+            "preRequisiteNames": ["MeleeSpell-Unlock"],
+            "unlockID": "f-MeleeSpell-Upgrade-Damage-1"
+        },
+        {
+            "name": "BombSpell-Upgrade-Damage-1",
+            "cost": 150,
+            "preRequisiteNames": ["BombSpell-Unlock"],
+            "unlockID": "f-BombSpell-Upgrade-Damage-1"
+        },
+        {
+            "name": "BombSpell-Upgrade-Range-1",
+            "cost": 150,
+            "preRequisiteNames": ["BombSpell-Unlock"],
+            "unlockID": "f-BombSpell-Upgrade-Range-1"
+        },
+        {
+            "name": "BombSpell-Upgrade-Range-2",
+            "cost": 200,
+            "preRequisiteNames": ["BombSpell-Upgrade-Range-1"],
+            "unlockID": "f-BombSpell-Upgrade-Range-2"
+        }
+    ]
+}

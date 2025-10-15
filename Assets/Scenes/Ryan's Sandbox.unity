@@ -246,7 +246,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4381584739051638850, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 436087617}
   m_SourcePrefab: {fileID: 100100000, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
 --- !u!1 &212136084
 GameObject:
@@ -294,6 +297,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &230368681 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4381584739051638850, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+  m_PrefabInstance: {fileID: 169402414}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &422886062
 GameObject:
   m_ObjectHideFlags: 0
@@ -345,7 +353,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2302053948118948893, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
   m_PrefabInstance: {fileID: 169402414}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 230368681}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3faaa8f7b6d037b4bb5fa81c53779513, type: 3}
@@ -356,12 +364,25 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 784144791415049494, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
   m_PrefabInstance: {fileID: 169402414}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 230368681}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c83d5e9552d2964e9aa78e1ba9bacdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &436087617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 230368681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3007a9bc3de21f488cbbd1225edcd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeTreeFile: {fileID: 4900000, guid: 811c8408662fd404fa4abce5f40a7489, type: 3}
 --- !u!1001 &437380395
 PrefabInstance:
   m_ObjectHideFlags: 0
