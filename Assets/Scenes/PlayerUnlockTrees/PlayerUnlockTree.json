@@ -59,25 +59,32 @@
     ],
     "actionData": [
         {
-            "id": "f-MeleeSpell-Upgrade-Damage",
-            "_": "int1 is damage increase",
-            "int1": [
-                10
+            "id": "f-MeleeSpell-Upgrade",
+            "stats": [
+                {
+                    "param": "Damage",
+                    "values": [
+                        1.25
+                    ]
+                }
             ]
         },
         {
-            "id": "f-BombSpell-Upgrade-Damage",
-            "_": "float1 is damage multiplier",
-            "float1": [
-                1.25
-            ]
-        },
-        {
-            "id": "f-BombSpell-Upgrade-Range",
-            "_": "float1 is range multiplier",
-            "float1": [
-                1.25,
-                1.25
+            "id": "f-BombSpell-Upgrade",
+            "stats": [
+                {
+                    "param": "Damage",
+                    "values": [
+                        1.25
+                    ]
+                },
+                {
+                    "param": "Range",
+                    "values": [
+                        1.25,
+                        1.25
+                    ]
+                }
             ]
         }
     ]

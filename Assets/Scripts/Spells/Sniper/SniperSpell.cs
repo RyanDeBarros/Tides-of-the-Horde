@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public class SniperSpell : MonoBehaviour
 {
-    public float lifespan = 3f;
+    public float range = 30f;
     public int maxEnemiesCanHit = 3;
     public int damage = 20;
     public float speed = 50f;
@@ -15,9 +15,9 @@ public class SniperSpell : MonoBehaviour
 
     private new SphereCollider collider;
     private new Rigidbody rigidbody;
-    private float timeElapsed = 0f;
 
     private readonly HashSet<Collider> hitEnemies = new();
+    private Vector3 initialPosition;
 
     private void Awake()
     {
@@ -27,10 +27,14 @@ public class SniperSpell : MonoBehaviour
         Assert.IsNotNull(rigidbody);
     }
 
+    private void Start()
+    {
+        initialPosition = transform.position;
+    }
+
     private void Update()
     {
-        timeElapsed += Time.deltaTime;
-        if (timeElapsed > lifespan) Destroy(gameObject);
+        if (Vector3.Distance(initialPosition, transform.position) > range) Destroy(gameObject);
 
         rigidbody.MovePosition(rigidbody.position + speed * Time.deltaTime * transform.forward);
         speed += acceleration * Time.deltaTime;
