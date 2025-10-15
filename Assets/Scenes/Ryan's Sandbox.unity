@@ -295,6 +295,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3faaa8f7b6d037b4bb5fa81c53779513, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &436087610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 784144791415049494, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+  m_PrefabInstance: {fileID: 169402414}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c83d5e9552d2964e9aa78e1ba9bacdb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &437380395
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -577,6 +588,10 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 436087608}
+    - target: {fileID: 1839483178472882230, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+      propertyPath: playerCurrency
+      value: 
+      objectReference: {fileID: 436087610}
     - target: {fileID: 4106529686155226434, guid: 9133876c6c261edbcb084a122361753d, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
