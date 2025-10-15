@@ -235,18 +235,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2222206866782075771, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: gravity
-      value: -40
-      objectReference: {fileID: 0}
-    - target: {fileID: 2222206866782075771, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: initialForwardVelocity
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 2222206866782075771, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
-      propertyPath: initialVerticalVelocity
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 4381584739051638850, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_Name
       value: Player
@@ -655,10 +643,6 @@ PrefabInstance:
       propertyPath: playerCurrency
       value: 
       objectReference: {fileID: 436087610}
-    - target: {fileID: 4466263521006292899, guid: 9133876c6c261edbcb084a122361753d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -20
-      objectReference: {fileID: 0}
     - target: {fileID: 6285749625068482116, guid: 9133876c6c261edbcb084a122361753d, type: 3}
       propertyPath: m_Name
       value: HUD
