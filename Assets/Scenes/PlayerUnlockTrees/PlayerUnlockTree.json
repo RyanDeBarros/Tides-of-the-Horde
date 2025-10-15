@@ -1,52 +1,84 @@
 {
     "nodes": [
         {
-            "name": "MeleeSpell-Unlock",
+            "id": "MeleeSpell-Unlock",
+            "name": "Unlock Melee Spell",
             "cost": 0,
-            "preRequisiteNames": [],
-            "unlockID": "f-MeleeSpell-Unlock"
+            "preRequisiteIds": [],
+            "onActivateID": "f-MeleeSpell-Unlock"
         },
         {
-            "name": "BombSpell-Unlock",
+            "id": "BombSpell-Unlock",
+            "name": "Unlock Bomb Spell",
             "cost": 100,
-            "preRequisiteNames": ["MeleeSpell-Unlock"],
-            "unlockID": "f-BombSpell-Unlock"
+            "preRequisiteIds": ["MeleeSpell-Unlock"],
+            "onActivateID": "f-BombSpell-Unlock"
         },
         {
-            "name": "BubbleSpell-Unlock",
+            "id": "BubbleSpell-Unlock",
+            "name": "Unlock Bubble Spell",
             "cost": 100,
-            "preRequisiteNames": ["MeleeSpell-Unlock"],
-            "unlockID": "f-BubbleSpell-Unlock"
+            "preRequisiteIds": ["MeleeSpell-Unlock"],
+            "onActivateID": "f-BubbleSpell-Unlock"
         },
         {
-            "name": "SniperSpell-Unlock",
+            "id": "SniperSpell-Unlock",
+            "name": "Unlock Sniper Spell",
             "cost": 100,
-            "preRequisiteNames": ["MeleeSpell-Unlock"],
-            "unlockID": "f-SniperSpell-Unlock"
+            "preRequisiteIds": ["MeleeSpell-Unlock"],
+            "onActivateID": "f-SniperSpell-Unlock"
         },
         {
-            "name": "MeleeSpell-Upgrade-Damage-1",
+            "id": "MeleeSpell-Upgrade-Damage-1",
+            "name": "Upgrade Melee Spell Damage (1)",
             "cost": 100,
-            "preRequisiteNames": ["MeleeSpell-Unlock"],
-            "unlockID": "f-MeleeSpell-Upgrade-Damage-1"
+            "preRequisiteIds": ["MeleeSpell-Unlock"],
+            "onActivateID": "f-MeleeSpell-Upgrade-Damage-1"
         },
         {
-            "name": "BombSpell-Upgrade-Damage-1",
+            "id": "BombSpell-Upgrade-Damage-1",
+            "name": "Upgrade Bomb Spell Damage (1)",
             "cost": 150,
-            "preRequisiteNames": ["BombSpell-Unlock"],
-            "unlockID": "f-BombSpell-Upgrade-Damage-1"
+            "preRequisiteIds": ["BombSpell-Unlock"],
+            "onActivateID": "f-BombSpell-Upgrade-Damage-1"
         },
         {
-            "name": "BombSpell-Upgrade-Range-1",
+            "id": "BombSpell-Upgrade-Range-1",
+            "name": "Upgrade Bomb Spell Range (1)",
             "cost": 150,
-            "preRequisiteNames": ["BombSpell-Unlock"],
-            "unlockID": "f-BombSpell-Upgrade-Range-1"
+            "preRequisiteIds": ["BombSpell-Unlock"],
+            "onActivateID": "f-BombSpell-Upgrade-Range-1"
         },
         {
-            "name": "BombSpell-Upgrade-Range-2",
+            "id": "BombSpell-Upgrade-Range-2",
+            "name": "Upgrade Bomb Spell Range (2)",
             "cost": 200,
-            "preRequisiteNames": ["BombSpell-Upgrade-Range-1"],
-            "unlockID": "f-BombSpell-Upgrade-Range-2"
+            "preRequisiteIds": ["BombSpell-Upgrade-Range-1"],
+            "onActivateID": "f-BombSpell-Upgrade-Range-2"
+        }
+    ],
+    "actionData": [
+        {
+            "id": "f-MeleeSpell-Upgrade-Damage",
+            "_": "int1 is damage increase",
+            "int1": [
+                10
+            ]
+        },
+        {
+            "id": "f-BombSpell-Upgrade-Damage",
+            "_": "float1 is damage multiplier",
+            "float1": [
+                1.25
+            ]
+        },
+        {
+            "id": "f-BombSpell-Upgrade-Range",
+            "_": "float1 is range multiplier",
+            "float1": [
+                1.25,
+                1.25
+            ]
         }
     ]
 }

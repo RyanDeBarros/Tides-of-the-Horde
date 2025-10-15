@@ -8,17 +8,18 @@ using UnityEngine.Assertions;
 [Serializable]
 public class PlayerUnlockNodeData
 {
-    public string name;
+    public string id;
+    public string name;  // TODO add description string here or in action data
     public int cost;
-    public List<string> preRequisiteNames;
-    public string onUnlockID;
+    public List<string> preRequisiteIds;
+    public string onActivateID;
 }
 
 [Serializable]
 public class PlayerUnlockTreeData
 {
     public List<PlayerUnlockNodeData> nodes;
-    public UnlockActionTableData actionData;
+    public List<UnlockActionData> actionData;
 }
 
 public class PlayerUnlockNode
@@ -80,16 +81,18 @@ public class PlayerUnlockNode
 
     public void LoadData(PlayerUnlockNodeData data, UnlockActionTable actionTable)
     {
+        Assert.IsNotNull(data.name);
+        Assert.IsNotNull(data.onActivateID);
         name = data.name;
         cost = data.cost;
-        onActivate = actionTable.GetAction(data.onUnlockID);
+        onActivate = actionTable.GetAction(data.onActivateID);
         Assert.IsNotNull(onActivate);
     }
 
     public void LoadRequisites(PlayerUnlockNodeData data, Dictionary<string, PlayerUnlockNode> nodes)
     {
-        data.preRequisiteNames.ForEach(preRequisiteName => {
-            PlayerUnlockNode preRequisite = nodes[preRequisiteName];
+        data.preRequisiteIds.ForEach(preRequisiteId => {
+            PlayerUnlockNode preRequisite = nodes[preRequisiteId];
             preRequisites.Add(preRequisite);
             preRequisite.postRequisites.Add(this);
         });
@@ -121,15 +124,15 @@ public class PlayerUnlockTree : MonoBehaviour
         data.nodes.ForEach(d => {
             PlayerUnlockNode node = new();
             node.LoadData(d, unlockActionTable);
-            nodes[d.name] = node;
+            nodes[d.id] = node;
         });
 
         // Construct tree
         data.nodes.ForEach(d => {
-            PlayerUnlockNode node = nodes[d.name];
+            PlayerUnlockNode node = nodes[d.id];
             node.LoadRequisites(d, nodes);
         });
 
-        unlockTreeRoot = nodes[data.nodes[0].name];
+        unlockTreeRoot = nodes[data.nodes[0].id];
     }
 }
