@@ -26,7 +26,7 @@ public class BombSpell : MonoBehaviour
         Assert.IsNotNull(rigidbody);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         velocity.y += gravity * Time.deltaTime;
         rigidbody.MovePosition(rigidbody.position + velocity * Time.deltaTime);

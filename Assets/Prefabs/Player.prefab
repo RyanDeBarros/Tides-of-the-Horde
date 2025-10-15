@@ -403,20 +403,8 @@ PrefabInstance:
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: gravity
-      value: -150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: aoeRadius
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: initialForwardVelocity
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: initialVerticalVelocity
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4923396060290730105, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: m_LocalPosition.x
