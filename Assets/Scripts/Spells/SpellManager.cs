@@ -52,12 +52,6 @@ public class SpellManager : MonoBehaviour
             else
                 spell.ShowDeselected();
         });
-
-        // TODO eventually, don't unlock all spells.
-        UnlockSpell(SpellType.Melee);
-        UnlockSpell(SpellType.Bomb);
-        UnlockSpell(SpellType.Bubble);
-        UnlockSpell(SpellType.Sniper);
     }
 
     void Update()
@@ -86,7 +80,9 @@ public class SpellManager : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.Alpha0 + (i + 1) % 10))
                 {
-                    SetActiveSpell(hud.GetSpells()[i].GetSpellType());
+                    SpellType spellType = hud.GetSpells()[i].GetSpellType();
+                    if (!spellCasters[spellType].locked)
+                        SetActiveSpell(spellType);
                     break;
                 }
             }

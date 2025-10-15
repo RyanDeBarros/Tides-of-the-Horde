@@ -104,15 +104,16 @@ public class PlayerUnlockTree : MonoBehaviour
     [SerializeField] private TextAsset upgradeTreeFile;
 
     private readonly Dictionary<string, PlayerUnlockNode> nodes = new();
-    private PlayerUnlockNode unlockTreeRoot;
-
     private readonly UnlockActionTable unlockActionTable = new();
 
     private void Awake()
     {
         Assert.IsNotNull(upgradeTreeFile);
+    }
+
+    private void Start()
+    {
         LoadUnlockTree(upgradeTreeFile.text);
-        unlockTreeRoot.UnlockInChain();
     }
 
     private void LoadUnlockTree(string json)
@@ -133,6 +134,12 @@ public class PlayerUnlockTree : MonoBehaviour
             node.LoadRequisites(d, nodes);
         });
 
-        unlockTreeRoot = nodes[data.nodes[0].id];
+
+        // Unlock initial ability - should be "MeleeSpell-Unlock"
+        string rootID = data.nodes[0].id;
+        Debug.Log($"Root ID in player unlock tree is \"{rootID}\". Expecting \"MeleeSpell-Unlock\".");
+        PlayerUnlockNode root = nodes[rootID];
+        root.UnlockInChain();
+        root.Activate();
     }
 }
