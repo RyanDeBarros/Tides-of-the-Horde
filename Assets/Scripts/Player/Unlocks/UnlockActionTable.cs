@@ -66,6 +66,7 @@ public class UnlockActionTable
 
         LoadSpellUnlocks();
         LoadSpellUpgrades();
+       // TODO health upgrade
     }
 
     private void LoadSpellUnlocks()

@@ -2,56 +2,64 @@
     "nodes": [
         {
             "id": "MeleeSpell-Unlock",
-            "name": "Unlock Melee Spell",
+            "name": "Melee Spell",
+            "description": "Unlock",
             "cost": 0,
             "preRequisiteIds": [],
             "onActivateID": "f-MeleeSpell-Unlock"
         },
         {
             "id": "BombSpell-Unlock",
-            "name": "Unlock Bomb Spell",
+            "name": "Bomb Spell",
+            "description": "Unlock",
             "cost": 100,
             "preRequisiteIds": ["MeleeSpell-Unlock"],
             "onActivateID": "f-BombSpell-Unlock"
         },
         {
             "id": "BubbleSpell-Unlock",
-            "name": "Unlock Bubble Spell",
+            "name": "Bubble Spell",
+            "description": "Unlock",
             "cost": 100,
             "preRequisiteIds": ["MeleeSpell-Unlock"],
             "onActivateID": "f-BubbleSpell-Unlock"
         },
         {
             "id": "SniperSpell-Unlock",
-            "name": "Unlock Sniper Spell",
+            "name": "Sniper Spell",
+            "description": "Unlock",
             "cost": 100,
             "preRequisiteIds": ["MeleeSpell-Unlock"],
             "onActivateID": "f-SniperSpell-Unlock"
         },
         {
             "id": "MeleeSpell-Upgrade-Damage-1",
-            "name": "Upgrade Melee Spell Damage (1)",
+            "name": "Melee Spell",
+            "description": "+ Damage",
             "cost": 100,
             "preRequisiteIds": ["MeleeSpell-Unlock"],
             "onActivateID": "f-MeleeSpell-Upgrade-Damage-1"
         },
         {
             "id": "BombSpell-Upgrade-Damage-1",
-            "name": "Upgrade Bomb Spell Damage (1)",
+            "name": "Bomb Spell",
+            "description": "+ Damage",
             "cost": 150,
             "preRequisiteIds": ["BombSpell-Unlock"],
             "onActivateID": "f-BombSpell-Upgrade-Damage-1"
         },
         {
             "id": "BombSpell-Upgrade-Range-1",
-            "name": "Upgrade Bomb Spell Range (1)",
+            "name": "Bomb Spell",
+            "description": "+ Range",
             "cost": 150,
             "preRequisiteIds": ["BombSpell-Unlock"],
             "onActivateID": "f-BombSpell-Upgrade-Range-1"
         },
         {
             "id": "BombSpell-Upgrade-Range-2",
-            "name": "Upgrade Bomb Spell Range (2)",
+            "name": "Bomb Spell",
+            "description": "+ Range",
             "cost": 200,
             "preRequisiteIds": ["BombSpell-Upgrade-Range-1"],
             "onActivateID": "f-BombSpell-Upgrade-Range-2"

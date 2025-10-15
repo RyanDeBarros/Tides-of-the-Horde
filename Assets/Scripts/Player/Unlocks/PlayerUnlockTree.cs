@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,7 +8,8 @@ using UnityEngine.Assertions;
 public class PlayerUnlockNodeData
 {
     public string id;
-    public string name;  // TODO add description string here or in action data
+    public string name;
+    public string description;
     public int cost;
     public List<string> preRequisiteIds;
     public string onActivateID;
@@ -25,6 +25,7 @@ public class PlayerUnlockTreeData
 public class PlayerUnlockNode
 {
     private string name;
+    private string description;
     private int cost;
     private bool unlocked = false;
     private bool activated = false;
@@ -39,6 +40,11 @@ public class PlayerUnlockNode
         return name;
     }
 
+    public string GetDescription()
+    {
+        return description;
+    }
+
     public int GetCost()
     {
         return cost;
@@ -49,10 +55,10 @@ public class PlayerUnlockNode
         Assert.IsTrue(CanActivate());
         onActivate.Invoke();
         activated = true;
-        UnlockInChain();
+        UnlockInGraph();
     }
 
-    public void UnlockInChain()
+    public void UnlockInGraph()
     {
         unlocked = true;
         postRequisites.ForEach(postRequisite => { postRequisite.CheckForUnlock(); });
@@ -61,7 +67,7 @@ public class PlayerUnlockNode
     private void CheckForUnlock()
     {
         if (!unlocked && preRequisites.All(preRequisite => preRequisite.unlocked))
-            UnlockInChain();
+            UnlockInGraph();
     }
 
     public bool IsUnlocked()
@@ -82,8 +88,10 @@ public class PlayerUnlockNode
     public void LoadData(PlayerUnlockNodeData data, UnlockActionTable actionTable)
     {
         Assert.IsNotNull(data.name);
+        Assert.IsNotNull(data.description);
         Assert.IsNotNull(data.onActivateID);
         name = data.name;
+        description = data.description;
         cost = data.cost;
         onActivate = actionTable.GetAction(data.onActivateID);
         Assert.IsNotNull(onActivate);
@@ -134,12 +142,18 @@ public class PlayerUnlockTree : MonoBehaviour
             node.LoadRequisites(d, nodes);
         });
 
-
         // Unlock initial ability - should be "MeleeSpell-Unlock"
         string rootID = data.nodes[0].id;
         Debug.Log($"Root ID in player unlock tree is \"{rootID}\". Expecting \"MeleeSpell-Unlock\".");
         PlayerUnlockNode root = nodes[rootID];
-        root.UnlockInChain();
+        root.UnlockInGraph();
         root.Activate();
+    }
+
+    public List<PlayerUnlockNode> GetRandomUnlocks(int count)
+    {
+        // TODO Get random (count - 1) non-health upgrades + next health upgrade if it exists else health refill
+        // TODO Currency multiplier and currency bonus could be possible reward for NPC challenges
+        return nodes.Values.Where(node => node.CanActivate()).ToList().GetRandomDistinctElements(count);
     }
 }

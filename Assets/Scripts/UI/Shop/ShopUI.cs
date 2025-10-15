@@ -5,8 +5,11 @@ using UnityEngine.Assertions;
 
 public class ShopUI : MonoBehaviour
 {
+    [SerializeField] private List<UnlockSelect> unlockSelects;
+
     private new PlayerCamera camera;
     private SpellManager spellManager;
+    private PlayerUnlockTree playerUnlock;
 
     private void Awake()
     {
@@ -17,6 +20,10 @@ public class ShopUI : MonoBehaviour
         SpellManager[] spellManagers = FindObjectsByType<SpellManager>(FindObjectsSortMode.None);
         Assert.IsTrue(spellManagers.Length == 1);
         spellManager = spellManagers[0];
+
+        PlayerUnlockTree[] playerUnlocks = FindObjectsByType<PlayerUnlockTree>(FindObjectsSortMode.None);
+        Assert.IsTrue(playerUnlocks.Length == 1);
+        playerUnlock = playerUnlocks[0];
     }
 
     private void Start()
@@ -30,6 +37,8 @@ public class ShopUI : MonoBehaviour
         gameObject.SetActive(true);
         camera.DisableCamera();
         spellManager.enabled = false;
+
+        RefreshOptions();
     }
 
     public void Close()
@@ -38,5 +47,20 @@ public class ShopUI : MonoBehaviour
         gameObject.SetActive(false);
         camera.EnableCamera();
         spellManager.enabled = true;
+    }
+
+    private void RefreshOptions()
+    {
+        List<PlayerUnlockNode> nodes = playerUnlock.GetRandomUnlocks(unlockSelects.Count);
+        for (int i = 0; i < unlockSelects.Count; ++i)
+        {
+            if (i < nodes.Count)
+            {
+                unlockSelects[i].ShowAvailable();
+                unlockSelects[i].Setup(nodes[i]);
+            }
+            else
+                unlockSelects[i].ShowUnavailable();
+        }
     }
 }
