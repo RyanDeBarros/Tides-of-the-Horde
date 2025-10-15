@@ -11,7 +11,8 @@ public class UnlockSelect : MonoBehaviour
     [SerializeField] private TextMeshProUGUI costText;
     [SerializeField] private GameObject availableInfoRoot;
 
-    private PlayerUnlockNode node;
+    private PlayerUnlockNode node = null;
+    private PlayerCurrency playerCurrency;
 
     private void Awake()
     {
@@ -19,6 +20,8 @@ public class UnlockSelect : MonoBehaviour
         Assert.IsNotNull(descriptionText);
         Assert.IsNotNull(costText);
         Assert.IsNotNull(availableInfoRoot);
+
+        playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
     }
 
     public void Setup(PlayerUnlockNode node)
@@ -34,10 +37,12 @@ public class UnlockSelect : MonoBehaviour
     {
         if (node != null)
         {
-            Debug.Log("OnClick()");
-            // TODO check cost -> subtract from currency
-            node.Activate();
-            ShowUnavailable();
+            if (playerCurrency.GetCurrency() >= node.GetCost())
+            {
+                playerCurrency.Pay(node.GetCost());
+                node.Activate();
+                ShowUnavailable();
+            }
         }
     }
 

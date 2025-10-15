@@ -32,6 +32,6 @@ public class RewardOnDeath : MonoBehaviour
 
     private void GrantXP()
     {
-        playerCurrency.AddCurrency(reward);
+        playerCurrency.Add(reward);
     }
 }

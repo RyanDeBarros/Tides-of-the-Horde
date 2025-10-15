@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public static class ListExtensions
 {
@@ -16,5 +17,11 @@ public static class ListExtensions
         }
 
         return result.GetRange(0, Mathf.Min(count, result.Count));
+    }
+
+    public static T GetUniqueElement<T>(this T[] array)
+    {
+        Assert.IsTrue(array.Length == 1);
+        return array[0];
     }
 }

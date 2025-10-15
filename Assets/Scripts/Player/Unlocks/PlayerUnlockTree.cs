@@ -66,7 +66,7 @@ public class PlayerUnlockNode
 
     private void CheckForUnlock()
     {
-        if (!unlocked && preRequisites.All(preRequisite => preRequisite.unlocked))
+        if (!unlocked && preRequisites.All(preRequisite => preRequisite.activated))
             UnlockInGraph();
     }
 
@@ -150,10 +150,14 @@ public class PlayerUnlockTree : MonoBehaviour
         root.Activate();
     }
 
-    public List<PlayerUnlockNode> GetRandomUnlocks(int count)
+    public List<PlayerUnlockNode> GetRandomUnlocks(int count, int maxCost)
     {
         // TODO Get random (count - 1) non-health upgrades + next health upgrade if it exists else health refill
         // TODO Currency multiplier and currency bonus could be possible reward for NPC challenges
-        return nodes.Values.Where(node => node.CanActivate()).ToList().GetRandomDistinctElements(count);
+        return nodes.Values
+            .Where(node => node.CanActivate())
+            .OrderBy(node => node.GetCost())
+            .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost)
+            .ToList().GetRandomDistinctElements(count);
     }
 }

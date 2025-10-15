@@ -10,20 +10,14 @@ public class ShopUI : MonoBehaviour
     private new PlayerCamera camera;
     private SpellManager spellManager;
     private PlayerUnlockTree playerUnlock;
+    private PlayerCurrency playerCurrency;
 
     private void Awake()
     {
-        PlayerCamera[] cameras = FindObjectsByType<PlayerCamera>(FindObjectsSortMode.None);
-        Assert.IsTrue(cameras.Length == 1);
-        camera = cameras[0];
-
-        SpellManager[] spellManagers = FindObjectsByType<SpellManager>(FindObjectsSortMode.None);
-        Assert.IsTrue(spellManagers.Length == 1);
-        spellManager = spellManagers[0];
-
-        PlayerUnlockTree[] playerUnlocks = FindObjectsByType<PlayerUnlockTree>(FindObjectsSortMode.None);
-        Assert.IsTrue(playerUnlocks.Length == 1);
-        playerUnlock = playerUnlocks[0];
+        camera = FindObjectsByType<PlayerCamera>(FindObjectsSortMode.None).GetUniqueElement();
+        spellManager = FindObjectsByType<SpellManager>(FindObjectsSortMode.None).GetUniqueElement();
+        playerUnlock = FindObjectsByType<PlayerUnlockTree>(FindObjectsSortMode.None).GetUniqueElement();
+        playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
     }
 
     private void Start()
@@ -51,7 +45,7 @@ public class ShopUI : MonoBehaviour
 
     private void RefreshOptions()
     {
-        List<PlayerUnlockNode> nodes = playerUnlock.GetRandomUnlocks(unlockSelects.Count);
+        List<PlayerUnlockNode> nodes = playerUnlock.GetRandomUnlocks(unlockSelects.Count, playerCurrency.GetCurrency());
         for (int i = 0; i < unlockSelects.Count; ++i)
         {
             if (i < nodes.Count)

@@ -1,20 +1,28 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
 
 public class PlayerCurrency : MonoBehaviour
 {
     [SerializeField, Min(0)] private int currency = 0;
     public UnityEvent<int> onCurrencyChanged;  
 
-    public void AddCurrency(int amount)
+    public int GetCurrency()
     {
-        if (amount <= 0) return;
+        return currency;
+    }
+
+    public void Add(int amount)
+    {
+        Assert.IsTrue(amount >= 0);
         currency += amount;
         onCurrencyChanged?.Invoke(currency);
     }
 
-    public int GetCurrency()
+    public void Pay(int amount)
     {
-        return currency;
+        Assert.IsTrue(currency >= amount && amount >= 0);
+        currency -= amount;
+        onCurrencyChanged?.Invoke(currency);
     }
 }

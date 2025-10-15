@@ -60,9 +60,7 @@ public class UnlockActionTable
     {
         listData.ForEach(d => data[d.id] = d);
 
-        SpellManager[] spellManagers = GameObject.FindObjectsByType<SpellManager>(FindObjectsSortMode.None);
-        Assert.IsTrue(spellManagers.Length == 1);
-        spellManager = spellManagers[0];
+        spellManager = UnityEngine.Object.FindObjectsByType<SpellManager>(FindObjectsSortMode.None).GetUniqueElement();
 
         LoadSpellUnlocks();
         LoadSpellUpgrades();
