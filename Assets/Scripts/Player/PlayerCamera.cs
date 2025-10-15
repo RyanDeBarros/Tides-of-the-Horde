@@ -13,19 +13,14 @@ public class PlayerCamera : MonoBehaviour
 
     private float initialPitch = 0f;
     private float currentPitch = 0f;
-    private Vector3 offset;
+    private bool cameraEnabled = true;
 
     void Awake()
     {
         cam = GetComponentInChildren<Camera>();
         Assert.IsNotNull(cam);
 
-        // Lock the cursor so it never hits screen edges
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-
-
-        offset = cam.transform.position - transform.position;
+        EnableCamera();
 
         initialPitch = cam.transform.eulerAngles.x;
         if (initialPitch > 180f) initialPitch -= 360f; // convert to [-180, 180] range
@@ -34,6 +29,9 @@ public class PlayerCamera : MonoBehaviour
 
     void Update()
     {
+        if (!cameraEnabled)
+            return;
+
         float mouseX = Input.GetAxis("Mouse X") * horizontalPanSpeed;
         float mouseY = Input.GetAxis("Mouse Y") * verticalPanSpeed;
 
@@ -49,13 +47,26 @@ public class PlayerCamera : MonoBehaviour
 
         // Rotate camera around player position along the right axis
         cam.transform.RotateAround(transform.position, transform.right, deltaPitch);
-
-        // Always look at player
-        //cam.transform.LookAt(transform.position);
     }
 
     public Vector3 GetForwardVector()
     {
         return cam.transform.forward;
+    }
+
+    public void EnableCamera()
+    {
+        cameraEnabled = true;
+        // Lock the cursor so it never hits screen edges
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+    }
+
+    public void DisableCamera()
+    {
+        cameraEnabled = false;
+        // Restore cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
