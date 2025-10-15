@@ -18,7 +18,11 @@ public class UnlockActionData
 
     public UnlockActionRankedData RankedData(int index)
     {
-        return new UnlockActionRankedData() { int1 = int1[index], float1 = float1[index] };
+        return new UnlockActionRankedData()
+        {
+            int1 = int1 != null ? int1[index] : 0,
+            float1 = float1 != null ? float1[index] : 0f
+        };
     }
 }
 
