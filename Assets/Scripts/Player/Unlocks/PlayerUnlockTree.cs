@@ -127,8 +127,10 @@ public class PlayerUnlockNode
 public class PlayerUnlockTree : MonoBehaviour
 {
     [SerializeField] private TextAsset upgradeTreeFile;
+    [SerializeField] private string unlockMeleeID = "MeleeSpell-Unlock";
+    [SerializeField] private string upgradeHealthID = "Health-Upgrade";
 
-    private List<PlayerUnlockNode> nodes;
+    private readonly Dictionary<string, PlayerUnlockNode> nodes = new();
 
     private void Awake()
     {
@@ -139,41 +141,50 @@ public class PlayerUnlockTree : MonoBehaviour
     private void Start()
     {
         // Activate melee spell unlock on start
-        nodes.Where(node => node.GetID() == "MeleeSpell-Unlock").First().Activate();
+        nodes[unlockMeleeID].Activate();
     }
 
     private void LoadUnlockTree(string json)
     {
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
         UnlockActionTable unlockActionTable = new(gameObject);
-        Dictionary<string, PlayerUnlockNode> nodeDictionary = new();
 
         // Load data
         data.nodes.ForEach(d => {
             PlayerUnlockNode node = new();
             node.LoadData(d, unlockActionTable);
-            nodeDictionary[d.id] = node;
+            nodes[d.id] = node;
         });
 
         // Construct tree
         data.nodes.ForEach(d => {
-            PlayerUnlockNode node = nodeDictionary[d.id];
-            node.LoadRequisites(d, nodeDictionary);
+            PlayerUnlockNode node = nodes[d.id];
+            node.LoadRequisites(d, nodes);
         });
 
         // Unlock all initially unlockable upgrades
-        nodes = nodeDictionary.Values.ToList();
-        nodeDictionary.Values.ToList().ForEach(node => node.CheckPrerequisites());
+        nodes.Values.ToList().ForEach(node => node.CheckPrerequisites());
     }
 
     public List<PlayerUnlockNode> GetRandomUnlocks(int count, int maxCost)
     {
-        // TODO Get random (count - 1) non-health upgrades + next health upgrade if it exists else health refill
-        // TODO Currency multiplier and currency bonus could be possible reward for NPC challenges
-        return nodes
-            .Where(node => node.CanActivate())
+        Assert.IsTrue(count > 0);
+        List<PlayerUnlockNode> randomUnlocks = new();
+        PlayerUnlockNode healthUpgrade = nodes[upgradeHealthID];
+
+        // Non-health upgrades
+        if (healthUpgrade.CanActivate())
+            --count;
+        if (count > 0) randomUnlocks.AddRange(nodes.Values
+            .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID)
             .OrderBy(node => node.GetCost())
             .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost)
-            .ToList().GetRandomDistinctElements(count);
+            .ToList().GetRandomDistinctElements(count));
+
+        // Health upgrade
+        if (healthUpgrade.CanActivate())
+            randomUnlocks.Add(healthUpgrade);
+
+        return randomUnlocks;
     }
 }

@@ -108,27 +108,27 @@
             "tiers": [
                 {
                     "cost": 20,
-                    "description": "Increase Max Health (<color=yellow>1</color>) & Heal <color=red>20%</color>",
+                    "description": "Increase Max Health (<color=yellow>1</color>)\n & Heal <color=red>20%</color>",
                     "values": [20, 0.20]
                 },
                 {
                     "cost": 50,
-                    "description": "Increase Max Health (<color=yellow>2</color>) & Heal <color=red>20%</color>",
+                    "description": "Increase Max Health (<color=yellow>2</color>)\n & Heal <color=red>20%</color>",
                     "values": [20, 0.20]
                 },
                 {
                     "cost": 100,
-                    "description": "Increase Max Health (<color=yellow>3</color>) & Heal <color=red>20%</color>",
+                    "description": "Increase Max Health (<color=yellow>3</color>)\n & Heal <color=red>20%</color>",
                     "values": [20, 0.20]
                 },
                 {
                     "cost": 150,
-                    "description": "Increase Max Health (<color=yellow>4</color>) & Heal <color=red>20%</color>",
+                    "description": "Increase Max Health (<color=yellow>4</color>)\n & Heal <color=red>20%</color>",
                     "values": [20, 0.20]
                 },
                 {
                     "cost": 200,
-                    "description": "Increase Max Health (<color=yellow>5</color>) & Heal <color=red>20%</color>",
+                    "description": "Increase Max Health (<color=yellow>5</color>)\n & Heal <color=red>20%</color>",
                     "values": [20, 0.20]
                 }
             ]

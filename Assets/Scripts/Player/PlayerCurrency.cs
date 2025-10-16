@@ -25,4 +25,6 @@ public class PlayerCurrency : MonoBehaviour
         currency -= amount;
         onCurrencyChanged?.Invoke(currency);
     }
+
+    // TODO Currency multiplier and currency bonus could be possible reward for NPC challenges
 }
