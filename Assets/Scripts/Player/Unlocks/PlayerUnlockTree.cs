@@ -12,11 +12,13 @@ public class PlayerUnlockNodeData
     {
         public int cost;
         public string description;
+        public string icon;
         public List<float> values;
     }
 
     public string id;
     public string name;
+    public string defaultIcon;
     public string defaultDescription;
     public List<string> prerequisites;
     public string action;
@@ -35,6 +37,7 @@ public class PlayerUnlockNode
     private class Tier
     {
         public string description;
+        public Texture iconTexture;
         public int cost;
         public float[] values;
         public Action<float[]> onActivate;
@@ -73,6 +76,11 @@ public class PlayerUnlockNode
         return tiers[currentTier].cost;
     }
 
+    public Texture GetIconTexture()
+    {
+        return tiers[currentTier].iconTexture;
+    }
+
     public void Activate()
     {
         Assert.IsTrue(CanActivate());
@@ -91,7 +99,7 @@ public class PlayerUnlockNode
         return currentTier >= 0 && currentTier < tiers.Count;
     }
 
-    public void LoadData(PlayerUnlockNodeData data, UnlockActionTable actionTable)
+    public void LoadData(PlayerUnlockTree unlocker, PlayerUnlockNodeData data, UnlockActionTable actionTable)
     {
         Assert.IsNotNull(data.id);
         Assert.IsNotNull(data.name);
@@ -103,6 +111,7 @@ public class PlayerUnlockNode
 
         tiers = data.tiers.Select(tier => new Tier() {
             description = tier.description ?? data.defaultDescription,
+            iconTexture = unlocker.GetIconTexture(tier.icon ?? data.defaultIcon),
             cost = tier.cost,
             values = tier.values.ToArray(),
             onActivate = actionTable.GetAction(data.action, data.parameters)
@@ -130,6 +139,13 @@ public class PlayerUnlockTree : MonoBehaviour
     [SerializeField] private string unlockMeleeID = "MeleeSpell-Unlock";
     [SerializeField] private string upgradeHealthID = "Health-Upgrade";
 
+    [Header("Icons")]
+    [SerializeField] private Texture meleeSpellIcon;
+    [SerializeField] private Texture bombSpellIcon;
+    [SerializeField] private Texture bubbleSpellIcon;
+    [SerializeField] private Texture sniperSpellIcon;
+    [SerializeField] private Texture healthIcon;
+
     private readonly Dictionary<string, PlayerUnlockNode> nodes = new();
 
     private void Awake()
@@ -152,7 +168,7 @@ public class PlayerUnlockTree : MonoBehaviour
         // Load data
         data.nodes.ForEach(d => {
             PlayerUnlockNode node = new();
-            node.LoadData(d, unlockActionTable);
+            node.LoadData(this, d, unlockActionTable);
             nodes[d.id] = node;
         });
 
@@ -186,5 +202,18 @@ public class PlayerUnlockTree : MonoBehaviour
             randomUnlocks.Add(healthUpgrade);
 
         return randomUnlocks;
+    }
+
+    public Texture GetIconTexture(string icon)
+    {
+        return icon switch
+        {
+            "MeleeSpell" => meleeSpellIcon,
+            "BombSpell" => bombSpellIcon,
+            "BubbleSpell" => bubbleSpellIcon,
+            "SniperSpell" => sniperSpellIcon,
+            "Health" => healthIcon,
+            _ => throw new NotImplementedException(),
+        };
     }
 }

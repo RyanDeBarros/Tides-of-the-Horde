@@ -3,6 +3,7 @@
         {
             "id": "MeleeSpell-Unlock",
             "name": "Melee Spell",
+            "defaultIcon": "MeleeSpell",
             "defaultDescription": "Unlock",
             "prerequisites": [],
             "action": "Unlock",
@@ -16,6 +17,7 @@
         {
             "id": "BombSpell-Unlock",
             "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
             "defaultDescription": "Unlock",
             "prerequisites": [],
             "action": "Unlock",
@@ -29,6 +31,7 @@
         {
             "id": "BubbleSpell-Unlock",
             "name": "Bubble Spell",
+            "defaultIcon": "BubbleSpell",
             "defaultDescription": "Unlock",
             "prerequisites": [],
             "action": "Unlock",
@@ -42,6 +45,7 @@
         {
             "id": "SniperSpell-Unlock",
             "name": "Sniper Spell",
+            "defaultIcon": "SniperSpell",
             "defaultDescription": "Unlock",
             "prerequisites": [],
             "action": "Unlock",
@@ -55,6 +59,7 @@
         {
             "id": "MeleeSpell-Upgrade-Damage",
             "name": "Melee Spell",
+            "defaultIcon": "MeleeSpell",
             "prerequisites": ["MeleeSpell-Unlock"],
             "action": "UpgradeSpell",
             "parameters": ["Melee", "Damage"],
@@ -69,6 +74,7 @@
         {
             "id": "BombSpell-Upgrade-Damage",
             "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
             "prerequisites": ["BombSpell-Unlock"],
             "action": "UpgradeSpell",
             "parameters": ["Bomb", "Damage"],
@@ -83,6 +89,7 @@
         {
             "id": "BombSpell-Upgrade-Range",
             "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
             "prerequisites": ["BombSpell-Unlock"],
             "action": "UpgradeSpell",
             "parameters": ["Bomb", "Range"],
@@ -102,6 +109,7 @@
         {
             "id": "Health-Upgrade",
             "name": "Health",
+            "defaultIcon": "Health",
             "prerequisites": [],
             "action": "UpgradeHealth",
             "parameters": [],

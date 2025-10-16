@@ -260,6 +260,7 @@ MonoBehaviour:
   nameText: {fileID: 7592606223811889696}
   descriptionText: {fileID: 556179754456344428}
   costText: {fileID: 2020064709873849329}
+  icon: {fileID: 1835321030941534750}
   availableInfoRoot: {fileID: 1907695134940699086}
 --- !u!1 &4550638015266170962
 GameObject:
@@ -455,7 +456,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.49056602, g: 0.3563545, b: 0.3563545, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

@@ -5,6 +5,7 @@ using UnityEngine.Assertions;
 public class PlayerCurrency : MonoBehaviour
 {
     [SerializeField, Min(0)] private int currency = 0;
+    [SerializeField, Min(1)] private float currencyCollectMultiplier = 1f;
     public UnityEvent<int> onCurrencyChanged;  
 
     public int GetCurrency()
@@ -15,7 +16,7 @@ public class PlayerCurrency : MonoBehaviour
     public void Add(int amount)
     {
         Assert.IsTrue(amount >= 0);
-        currency += amount;
+        currency += (int)(amount * currencyCollectMultiplier);
         onCurrencyChanged?.Invoke(currency);
     }
 
@@ -26,5 +27,13 @@ public class PlayerCurrency : MonoBehaviour
         onCurrencyChanged?.Invoke(currency);
     }
 
-    // TODO Currency multiplier and currency bonus could be possible reward for NPC challenges
+    // TODO NPC challenge ideas:
+    // Challenges:
+    // - Defeat X# of enemies of some type and with some spell within time limit
+    // - Survive wave without losing more than X health
+    // - Defeat X# of enemies without moving
+    // Rewards:
+    // - Currency bonus
+    // - Currency collect multiplier increase
+    // - Shop discounts
 }
