@@ -7,30 +7,46 @@ using UnityEngine.Assertions;
 [Serializable]
 public class PlayerUnlockNodeData
 {
+    [Serializable]
+    public class Tier
+    {
+        public int cost;
+        public string description;
+        public float value;
+    }
+
     public string id;
     public string name;
-    public string description;
-    public int cost;
-    public List<string> preRequisiteIds;
-    public string onActivateID;
+    public List<string> prerequisites;
+    public string action;
+    public List<string> parameters;
+    public List<Tier> tiers;
 }
 
 [Serializable]
 public class PlayerUnlockTreeData
 {
     public List<PlayerUnlockNodeData> nodes;
-    public List<UnlockActionData> actionData;
 }
 
 public class PlayerUnlockNode
 {
-    private string name;
-    private string description;
-    private int cost;
-    private bool unlocked = false;
-    private bool activated = false;
+    private class Tier
+    {
+        public string description;
+        public int cost;
+        public float value;
+        public Action<float> onActivate;
 
-    private Action onActivate;
+        public void Activate()
+        {
+            onActivate.Invoke(value);
+        }
+    }
+
+    private string name;
+    private List<Tier> tiers;
+    private int currentTier = -1;
 
     private readonly List<PlayerUnlockNode> preRequisites = new();
     private readonly List<PlayerUnlockNode> postRequisites = new();
@@ -42,67 +58,56 @@ public class PlayerUnlockNode
 
     public string GetDescription()
     {
-        return description;
+        return tiers[currentTier].description;
     }
 
     public int GetCost()
     {
-        return cost;
+        return tiers[currentTier].cost;
     }
 
     public void Activate()
     {
         Assert.IsTrue(CanActivate());
-        onActivate.Invoke();
-        activated = true;
-        UnlockInGraph();
+        tiers[currentTier++].Activate();
+        postRequisites.ForEach(postRequisite => { postRequisite.CheckPrerequisites(); });
     }
 
-    public void UnlockInGraph()
+    public void CheckPrerequisites()
     {
-        unlocked = true;
-        postRequisites.ForEach(postRequisite => { postRequisite.CheckForUnlock(); });
-    }
-
-    private void CheckForUnlock()
-    {
-        if (!unlocked && preRequisites.All(preRequisite => preRequisite.activated))
-            UnlockInGraph();
-    }
-
-    public bool IsUnlocked()
-    {
-        return unlocked;
-    }
-
-    public bool IsActivated()
-    {
-        return activated;
+        if (currentTier == -1 && preRequisites.All(preRequisite => preRequisite.currentTier >= 0))
+            currentTier = 0;
     }
 
     public bool CanActivate()
     {
-        return unlocked && !activated;
+        return currentTier >= 0 && currentTier < tiers.Count;
     }
 
     public void LoadData(PlayerUnlockNodeData data, UnlockActionTable actionTable)
     {
         Assert.IsNotNull(data.name);
-        Assert.IsNotNull(data.description);
-        Assert.IsNotNull(data.onActivateID);
+        Assert.IsNotNull(data.action);
+        Assert.IsNotNull(data.tiers);
         name = data.name;
-        description = data.description;
-        cost = data.cost;
-        onActivate = actionTable.GetAction(data.onActivateID);
-        Assert.IsNotNull(onActivate);
+        tiers = data.tiers.Select(tier => new Tier() {
+            description = tier.description,
+            cost = tier.cost,
+            value = tier.value,
+            onActivate = actionTable.GetAction(data.action, data.parameters)
+        }).ToList();
+        tiers.ForEach(tier => {
+            Assert.IsNotNull(tier.description);
+            Assert.IsNotNull(tier.onActivate);
+        });
     }
 
     public void LoadRequisites(PlayerUnlockNodeData data, Dictionary<string, PlayerUnlockNode> nodes)
     {
-        data.preRequisiteIds.ForEach(preRequisiteId => {
-            PlayerUnlockNode preRequisite = nodes[preRequisiteId];
-            preRequisites.Add(preRequisite);
-            preRequisite.postRequisites.Add(this);
+        data.prerequisites.ForEach(prereq => {
+            PlayerUnlockNode prerequisite = nodes[prereq];
+            preRequisites.Add(prerequisite);
+            prerequisite.postRequisites.Add(this);
         });
     }
 }
@@ -112,7 +117,6 @@ public class PlayerUnlockTree : MonoBehaviour
     [SerializeField] private TextAsset upgradeTreeFile;
 
     private readonly Dictionary<string, PlayerUnlockNode> nodes = new();
-    private readonly UnlockActionTable unlockActionTable = new();
 
     private void Awake()
     {
@@ -122,12 +126,14 @@ public class PlayerUnlockTree : MonoBehaviour
     private void Start()
     {
         LoadUnlockTree(upgradeTreeFile.text);
+        // Activate melee spell unlock on start
+        nodes["MeleeSpell-Unlock"].Activate();
     }
 
     private void LoadUnlockTree(string json)
     {
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
-        unlockActionTable.Load(data.actionData);
+        UnlockActionTable unlockActionTable = new();
 
         // Load data
         data.nodes.ForEach(d => {
@@ -142,12 +148,8 @@ public class PlayerUnlockTree : MonoBehaviour
             node.LoadRequisites(d, nodes);
         });
 
-        // Unlock initial ability - should be "MeleeSpell-Unlock"
-        string rootID = data.nodes[0].id;
-        Debug.Log($"Root ID in player unlock tree is \"{rootID}\". Expecting \"MeleeSpell-Unlock\".");
-        PlayerUnlockNode root = nodes[rootID];
-        root.UnlockInGraph();
-        root.Activate();
+        // Unlock all initially unlockable upgrades
+        nodes.Values.ToList().ForEach(node => node.CheckPrerequisites());
     }
 
     public List<PlayerUnlockNode> GetRandomUnlocks(int count, int maxCost)

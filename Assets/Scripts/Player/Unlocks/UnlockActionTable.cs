@@ -4,6 +4,13 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
+public enum UnlockAction
+{
+    Unlock,
+    UpgradeSpell,
+    // TODO UpgradeHealth
+}
+
 public enum SpellUpgradeParameter
 {
     Damage,
@@ -15,210 +22,124 @@ public enum SpellUpgradeParameter
     MaxEnemiesHit
 }
 
-[Serializable]
-public class UnlockActionData
-{
-    [Serializable]
-    private class StatsTable
-    {
-        public string param;
-        public List<float> values;
-
-        public SpellUpgradeParameter GetParam()
-        {
-            return Enum.Parse<SpellUpgradeParameter>(param);
-        }
-    }
-
-    public string id;
-    [SerializeField] private List<StatsTable> stats;
-
-    public List<float> GetParamValues(SpellUpgradeParameter param)
-    {
-        return GetStats(param).values;
-    }
-
-    private StatsTable GetStats(SpellUpgradeParameter param)
-    {
-        return stats.Where(stat => stat.GetParam() == param).First();
-    }
-
-    public List<SpellUpgradeParameter> GetSupportedParameters()
-    {
-        return stats.Select(stat => stat.GetParam()).ToList();
-    }
-}
-
 public class UnlockActionTable
 {
-    private readonly Dictionary<string, Action> actions = new();
-    private readonly Dictionary<string, UnlockActionData> data = new();
+    private readonly SpellManager spellManager;
 
-    private SpellManager spellManager;
-
-    public void Load(List<UnlockActionData> listData)
+    public UnlockActionTable()
     {
-        listData.ForEach(d => data[d.id] = d);
-
         spellManager = UnityEngine.Object.FindObjectsByType<SpellManager>(FindObjectsSortMode.None).GetUniqueElement();
-
-        LoadSpellUnlocks();
-        LoadSpellUpgrades();
-       // TODO health upgrade
     }
-
-    private void LoadSpellUnlocks()
+    public Action<float> GetAction(string actionString, List<string> parameters)
     {
-        foreach (SpellType spellType in Enum.GetValues(typeof(SpellType)))
-            actions[$"f-{spellType}Spell-Unlock"] = () => UnlockSpell(spellType);
-    }
-
-    private void LoadSpellUpgrades()
-    {
-        foreach (SpellType spellType in Enum.GetValues(typeof(SpellType)))
+        UnlockAction action = Enum.Parse<UnlockAction>(actionString);
+        return action switch
         {
-            string prefix = $"f-{spellType}Spell-Upgrade";
-            if (!data.ContainsKey(prefix)) continue;
-
-            UnlockActionData d = data[prefix];
-            d.GetSupportedParameters().ForEach(param => {
-                List<float> values = d.GetParamValues(param);
-                values.Select((value, i) => (value, i)).ToList().ForEach(x => {
-                    actions[$"{prefix}-{param}-{x.i + 1}"] = () => UpgradeSpell(spellType, param, x.value);
-                });
-            });
-        }
+            UnlockAction.Unlock => GetSpellUnlockAction(parameters),
+            UnlockAction.UpgradeSpell => GetSpellUpgradeAction(parameters),
+            _ => throw new NotImplementedException()
+        };
     }
 
-    public Action GetAction(string unlockID)
+    private Action<float> GetSpellUnlockAction(List<string> parameters)
     {
-        return actions[unlockID];
+        SpellType spellType = Enum.Parse<SpellType>(parameters[0]);
+        return _ => spellManager.UnlockSpell(spellType);
     }
 
-    private void UnlockSpell(SpellType spell)
+    private Action<float> GetSpellUpgradeAction(List<string> parameters)
     {
-        spellManager.UnlockSpell(spell);
+        SpellType spellType = Enum.Parse<SpellType>(parameters[0]);
+        SpellUpgradeParameter upgradeParameter = Enum.Parse<SpellUpgradeParameter>(parameters[1]);
+        return GetSpellUpgradeParameterAction(spellType, upgradeParameter);
     }
 
-    private void UpgradeSpell(SpellType spell, SpellUpgradeParameter param, float value)
+    private Action<float> GetSpellUpgradeParameterAction(SpellType spell, SpellUpgradeParameter param)
     {
         ISpellCaster spellCaster = spellManager.GetSpellCaster(spell);
-        switch (spell)
+        return spell switch
         {
-            case SpellType.Melee:
-                MeleeSpellCaster meleeSpellCaster = (MeleeSpellCaster)spellCaster;
-                Assert.IsNotNull(meleeSpellCaster);
-                UpgradeMeleeSpell(meleeSpellCaster, param, value);
-                break;
-            case SpellType.Bomb:
-                BombSpellCaster bombSpellCaster = (BombSpellCaster)spellCaster;
-                Assert.IsNotNull(bombSpellCaster);
-                UpgradeBombSpell(bombSpellCaster, param, value);
-                break;
-            case SpellType.Bubble:
-                BubbleSpellCaster bubbleSpellCaster = (BubbleSpellCaster)spellCaster;
-                Assert.IsNotNull(bubbleSpellCaster);
-                UpgradeBubbleSpell(bubbleSpellCaster, param, value);
-                break;
-            case SpellType.Sniper:
-                SniperSpellCaster sniperSpellCaster = (SniperSpellCaster)spellCaster;
-                Assert.IsNotNull(sniperSpellCaster);
-                UpgradeSniperSpell(sniperSpellCaster, param, value);
-                break;
-        }
+            SpellType.Melee => GetUpgradeMeleeSpellAction((MeleeSpellCaster)spellCaster, param),
+            SpellType.Bomb => GetUpgradeBombSpellAction((BombSpellCaster)spellCaster, param),
+            SpellType.Bubble => GetUpgradeBubbleSpellAction((BubbleSpellCaster)spellCaster, param),
+            SpellType.Sniper => GetUpgradeSniperSpellAction((SniperSpellCaster)spellCaster, param),
+            _ => throw new NotImplementedException()
+        };
     }
 
-    private void UpgradeMeleeSpell(MeleeSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter, float value)
+    private Action<float> GetUpgradeMeleeSpellAction(MeleeSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter)
     {
-        switch (spellUpgradeParameter)
+        return spellUpgradeParameter switch
         {
-            case SpellUpgradeParameter.Damage:
-                spellCaster.damage = (int)(spellCaster.damage * value);
-                break;
-            case SpellUpgradeParameter.Range:
-                spellCaster.moveSpeed *= value;
-                break;
-            case SpellUpgradeParameter.Cooldown:
-                spellCaster.cooldown *= value;
-                break;
-            case SpellUpgradeParameter.BounceBack:
-                spellCaster.bounceBackStrength *= value;
-                break;
-            default:
-                throw new NotImplementedException();
-        }
+            SpellUpgradeParameter.Damage => value =>
+                spellCaster.damage = (int)(spellCaster.damage * value),
+            SpellUpgradeParameter.Range => value =>
+                spellCaster.moveSpeed *= value,
+            SpellUpgradeParameter.Cooldown => value =>
+                spellCaster.cooldown *= value,
+            SpellUpgradeParameter.BounceBack => value =>
+                spellCaster.bounceBackStrength *= value,
+            _ => throw new NotImplementedException()
+        };
     }
 
-    private void UpgradeBombSpell(BombSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter, float value)
+    private Action<float> GetUpgradeBombSpellAction(BombSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter)
     {
-        switch (spellUpgradeParameter)
+        return spellUpgradeParameter switch
         {
-            case SpellUpgradeParameter.Damage:
+            SpellUpgradeParameter.Damage => value =>
+            {
                 spellCaster.innerDamage = (int)(spellCaster.innerDamage * value);
                 spellCaster.outerDamage = (int)(spellCaster.outerDamage * value);
-                break;
-            case SpellUpgradeParameter.Range:
+            },
+            SpellUpgradeParameter.Range => value =>
+            {
                 spellCaster.gravity *= value;
                 spellCaster.initialVerticalVelocity *= value;
                 spellCaster.initialForwardVelocity *= value;
                 spellCaster.crosshairAimingClip *= value; // TODO test that modifying crosshairAimingClip makes sense
-                break;
-            case SpellUpgradeParameter.Cooldown:
-                spellCaster.cooldown *= value;
-                break;
-            case SpellUpgradeParameter.BounceBack:
-                spellCaster.bounceBackStrength *= value;
-                break;
-            case SpellUpgradeParameter.Radius:
-                spellCaster.aoeRadius *= value;
-                break;
-            default:
-                throw new NotImplementedException();
-        }
+            },
+            SpellUpgradeParameter.Cooldown => value =>
+                spellCaster.cooldown *= value,
+            SpellUpgradeParameter.BounceBack => value =>
+                spellCaster.bounceBackStrength *= value,
+            SpellUpgradeParameter.Radius => value =>
+                spellCaster.aoeRadius *= value,
+            _ => throw new NotImplementedException()
+        };
     }
 
-    private void UpgradeBubbleSpell(BubbleSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter, float value)
+    private Action<float> GetUpgradeBubbleSpellAction(BubbleSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter)
     {
-        switch (spellUpgradeParameter)
+        return spellUpgradeParameter switch
         {
-            case SpellUpgradeParameter.Range:
-                spellCaster.repelRadius *= value;
-                break;
-            case SpellUpgradeParameter.Cooldown:
-                spellCaster.cooldown *= value;
-                break;
-            case SpellUpgradeParameter.BounceBack:
-                spellCaster.bounceBackStrength *= value;
-                break;
-            default:
-                throw new NotImplementedException();
-        }
+            SpellUpgradeParameter.Range => value =>
+                spellCaster.repelRadius *= value,
+            SpellUpgradeParameter.Cooldown => value =>
+                spellCaster.cooldown *= value,
+            SpellUpgradeParameter.BounceBack => value =>
+                spellCaster.bounceBackStrength *= value,
+            _ => throw new NotImplementedException()
+        };
     }
 
-    private void UpgradeSniperSpell(SniperSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter, float value)
+    private Action<float> GetUpgradeSniperSpellAction(SniperSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter)
     {
-        switch (spellUpgradeParameter)
+        return spellUpgradeParameter switch
         {
-            case SpellUpgradeParameter.Damage:
-                spellCaster.damage = (int)(spellCaster.damage * value);
-                break;
-            case SpellUpgradeParameter.Range:
-                spellCaster.range *= value;
-                break;
-            case SpellUpgradeParameter.Cooldown:
-                spellCaster.cooldown *= value;
-                break;
-            case SpellUpgradeParameter.Radius:
-                spellCaster.spellScale *= value;
-                break;
-            case SpellUpgradeParameter.Speed:
-                spellCaster.initialSpeed *= value;
-                break;
-            case SpellUpgradeParameter.MaxEnemiesHit:
-                spellCaster.maxEnemiesCanHit += (int)value;
-                break;
-            default:
-                throw new NotImplementedException();
-        }
+            SpellUpgradeParameter.Damage => value =>
+                spellCaster.damage = (int)(spellCaster.damage * value),
+            SpellUpgradeParameter.Range => value =>
+                spellCaster.range *= value,
+            SpellUpgradeParameter.Cooldown => value =>
+                spellCaster.cooldown *= value,
+            SpellUpgradeParameter.Radius => value =>
+                spellCaster.spellScale *= value,
+            SpellUpgradeParameter.Speed => value =>
+                spellCaster.initialSpeed *= value,
+            SpellUpgradeParameter.MaxEnemiesHit => value =>
+                spellCaster.maxEnemiesCanHit += (int)value,
+            _ => throw new NotImplementedException()
+        };
     }
 }

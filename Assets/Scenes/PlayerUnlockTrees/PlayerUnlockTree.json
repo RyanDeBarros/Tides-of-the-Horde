@@ -3,95 +3,99 @@
         {
             "id": "MeleeSpell-Unlock",
             "name": "Melee Spell",
-            "description": "Unlock",
-            "cost": 0,
-            "preRequisiteIds": [],
-            "onActivateID": "f-MeleeSpell-Unlock"
-        },
-        {
-            "id": "BombSpell-Unlock",
-            "name": "Bomb Spell",
-            "description": "Unlock",
-            "cost": 10,
-            "preRequisiteIds": ["MeleeSpell-Unlock"],
-            "onActivateID": "f-BombSpell-Unlock"
-        },
-        {
-            "id": "BubbleSpell-Unlock",
-            "name": "Bubble Spell",
-            "description": "Unlock",
-            "cost": 10,
-            "preRequisiteIds": ["MeleeSpell-Unlock"],
-            "onActivateID": "f-BubbleSpell-Unlock"
-        },
-        {
-            "id": "SniperSpell-Unlock",
-            "name": "Sniper Spell",
-            "description": "Unlock",
-            "cost": 10,
-            "preRequisiteIds": ["MeleeSpell-Unlock"],
-            "onActivateID": "f-SniperSpell-Unlock"
-        },
-        {
-            "id": "MeleeSpell-Upgrade-Damage-1",
-            "name": "Melee Spell",
-            "description": "+ Damage (1)",
-            "cost": 15,
-            "preRequisiteIds": ["MeleeSpell-Unlock"],
-            "onActivateID": "f-MeleeSpell-Upgrade-Damage-1"
-        },
-        {
-            "id": "BombSpell-Upgrade-Damage-1",
-            "name": "Bomb Spell",
-            "description": "+ Damage (1)",
-            "cost": 25,
-            "preRequisiteIds": ["BombSpell-Unlock"],
-            "onActivateID": "f-BombSpell-Upgrade-Damage-1"
-        },
-        {
-            "id": "BombSpell-Upgrade-Range-1",
-            "name": "Bomb Spell",
-            "description": "+ Range (1)",
-            "cost": 25,
-            "preRequisiteIds": ["BombSpell-Unlock"],
-            "onActivateID": "f-BombSpell-Upgrade-Range-1"
-        },
-        {
-            "id": "BombSpell-Upgrade-Range-2",
-            "name": "Bomb Spell",
-            "description": "+ Range (1)",
-            "cost": 50,
-            "preRequisiteIds": ["BombSpell-Upgrade-Range-1"],
-            "onActivateID": "f-BombSpell-Upgrade-Range-2"
-        }
-    ],
-    "actionData": [
-        {
-            "id": "f-MeleeSpell-Upgrade",
-            "stats": [
+            "prerequisites": [],
+            "action": "Unlock",
+            "parameters": ["Melee"],
+            "tiers": [
                 {
-                    "param": "Damage",
-                    "values": [
-                        1.25
-                    ]
+                    "cost": 10,
+                    "description": "Unlock"
                 }
             ]
         },
         {
-            "id": "f-BombSpell-Upgrade",
-            "stats": [
+            "id": "BombSpell-Unlock",
+            "name": "Bomb Spell",
+            "prerequisites": [],
+            "action": "Unlock",
+            "parameters": ["Bomb"],
+            "tiers": [
                 {
-                    "param": "Damage",
-                    "values": [
-                        1.25
-                    ]
+                    "cost": 10,
+                    "description": "Unlock"
+                }
+            ]
+        },
+        {
+            "id": "BubbleSpell-Unlock",
+            "name": "Bubble Spell",
+            "prerequisites": [],
+            "action": "Unlock",
+            "parameters": ["Bubble"],
+            "tiers": [
+                {
+                    "cost": 10,
+                    "description": "Unlock"
+                }
+            ]
+        },
+        {
+            "id": "SniperSpell-Unlock",
+            "name": "Sniper Spell",
+            "prerequisites": [],
+            "action": "Unlock",
+            "parameters": ["Sniper"],
+            "tiers": [
+                {
+                    "cost": 10,
+                    "description": "Unlock"
+                }
+            ]
+        },
+        {
+            "id": "MeleeSpell-Upgrade-Damage",
+            "name": "Melee Spell",
+            "prerequisites": ["MeleeSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Melee", "Damage"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
+                    "value": 1.25
+                }
+            ]
+        },
+        {
+            "id": "BombSpell-Upgrade-Damage",
+            "name": "Bomb Spell",
+            "prerequisites": ["BombSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bomb", "Damage"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
+                    "value": 1.25
+                }
+            ]
+        },
+        {
+            "id": "BombSpell-Upgrade-Range",
+            "name": "Bomb Spell",
+            "prerequisites": ["BombSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bomb", "Range"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>1</color>)",
+                    "value": 1.25
                 },
                 {
-                    "param": "Range",
-                    "values": [
-                        1.25,
-                        1.25
-                    ]
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>2</color>)",
+                    "value": 1.25
                 }
             ]
         }
