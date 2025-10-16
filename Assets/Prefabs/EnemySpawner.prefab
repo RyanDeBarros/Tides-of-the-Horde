@@ -44,6 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4471a3a9a7121245a09b94fc50638b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveFile: {fileID: 0}
+  uiController: {fileID: 0}
+  waveFile: {fileID: 4900000, guid: 35bbbdfd7cc9ffd43b7a961c701b6d06, type: 3}
+  shopUI: {fileID: 0}
   skeletonPrefab: {fileID: 877391312677472464, guid: ad358b1fffdddc5d0a08ebd64e43e38e, type: 3}
   bishopPrefab: {fileID: 3329783544436130698, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}

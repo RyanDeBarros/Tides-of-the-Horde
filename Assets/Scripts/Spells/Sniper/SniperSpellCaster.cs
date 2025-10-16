@@ -6,17 +6,18 @@ using UnityEngine.Assertions;
 public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2Climax
 {
     [SerializeField] private GameObject spellPrefab;
-    [SerializeField] private float cooldown = 0.5f;
-    [SerializeField] private float lifespan = 3f;
-    [SerializeField] private int maxEnemiesCanHit = 3;
-    [SerializeField] private int damage = 20;
+    [SerializeField] public float cooldown = 0.5f;
+    [SerializeField] public float range = 30f;
+    [SerializeField] public int maxEnemiesCanHit = 3;
+    [SerializeField] public int damage = 20;
+    [SerializeField] public float spellScale = 1f;
     [SerializeField] private float vfxExplosionRadius = 1f;
     [SerializeField] private GameObject explosionFX;
 
     [Header("Locomotion")]
     [SerializeField] private float animationSpeedMultiplier = 2.5f;
     [SerializeField] private float verticalSpawnOffset = 0.3f;
-    [SerializeField] private float initialSpeed = 50f;
+    [SerializeField] public float initialSpeed = 50f;
     [SerializeField] private float acceleration = 50f;
     [SerializeField] private float crosshairAimingClip = 50f;
 
@@ -71,11 +72,12 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
                 Quaternion.LookRotation(crosshairsController.GetWorldDirection(spellManager.GetStaffTipPosition(), maxClip: crosshairAimingClip)));
             SniperSpell spell = instance.GetComponent<SniperSpell>();
             Assert.IsNotNull(spell);
-            spell.lifespan = lifespan;
+            spell.range = range;
             spell.maxEnemiesCanHit = maxEnemiesCanHit;
             spell.damage = damage;
             spell.speed = initialSpeed;
             spell.acceleration = acceleration;
+            spell.transform.localScale = spellScale * Vector3.one;
             spell.vfxExplosionRadius = vfxExplosionRadius;
             spell.explosionFX = explosionFX;
         }

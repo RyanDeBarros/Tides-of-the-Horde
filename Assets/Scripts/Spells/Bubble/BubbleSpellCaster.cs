@@ -6,9 +6,9 @@ using UnityEngine.Assertions;
 public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
 {
     [SerializeField] private GameObject spellPrefab;
-    [SerializeField] private float cooldown = 2f;
-    [SerializeField] private float repelRadius = 3f;
-    [SerializeField] private float bounceBackStrength = 200f;
+    [SerializeField] public float cooldown = 2f;
+    [SerializeField] public float repelRadius = 3f;
+    [SerializeField] public float bounceBackStrength = 200f;
 
     [Header("Locomotion")]
     [SerializeField] private float animationSpeedMultiplier = 1.5f;

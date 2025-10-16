@@ -1,25 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class BombSpellCaster : MonoBehaviour, ISpellCaster
 {
     [SerializeField] private GameObject spellPrefab;
-    [SerializeField] private float cooldown = 0.5f;
-    [SerializeField] private int innerDamage = 120;
-    [SerializeField] private int outerDamage = 50;
-    [SerializeField] private float bounceBackStrength = 50f;
-    [SerializeField] private float aoeRadius = 1f;
+    [SerializeField] public float cooldown = 0.5f;
+    [SerializeField] public int innerDamage = 120;
+    [SerializeField] public int outerDamage = 50;
+    [SerializeField] public float bounceBackStrength = 50f;
+    [SerializeField] public float aoeRadius = 1f;
     [SerializeField] private LayerMask enemyLayerMask;
     [SerializeField] private GameObject explosionFX;
 
     [Header("Locomotion")]
     [SerializeField] private float animationSpeedMultiplier = 3f;
-    [SerializeField] private float gravity = -10f;
-    [SerializeField] private float initialVerticalVelocity = 10f;
-    [SerializeField] private float initialForwardVelocity = 20f;
-    [SerializeField] private float crosshairAimingClip = 30f;
+    [SerializeField] public float gravity = -40f;
+    [SerializeField] public float initialVerticalVelocity = 12f;
+    [SerializeField] public float initialForwardVelocity = 20f;
+    [SerializeField] public float crosshairAimingClip = 30f;
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;

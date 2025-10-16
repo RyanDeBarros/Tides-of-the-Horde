@@ -5,9 +5,20 @@
             "postWaveWaitTime": 1.0,
             "subwaves": [
                 {
-                    "duration": 10.0,
+                    "duration": 3.0,
                     "enemy": "Skeleton",
                     "spawnRate": 1.0
+                }
+            ]
+        },
+        {
+            "preWaveWaitTime": 1.0,
+            "postWaveWaitTime": 1.0,
+            "subwaves": [
+                {
+                    "duration": 3.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 1.5
                 }
             ]
         },
