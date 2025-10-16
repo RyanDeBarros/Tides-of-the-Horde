@@ -3,52 +3,52 @@
         {
             "id": "MeleeSpell-Unlock",
             "name": "Melee Spell",
+            "defaultDescription": "Unlock",
             "prerequisites": [],
             "action": "Unlock",
             "parameters": ["Melee"],
             "tiers": [
                 {
-                    "cost": 10,
-                    "description": "Unlock"
+                    "cost": 10
                 }
             ]
         },
         {
             "id": "BombSpell-Unlock",
             "name": "Bomb Spell",
+            "defaultDescription": "Unlock",
             "prerequisites": [],
             "action": "Unlock",
             "parameters": ["Bomb"],
             "tiers": [
                 {
-                    "cost": 10,
-                    "description": "Unlock"
+                    "cost": 10
                 }
             ]
         },
         {
             "id": "BubbleSpell-Unlock",
             "name": "Bubble Spell",
+            "defaultDescription": "Unlock",
             "prerequisites": [],
             "action": "Unlock",
             "parameters": ["Bubble"],
             "tiers": [
                 {
-                    "cost": 10,
-                    "description": "Unlock"
+                    "cost": 10
                 }
             ]
         },
         {
             "id": "SniperSpell-Unlock",
             "name": "Sniper Spell",
+            "defaultDescription": "Unlock",
             "prerequisites": [],
             "action": "Unlock",
             "parameters": ["Sniper"],
             "tiers": [
                 {
-                    "cost": 10,
-                    "description": "Unlock"
+                    "cost": 10
                 }
             ]
         },
@@ -62,7 +62,7 @@
                 {
                     "cost": 15,
                     "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
-                    "value": 1.25
+                    "values": [1.25]
                 }
             ]
         },
@@ -76,7 +76,7 @@
                 {
                     "cost": 25,
                     "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
-                    "value": 1.25
+                    "values": [1.25]
                 }
             ]
         },
@@ -90,12 +90,46 @@
                 {
                     "cost": 25,
                     "description": "<color=red><b>+</b></color> Range (<color=yellow>1</color>)",
-                    "value": 1.25
+                    "values": [1.25]
                 },
                 {
                     "cost": 50,
                     "description": "<color=red><b>+</b></color> Range (<color=yellow>2</color>)",
-                    "value": 1.25
+                    "values": [1.25]
+                }
+            ]
+        },
+        {
+            "id": "Health-Upgrade",
+            "name": "Health",
+            "prerequisites": [],
+            "action": "UpgradeHealth",
+            "parameters": [],
+            "tiers": [
+                {
+                    "cost": 20,
+                    "description": "Increase Max Health (<color=yellow>1</color>) & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                },
+                {
+                    "cost": 50,
+                    "description": "Increase Max Health (<color=yellow>2</color>) & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                },
+                {
+                    "cost": 100,
+                    "description": "Increase Max Health (<color=yellow>3</color>) & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                },
+                {
+                    "cost": 150,
+                    "description": "Increase Max Health (<color=yellow>4</color>) & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                },
+                {
+                    "cost": 200,
+                    "description": "Increase Max Health (<color=yellow>5</color>) & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
                 }
             ]
         }

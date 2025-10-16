@@ -1,15 +1,13 @@
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions;
-using static UnityEngine.Rendering.DebugUI;
 
 public enum UnlockAction
 {
     Unlock,
     UpgradeSpell,
-    // TODO UpgradeHealth
+    UpgradeHealth
 }
 
 public enum SpellUpgradeParameter
@@ -26,33 +24,39 @@ public enum SpellUpgradeParameter
 public class UnlockActionTable
 {
     private readonly SpellManager spellManager;
+    private readonly Health playerHealth;
 
-    public UnlockActionTable()
+    public UnlockActionTable(GameObject player)
     {
-        spellManager = UnityEngine.Object.FindObjectsByType<SpellManager>(FindObjectsSortMode.None).GetUniqueElement();
+        spellManager = player.GetComponent<SpellManager>();
+        playerHealth = player.GetComponent<Health>();
+
+        Assert.IsNotNull(spellManager);
+        Assert.IsNotNull(playerHealth);
     }
-    public Action<float> GetAction(string actionString, List<string> parameters)
+    public Action<float[]> GetAction(string actionString, List<string> parameters)
     {
         UnlockAction action = Enum.Parse<UnlockAction>(actionString);
         return action switch
         {
             UnlockAction.Unlock => GetSpellUnlockAction(parameters),
             UnlockAction.UpgradeSpell => GetSpellUpgradeAction(parameters),
+            UnlockAction.UpgradeHealth => GetHealthUpgradeAction(parameters),
             _ => throw new NotImplementedException()
         };
     }
 
-    private Action<float> GetSpellUnlockAction(List<string> parameters)
+    private Action<float[]> GetSpellUnlockAction(List<string> parameters)
     {
         SpellType spellType = Enum.Parse<SpellType>(parameters[0]);
         return _ => spellManager.UnlockSpell(spellType);
     }
 
-    private Action<float> GetSpellUpgradeAction(List<string> parameters)
+    private Action<float[]> GetSpellUpgradeAction(List<string> parameters)
     {
         SpellType spellType = Enum.Parse<SpellType>(parameters[0]);
         SpellUpgradeParameter upgradeParameter = Enum.Parse<SpellUpgradeParameter>(parameters[1]);
-        return value => UpgradeSpell(spellType, upgradeParameter, value);
+        return values => UpgradeSpell(spellType, upgradeParameter, values[0]);
     }
 
     private void UpgradeSpell(SpellType spell, SpellUpgradeParameter param, float value)
@@ -168,6 +172,16 @@ public class UnlockActionTable
                 break;
             default:
                 throw new NotImplementedException();
+        };
+    }
+
+    private Action<float[]> GetHealthUpgradeAction(List<string> _)
+    {
+        return values => {
+            float maxHealthIncrease = values[0];
+            float healPercent = values[1];
+            playerHealth.IncreaseMaxHealth((int)maxHealthIncrease);
+            playerHealth.HealPercent(healPercent);
         };
     }
 }

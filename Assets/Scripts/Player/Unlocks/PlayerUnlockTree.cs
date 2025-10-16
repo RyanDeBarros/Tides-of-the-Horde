@@ -12,11 +12,12 @@ public class PlayerUnlockNodeData
     {
         public int cost;
         public string description;
-        public float value;
+        public List<float> values;
     }
 
     public string id;
     public string name;
+    public string defaultDescription;
     public List<string> prerequisites;
     public string action;
     public List<string> parameters;
@@ -35,12 +36,12 @@ public class PlayerUnlockNode
     {
         public string description;
         public int cost;
-        public float value;
-        public Action<float> onActivate;
+        public float[] values;
+        public Action<float[]> onActivate;
 
         public void Activate()
         {
-            onActivate.Invoke(value);
+            onActivate.Invoke(values);
         }
     }
 
@@ -99,12 +100,14 @@ public class PlayerUnlockNode
 
         id = data.id;
         name = data.name;
+
         tiers = data.tiers.Select(tier => new Tier() {
-            description = tier.description,
+            description = tier.description ?? data.defaultDescription,
             cost = tier.cost,
-            value = tier.value,
+            values = tier.values.ToArray(),
             onActivate = actionTable.GetAction(data.action, data.parameters)
         }).ToList();
+        
         tiers.ForEach(tier => {
             Assert.IsNotNull(tier.description);
             Assert.IsNotNull(tier.onActivate);
@@ -113,7 +116,7 @@ public class PlayerUnlockNode
 
     public void LoadRequisites(PlayerUnlockNodeData data, Dictionary<string, PlayerUnlockNode> nodes)
     {
-        data.prerequisites.ForEach(prereq => {
+        data.prerequisites?.ForEach(prereq => {
             PlayerUnlockNode prerequisite = nodes[prereq];
             preRequisites.Add(prerequisite);
             prerequisite.postRequisites.Add(this);
@@ -142,7 +145,7 @@ public class PlayerUnlockTree : MonoBehaviour
     private void LoadUnlockTree(string json)
     {
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
-        UnlockActionTable unlockActionTable = new();
+        UnlockActionTable unlockActionTable = new(gameObject);
         Dictionary<string, PlayerUnlockNode> nodeDictionary = new();
 
         // Load data
