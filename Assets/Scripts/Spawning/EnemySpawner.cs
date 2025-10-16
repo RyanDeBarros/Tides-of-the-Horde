@@ -39,11 +39,11 @@ public class EnemySpawner : MonoBehaviour
 
         waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
         waveTimeline.doEnemiesRemain = DoEnemiesRemain;
-        waveTimeline.Init();
     }
 
     private void Start()
     {
+        waveTimeline.Init();
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
     }
 
@@ -87,7 +87,8 @@ public class EnemySpawner : MonoBehaviour
         if (waveNumber <= waveTimeline.NumberOfWaves())
         {
             uiController.SetWaveNumber(waveNumber);
-            shopUI.Open();
+            if (waveNumber > 1)
+                shopUI.Open();
         }
         else
             uiController.HideUI();

@@ -44,12 +44,18 @@ public class PlayerUnlockNode
         }
     }
 
+    private string id;
     private string name;
     private List<Tier> tiers;
     private int currentTier = -1;
 
     private readonly List<PlayerUnlockNode> preRequisites = new();
     private readonly List<PlayerUnlockNode> postRequisites = new();
+
+    public string GetID()
+    {
+        return id;
+    }
 
     public string GetName()
     {
@@ -75,7 +81,7 @@ public class PlayerUnlockNode
 
     public void CheckPrerequisites()
     {
-        if (currentTier == -1 && preRequisites.All(preRequisite => preRequisite.currentTier >= 0))
+        if (currentTier == -1 && preRequisites.All(preRequisite => preRequisite.currentTier > 0))
             currentTier = 0;
     }
 
@@ -86,9 +92,12 @@ public class PlayerUnlockNode
 
     public void LoadData(PlayerUnlockNodeData data, UnlockActionTable actionTable)
     {
+        Assert.IsNotNull(data.id);
         Assert.IsNotNull(data.name);
         Assert.IsNotNull(data.action);
         Assert.IsNotNull(data.tiers);
+
+        id = data.id;
         name = data.name;
         tiers = data.tiers.Select(tier => new Tier() {
             description = tier.description,
@@ -116,47 +125,49 @@ public class PlayerUnlockTree : MonoBehaviour
 {
     [SerializeField] private TextAsset upgradeTreeFile;
 
-    private readonly Dictionary<string, PlayerUnlockNode> nodes = new();
+    private List<PlayerUnlockNode> nodes;
 
     private void Awake()
     {
         Assert.IsNotNull(upgradeTreeFile);
+        LoadUnlockTree(upgradeTreeFile.text);
     }
 
     private void Start()
     {
-        LoadUnlockTree(upgradeTreeFile.text);
         // Activate melee spell unlock on start
-        nodes["MeleeSpell-Unlock"].Activate();
+        nodes.Where(node => node.GetID() == "MeleeSpell-Unlock").First().Activate();
     }
 
     private void LoadUnlockTree(string json)
     {
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
         UnlockActionTable unlockActionTable = new();
+        Dictionary<string, PlayerUnlockNode> nodeDictionary = new();
 
         // Load data
         data.nodes.ForEach(d => {
             PlayerUnlockNode node = new();
             node.LoadData(d, unlockActionTable);
-            nodes[d.id] = node;
+            nodeDictionary[d.id] = node;
         });
 
         // Construct tree
         data.nodes.ForEach(d => {
-            PlayerUnlockNode node = nodes[d.id];
-            node.LoadRequisites(d, nodes);
+            PlayerUnlockNode node = nodeDictionary[d.id];
+            node.LoadRequisites(d, nodeDictionary);
         });
 
         // Unlock all initially unlockable upgrades
-        nodes.Values.ToList().ForEach(node => node.CheckPrerequisites());
+        nodes = nodeDictionary.Values.ToList();
+        nodeDictionary.Values.ToList().ForEach(node => node.CheckPrerequisites());
     }
 
     public List<PlayerUnlockNode> GetRandomUnlocks(int count, int maxCost)
     {
         // TODO Get random (count - 1) non-health upgrades + next health upgrade if it exists else health refill
         // TODO Currency multiplier and currency bonus could be possible reward for NPC challenges
-        return nodes.Values
+        return nodes
             .Where(node => node.CanActivate())
             .OrderBy(node => node.GetCost())
             .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost)
