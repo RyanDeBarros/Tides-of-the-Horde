@@ -87,8 +87,7 @@ public class EnemySpawner : MonoBehaviour
         if (waveNumber <= waveTimeline.NumberOfWaves())
         {
             uiController.SetWaveNumber(waveNumber);
-            if (waveNumber > 1)
-                shopUI.Open();
+            shopUI.RefreshOptions();
         }
         else
             uiController.HideUI();
