@@ -1,69 +1,96 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController))]
 public class OrcMovementAI : MonoBehaviour
 {
+    [Header("Targets & Ranges")]
     public Transform player;
-    public float moveSpeed = 1f;
-    public float chaseRange = 30f;
-    public float stoppingDistance = 2f;
+    public float chaseRange = 30f;          
+    public float stoppingDistance = 2f;     
 
-    private CharacterController controller;
-    private Vector3 velocity; // Needed to track downward velocity (gravity)
+    [Header("Movement")]
+    public float moveSpeed = 4f;            
+    public float turnSpeed = 12f;           
+
+    CharacterController cc;
+    CharacterController playerCC;           
+    float gravityY;                         
+
+    void Awake()
+    {
+        cc = GetComponent<CharacterController>();
+    }
 
     void Start()
     {
-        // Get the CharacterController component
-        controller = GetComponent<CharacterController>();
-
-        if (player == null)
-            player = GameObject.FindGameObjectWithTag("Player").transform;
+        if (!player)
+        {
+            var go = GameObject.FindGameObjectWithTag("Player");
+            if (go) player = go.transform;
+        }
+        if (player) playerCC = player.GetComponent<CharacterController>();
     }
 
     void Update()
     {
-        if (player == null)
+        if (!player || !cc) return;
+
+        
+        Vector3 to = player.position - transform.position;
+        Vector3 toXZ = new Vector3(to.x, 0f, to.z);
+        float centerDist = toXZ.magnitude;
+
+        
+        if (centerDist > chaseRange)
+        {
+            ApplyGravityOnly();
             return;
-
-        // Calculate distance and decide if we should chase
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        bool shouldChase = (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance);
-
-        if (shouldChase)
-        {
-            ChasePlayer();
         }
 
-        // Move the controller (this applies both movement and gravity)
-        controller.Move(velocity * Time.deltaTime);
+        
+        if (toXZ.sqrMagnitude > 0.0001f)
+        {
+            Quaternion face = Quaternion.LookRotation(toXZ);
+            transform.rotation = Quaternion.Slerp(transform.rotation, face, turnSpeed * Time.deltaTime);
+        }
+
+        
+        float myR = cc.radius;
+        float targetR = playerCC ? playerCC.radius : 0f;
+        float edgeDist = centerDist - (myR + targetR);
+
+        if (edgeDist > stoppingDistance)
+        {
+            
+            Vector3 dir = toXZ.normalized;
+            Vector3 vel = dir * moveSpeed;   
+            
+            gravityY += Physics.gravity.y * Time.deltaTime;
+            vel.y = gravityY;
+
+            cc.Move(vel * Time.deltaTime);
+        }
+        else
+        {
+            
+            ApplyGravityOnly();
+        }
     }
 
-    void ChasePlayer()
+    void ApplyGravityOnly()
     {
-        // 1. Calculate direction towards player (ignore height difference)
-        Vector3 direction = (player.position - transform.position).normalized;
-        direction.y = 0;
-
-        // 2. Create the movement vector based on direction and speed
-        Vector3 movement = direction * moveSpeed * Time.deltaTime;
-
-        // 3. Rotate to face the player
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
-
-        // 4. Apply the movement to the CharacterController
-        controller.Move(movement);
+        gravityY += Physics.gravity.y * Time.deltaTime;
+        cc.Move(new Vector3(0f, gravityY, 0f) * Time.deltaTime);
+        
+        if (cc.isGrounded && gravityY < 0f) gravityY = -0.5f;
     }
 
-    // Visualize ranges in the Scene view
     void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
+        Gizmos.color = Color.yellow; Gizmos.DrawWireSphere(transform.position, chaseRange);
+        
+        if (!cc) cc = GetComponent<CharacterController>();
+        float approxCenterStop = stoppingDistance + (cc ? cc.radius : 0.5f) + 0.5f; 
+        Gizmos.color = Color.red; Gizmos.DrawWireSphere(transform.position, approxCenterStop);
     }
 }
