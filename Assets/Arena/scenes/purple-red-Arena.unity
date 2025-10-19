@@ -640,7 +640,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8602781657843467288, guid: 9133876c6c261edbcb084a122361753d, type: 3}
       propertyPath: m_OverrideSorting
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8602781657843467288, guid: 9133876c6c261edbcb084a122361753d, type: 3}
       propertyPath: m_OverridePixelPerfect
