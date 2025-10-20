@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [RequireComponent(typeof(CharacterController))]
 public class OrcMovementAI : MonoBehaviour
@@ -16,76 +17,53 @@ public class OrcMovementAI : MonoBehaviour
     CharacterController playerCC;           
     float gravityY;                         
 
-    void Awake()
+    private void Awake()
     {
         cc = GetComponent<CharacterController>();
-    }
+        Assert.IsNotNull(cc);
 
-    void Start()
-    {
         if (!player)
         {
             var go = GameObject.FindGameObjectWithTag("Player");
             if (go) player = go.transform;
         }
         if (player) playerCC = player.GetComponent<CharacterController>();
+        Assert.IsNotNull(playerCC);
     }
 
-    void Update()
+    private void Update()
     {
-        if (!player || !cc) return;
-
-        
         Vector3 to = player.position - transform.position;
-        Vector3 toXZ = new Vector3(to.x, 0f, to.z);
-        float centerDist = toXZ.magnitude;
+        Vector3 toXZ = new(to.x, 0f, to.z);
 
-        
-        if (centerDist > chaseRange)
-        {
-            ApplyGravityOnly();
-            return;
-        }
-
-        
-        if (toXZ.sqrMagnitude > 0.0001f)
-        {
-            Quaternion face = Quaternion.LookRotation(toXZ);
-            transform.rotation = Quaternion.Slerp(transform.rotation, face, turnSpeed * Time.deltaTime);
-        }
-
-        
-        float myR = cc.radius;
-        float targetR = playerCC ? playerCC.radius : 0f;
-        float edgeDist = centerDist - (myR + targetR);
-
-        if (edgeDist > stoppingDistance)
-        {
-            
-            Vector3 dir = toXZ.normalized;
-            Vector3 vel = dir * moveSpeed;   
-            
-            gravityY += Physics.gravity.y * Time.deltaTime;
-            vel.y = gravityY;
-
-            cc.Move(vel * Time.deltaTime);
-        }
-        else
-        {
-            
-            ApplyGravityOnly();
-        }
-    }
-
-    void ApplyGravityOnly()
-    {
+        // Apply gravity
         gravityY += Physics.gravity.y * Time.deltaTime;
-        cc.Move(new Vector3(0f, gravityY, 0f) * Time.deltaTime);
-        
         if (cc.isGrounded && gravityY < 0f) gravityY = -0.5f;
+
+        Vector3 velocity = new(0f, gravityY, 0f);
+
+        float centerDist = toXZ.magnitude;
+        if (centerDist <= chaseRange)
+        {
+            if (Mathf.Abs(centerDist) > 0.0001f)
+            {
+                Quaternion face = Quaternion.LookRotation(toXZ);
+                transform.rotation = Quaternion.Slerp(transform.rotation, face, turnSpeed * Time.deltaTime);
+            }
+        
+            float myR = cc.radius;
+            float targetR = playerCC ? playerCC.radius : 0f;
+            float edgeDist = centerDist - (myR + targetR);
+
+            float moveDisplacement = edgeDist - stoppingDistance;
+            moveDisplacement = Mathf.Min(Mathf.Abs(edgeDist - stoppingDistance), moveSpeed * Time.deltaTime) * Mathf.Sign(moveDisplacement);
+            velocity += toXZ.normalized * moveDisplacement / Time.deltaTime;
+        }
+
+        cc.Move(velocity * Time.deltaTime);
     }
 
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow; Gizmos.DrawWireSphere(transform.position, chaseRange);
         

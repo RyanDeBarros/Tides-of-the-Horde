@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 1497454574808624728}
   m_Layer: 8
   m_Name: Orc
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   chaseRange: 30
-  stoppingDistance: 1.5
+  stoppingDistance: 1
   moveSpeed: 4
   turnSpeed: 12
 --- !u!114 &1670915203915621149
