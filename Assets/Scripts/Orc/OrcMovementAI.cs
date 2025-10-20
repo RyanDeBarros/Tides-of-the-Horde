@@ -6,7 +6,7 @@ public class OrcMovementAI : MonoBehaviour
     [Header("Targets & Ranges")]
     public Transform player;
     public float chaseRange = 30f;          
-    public float stoppingDistance = 2f;     
+    public float stoppingDistance = 1.5f;     
 
     [Header("Movement")]
     public float moveSpeed = 4f;            
