@@ -21,6 +21,8 @@ public class ShopUI : MonoBehaviour
     private SpellManager spellManager;
     private PlayerUnlockTree playerUnlock;
     private PlayerCurrency playerCurrency;
+    private bool open = true;
+    private Coroutine popup;
 
     private void Awake()
     {
@@ -44,19 +46,28 @@ public class ShopUI : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.B))
-            Open();
+        {
+            if (open)
+                Close();
+            else
+                Open();
+        }
     }
 
     public void Open()
     {
+        open = true;
         Time.timeScale = 0f;
         uiRoot.SetActive(true);
         camera.DisableCamera();
         spellManager.enabled = false;
+        StopCoroutine(popup);
+        SetCheckShopPopupAlpha(0f);
     }
 
     public void Close()
     {
+        open = false;
         Time.timeScale = 1f;
         uiRoot.SetActive(false);
         camera.EnableCamera();
@@ -77,7 +88,7 @@ public class ShopUI : MonoBehaviour
                 unlockSelects[i].ShowUnavailable();
         }
 
-        StartCoroutine(AnimateCheckShopPopup());
+        popup = StartCoroutine(AnimateCheckShopPopup());
     }
 
     private IEnumerator AnimateCheckShopPopup()
