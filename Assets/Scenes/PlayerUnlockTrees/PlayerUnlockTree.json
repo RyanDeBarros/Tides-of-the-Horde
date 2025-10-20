@@ -1,0 +1,145 @@
+{
+    "nodes": [
+        {
+            "id": "MeleeSpell-Unlock",
+            "name": "Melee Spell",
+            "defaultIcon": "MeleeSpell",
+            "defaultDescription": "Unlock",
+            "prerequisites": [],
+            "action": "Unlock",
+            "parameters": ["Melee"],
+            "tiers": [
+                {
+                    "cost": 10
+                }
+            ]
+        },
+        {
+            "id": "BombSpell-Unlock",
+            "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
+            "defaultDescription": "Unlock",
+            "prerequisites": [],
+            "action": "Unlock",
+            "parameters": ["Bomb"],
+            "tiers": [
+                {
+                    "cost": 10
+                }
+            ]
+        },
+        {
+            "id": "BubbleSpell-Unlock",
+            "name": "Bubble Spell",
+            "defaultIcon": "BubbleSpell",
+            "defaultDescription": "Unlock",
+            "prerequisites": [],
+            "action": "Unlock",
+            "parameters": ["Bubble"],
+            "tiers": [
+                {
+                    "cost": 10
+                }
+            ]
+        },
+        {
+            "id": "SniperSpell-Unlock",
+            "name": "Sniper Spell",
+            "defaultIcon": "SniperSpell",
+            "defaultDescription": "Unlock",
+            "prerequisites": [],
+            "action": "Unlock",
+            "parameters": ["Sniper"],
+            "tiers": [
+                {
+                    "cost": 10
+                }
+            ]
+        },
+        {
+            "id": "MeleeSpell-Upgrade-Damage",
+            "name": "Melee Spell",
+            "defaultIcon": "MeleeSpell",
+            "prerequisites": ["MeleeSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Melee", "Damage"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
+                    "values": [1.25]
+                }
+            ]
+        },
+        {
+            "id": "BombSpell-Upgrade-Damage",
+            "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
+            "prerequisites": ["BombSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bomb", "Damage"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
+                    "values": [1.25]
+                }
+            ]
+        },
+        {
+            "id": "BombSpell-Upgrade-Range",
+            "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
+            "prerequisites": ["BombSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bomb", "Range"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>1</color>)",
+                    "values": [1.25]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>2</color>)",
+                    "values": [1.25]
+                }
+            ]
+        },
+        {
+            "id": "Health-Upgrade",
+            "name": "Health",
+            "defaultIcon": "Health",
+            "prerequisites": [],
+            "action": "UpgradeHealth",
+            "parameters": [],
+            "tiers": [
+                {
+                    "cost": 20,
+                    "description": "Increase Max Health (<color=yellow>1</color>)\n & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                },
+                {
+                    "cost": 50,
+                    "description": "Increase Max Health (<color=yellow>2</color>)\n & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                },
+                {
+                    "cost": 100,
+                    "description": "Increase Max Health (<color=yellow>3</color>)\n & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                },
+                {
+                    "cost": 150,
+                    "description": "Increase Max Health (<color=yellow>4</color>)\n & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                },
+                {
+                    "cost": 200,
+                    "description": "Increase Max Health (<color=yellow>5</color>)\n & Heal <color=red>20%</color>",
+                    "values": [20, 0.20]
+                }
+            ]
+        }
+    ]
+}

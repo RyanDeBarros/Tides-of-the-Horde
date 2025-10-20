@@ -17,6 +17,7 @@ public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private SpawnWaveUIController uiController;
     [SerializeField] private TextAsset waveFile;
+    [SerializeField] private ShopUI shopUI;
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
@@ -31,16 +32,18 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(uiController);
         Assert.IsNotNull(waveFile);
         waveTimeline = WaveTimeline.Read(waveFile);
+        Assert.IsNotNull(shopUI);
+
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
 
         waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
         waveTimeline.doEnemiesRemain = DoEnemiesRemain;
-        waveTimeline.Init();
     }
 
     private void Start()
     {
+        waveTimeline.Init();
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
     }
 
@@ -81,8 +84,11 @@ public class EnemySpawner : MonoBehaviour
 
     private void OnWaveNumberChanged(int waveNumber)
     {
-        if (waveNumber <= waveTimeline.NumberOfWaves()) // TODO open shop menu here
+        if (waveNumber <= waveTimeline.NumberOfWaves())
+        {
             uiController.SetWaveNumber(waveNumber);
+            shopUI.RefreshOptions();
+        }
         else
             uiController.HideUI();
     }

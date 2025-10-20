@@ -1,20 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
 public class MeleeSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack1Climax
 {
     [SerializeField] private GameObject spellPrefab;
-    [SerializeField] private float cooldown = 0.5f;
-    [SerializeField] private int damage = 35;
-    [SerializeField] private float bounceBackStrength = 200f;
+    [SerializeField] public float cooldown = 0.5f;
+    [SerializeField] public int damage = 35;
+    [SerializeField] public float bounceBackStrength = 200f;
 
     [Header("Locomotion")]
     [SerializeField] private float animationSpeedMultiplier = 2f;
     [SerializeField] private float lifetime = 0.3f;
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] public float moveSpeed = 5f;
     [SerializeField] private float shockwaveGrowSpeed = 5f;
     [SerializeField] private float blastGrowSpeed = 6f;
     [SerializeField] private float shockwaveForwardOffset = 1f;

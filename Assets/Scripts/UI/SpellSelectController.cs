@@ -12,7 +12,6 @@ public class SpellSelectController : MonoBehaviour
     [SerializeField] private float deselectedScale = 0.5f;
     [SerializeField] private SpellType spellType;
 
-
     private void Awake()
     {
         Assert.IsNotNull(image);

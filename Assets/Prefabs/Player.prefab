@@ -216,6 +216,7 @@ GameObject:
   - component: {fileID: 2302053948118948893}
   - component: {fileID: 784144791415049494}
   - component: {fileID: 5650140055875109725}
+  - component: {fileID: 1042728479023503675}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -257,8 +258,8 @@ MonoBehaviour:
   cam: {fileID: 5445867534279781679}
   horizontalPanSpeed: 2
   verticalPanSpeed: 2
-  verticalPanMin: -15
-  verticalPanMax: 15
+  verticalPanMin: -45
+  verticalPanMax: 20
 --- !u!114 &3457600730889820102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,8 +372,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c83d5e9552d2964e9aa78e1ba9bacdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentXP: 0
-  OnXPChanged:
+  currency: 0
+  currencyCollectMultiplier: 1
+  onCurrencyChanged:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &5650140055875109725
@@ -390,6 +392,26 @@ MonoBehaviour:
   boundsX: {x: -500, y: 500}
   boundsY: {x: -50, y: 100}
   boundsZ: {x: -500, y: 500}
+--- !u!114 &1042728479023503675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381584739051638850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3007a9bc3de21f488cbbd1225edcd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upgradeTreeFile: {fileID: 4900000, guid: 811c8408662fd404fa4abce5f40a7489, type: 3}
+  unlockMeleeID: MeleeSpell-Unlock
+  upgradeHealthID: Health-Upgrade
+  meleeSpellIcon: {fileID: 2800000, guid: c89e6c7d0af05674592e8d72f4b58a3b, type: 3}
+  bombSpellIcon: {fileID: 2800000, guid: 3ada41d904892d64a9905734e889490a, type: 3}
+  bubbleSpellIcon: {fileID: 2800000, guid: f26b168fa1f89274e8f6e565297c2882, type: 3}
+  sniperSpellIcon: {fileID: 2800000, guid: 68fea59bcd9ad084bb0639f88f77ec16, type: 3}
+  healthIcon: {fileID: 2800000, guid: b0c7669b478240240af80f640001ac04, type: 3}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -403,20 +425,8 @@ PrefabInstance:
       value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: gravity
-      value: -150
-      objectReference: {fileID: 0}
-    - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: aoeRadius
       value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: initialForwardVelocity
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 4362143524704394160, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
-      propertyPath: initialVerticalVelocity
-      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 4923396060290730105, guid: 16e94a3a7e76bff45ad07c86a53a031a, type: 3}
       propertyPath: m_LocalPosition.x

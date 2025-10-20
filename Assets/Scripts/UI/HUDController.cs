@@ -6,35 +6,29 @@ using TMPro;
 
 public class HUDController : MonoBehaviour
 {
-    [Header("Health References")]
-    public Slider healthBarSlider;
-    public TextMeshProUGUI healthText;
-
-    [Header("EXP References")]
-    public Slider expBarSlider;
-    public TextMeshProUGUI expText;
+    [SerializeField] private TextMeshProUGUI healthText;
+    [SerializeField] private TextMeshProUGUI crystalsText;
 
     [Header("Player References")]
-    public Health playerHealth; // Assign in inspector
+    [SerializeField] private Health playerHealth;
+    [SerializeField] private PlayerCurrency playerCurrency;
 
     [Header("Spells")]
-    public List<SpellSelectController> spells;
+    [SerializeField] private List<SpellSelectController> spells;
 
-    [Header("Demo EXP Values")]
-    public int maxExp = 1000;
-    public int currentExp = 0;
+    private void Awake()
+    {
+        Assert.IsNotNull(playerHealth);
+        Assert.IsNotNull(playerCurrency);
+    }
 
     void Start()
     {
-        // Subscribe to player health events
-        if (playerHealth != null)
-        {
-            playerHealth.onHealthChanged.AddListener(UpdateHealthHUD);
-            UpdateHealthHUD(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
-        }
-
-        // Initialize EXP bar with demo values
-        UpdateExpHUD(currentExp, maxExp);
+        // Subscribe to player status events
+        playerHealth.onHealthChanged.AddListener(UpdateHealthHUD);
+        UpdateHealthHUD(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
+        playerCurrency.onCurrencyChanged.AddListener(UpdateCrystalsHUD);
+        UpdateCrystalsHUD(playerCurrency.GetCurrency());
 
         for (int i = 0; i < spells.Count; ++i)
             spells[i].SetKeyHint(i + 1);
@@ -42,25 +36,16 @@ public class HUDController : MonoBehaviour
 
     public void UpdateHealthHUD(int currentHP, int maxHP)
     {
-        if (healthBarSlider != null)
-        {
-            healthBarSlider.maxValue = maxHP;
-            healthBarSlider.value = currentHP;
-        }
-
-        if (healthText != null)
-            healthText.text = $"{currentHP}/{maxHP}";
+        healthText.SetText($"{currentHP}/{maxHP}");
     }
 
-    public void UpdateExpHUD(int currentEXP, int maxEXP)
+    public void UpdateCrystalsHUD(int currentEXP)
     {
-        if (expBarSlider != null)
-        {
-            expBarSlider.maxValue = maxEXP;
-            expBarSlider.value = currentEXP;
-        }
+        crystalsText.SetText($"{currentEXP}");
+    }
 
-        if (expText != null)
-            expText.text = $"{currentEXP}/{maxEXP}";
+    public List<SpellSelectController> GetSpells()
+    {
+        return spells;
     }
 }
