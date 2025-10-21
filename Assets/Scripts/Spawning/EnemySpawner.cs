@@ -54,10 +54,12 @@ public class EnemySpawner : MonoBehaviour
         waveTimeline.ManualUpdate();
         uiController.SetNormalizedSpawningTimeLeft(waveTimeline.GetNormalizedSpawningTimeLeft());
         uiController.SetNormalizedWaitTime(waveTimeline.GetNormalizedWaitTime());
-        foreach ((EnemyType type, int toSpawn) in waveTimeline.GetEnemiesToSpawn()) SpawnEnemies(type, toSpawn);
+        
+        foreach (((EnemyType type, int difficultyLevel), int toSpawn) in waveTimeline.GetEnemiesToSpawn())
+            SpawnEnemies(type, toSpawn, difficultyLevel);
     }
 
-    public void SpawnEnemies(EnemyType type, int numEnemies)
+    public void SpawnEnemies(EnemyType type, int numEnemies, int difficultyLevel)
     {
         if (numEnemies <= 0) return;
         List<SpawnZone> activeSpawnZones = spawnZones.Where(spawner => spawner.IsSpawnable()).ToList();
@@ -67,15 +69,17 @@ public class EnemySpawner : MonoBehaviour
         {
             int zoneIndex = Random.Range(0, activeSpawnZones.Count());
             Vector3 spawnPoint = activeSpawnZones[zoneIndex].GetRandomPoint();
-            SpawnAtPoint(type, spawnPoint);
+            SpawnAtPoint(type, spawnPoint, difficultyLevel);
         }
     }
 
-    private void SpawnAtPoint(EnemyType type, Vector3 point)
+    private void SpawnAtPoint(EnemyType type, Vector3 point, int difficultyLevel)
     {
         GameObject instance = Instantiate(GetEnemyPrefab(type), point, Quaternion.identity);
         spawnedEnemies.Add(instance);
         instance.AddComponent<OnDestroyHandler>().onDestroyed = go => spawnedEnemies.Remove(go);
+        if (instance.TryGetComponent(out IDifficultyImplementer difficulty))
+            difficulty.SetDifficultyLevel(difficultyLevel);
     }
 
     private GameObject GetEnemyPrefab(EnemyType type)
