@@ -9,6 +9,7 @@ public enum EnemyType
 {
     Skeleton,
     Bishop,
+    Orc,
 }
 
 [System.Serializable]
@@ -22,6 +23,7 @@ public class WaveTimeline
         [SerializeField] private string enemy;
         public EnemyType type;
         public float spawnRate;
+        public int difficulty;
 
         private float spawnDebt = 0f;
         private float elapsed = 0f;

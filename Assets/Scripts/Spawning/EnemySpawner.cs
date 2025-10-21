@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
     [SerializeField] private GameObject bishopPrefab;
+    [SerializeField] private GameObject orcPrefab;
 
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
@@ -36,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
+        Assert.IsNotNull(orcPrefab);
 
         waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
         waveTimeline.doEnemiesRemain = DoEnemiesRemain;
@@ -71,15 +73,22 @@ public class EnemySpawner : MonoBehaviour
 
     private void SpawnAtPoint(EnemyType type, Vector3 point)
     {
-        GameObject prefab = type switch {
+        GameObject instance = Instantiate(GetEnemyPrefab(type), point, Quaternion.identity);
+        spawnedEnemies.Add(instance);
+        instance.AddComponent<OnDestroyHandler>().onDestroyed = go => spawnedEnemies.Remove(go);
+    }
+
+    private GameObject GetEnemyPrefab(EnemyType type)
+    {
+        GameObject prefab = type switch
+        {
             EnemyType.Skeleton => skeletonPrefab,
             EnemyType.Bishop => bishopPrefab,
+            EnemyType.Orc => orcPrefab,
             _ => null
         };
         Assert.IsNotNull(prefab);
-        GameObject instance = Instantiate(prefab, point, Quaternion.identity);
-        spawnedEnemies.Add(instance);
-        instance.AddComponent<OnDestroyHandler>().onDestroyed = go => spawnedEnemies.Remove(go);
+        return prefab;
     }
 
     private void OnWaveNumberChanged(int waveNumber)
