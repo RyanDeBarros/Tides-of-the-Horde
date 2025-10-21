@@ -15,7 +15,6 @@ public class OrcMovementAI : MonoBehaviour
 
     CharacterController cc;
     CharacterController playerCC;           
-    float gravityY;                         
 
     private void Awake()
     {
@@ -36,11 +35,7 @@ public class OrcMovementAI : MonoBehaviour
         Vector3 to = player.position - transform.position;
         Vector3 toXZ = new(to.x, 0f, to.z);
 
-        // Apply gravity
-        gravityY += Physics.gravity.y * Time.deltaTime;
-        if (cc.isGrounded && gravityY < 0f) gravityY = -0.5f;
-
-        Vector3 velocity = new(0f, gravityY, 0f);
+        Vector3 velocity = Vector3.zero;
 
         float centerDist = toXZ.magnitude;
         if (centerDist <= chaseRange)

@@ -13,11 +13,12 @@ GameObject:
   - component: {fileID: 7395914119646533096}
   - component: {fileID: 7476458676621689791}
   - component: {fileID: 1670915203915621149}
-  - component: {fileID: 119077285630924313}
+  - component: {fileID: 458530350395169553}
   - component: {fileID: 1961417952955607821}
   - component: {fileID: 5512871995234863560}
   - component: {fileID: 5878343526247759158}
   - component: {fileID: 1497454574808624728}
+  - component: {fileID: 3817837252729561464}
   m_Layer: 8
   m_Name: Orc
   m_TagString: Enemy
@@ -122,8 +123,8 @@ MonoBehaviour:
   OnCanAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 119077285630924313}
-        m_TargetAssemblyTypeName: OrcAttackAI, Assembly-CSharp
+      - m_Target: {fileID: 458530350395169553}
+        m_TargetAssemblyTypeName: MeleeAttackAI, Assembly-CSharp
         m_MethodName: TryAttack
         m_Mode: 1
         m_Arguments:
@@ -137,7 +138,7 @@ MonoBehaviour:
   OnDistanceUpdated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &119077285630924313
+--- !u!114 &458530350395169553
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -146,11 +147,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3045373013286125374}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e8506b243635b549b7b89ab5ff3856a, type: 3}
+  m_Script: {fileID: 11500000, guid: 150200c67a2501a4a938ab76528a6807, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1192491411146982190}
-  hitbox: {fileID: 0}
+  hitbox: {fileID: 1096386304310650389}
   attackTrigger: Fire
 --- !u!114 &1961417952955607821
 MonoBehaviour:
@@ -197,7 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a86c09021ee4ae489948cce0d48eec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpAmount: 10
+  reward: 10
   playerTag: Player
 --- !u!114 &1497454574808624728
 MonoBehaviour:
@@ -214,6 +215,19 @@ MonoBehaviour:
   boundsX: {x: -500, y: 500}
   boundsY: {x: -100, y: 100}
   boundsZ: {x: -500, y: 500}
+--- !u!114 &3817837252729561464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045373013286125374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5281257b4089174598c5af2e54577f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stats: []
 --- !u!1 &8236134914262174659
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +631,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 256
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

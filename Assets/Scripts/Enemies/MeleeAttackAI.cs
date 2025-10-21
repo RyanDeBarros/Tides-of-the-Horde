@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class OrcAttackAI : MonoBehaviour
+public class MeleeAttackAI : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private MeleeHitbox hitbox;
@@ -28,9 +26,8 @@ public class OrcAttackAI : MonoBehaviour
     /// Call this from your AI/BT to start an attack
     public void TryAttack()
     {
-        hitbox?.BeginSwing();
+        hitbox?.BeginSwing();           
         animator.ResetTrigger(trigHash);
         animator.SetTrigger(trigHash);
     }
-
 }

@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1906600784215877830}
   - component: {fileID: 1440669383180710773}
   - component: {fileID: 381224887220896308}
+  - component: {fileID: 2159564664796972101}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -196,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a86c09021ee4ae489948cce0d48eec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpAmount: 10
+  reward: 10
   playerTag: Player
 --- !u!114 &381224887220896308
 MonoBehaviour:
@@ -213,6 +214,18 @@ MonoBehaviour:
   boundsX: {x: -500, y: 500}
   boundsY: {x: -50, y: 100}
   boundsZ: {x: -500, y: 500}
+--- !u!114 &2159564664796972101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877391312677472464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2558c170eabd454f8f52767158a0f21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4069443703503164984
 GameObject:
   m_ObjectHideFlags: 0

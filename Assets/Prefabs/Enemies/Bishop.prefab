@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 2721521129437341166}
   - component: {fileID: 3620802734628203079}
   - component: {fileID: 579546405161707787}
+  - component: {fileID: 4709246141123758158}
   m_Layer: 8
   m_Name: Bishop
   m_TagString: Enemy
@@ -184,6 +185,18 @@ MonoBehaviour:
   boundsX: {x: -500, y: 500}
   boundsY: {x: -50, y: 100}
   boundsZ: {x: -500, y: 500}
+--- !u!114 &4709246141123758158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329783544436130698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbd231a238fc87048bf37dfe488ca899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3424555026866121806
 GameObject:
   m_ObjectHideFlags: 0
