@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class MeleeHitbox : MonoBehaviour
 {
@@ -7,66 +8,47 @@ public class MeleeHitbox : MonoBehaviour
     [SerializeField] private int damage = 1;
 
     [Header("Hitbox")]
-    [SerializeField] private float range = 1.5f;
-    [SerializeField] private Vector3 localOffset = new Vector3(0f, 0f, 0.8f);
-    [SerializeField] private LayerMask targetMask;          
-    [SerializeField] private Transform origin;
-
-    [Header("Directional Gate")]
-    [SerializeField, Range(0f, 180f)] private float halfAngle = 60f; 
-    [SerializeField] private bool useAngleGate = true;
-
-
+    [SerializeField] private GameObject colliderRoot;
+    [SerializeField] private LayerMask targetMask;
+    
+    private readonly List<SphereCollider> colliders = new();
     private readonly HashSet<Health> hitThisSwing = new();
+    private bool swinging = false;
 
-   
-    public void BeginSwing() => hitThisSwing.Clear();
-
-  
-    public void EndSwing() => hitThisSwing.Clear();
-
-
-    public void DealDamage()
+    private void Awake()
     {
-        Transform o = origin ? origin : transform;
-        Vector3 center = o.TransformPoint(localOffset);
+        Assert.IsNotNull(colliderRoot);
+        colliders.AddRange(colliderRoot.GetComponentsInChildren<SphereCollider>());
+    }
 
-        
-        Collider[] cols = Physics.OverlapSphere(center, range, targetMask);
+    public void BeginSwing()
+    {
+        hitThisSwing.Clear();
+        swinging = true;
+    }
 
-        float cosThresh = Mathf.Cos(halfAngle * Mathf.Deg2Rad);
-        Vector3 fwd = o.forward;
+    public void EndSwing()
+    {
+        swinging = false;
+        hitThisSwing.Clear();
+    }
 
-        for (int i = 0; i < cols.Length; i++)
-        {
-            var h = cols[i].GetComponentInParent<Health>();
-            if (h == null) continue;
-            if (hitThisSwing.Contains(h)) continue;
+    public void FixedUpdate()
+    {
+        if (!swinging)
+            return;
 
-            
-            Vector3 to = (h.transform.position - center);
-            if (useAngleGate)
+        colliders.ForEach(collider => {
+            Collider[] cols = Physics.OverlapSphere(collider.transform.position, collider.radius, targetMask);
+            foreach (Collider col in cols)
             {
-                if (to.sqrMagnitude < 1e-6f) continue;
-                float dot = Vector3.Dot(fwd, to.normalized);
-                if (dot < cosThresh) continue;   
+                Health h = col.GetComponentInParent<Health>();
+                if (h != null && !hitThisSwing.Contains(h))
+                {
+                    h.TakeDamage(damage);
+                    hitThisSwing.Add(h);
+                }
             }
-
-            h.TakeDamage(damage);
-            hitThisSwing.Add(h);
-        }
-    }
-
-    private void OnDrawGizmosSelected()
-    {
-        Transform o = origin ? origin : transform;
-        Vector3 center = o.TransformPoint(localOffset);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(center, range);
-    }
-
-    public void AnimationEvent_DealDamage()
-    {
-        DealDamage();
+        });
     }
 }

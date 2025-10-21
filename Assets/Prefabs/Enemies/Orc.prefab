@@ -1,5 +1,58 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1265096352375455312
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6970327175941856469}
+  - component: {fileID: 2291534585104466093}
+  m_Layer: 8
+  m_Name: Colliders
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6970327175941856469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265096352375455312}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1192491411153890480}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2291534585104466093
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265096352375455312}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.8
+  m_Center: {x: 0, y: 0, z: 2}
 --- !u!1 &3045373013286125374
 GameObject:
   m_ObjectHideFlags: 0
@@ -151,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1192491411146982190}
-  hitbox: {fileID: 1096386304310650389}
+  hitbox: {fileID: 0}
   attackTrigger: Fire
 --- !u!114 &1961417952955607821
 MonoBehaviour:
@@ -573,18 +626,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 8511647367374980994, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6970327175941856469}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8511647367374691266, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1096386304310650389}
+      addedObject: {fileID: 4156484578575501168}
     - targetCorrespondingSourceObject: {fileID: 8511647367374691266, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4156484578575501168}
+      addedObject: {fileID: 6639691039555031101}
   m_SourcePrefab: {fileID: 100100000, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
 --- !u!95 &1192491411146982190 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8511647367367272476, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
+  m_PrefabInstance: {fileID: 7391505064924179250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1192491411153890480 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8511647367374980994, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
   m_PrefabInstance: {fileID: 7391505064924179250}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1192491411153890512 stripped
@@ -597,27 +658,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8511647367374691266, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
   m_PrefabInstance: {fileID: 7391505064924179250}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1096386304310650389
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1192491411154383088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c51def965d791d44b567258698fd920, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 1
-  range: 2
-  localOffset: {x: 0, y: 0, z: 0.8}
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 64
-  origin: {fileID: 0}
-  halfAngle: 60
-  useAngleGate: 1
 --- !u!136 &4156484578575501168
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -641,3 +681,20 @@ CapsuleCollider:
   m_Height: 2.4
   m_Direction: 1
   m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!114 &6639691039555031101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1192491411154383088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c51def965d791d44b567258698fd920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+  colliderRoot: {fileID: 1265096352375455312}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 64
