@@ -204,7 +204,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1192491411146982190}
-  hitbox: {fileID: 0}
   attackTrigger: Fire
 --- !u!114 &1961417952955607821
 MonoBehaviour:
@@ -280,7 +279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5281257b4089174598c5af2e54577f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stats: []
+  statsFile: {fileID: 4900000, guid: e963e02b8c5ba8c49a0e857ff4892650, type: 3}
 --- !u!1 &8236134914262174659
 GameObject:
   m_ObjectHideFlags: 0

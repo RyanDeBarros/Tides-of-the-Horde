@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 public class MeleeHitbox : MonoBehaviour
 {
     [Header("Damage")]
-    [SerializeField] private int damage = 1;
+    [SerializeField] public int damage = 1;
 
     [Header("Hitbox")]
     [SerializeField] private GameObject colliderRoot;

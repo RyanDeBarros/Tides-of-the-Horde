@@ -5,8 +5,8 @@ using UnityEngine.Assertions;
 
 public class BounceBack : MonoBehaviour
 {
-    [SerializeField] private float resistance = 1f;
-    [SerializeField] private float duration = 0.1f;
+    [SerializeField] public float resistance = 1f;
+    [SerializeField] public float duration = 0.1f;
 
     private CharacterController characterController;
     private Vector3 direction = Vector3.zero;
