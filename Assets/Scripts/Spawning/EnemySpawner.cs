@@ -22,6 +22,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
     [SerializeField] private GameObject bishopPrefab;
+    [SerializeField] private GameObject orcPrefab;
 
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
@@ -36,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
 
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
+        Assert.IsNotNull(orcPrefab);
 
         waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
         waveTimeline.doEnemiesRemain = DoEnemiesRemain;
@@ -52,10 +54,12 @@ public class EnemySpawner : MonoBehaviour
         waveTimeline.ManualUpdate();
         uiController.SetNormalizedSpawningTimeLeft(waveTimeline.GetNormalizedSpawningTimeLeft());
         uiController.SetNormalizedWaitTime(waveTimeline.GetNormalizedWaitTime());
-        foreach ((EnemyType type, int toSpawn) in waveTimeline.GetEnemiesToSpawn()) SpawnEnemies(type, toSpawn);
+        
+        foreach (((EnemyType type, int difficultyLevel), int toSpawn) in waveTimeline.GetEnemiesToSpawn())
+            SpawnEnemies(type, toSpawn, difficultyLevel);
     }
 
-    public void SpawnEnemies(EnemyType type, int numEnemies)
+    public void SpawnEnemies(EnemyType type, int numEnemies, int difficultyLevel)
     {
         if (numEnemies <= 0) return;
         List<SpawnZone> activeSpawnZones = spawnZones.Where(spawner => spawner.IsSpawnable()).ToList();
@@ -65,21 +69,30 @@ public class EnemySpawner : MonoBehaviour
         {
             int zoneIndex = Random.Range(0, activeSpawnZones.Count());
             Vector3 spawnPoint = activeSpawnZones[zoneIndex].GetRandomPoint();
-            SpawnAtPoint(type, spawnPoint);
+            SpawnAtPoint(type, spawnPoint, difficultyLevel);
         }
     }
 
-    private void SpawnAtPoint(EnemyType type, Vector3 point)
+    private void SpawnAtPoint(EnemyType type, Vector3 point, int difficultyLevel)
     {
-        GameObject prefab = type switch {
+        GameObject instance = Instantiate(GetEnemyPrefab(type), point, Quaternion.identity);
+        spawnedEnemies.Add(instance);
+        instance.AddComponent<OnDestroyHandler>().onDestroyed = go => spawnedEnemies.Remove(go);
+        if (instance.TryGetComponent(out IDifficultyImplementer difficulty))
+            difficulty.SetDifficultyLevel(difficultyLevel);
+    }
+
+    private GameObject GetEnemyPrefab(EnemyType type)
+    {
+        GameObject prefab = type switch
+        {
             EnemyType.Skeleton => skeletonPrefab,
             EnemyType.Bishop => bishopPrefab,
+            EnemyType.Orc => orcPrefab,
             _ => null
         };
         Assert.IsNotNull(prefab);
-        GameObject instance = Instantiate(prefab, point, Quaternion.identity);
-        spawnedEnemies.Add(instance);
-        instance.AddComponent<OnDestroyHandler>().onDestroyed = go => spawnedEnemies.Remove(go);
+        return prefab;
     }
 
     private void OnWaveNumberChanged(int waveNumber)

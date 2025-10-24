@@ -1,0 +1,22 @@
+{
+    "stats": [
+        {
+            "damagePerFireball": 2,
+            "attackRange": 8.0,
+            "maxHealth": 50,
+            "reward": 5
+        },
+        {
+            "damagePerFireball": 5,
+            "attackRange": 10.0,
+            "maxHealth": 100,
+            "reward": 10
+        },
+        {
+            "damagePerFireball": 8,
+            "attackRange": 12.0,
+            "maxHealth": 150,
+            "reward": 15
+        }
+    ]
+}

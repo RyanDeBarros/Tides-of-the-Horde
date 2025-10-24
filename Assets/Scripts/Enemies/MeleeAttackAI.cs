@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
-public class OrcAttackAI : MonoBehaviour
+public class MeleeAttackAI : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private MeleeHitbox hitbox;
 
     [Header("Animator")]
     public string attackTrigger = "Fire";
@@ -15,22 +13,20 @@ public class OrcAttackAI : MonoBehaviour
     void Reset()
     {
         if (!animator) animator = GetComponentInChildren<Animator>();
-        if (!hitbox) hitbox = GetComponentInChildren<MeleeHitbox>();
+        Assert.IsNotNull(animator);
     }
 
     void Awake()
     {
         if (!animator) animator = GetComponentInChildren<Animator>();
-        if (!hitbox) hitbox = GetComponentInChildren<MeleeHitbox>();
+        Assert.IsNotNull(animator);
         trigHash = Animator.StringToHash(attackTrigger);
     }
 
     /// Call this from your AI/BT to start an attack
     public void TryAttack()
     {
-        hitbox?.BeginSwing();
         animator.ResetTrigger(trigHash);
         animator.SetTrigger(trigHash);
     }
-
 }

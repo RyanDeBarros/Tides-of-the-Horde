@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.Events;
 
 public enum EnemyType
 {
     Skeleton,
     Bishop,
+    Orc,
 }
 
 [System.Serializable]
@@ -21,7 +21,9 @@ public class WaveTimeline
         public float duration;
         [SerializeField] private string enemy;
         public EnemyType type;
-        public float spawnRate;
+        public float spawnRate = 1f;
+        public int difficulty = 0;
+        public bool spawnInitial = false;
 
         private float spawnDebt = 0f;
         private float elapsed = 0f;
@@ -31,6 +33,9 @@ public class WaveTimeline
         {
             if (!Enum.TryParse(enemy, true, out type))
                 throw new Exception($"Enemy \"{enemy}\" does not correspond to a known enemy type.");
+
+            if (spawnInitial)
+                spawnDebt = 1f;
         }
 
         public void OnBeforeSerialize() { }
@@ -44,8 +49,9 @@ public class WaveTimeline
                 if (delta > 0f)
                 {
                     elapsed = elapsedSinceOffset;
-                    toSpawn = (int)((delta + spawnDebt) * spawnRate);
-                    spawnDebt += delta - toSpawn / spawnRate;
+                    spawnDebt += delta;
+                    toSpawn = (int)(spawnDebt * spawnRate);
+                    spawnDebt -= toSpawn / spawnRate;
                 }
                 else
                     toSpawn = 0;
@@ -94,7 +100,7 @@ public class WaveTimeline
     private int waveNumber = 0;
     private float waveTimeElapsed = 0f;
     private WaveState waveState = WaveState.PreSpawn;
-    private readonly Dictionary<EnemyType, int> toSpawn = new();
+    private readonly Dictionary<(EnemyType, int), int> toSpawn = new();
 
     public Action<int> onWaveNumberChanged;
     public Func<bool> doEnemiesRemain;
@@ -161,10 +167,11 @@ public class WaveTimeline
     {
         waves[waveNumber].subwaves.ForEach(subwave => {
             subwave.Sync(waveTimeElapsed);
-            if (toSpawn.ContainsKey(subwave.type))
-                toSpawn[subwave.type] += subwave.GetNumberToSpawn();
+            var key = (subwave.type, subwave.difficulty);
+            if (toSpawn.ContainsKey(key))
+                toSpawn[key] += subwave.GetNumberToSpawn();
             else
-                toSpawn[subwave.type] = subwave.GetNumberToSpawn();
+                toSpawn[key] = subwave.GetNumberToSpawn();
         });
     }
 
@@ -190,7 +197,7 @@ public class WaveTimeline
         SyncTimeline();
     }
 
-    public Dictionary<EnemyType, int> GetEnemiesToSpawn()
+    public Dictionary<(EnemyType enemy, int difficulty), int> GetEnemiesToSpawn()
     {
         return toSpawn;
     }
