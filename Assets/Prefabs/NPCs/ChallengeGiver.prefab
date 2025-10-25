@@ -50,6 +50,8 @@ MonoBehaviour:
   playerTag: Player
   talkDistance: 10
   keyHint: {fileID: 9022211650807903377}
+  keyHintActiveColor: {r: 1, g: 1, b: 1, a: 1}
+  keyHintInactiveColor: {r: 0.30817598, g: 0.30817598, b: 0.30817598, a: 1}
   onConversationEnd:
     m_PersistentCalls:
       m_Calls: []
