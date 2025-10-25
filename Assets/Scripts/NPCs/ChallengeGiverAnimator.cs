@@ -28,8 +28,6 @@ public class ChallengeGiverAnimator : MonoBehaviour
     private IEnumerator DespawnRoutine()
     {
         animator.SetTrigger(despawnTrigger);
-        yield return null;
-
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName(despawnTrigger))
             yield return null;
 
