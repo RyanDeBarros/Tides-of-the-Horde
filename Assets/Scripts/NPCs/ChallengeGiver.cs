@@ -9,6 +9,8 @@ public class ChallengeGiver : MonoBehaviour
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private float talkDistance = 10f;
     [SerializeField] private TextMeshPro keyHint;
+    [SerializeField] private Color keyHintActiveColor;
+    [SerializeField] private Color keyHintInactiveColor;
 
     public UnityEvent onConversationEnd;
 
@@ -39,8 +41,14 @@ public class ChallengeGiver : MonoBehaviour
     {
         transform.LookAt(player.position);
 
-        if (Input.GetKeyDown(KeyCode.E) && Vector3.Distance(transform.position, player.position) < talkDistance)
-            Talk();
+        if (Vector3.Distance(transform.position, player.position) < talkDistance)
+        {
+            keyHint.color = keyHintActiveColor;
+            if (Input.GetKeyDown(KeyCode.E))
+                Talk();
+        }
+        else
+            keyHint.color = keyHintInactiveColor;
     }
 
     private void Talk()
