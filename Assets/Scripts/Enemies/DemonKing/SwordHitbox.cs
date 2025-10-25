@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class SwordHitbox : MonoBehaviour
 {
     [Header("Damage")]
     public int damage = 1;
+    [Space]
+    public float bounceBackStrength = 5f;
 
     [Header("Hitbox Collider (reference only)")]
     public BoxCollider hitCollider; // Disabled, used only for box dimensions
@@ -36,8 +39,22 @@ public class SwordHitbox : MonoBehaviour
             if (health != null && !hitThisSwing.Contains(health))
             {
                 health.TakeDamage(damage);
+
+                // Bounce back the player
+                Vector3 direction = hit.transform.position - transform.position;
+                direction.y = 0; // Keep bounce horizontal
+                TryBouncingBack(hit, direction.normalized);
+
                 hitThisSwing.Add(health);
             }
+        }
+    }
+
+    private void TryBouncingBack(Collider target, Vector3 direction)
+    {
+        if (target.TryGetComponent<BounceBack>(out var bounceBack))
+        {
+            bounceBack.Bounce(direction, bounceBackStrength);
         }
     }
 
