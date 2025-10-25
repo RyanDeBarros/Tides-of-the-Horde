@@ -18,6 +18,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private SpawnWaveUIController uiController;
     [SerializeField] private TextAsset waveFile;
     [SerializeField] private ShopUI shopUI;
+    [SerializeField] private ChallengeGiver challengeGiver;
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
@@ -28,33 +29,61 @@ public class EnemySpawner : MonoBehaviour
     private List<SpawnZone> spawnZones;
     private readonly HashSet<GameObject> spawnedEnemies = new();
 
+    private enum LevelPhase
+    {
+        ChallengeGiver,
+        Waves
+    }
+
+    private LevelPhase levelPhase = LevelPhase.ChallengeGiver;
+
     private void Awake()
     {
         Assert.IsNotNull(uiController);
         Assert.IsNotNull(waveFile);
         waveTimeline = WaveTimeline.Read(waveFile);
         Assert.IsNotNull(shopUI);
+        Assert.IsNotNull(challengeGiver);
+        challengeGiver.onConversationEnd.AddListener(StartWaves);
 
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
         Assert.IsNotNull(orcPrefab);
-
-        waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
-        waveTimeline.doEnemiesRemain = DoEnemiesRemain;
     }
 
     private void Start()
     {
-        waveTimeline.Init();
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
+
+        StartLevel();
+    }
+
+    private void StartLevel()
+    {
+        challengeGiver.SpawnNPC();
     }
 
     private void Update()
     {
+        if (levelPhase == LevelPhase.Waves)
+            UpdateSpawnTimeline();
+    }
+
+    private void StartWaves()
+    {
+        // TODO hide waves UI when not in waves state
+        waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
+        waveTimeline.doEnemiesRemain = DoEnemiesRemain;
+        waveTimeline.Init();
+        levelPhase = LevelPhase.Waves;
+    }
+
+    private void UpdateSpawnTimeline()
+    {
         waveTimeline.ManualUpdate();
         uiController.SetNormalizedSpawningTimeLeft(waveTimeline.GetNormalizedSpawningTimeLeft());
         uiController.SetNormalizedWaitTime(waveTimeline.GetNormalizedWaitTime());
-        
+
         foreach (((EnemyType type, int difficultyLevel), int toSpawn) in waveTimeline.GetEnemiesToSpawn())
             SpawnEnemies(type, toSpawn, difficultyLevel);
     }
