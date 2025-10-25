@@ -68,9 +68,10 @@ public class SwordHitbox : MonoBehaviour
         if (!hitCollider) return;
 
         Gizmos.color = Color.red;
-        Vector3 center = hitCollider.transform.TransformPoint(hitCollider.center);
-        Vector3 halfExtents = hitCollider.size * 0.5f;
-        Gizmos.matrix = Matrix4x4.TRS(hitCollider.transform.position, hitCollider.transform.rotation, Vector3.one);
+        // Set the matrix to match the collider's transform
+        Gizmos.matrix = hitCollider.transform.localToWorldMatrix;
+        // Draw the wire cube using local center and size
         Gizmos.DrawWireCube(hitCollider.center, hitCollider.size);
     }
+
 }
