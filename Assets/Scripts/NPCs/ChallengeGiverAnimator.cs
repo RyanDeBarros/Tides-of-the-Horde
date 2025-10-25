@@ -15,22 +15,21 @@ public class ChallengeGiverAnimator : MonoBehaviour
         Assert.IsNotNull(animator);
     }
 
-    public void AnimateSpawn()
+    public IEnumerator AnimateSpawn()
     {
         animator.SetTrigger(spawnTrigger);
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName(spawnTrigger))
+            yield return null;
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
     public IEnumerator AnimateDespawn()
-    {
-        yield return DespawnRoutine();
-    }
-
-    private IEnumerator DespawnRoutine()
     {
         animator.SetTrigger(despawnTrigger);
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName(despawnTrigger))
             yield return null;
 
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 0.99f);
     }
 }
