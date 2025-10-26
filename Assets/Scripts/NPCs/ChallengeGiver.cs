@@ -57,6 +57,7 @@ public class ChallengeGiver : MonoBehaviour
 
     private void Talk()
     {
+        keyHint.enabled = false;
         dialog.Open();
     }
 
