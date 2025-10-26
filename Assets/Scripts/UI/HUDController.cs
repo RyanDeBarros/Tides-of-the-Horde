@@ -16,6 +16,18 @@ public class HUDController : MonoBehaviour
     [Header("Spells")]
     [SerializeField] private List<SpellSelectController> spells;
 
+    [Header("Death Screen")]
+    public GameObject deathScreenPanel;
+    public Button respawnButton;
+    public Button mainMenuButton;
+
+    [Header("Pause Menu")]
+    public GameObject pauseMenuPanel;
+    public Button resumeButton;
+    public Button pauseMainMenuButton;
+
+    private bool isPaused = false;
+
     private void Awake()
     {
         Assert.IsNotNull(playerHealth);
@@ -29,9 +41,21 @@ public class HUDController : MonoBehaviour
         UpdateHealthHUD(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
         playerCurrency.onCurrencyChanged.AddListener(UpdateCrystalsHUD);
         UpdateCrystalsHUD(playerCurrency.GetCurrency());
+        playerHealth.onDeath.AddListener(ShowDeathScreen);
 
         for (int i = 0; i < spells.Count; ++i)
             spells[i].SetKeyHint(i + 1);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
     }
 
     public void UpdateHealthHUD(int currentHP, int maxHP)
@@ -47,5 +71,60 @@ public class HUDController : MonoBehaviour
     public List<SpellSelectController> GetSpells()
     {
         return spells;
+    }
+
+    public void ShowDeathScreen()
+    {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
+        {
+            Camera playerCamera = player.GetComponentInChildren<Camera>();
+            if (playerCamera != null)
+            {
+                playerCamera.transform.SetParent(null);
+                DontDestroyOnLoad(playerCamera.gameObject);
+            }
+        }
+        
+        Time.timeScale = 0f;
+        deathScreenPanel.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+    }
+
+    public void Respawn()
+    {
+        deathScreenPanel.SetActive(false);
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(
+            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex
+        );
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        Time.timeScale = 0f;
+        pauseMenuPanel.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        pauseMenuPanel.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        Time.timeScale = 1f;
+    }
+
+    public void GoToMainMenu()
+    {
+        Time.timeScale = 1f;
+        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
     }
 }
