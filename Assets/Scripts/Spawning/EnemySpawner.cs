@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -55,6 +56,12 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
 
+        StartCoroutine(StartLevelRoutine());
+    }
+
+    private IEnumerator StartLevelRoutine()
+    {
+        yield return new WaitForSeconds(1f);
         StartLevel();
     }
 
