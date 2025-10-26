@@ -6,6 +6,46 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class DynamicTextOptions
+{
+    public string text;
+    public bool left_align = true;
+    public bool clickable = false;
+    public float extraVerticalSpacing = 0f;
+}
+
+public class DynamicTextPage
+{
+    public float extraVerticalSpacing = 0f;
+
+    private readonly List<DynamicTextOptions> options = new();
+    private bool currentlyNPC = true;
+
+    public DynamicTextPage(float extraVerticalSpacing)
+    {
+        this.extraVerticalSpacing = extraVerticalSpacing;
+    }
+
+    public IReadOnlyList<DynamicTextOptions> GetOptions()
+    {
+        return options.AsReadOnly();
+    }
+
+    public void AddNPCText(string text)
+    {
+        options.Add(new() { text = text, left_align = true, clickable = false, extraVerticalSpacing = currentlyNPC ? 0f : extraVerticalSpacing });
+        currentlyNPC = true;
+    }
+
+    public void AddPlayerClickableText(string text)
+    {
+        options.Add(new() { text = text, left_align = false, clickable = true, extraVerticalSpacing = currentlyNPC ? extraVerticalSpacing : 0f });
+        currentlyNPC = false;
+    }
+}
 
 public class NPCDialog : MonoBehaviour
 {
@@ -14,6 +54,7 @@ public class NPCDialog : MonoBehaviour
     [Header("Text Parameters")]
     [SerializeField] private float typeSpeed = 0.05f;
     [SerializeField] private float verticalSpacing = 10f;
+    [SerializeField] private float speakerSwitchSpacing = 10f;
     [SerializeField] private float fontSize = 24;
     [SerializeField] private TMP_FontAsset font;
 
@@ -26,6 +67,7 @@ public class NPCDialog : MonoBehaviour
     private bool open = true;
 
     private readonly List<TextMeshProUGUI> textComponents = new();
+    private int numberOfClickableTexts = 0;
     private CoroutineQueue typewriterAnimationQueue;
 
     private void Awake()
@@ -56,14 +98,17 @@ public class NPCDialog : MonoBehaviour
         spellManager.enabled = false;
         playerMovement.enabled = false;
 
-        AppendText("Welcome!", true);
-        AppendText("More text ...", true);
-        AppendText("--> Reply", false, extraVerticalSpacing: 10f);
+        DynamicTextPage page = CreatePage();
+        page.AddNPCText("Welcome");
+        page.AddNPCText("More text ...");
+        page.AddPlayerClickableText("--> Reply");
+        SetTextPage(page);
     }
 
     public void Close()
     {
         open = false;
+        ClearTextPage();
         gameObject.SetActive(false);
         camera.EnableCamera();
         spellManager.enabled = true;
@@ -71,12 +116,31 @@ public class NPCDialog : MonoBehaviour
         onClose.Invoke();
     }
 
-    private void AppendText(string text, bool left_align, float extraVerticalSpacing = 0f)
+    private DynamicTextPage CreatePage()
     {
-        typewriterAnimationQueue.AppendCoroutine(AddText(text, left_align, extraVerticalSpacing));
+        return new(speakerSwitchSpacing);
     }
 
-    private IEnumerator AddText(string text, bool left_align, float extraVerticalSpacing)
+    private void SetTextPage(DynamicTextPage page)
+    {
+        ClearTextPage();
+        foreach (var option in page.GetOptions())
+            AppendText(option);
+    }
+
+    private void ClearTextPage()
+    {
+        textComponents.ForEach(t => Destroy(t));
+        textComponents.Clear();
+        numberOfClickableTexts = 0;
+    }
+
+    private void AppendText(DynamicTextOptions options)
+    {
+        typewriterAnimationQueue.AppendCoroutine(AddText(options));
+    }
+
+    private IEnumerator AddText(DynamicTextOptions options)
     {
         GameObject go = new("TXT", typeof(RectTransform));
         RectTransform rect = go.GetComponent<RectTransform>();
@@ -92,18 +156,26 @@ public class NPCDialog : MonoBehaviour
         if (textComponents.Count > 0)
         {
             RectTransform lastRect = textComponents.Last().GetComponent<RectTransform>();
-            rect.anchoredPosition += new Vector2(0f, lastRect.anchoredPosition.y - lastRect.sizeDelta.y - verticalSpacing - extraVerticalSpacing);
+            rect.anchoredPosition += new Vector2(0f, lastRect.anchoredPosition.y - lastRect.sizeDelta.y - verticalSpacing - options.extraVerticalSpacing);
         }
 
         TextMeshProUGUI textComponent = go.AddComponent<TextMeshProUGUI>();
-        textComponent.alignment = left_align ? TextAlignmentOptions.MidlineLeft : TextAlignmentOptions.MidlineRight;
+        textComponent.alignment = options.left_align ? TextAlignmentOptions.MidlineLeft : TextAlignmentOptions.MidlineRight;
         textComponent.fontSize = fontSize;
         textComponent.font = font;
-        // TODO color, clickable (add button component)
 
-        textComponent.SetText(text);
+        if (options.clickable)
+        {
+            Button button = go.AddComponent<Button>();
+            button.targetGraphic = textComponent;
+            int clickIndex = numberOfClickableTexts;
+            ++numberOfClickableTexts;
+            button.onClick.AddListener(() => OnTextClicked(clickIndex));
+        }
+
+        textComponent.SetText(options.text);
         FitTextHeight(textComponent);
-        yield return AnimateTypewriter(textComponent, text);
+        yield return AnimateTypewriter(textComponent, options.text);
         textComponents.Add(textComponent);
     }
 
@@ -135,5 +207,11 @@ public class NPCDialog : MonoBehaviour
         }
 
         textComponent.SetText(text);
+    }
+
+    private void OnTextClicked(int clickIndex)
+    {
+        // TODO
+        Debug.Log($"Clicked text {clickIndex}");
     }
 }
