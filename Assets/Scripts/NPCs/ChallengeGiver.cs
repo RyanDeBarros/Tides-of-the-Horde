@@ -7,6 +7,7 @@ using UnityEngine.Events;
 public class ChallengeGiver : MonoBehaviour
 {
     [SerializeField] private string playerTag = "Player";
+    [SerializeField] private NPCDialog dialog;
     [SerializeField] private float talkDistance = 10f;
     [SerializeField] private TextMeshPro keyHint;
     [SerializeField] private Color keyHintActiveColor;
@@ -29,6 +30,9 @@ public class ChallengeGiver : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag(playerTag).transform;
         Assert.IsNotNull(player);
+
+        Assert.IsNotNull(dialog);
+        dialog.onClose = DespawnNPC;
     }
 
     private void Start()
@@ -53,8 +57,7 @@ public class ChallengeGiver : MonoBehaviour
 
     private void Talk()
     {
-        // TODO start conversation and call DespawnNPC() when done
-        DespawnNPC();
+        dialog.Open();
     }
 
     public void SpawnNPC()
