@@ -7,10 +7,13 @@ public class Health : MonoBehaviour
     [Header("Health Settings")]
     public int maxHealth = 100;
     private int currentHealth;
+    [Space]
+    public float thresholdPercent = 10f; // Adjustable percentage threshold
 
     [Header("Events")]
     public UnityEvent<int, int> onHealthChanged; // (current, max)
     public UnityEvent onDeath;
+    public UnityEvent onHealthThresholdReached; // New event for 10% intervals
 
     void Awake()
     {
@@ -25,14 +28,30 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        int previousHealth = currentHealth;
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-
         onHealthChanged?.Invoke(currentHealth, maxHealth);
+
+        // Check if we crossed a 10% threshold
+        CheckHealthThreshold(previousHealth);
 
         if (currentHealth <= 0)
         {
             Die();
+        }
+    }
+
+    void CheckHealthThreshold(int previousHealth)
+    {
+        float thresholdInterval = maxHealth * (thresholdPercent / 100f);
+        int currentThreshold = (int)(currentHealth / thresholdInterval);
+        int previousThreshold = (int)(previousHealth / thresholdInterval);
+
+        // If we crossed into a new threshold bracket
+        if (currentThreshold < previousThreshold && currentHealth > 0)
+        {
+            onHealthThresholdReached?.Invoke();
         }
     }
 
@@ -59,6 +78,6 @@ public class Health : MonoBehaviour
     private void Die()
     {
         onDeath?.Invoke();
-        Destroy(gameObject); // Or trigger animation before destruction
+        Destroy(gameObject);
     }
 }
