@@ -178,6 +178,5 @@ public class DemonKingMovementAI : MonoBehaviour
         isTeleporting = false;
         movementLocked = false;
 
-        Debug.Log("Teleport complete! Boss appeared behind player");
     }
 }

@@ -52,7 +52,6 @@ public class Health : MonoBehaviour
         if (currentThreshold < previousThreshold && currentHealth > 0)
         {
             onHealthThresholdReached?.Invoke();
-            Debug.Log("Health threshold reached! Current: " + currentHealth);
         }
     }
 
