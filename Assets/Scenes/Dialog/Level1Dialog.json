@@ -1,22 +1,31 @@
 {
     "options": [
         {
-            "text": "Welcome to <i>The Valley</i>!"
+            "text": "<b>Worm</b>: Welcome to <i>The Valley</i>!"
         },
         {
             "text": "[Add lore...]"
         },
         {
-            "text": "Complete this challenge and I'll reward you:"
+            "text": "Complete this challenge and I'll reward you:",
+            "topPadding": 10.0
         },
         {
             "text": "[Add challenge...]",
             "halign": 0.5
         },
         {
-            "text": "--> Reply",
+            "text": "Accept",
+            "topPadding": 10.0,
             "halign": 1.0,
-            "clickable": true
+            "clickable": true,
+            "clickResponse": "accept"
+        },
+        {
+            "text": "Decline",
+            "halign": 1.0,
+            "clickable": true,
+            "clickResponse": "decline"
         }
     ]
 }

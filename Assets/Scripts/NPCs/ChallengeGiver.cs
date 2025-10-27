@@ -47,14 +47,17 @@ public class ChallengeGiver : MonoBehaviour
     {
         transform.LookAt(player.position);
 
-        if (Vector3.Distance(transform.position, player.position) < talkDistance)
+        if (keyHint.enabled)
         {
-            keyHint.color = keyHintActiveColor;
-            if (Input.GetKeyDown(KeyCode.E))
-                Talk();
+            if (Vector3.Distance(transform.position, player.position) < talkDistance)
+            {
+                keyHint.color = keyHintActiveColor;
+                if (Input.GetKeyDown(KeyCode.E))
+                    Talk();
+            }
+            else
+                keyHint.color = keyHintInactiveColor;
         }
-        else
-            keyHint.color = keyHintInactiveColor;
     }
 
     private void Talk()
@@ -74,6 +77,7 @@ public class ChallengeGiver : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
+        // TODO play SFX
         yield return animator.AnimateSpawn();
         keyHint.enabled = true;
     }
@@ -85,6 +89,7 @@ public class ChallengeGiver : MonoBehaviour
 
     private IEnumerator DespawnRoutine()
     {
+        // TODO play SFX
         keyHint.enabled = false;
         yield return animator.AnimateDespawn();
         gameObject.SetActive(false);

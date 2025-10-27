@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.6901961}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -126,10 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textArea: {fileID: 4706183446791641240}
   testDialog: {fileID: 4900000, guid: 88c33012100681341945dd32be12fd1d, type: 3}
-  typeSpeed: 0.05
+  typingSeconds: 0.02
   verticalSpacing: 10
-  speakerSwitchSpacing: 10
-  fontSize: 24
-  textColor: {r: 1, g: 1, b: 1, a: 1}
+  fontSize: 16
+  textColor: {r: 0, g: 0, b: 0, a: 1}
   textHoverColor: {r: 0, g: 0.66365194, b: 1, a: 1}
-  font: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}
+  font: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}

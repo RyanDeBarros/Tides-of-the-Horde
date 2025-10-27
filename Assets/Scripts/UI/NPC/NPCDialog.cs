@@ -13,6 +13,7 @@ public class DialogOption
 {
     public string text;
     public bool clickable = false;
+    public string clickResponse;
     public float topPadding = 0f;
     public float halign = 0f;
 }
@@ -31,7 +32,7 @@ public class NPCDialog : MonoBehaviour
     [Header("Text Parameters")]
     [SerializeField] private float typingSeconds = 0.02f;
     [SerializeField] private float verticalSpacing = 10f;
-    [SerializeField] private float fontSize = 24;
+    [SerializeField] private float fontSize = 16;
     [SerializeField] private Color textColor = Color.white;
     [SerializeField] private Color textHoverColor = Color.blue;
     [SerializeField] private TMP_FontAsset font;
@@ -63,12 +64,6 @@ public class NPCDialog : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (open && Input.GetKey(KeyCode.Escape))
-            Close();
-    }
-
     public void Open()
     {
         if (open) return;
@@ -98,7 +93,8 @@ public class NPCDialog : MonoBehaviour
     private void SetTextPage(DialogPage page)
     {
         ClearTextPage();
-        page.options.ForEach(option => AppendText(option));
+        // TODO while typewriting - play typing SFX: begin continuously playing here, and then stop it in RunAtEnd().
+        page.options.ForEach(option => typewriterAnimationQueue.AppendCoroutine(AddText(option)));
         typewriterAnimationQueue.RunAtEnd(() => {
             textButtons.ForEach(button => button.enabled = true);
             textOnHovers.ForEach(onHover => onHover.enabled = true);
@@ -111,11 +107,6 @@ public class NPCDialog : MonoBehaviour
         textComponents.Clear();
         textButtons.Clear();
         textOnHovers.Clear();
-    }
-
-    private void AppendText(DialogOption options)
-    {
-        typewriterAnimationQueue.AppendCoroutine(AddText(options));
     }
 
     private IEnumerator AddText(DialogOption option)
@@ -141,20 +132,7 @@ public class NPCDialog : MonoBehaviour
         textComponent.color = textColor;
 
         if (option.clickable)
-        {
-            Button button = go.AddComponent<Button>();
-            button.targetGraphic = textComponent;
-            int clickIndex = textButtons.Count;
-            button.onClick.AddListener(() => OnTextClicked(clickIndex));
-            button.enabled = false;
-            textButtons.Add(button);
-
-            OnHover onHover = go.AddComponent<OnHover>();
-            onHover.onHoverEnter.AddListener(() => { textComponent.color = textHoverColor; });
-            onHover.onHoverExit.AddListener(() => { textComponent.color = textColor; });
-            onHover.enabled = false;
-            textOnHovers.Add(onHover);
-        }
+            MakeTextClickable(textComponent, option.clickResponse);
 
         textComponent.SetText(option.text);
         textComponent.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, textArea.rect.width);
@@ -163,6 +141,21 @@ public class NPCDialog : MonoBehaviour
 
         yield return AnimateTypewriter(textComponent, option.text);
         textComponents.Add(textComponent);
+    }
+
+    private void MakeTextClickable(TextMeshProUGUI textComponent, string clickResponse)
+    {
+        Button button = textComponent.gameObject.AddComponent<Button>();
+        button.targetGraphic = textComponent;
+        button.onClick.AddListener(() => OnTextClicked(clickResponse));
+        button.enabled = false;
+        textButtons.Add(button);
+
+        OnHover onHover = textComponent.gameObject.AddComponent<OnHover>();
+        onHover.onHoverEnter.AddListener(() => { textComponent.color = textHoverColor; });
+        onHover.onHoverExit.AddListener(() => { textComponent.color = textColor; });
+        onHover.enabled = false;
+        textOnHovers.Add(onHover);
     }
 
     private IEnumerator AnimateTypewriter(TextMeshProUGUI textComponent, string text)
@@ -187,9 +180,10 @@ public class NPCDialog : MonoBehaviour
         textComponent.SetText(text);
     }
 
-    private void OnTextClicked(int clickIndex)
+    private void OnTextClicked(string clickResponse)
     {
         // TODO
-        Debug.Log($"Clicked text {clickIndex}");
+        Debug.Log($"Clicked text {clickResponse}");
+        Close();
     }
 }
