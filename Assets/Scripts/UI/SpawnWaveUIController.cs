@@ -32,6 +32,13 @@ public class SpawnWaveUIController : MonoBehaviour
         waitTime.localScale = new(1f, Mathf.Clamp01(time), 1f);
     }
 
+    public void ShowUI()
+    {
+        waveNumberText.gameObject.SetActive(true);
+        spawningTimeLeft.gameObject.SetActive(true);
+        waitTime.gameObject.SetActive(true);
+    }
+
     public void HideUI()
     {
         waveNumberText.gameObject.SetActive(false);

@@ -55,6 +55,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
+        uiController.HideUI();
 
         StartCoroutine(StartLevelRoutine());
     }
@@ -78,7 +79,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void StartWaves()
     {
-        // TODO hide waves UI when not in waves state
+        uiController.ShowUI();
         waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
         waveTimeline.doEnemiesRemain = DoEnemiesRemain;
         waveTimeline.Init();

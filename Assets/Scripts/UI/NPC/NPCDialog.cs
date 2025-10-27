@@ -93,6 +93,8 @@ public class NPCDialog : MonoBehaviour
 
     public void Open()
     {
+        if (open) return;
+
         open = true;
         gameObject.SetActive(true);
         camera.DisableCamera();
@@ -108,6 +110,8 @@ public class NPCDialog : MonoBehaviour
 
     public void Close()
     {
+        if (!open) return;
+
         open = false;
         ClearTextPage();
         gameObject.SetActive(false);

@@ -21,6 +21,8 @@ public class ChallengeGiver : MonoBehaviour
     private Coroutine despawnRoutine = null;
     private Transform player;
 
+    private bool isTalking = false;
+
     private void Awake()
     {
         Assert.IsNotNull(keyHint);
@@ -57,6 +59,9 @@ public class ChallengeGiver : MonoBehaviour
 
     private void Talk()
     {
+        if (isTalking) return;
+
+        isTalking = true;
         keyHint.enabled = false;
         dialog.Open();
     }
@@ -84,6 +89,17 @@ public class ChallengeGiver : MonoBehaviour
         yield return animator.AnimateDespawn();
         gameObject.SetActive(false);
         despawnRoutine = null;
+        isTalking = false;
         onConversationEnd.Invoke();
     }
+
+    // TODO NPC challenge ideas:
+    // Challenges:
+    // - Defeat X# of enemies of some type and with some spell within time limit
+    // - Survive wave without losing more than X health
+    // - Defeat X# of enemies without moving
+    // Rewards:
+    // - Currency bonus
+    // - Currency collect multiplier increase
+    // - Shop discounts
 }
