@@ -104,10 +104,9 @@ public class EnemySpawner : MonoBehaviour
         List<SpawnZone> activeSpawnZones = spawnZones.Where(spawner => spawner.IsSpawnable()).ToList();
         if (activeSpawnZones.Count == 0) return;
 
-        for (int i = 0; i < numEnemies; ++i)
+        for (int _ = 0; _ < numEnemies; ++_)
         {
-            int zoneIndex = Random.Range(0, activeSpawnZones.Count());
-            Vector3 spawnPoint = activeSpawnZones[zoneIndex].GetRandomPoint();
+            Vector3 spawnPoint = RandomSupport.RandomElement(activeSpawnZones).GetRandomPoint();
             SpawnAtPoint(type, spawnPoint, difficultyLevel);
         }
     }

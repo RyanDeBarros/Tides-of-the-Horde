@@ -5,28 +5,36 @@ using UnityEngine;
 using UnityEngine.Assertions;
 
 [Serializable]
-public class JSONChallenge
-{
-    public string statement;
-    public string challengeClass;
-    public float[] values;
-    public int difficulty;
-}
-
-[Serializable]
-public class JSONReward
-{
-    public string statement;
-    public string rewardClass;
-    public float[] values;
-    public int difficulty;
-}
-
-[Serializable]
 public class JSONChallengeList
 {
-    public List<JSONChallenge> challenges;
-    public List<JSONReward> rewards;
+    [Serializable]
+    public class Challenge
+    {
+        public string statement;
+        public string challengeClass;
+        public float[] values;
+        public int difficulty;
+    }
+
+    [Serializable]
+    public class Reward
+    {
+        public string statement;
+        public string rewardClass;
+        public float[] values;
+        public int difficulty;
+    }
+
+    [Serializable]
+    public class Weight
+    {
+        public int difficulty;
+        public float weight = 1f;
+    }
+
+    public List<Challenge> challenges;
+    public List<Reward> rewards;
+    public List<Weight> weights;
 }
 
 public interface IChallenge
@@ -47,13 +55,14 @@ public class ChallengeTracker : MonoBehaviour
 
     private class ChallengePerDifficulty
     {
-        public readonly List<JSONChallenge> challenges = new();
-        public readonly List<JSONReward> rewards = new();
+        public float weight = 1f;
+        public readonly List<JSONChallengeList.Challenge> challenges = new();
+        public readonly List<JSONChallengeList.Reward> rewards = new();
     }
 
     private Dictionary<int, ChallengePerDifficulty> challengeDictionary = new();
-    private JSONChallenge currentChallengeJSON = null;
-    private JSONReward currentRewardJSON = null;
+    private JSONChallengeList.Challenge currentChallengeJSON = null;
+    private JSONChallengeList.Reward currentRewardJSON = null;
     private IChallenge currentChallenge = null;
     private IReward currentReward = null;
 
@@ -72,6 +81,11 @@ public class ChallengeTracker : MonoBehaviour
                 challengeDictionary[reward.difficulty] = new();
             challengeDictionary[reward.difficulty].rewards.Add(reward);
         });
+        challengeList.weights.ForEach(weight => {
+            if (!challengeDictionary.ContainsKey(weight.difficulty))
+                challengeDictionary[weight.difficulty] = new();
+            challengeDictionary[weight.difficulty].weight = weight.weight;
+        });
         challengeDictionary = challengeDictionary.Where(kvp => kvp.Value.challenges.Count > 0 && kvp.Value.rewards.Count > 0).ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         Assert.IsTrue(challengeDictionary.Count > 0);
     }
@@ -81,10 +95,15 @@ public class ChallengeTracker : MonoBehaviour
         currentChallenge = null;
         currentReward = null;
 
-        int difficulty = 1; // TODO choose difficulty
-        ChallengePerDifficulty c = challengeDictionary[difficulty];
-        currentChallengeJSON = c.challenges[UnityEngine.Random.Range(0, c.challenges.Count - 1)];
-        currentRewardJSON = c.rewards[UnityEngine.Random.Range(0, c.rewards.Count - 1)];
+        ChallengePerDifficulty c = challengeDictionary[GetRandomDifficulty()];
+        currentChallengeJSON = RandomSupport.RandomElement(c.challenges);
+        currentRewardJSON = RandomSupport.RandomElement(c.rewards);
+    }
+
+    private int GetRandomDifficulty()
+    {
+        List<float> weights = challengeDictionary.Select(kvp => kvp.Value.weight).ToList();
+        return challengeDictionary.Keys.ElementAt(RandomSupport.GetWeightedIndex(weights));
     }
 
     public string GetChallengeStatement()

@@ -38,5 +38,19 @@
             "values": [300],
             "difficulty": 3
         }
+    ],
+    "weights": [
+        {
+            "difficulty": 1,
+            "weight": 1
+        },
+        {
+            "difficulty": 2,
+            "weight": 1
+        },
+        {
+            "difficulty": 3,
+            "weight": 1
+        }
     ]
 }
