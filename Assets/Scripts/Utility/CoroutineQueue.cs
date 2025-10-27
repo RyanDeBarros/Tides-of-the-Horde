@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,17 @@ public class CoroutineQueue : MonoBehaviour
         queue.Enqueue(coroutine);
         if (!isRunning)
             StartCoroutine(ProcessQueue());
+    }
+
+    public void RunAtEnd(Action action)
+    {
+        static IEnumerator Run(Action action)
+        {
+            action?.Invoke();
+            yield break;
+        }
+
+        AppendCoroutine(Run(action));
     }
 
     private IEnumerator ProcessQueue()

@@ -7,77 +7,20 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
-using static UnityEngine.EventSystems.EventTrigger;
-
-public class DynamicTextOptions
-{
-    public string text;
-    public bool left_align = true;
-    public bool clickable = false;
-    public float extraVerticalSpacing = 0f;
-}
-
-public enum DialogSpeaker
-{
-    ChallengeGiver,
-    PlayerClickable
-}
-
-public class DynamicTextPage
-{
-    public float extraVerticalSpacing = 0f;
-
-    private readonly List<DynamicTextOptions> options = new();
-    private DialogSpeaker speaker = DialogSpeaker.ChallengeGiver;
-
-    public DynamicTextPage(float extraVerticalSpacing)
-    {
-        this.extraVerticalSpacing = extraVerticalSpacing;
-    }
-
-    public IReadOnlyList<DynamicTextOptions> GetOptions()
-    {
-        return options.AsReadOnly();
-    }
-
-    public void AddText(string text, DialogSpeaker speaker)
-    {
-        options.Add(new()
-        {
-            text = text,
-            left_align = speaker switch { DialogSpeaker.ChallengeGiver => true, DialogSpeaker.PlayerClickable => false, _ => true },
-            clickable = speaker switch { DialogSpeaker.ChallengeGiver => false, DialogSpeaker.PlayerClickable => true, _ => false },
-            extraVerticalSpacing = speaker == this.speaker ? 0f : extraVerticalSpacing
-        });
-        this.speaker = speaker;
-    }
-}
 
 [Serializable]
-public class JSONDialogOption : ISerializationCallbackReceiver
+public class DialogOption
 {
-    public DialogSpeaker dialogSpeaker = DialogSpeaker.ChallengeGiver;
-    [SerializeField] private string speaker;
     public string text;
-
-    public void OnAfterDeserialize()
-    {
-        if (!Enum.TryParse(speaker, true, out dialogSpeaker))
-            throw new Exception($"Dialog Speaker \"{speaker}\" does not correspond to a known enum value.");
-    }
-
-    public void OnBeforeSerialize() { }
+    public bool clickable = false;
+    public float topPadding = 0f;
+    public float halign = 0f;
 }
 
 [SerializeField]
-public class JSONDialogPage
+public class DialogPage
 {
-    public List<JSONDialogOption> options;
-
-    public void AddToPage(DynamicTextPage page)
-    {
-        options.ForEach(option => { page.AddText(option.text, option.dialogSpeaker); });
-    }
+    public List<DialogOption> options;
 }
 
 public class NPCDialog : MonoBehaviour
@@ -86,9 +29,8 @@ public class NPCDialog : MonoBehaviour
     [SerializeField] private TextAsset testDialog;
 
     [Header("Text Parameters")]
-    [SerializeField] private float typeSpeed = 0.05f;
+    [SerializeField] private float typingSeconds = 0.02f;
     [SerializeField] private float verticalSpacing = 10f;
-    [SerializeField] private float speakerSwitchSpacing = 10f;
     [SerializeField] private float fontSize = 24;
     [SerializeField] private Color textColor = Color.white;
     [SerializeField] private Color textHoverColor = Color.blue;
@@ -103,7 +45,8 @@ public class NPCDialog : MonoBehaviour
     private bool open = false;
 
     private readonly List<TextMeshProUGUI> textComponents = new();
-    private int numberOfClickableTexts = 0;
+    private readonly List<Button> textButtons = new();
+    private readonly List<OnHover> textOnHovers = new();
     private CoroutineQueue typewriterAnimationQueue;
 
     private void Awake()
@@ -136,7 +79,7 @@ public class NPCDialog : MonoBehaviour
         spellManager.enabled = false;
         playerMovement.enabled = false;
 
-        SetTextPageFromJSON(JsonUtility.FromJson<JSONDialogPage>(testDialog.text));
+        SetTextPage(JsonUtility.FromJson<DialogPage>(testDialog.text));
     }
 
     public void Close()
@@ -152,73 +95,73 @@ public class NPCDialog : MonoBehaviour
         onClose.Invoke();
     }
 
-    private void SetTextPageFromJSON(JSONDialogPage page)
-    {
-        DynamicTextPage p = new(speakerSwitchSpacing);
-        page.AddToPage(p);
-        SetTextPage(p);
-    }
-
-    private void SetTextPage(DynamicTextPage page)
+    private void SetTextPage(DialogPage page)
     {
         ClearTextPage();
-        foreach (var option in page.GetOptions())
-            AppendText(option);
+        page.options.ForEach(option => AppendText(option));
+        typewriterAnimationQueue.RunAtEnd(() => {
+            textButtons.ForEach(button => button.enabled = true);
+            textOnHovers.ForEach(onHover => onHover.enabled = true);
+        });
     }
 
     private void ClearTextPage()
     {
         textComponents.ForEach(t => Destroy(t));
         textComponents.Clear();
-        numberOfClickableTexts = 0;
+        textButtons.Clear();
+        textOnHovers.Clear();
     }
 
-    private void AppendText(DynamicTextOptions options)
+    private void AppendText(DialogOption options)
     {
         typewriterAnimationQueue.AppendCoroutine(AddText(options));
     }
 
-    private IEnumerator AddText(DynamicTextOptions options)
+    private IEnumerator AddText(DialogOption option)
     {
         GameObject go = new("TXT", typeof(RectTransform));
         RectTransform rect = go.GetComponent<RectTransform>();
         rect.SetParent(textArea, false);
 
-        rect.pivot = new(options.left_align ? 0f : 1f, 1f);
-        rect.anchorMin = new(options.left_align ? 0f : 1f, 1f);
-        rect.anchorMax = new(options.left_align ? 0f : 1f, 1f);
+        rect.pivot = new(option.halign, 1f);
+        rect.anchorMin = new(option.halign, 1f);
+        rect.anchorMax = new(option.halign, 1f);
         rect.anchoredPosition = Vector2.zero;
 
         if (textComponents.Count > 0)
         {
             RectTransform lastRect = textComponents.Last().GetComponent<RectTransform>();
-            rect.anchoredPosition += new Vector2(0f, lastRect.anchoredPosition.y - lastRect.sizeDelta.y - verticalSpacing - options.extraVerticalSpacing);
+            rect.anchoredPosition += new Vector2(0f, lastRect.anchoredPosition.y - lastRect.sizeDelta.y - verticalSpacing - option.topPadding);
         }
 
         TextMeshProUGUI textComponent = go.AddComponent<TextMeshProUGUI>();
-        textComponent.alignment = options.left_align ? TextAlignmentOptions.MidlineLeft : TextAlignmentOptions.MidlineRight;
         textComponent.fontSize = fontSize;
         textComponent.font = font;
         textComponent.color = textColor;
 
-        if (options.clickable)
+        if (option.clickable)
         {
             Button button = go.AddComponent<Button>();
             button.targetGraphic = textComponent;
-            int clickIndex = numberOfClickableTexts;
-            ++numberOfClickableTexts;
+            int clickIndex = textButtons.Count;
             button.onClick.AddListener(() => OnTextClicked(clickIndex));
+            button.enabled = false;
+            textButtons.Add(button);
 
             OnHover onHover = go.AddComponent<OnHover>();
             onHover.onHoverEnter.AddListener(() => { textComponent.color = textHoverColor; });
             onHover.onHoverExit.AddListener(() => { textComponent.color = textColor; });
+            onHover.enabled = false;
+            textOnHovers.Add(onHover);
         }
 
-        textComponent.SetText(options.text);
+        textComponent.SetText(option.text);
+        textComponent.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, textArea.rect.width);
         textComponent.ForceMeshUpdate();
-        rect.sizeDelta = new(textComponent.preferredWidth, textComponent.preferredHeight);
+        rect.sizeDelta = new(textComponent.renderedWidth, textComponent.renderedHeight);
 
-        yield return AnimateTypewriter(textComponent, options.text);
+        yield return AnimateTypewriter(textComponent, option.text);
         textComponents.Add(textComponent);
     }
 
@@ -237,7 +180,7 @@ public class NPCDialog : MonoBehaviour
             if (!insideTag && c != '>' && c != '<' && !char.IsWhiteSpace(c))
             {
                 textComponent.SetText(sb.ToString());
-                yield return new WaitForSeconds(typeSpeed);
+                yield return new WaitForSeconds(typingSeconds);
             }
         }
 

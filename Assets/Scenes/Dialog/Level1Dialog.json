@@ -1,16 +1,22 @@
 {
     "options": [
         {
-            "speaker": "ChallengeGiver",
-            "text": "Welcome!"
+            "text": "Welcome to <i>The Valley</i>!"
         },
         {
-            "speaker": "ChallengeGiver",
-            "text": "More text ..."
+            "text": "[Add lore...]"
         },
         {
-            "speaker": "PlayerClickable",
-            "text": "--> Reply"
+            "text": "Complete this challenge and I'll reward you:"
+        },
+        {
+            "text": "[Add challenge...]",
+            "halign": 0.5
+        },
+        {
+            "text": "--> Reply",
+            "halign": 1.0,
+            "clickable": true
         }
     ]
 }
