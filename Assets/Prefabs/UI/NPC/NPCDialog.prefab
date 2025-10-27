@@ -127,5 +127,8 @@ MonoBehaviour:
   textArea: {fileID: 4706183446791641240}
   typeSpeed: 0.05
   verticalSpacing: 10
+  speakerSwitchSpacing: 10
   fontSize: 24
+  textColor: {r: 1, g: 1, b: 1, a: 1}
+  textHoverColor: {r: 0, g: 0.66365194, b: 1, a: 1}
   font: {fileID: 11400000, guid: 8a89fa14b10d46a99122fd4f73fca9a2, type: 2}

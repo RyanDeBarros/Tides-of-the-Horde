@@ -6,7 +6,6 @@ using System.Text;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DynamicTextOptions
@@ -56,6 +55,8 @@ public class NPCDialog : MonoBehaviour
     [SerializeField] private float verticalSpacing = 10f;
     [SerializeField] private float speakerSwitchSpacing = 10f;
     [SerializeField] private float fontSize = 24;
+    [SerializeField] private Color textColor = Color.white;
+    [SerializeField] private Color textHoverColor = Color.blue;
     [SerializeField] private TMP_FontAsset font;
 
     public Action onClose;
@@ -146,11 +147,9 @@ public class NPCDialog : MonoBehaviour
         RectTransform rect = go.GetComponent<RectTransform>();
         rect.SetParent(textArea, false);
 
-        rect.pivot = new(0.5f, 1f);
-        rect.anchorMin = new(0f, 1f);
-        rect.anchorMax = new(1f, 1f);
-        rect.offsetMin = new(0f, rect.offsetMin.y);
-        rect.offsetMax = new(0f, rect.offsetMax.y);
+        rect.pivot = new(options.left_align ? 0f : 1f, 1f);
+        rect.anchorMin = new(options.left_align ? 0f : 1f, 1f);
+        rect.anchorMax = new(options.left_align ? 0f : 1f, 1f);
         rect.anchoredPosition = Vector2.zero;
 
         if (textComponents.Count > 0)
@@ -163,6 +162,7 @@ public class NPCDialog : MonoBehaviour
         textComponent.alignment = options.left_align ? TextAlignmentOptions.MidlineLeft : TextAlignmentOptions.MidlineRight;
         textComponent.fontSize = fontSize;
         textComponent.font = font;
+        textComponent.color = textColor;
 
         if (options.clickable)
         {
@@ -171,20 +171,18 @@ public class NPCDialog : MonoBehaviour
             int clickIndex = numberOfClickableTexts;
             ++numberOfClickableTexts;
             button.onClick.AddListener(() => OnTextClicked(clickIndex));
+
+            OnHover onHover = go.AddComponent<OnHover>();
+            onHover.onHoverEnter.AddListener(() => { textComponent.color = textHoverColor; });
+            onHover.onHoverExit.AddListener(() => { textComponent.color = textColor; });
         }
 
         textComponent.SetText(options.text);
-        FitTextHeight(textComponent);
+        textComponent.ForceMeshUpdate();
+        rect.sizeDelta = new(textComponent.preferredWidth, textComponent.preferredHeight);
+
         yield return AnimateTypewriter(textComponent, options.text);
         textComponents.Add(textComponent);
-    }
-
-    private void FitTextHeight(TextMeshProUGUI textComponent)
-    {
-        textComponent.ForceMeshUpdate();
-        float height = textComponent.preferredHeight;
-        RectTransform rect = textComponent.GetComponent<RectTransform>();
-        rect.sizeDelta = new(rect.sizeDelta.x, height);
     }
 
     private IEnumerator AnimateTypewriter(TextMeshProUGUI textComponent, string text)
