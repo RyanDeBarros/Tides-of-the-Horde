@@ -782,6 +782,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 976305659377187099, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+      propertyPath: typingSeconds
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1839483178472882230, guid: 9133876c6c261edbcb084a122361753d, type: 3}
       propertyPath: playerHealth
       value: 

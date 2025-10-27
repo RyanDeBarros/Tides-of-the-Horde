@@ -30,6 +30,6 @@ public class ChallengeGiverAnimator : MonoBehaviour
         while (!animator.GetCurrentAnimatorStateInfo(0).IsName(despawnTrigger))
             yield return null;
 
-        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length * 0.99f);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
     }
 }

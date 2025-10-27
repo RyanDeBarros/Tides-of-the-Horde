@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textArea: {fileID: 4706183446791641240}
   dialogFile: {fileID: 4900000, guid: 88c33012100681341945dd32be12fd1d, type: 3}
-  typingSeconds: 0.02
+  typingSeconds: 0.01
   verticalSpacing: 10
   fontSize: 16
   textColor: {r: 0, g: 0, b: 0, a: 1}

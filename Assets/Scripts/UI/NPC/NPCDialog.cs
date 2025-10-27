@@ -32,7 +32,7 @@ public class NPCDialog : MonoBehaviour
     [SerializeField] private TextAsset dialogFile;
 
     [Header("Text Parameters")]
-    [SerializeField] private float typingSeconds = 0.02f;
+    [SerializeField] private float typingSeconds = 0.01f;
     [SerializeField] private float verticalSpacing = 10f;
     [SerializeField] private float fontSize = 16;
     [SerializeField] private Color textColor = Color.white;
