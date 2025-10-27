@@ -11,7 +11,11 @@
             "topPadding": 10.0
         },
         {
-            "text": "[Add challenge...]",
+            "challenge": true,
+            "halign": 0.5
+        },
+        {
+            "reward": true,
             "halign": 0.5
         },
         {

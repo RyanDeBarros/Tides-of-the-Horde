@@ -20,6 +20,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private TextAsset waveFile;
     [SerializeField] private ShopUI shopUI;
     [SerializeField] private ChallengeGiver challengeGiver;
+    [SerializeField] private ChallengeTracker challengeTracker;
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
@@ -46,6 +47,7 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(shopUI);
         Assert.IsNotNull(challengeGiver);
         challengeGiver.onConversationEnd.AddListener(StartWaves);
+        Assert.IsNotNull(challengeTracker);
 
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
@@ -140,7 +142,10 @@ public class EnemySpawner : MonoBehaviour
             shopUI.RefreshOptions();
         }
         else
+        {
+            challengeTracker.RewardIfSuccess();
             uiController.HideUI();
+        }
     }
 
     private bool DoEnemiesRemain()

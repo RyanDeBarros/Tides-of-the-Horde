@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1100661034436141876}
   - component: {fileID: 3581564894138012485}
+  - component: {fileID: 3659562905071857450}
   - component: {fileID: 1616763178390739316}
   m_Layer: 0
-  m_Name: ChallengeGiver
+  m_Name: Challenger
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,6 +57,19 @@ MonoBehaviour:
   onConversationEnd:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3659562905071857450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 906993677329779174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094949f5dbb1e12438193c3b26ffa79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  challengeFile: {fileID: 4900000, guid: 393784276da10b24f87ff2ad9717f6e6, type: 3}
 --- !u!136 &1616763178390739316
 CapsuleCollider:
   m_ObjectHideFlags: 0

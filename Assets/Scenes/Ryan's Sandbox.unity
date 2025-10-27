@@ -362,6 +362,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &432315620 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3659562905071857450, guid: 40ebbcb2cff31f2409c04f6486f28aa1, type: 3}
+  m_PrefabInstance: {fileID: 667541516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 094949f5dbb1e12438193c3b26ffa79d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &436087608 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2302053948118948893, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
@@ -394,7 +405,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 906993677329779174, guid: 40ebbcb2cff31f2409c04f6486f28aa1, type: 3}
       propertyPath: m_Name
-      value: ChallengeGiver
+      value: Challenger
       objectReference: {fileID: 0}
     - target: {fileID: 1100661034436141876, guid: 40ebbcb2cff31f2409c04f6486f28aa1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -830,6 +841,10 @@ PrefabInstance:
       propertyPath: challengeGiver
       value: 
       objectReference: {fileID: 310567764}
+    - target: {fileID: 1425429705884659240, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
+      propertyPath: challengeTracker
+      value: 
+      objectReference: {fileID: 432315620}
     - target: {fileID: 3804423857881519981, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
       propertyPath: m_Name
       value: EnemySpawner

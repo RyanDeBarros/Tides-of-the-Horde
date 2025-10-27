@@ -16,6 +16,8 @@ public class DialogOption
     public string clickResponse;
     public float topPadding = 0f;
     public float halign = 0f;
+    public bool challenge = false;
+    public bool reward = false;
 }
 
 [SerializeField]
@@ -27,7 +29,7 @@ public class DialogPage
 public class NPCDialog : MonoBehaviour
 {
     [SerializeField] private RectTransform textArea;
-    [SerializeField] private TextAsset testDialog;
+    [SerializeField] private TextAsset dialogFile;
 
     [Header("Text Parameters")]
     [SerializeField] private float typingSeconds = 0.02f;
@@ -42,6 +44,8 @@ public class NPCDialog : MonoBehaviour
     private new PlayerCamera camera;
     private SpellManager spellManager;
     private PlayerMovement playerMovement;
+
+    private ChallengeTracker challengeTracker;
 
     private bool open = false;
 
@@ -58,6 +62,7 @@ public class NPCDialog : MonoBehaviour
         camera = FindObjectsByType<PlayerCamera>(FindObjectsSortMode.None).GetUniqueElement();
         spellManager = FindObjectsByType<SpellManager>(FindObjectsSortMode.None).GetUniqueElement();
         playerMovement = FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None).GetUniqueElement();
+        challengeTracker = FindObjectsByType<ChallengeTracker>(FindObjectsSortMode.None).GetUniqueElement();
 
         typewriterAnimationQueue = gameObject.AddComponent<CoroutineQueue>();
 
@@ -74,7 +79,8 @@ public class NPCDialog : MonoBehaviour
         spellManager.enabled = false;
         playerMovement.enabled = false;
 
-        SetTextPage(JsonUtility.FromJson<DialogPage>(testDialog.text));
+        challengeTracker.SelectRandomChallenge();
+        SetTextPage(JsonUtility.FromJson<DialogPage>(dialogFile.text));
     }
 
     public void Close()
@@ -134,12 +140,18 @@ public class NPCDialog : MonoBehaviour
         if (option.clickable)
             MakeTextClickable(textComponent, option.clickResponse);
 
-        textComponent.SetText(option.text);
+        string text = option.text;
+        if (option.challenge)
+            text = challengeTracker.GetChallengeStatement() ?? text;
+        if (option.reward)
+            text = challengeTracker.GetRewardStatement() ?? text;
+        
+        textComponent.SetText(text);
         textComponent.rectTransform.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, textArea.rect.width);
         textComponent.ForceMeshUpdate();
         rect.sizeDelta = new(textComponent.renderedWidth, textComponent.renderedHeight);
 
-        yield return AnimateTypewriter(textComponent, option.text);
+        yield return AnimateTypewriter(textComponent, text);
         textComponents.Add(textComponent);
     }
 
@@ -182,8 +194,16 @@ public class NPCDialog : MonoBehaviour
 
     private void OnTextClicked(string clickResponse)
     {
-        // TODO
-        Debug.Log($"Clicked text {clickResponse}");
+        Dictionary<string, Action> actions = new(StringComparer.InvariantCultureIgnoreCase) {
+            ["accept"] = challengeTracker.AcceptChallenge,
+            ["decline"] = challengeTracker.DeclineChallenge,
+        };
+
+        if (actions.TryGetValue(clickResponse, out Action action))
+            action();
+        else
+            Debug.LogError($"Unrecognized click response: {clickResponse}");
+
         Close();
     }
 }

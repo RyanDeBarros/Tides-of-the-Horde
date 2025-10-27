@@ -1,0 +1,42 @@
+{
+    "challenges": [
+        {
+            "statement": "<color=blue>Survive</color> the Tide starting with <color=red>50% HP</color>",
+            "challengeClass": "C_StartAtHP",
+            "values": [0.5],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide starting with <color=red>30% HP</color>",
+            "challengeClass": "C_StartAtHP",
+            "values": [0.3],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide starting with <color=red>10% HP</color>",
+            "challengeClass": "C_StartAtHP",
+            "values": [0.1],
+            "difficulty": 3
+        }
+    ],
+    "rewards": [
+        {
+            "statement": "Receive <color=green>100</color> crystals",
+            "rewardClass": "CR_CurrencyBonus",
+            "values": [100],
+            "difficulty": 1
+        },
+        {
+            "statement": "Receive <color=green>200</color> crystals",
+            "rewardClass": "CR_CurrencyBonus",
+            "values": [200],
+            "difficulty": 2
+        },
+        {
+            "statement": "Receive <color=green>300</color> crystals",
+            "rewardClass": "CR_CurrencyBonus",
+            "values": [300],
+            "difficulty": 3
+        }
+    ]
+}
