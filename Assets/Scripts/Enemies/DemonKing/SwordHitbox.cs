@@ -61,22 +61,14 @@ public class SwordHitbox : MonoBehaviour
     // Animation Events
     public void EnableHitbox()
     {
-        debugging("EnableHitbox");
         hitThisSwing.Clear();
         attacking = true;
     }
 
     public void DisableHitbox()
     {
-        debugging("DisableHitbox");
         attacking = false;
         hitThisSwing.Clear();
-    }
-
-    // Optional Debugging
-    private void debugging(string msg)
-    {
-        Debug.Log("[SwordHitbox] " + msg);
     }
 
     // Draw wireframe in editor

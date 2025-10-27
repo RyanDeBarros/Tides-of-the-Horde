@@ -61,15 +61,19 @@ public class BishopDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
     private void Start()
     {
         DifficultyStats stats = difficultyStatsList.stats[System.Math.Clamp(difficultyLevel - 1, 0, difficultyStatsList.stats.Count - 1)];
+
         rangedAI.moveSpeed = stats.moveSpeed;
         rangedAI.stoppingDistance = stats.stoppingDistance;
         rangedAI.attackRange = stats.attackRange;
         rangedAI.attackCooldown = stats.attackCooldown;
         rangedAI.fireballSpeed = stats.fireballSpeed;
         rangedAI.damagePerFireball = stats.damagePerFireball;
+        
         health.maxHealth = stats.maxHealth;
+        
         bounceBack.resistance = stats.bounceBackResistance;
         bounceBack.duration = stats.bounceBackDuration;
+        
         reward.reward = stats.reward;
     }
 

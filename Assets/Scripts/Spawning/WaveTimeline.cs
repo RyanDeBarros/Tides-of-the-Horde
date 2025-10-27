@@ -9,6 +9,7 @@ public enum EnemyType
     Skeleton,
     Bishop,
     Orc,
+    DemonKing,
 }
 
 [System.Serializable]
@@ -24,10 +25,12 @@ public class WaveTimeline
         public float spawnRate = 1f;
         public int difficulty = 0;
         public bool spawnInitial = false;
+        public bool spawnOnce = false;
 
         private float spawnDebt = 0f;
         private float elapsed = 0f;
         private int toSpawn = 0;
+        private bool spawnedOnce = false;
 
         public void OnAfterDeserialize()
         {
@@ -36,6 +39,9 @@ public class WaveTimeline
 
             if (spawnInitial)
                 spawnDebt = 1f;
+
+            if (spawnOnce)
+                duration = 0.001f;
         }
 
         public void OnBeforeSerialize() { }
@@ -44,17 +50,30 @@ public class WaveTimeline
         {
             if (waveTimeElapsed > timeOffset)
             {
-                float elapsedSinceOffset = Mathf.Min(waveTimeElapsed - timeOffset, duration);
-                float delta = elapsedSinceOffset - elapsed;
-                if (delta > 0f)
+                if (spawnOnce)
                 {
-                    elapsed = elapsedSinceOffset;
-                    spawnDebt += delta;
-                    toSpawn = (int)(spawnDebt * spawnRate);
-                    spawnDebt -= toSpawn / spawnRate;
+                    if (!spawnedOnce)
+                    {
+                        spawnedOnce = true;
+                        toSpawn = 1;
+                    }
+                    else
+                        toSpawn = 0;
                 }
                 else
-                    toSpawn = 0;
+                {
+                    float elapsedSinceOffset = Mathf.Min(waveTimeElapsed - timeOffset, duration);
+                    float delta = elapsedSinceOffset - elapsed;
+                    if (delta > 0f)
+                    {
+                        elapsed = elapsedSinceOffset;
+                        spawnDebt += delta;
+                        toSpawn = (int)(spawnDebt * spawnRate);
+                        spawnDebt -= toSpawn / spawnRate;
+                    }
+                    else
+                        toSpawn = 0;
+                }
             }
             else
                 toSpawn = 0;

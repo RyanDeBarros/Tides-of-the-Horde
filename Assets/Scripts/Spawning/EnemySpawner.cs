@@ -26,6 +26,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject skeletonPrefab;
     [SerializeField] private GameObject bishopPrefab;
     [SerializeField] private GameObject orcPrefab;
+    [SerializeField] private GameObject demonKingPrefab;
 
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
@@ -52,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
         Assert.IsNotNull(orcPrefab);
+        Assert.IsNotNull(demonKingPrefab);
     }
 
     private void Start()
@@ -127,6 +129,7 @@ public class EnemySpawner : MonoBehaviour
             EnemyType.Skeleton => skeletonPrefab,
             EnemyType.Bishop => bishopPrefab,
             EnemyType.Orc => orcPrefab,
+            EnemyType.DemonKing => demonKingPrefab,
             _ => null
         };
         Assert.IsNotNull(prefab);
