@@ -1,0 +1,16 @@
+{
+    "options": [
+        {
+            "speaker": "ChallengeGiver",
+            "text": "Welcome!"
+        },
+        {
+            "speaker": "ChallengeGiver",
+            "text": "More text ..."
+        },
+        {
+            "speaker": "PlayerClickable",
+            "text": "--> Reply"
+        }
+    ]
+}
