@@ -73,6 +73,24 @@
             "rewardClass": "CR_CurrencyMultiplierBoost",
             "values": [1.0],
             "difficulty": 3
+        },
+        {
+            "statement": "<color=green>x10%</color> shop discount",
+            "rewardClass": "CR_ShopDiscount",
+            "values": [0.10],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=green>x25%</color> shop discount",
+            "rewardClass": "CR_ShopDiscount",
+            "values": [0.25],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=green>x50%</color> shop discount",
+            "rewardClass": "CR_ShopDiscount",
+            "values": [0.50],
+            "difficulty": 3
         }
     ],
     "weights": [
