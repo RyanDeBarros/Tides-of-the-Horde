@@ -124,6 +124,7 @@ MonoBehaviour:
   speed: 10
   damage: 10
   lifetime: 3
+  explosionFX: {fileID: 4979637674263650540, guid: b8bcb63e9438b7148bb2c273d333ba06, type: 3}
 --- !u!54 &7471262740573621895
 Rigidbody:
   m_ObjectHideFlags: 0
