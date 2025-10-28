@@ -8,13 +8,13 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
     public class DifficultyStats
     {
         // DemonKingMovementAI
-        public float moveSpeed = 5f;
-        public float chaseRange = 10f;
+        public float moveSpeed = 10f;
+        public float chaseRange = 30f;
 
-        public float sinkSpeed = 3f; // Speed at which boss sinks into ground
+        public float sinkSpeed = 6f; // Speed at which boss sinks into ground
         public float sinkDepth = 5f; // How far underground to go
-        public float teleportDuration = 2f; // Total time underground
-        public float behindPlayerDistance = 3f; // Distance behind player to spawn
+        public float teleportDuration = 3f; // Total time underground
+        public float behindPlayerDistance = 4f; // Distance behind player to spawn
 
         // SwordHitbox
         public int damage = 5;
@@ -72,9 +72,10 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         Assert.IsNotNull(reward);
     }
 
-    // TODO move from Start() to SetDifficultyLevel() - add GetDifficultyLevel()
-    private void Start()
+    public void SetDifficultyLevel(int level)
     {
+        difficultyLevel = level;
+
         DifficultyStats stats = difficultyStatsList.stats[System.Math.Clamp(difficultyLevel - 1, 0, difficultyStatsList.stats.Count - 1)];
 
         movement.moveSpeed = stats.moveSpeed;
@@ -98,8 +99,8 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         reward.reward = stats.reward;
     }
 
-    public void SetDifficultyLevel(int level)
+    public int GetDifficultyLevel()
     {
-        difficultyLevel = level;
+        return difficultyLevel;
     }
 }

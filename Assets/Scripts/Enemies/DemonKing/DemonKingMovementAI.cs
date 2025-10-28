@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 [RequireComponent(typeof(CharacterController))]
 public class DemonKingMovementAI : MonoBehaviour
@@ -29,23 +30,32 @@ public class DemonKingMovementAI : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        if (!animator) animator = GetComponentInChildren<Animator>();
-        if (!player) player = GameObject.FindGameObjectWithTag("Player")?.transform;
+        Assert.IsNotNull(controller);
+        
+        if (!animator)
+            animator = GetComponentInChildren<Animator>();
+        Assert.IsNotNull(animator);
+
+        if (!player)
+        {
+            GameObject go = GameObject.FindGameObjectWithTag("Player");
+            if (go != null)
+                player = go.transform;
+        }
+        Assert.IsNotNull(player);
 
         // Make sure plane VFX is hidden at start
-        if (planeVFX) planeVFX.SetActive(false);
+        Assert.IsNotNull(planeVFX);
+        planeVFX.SetActive(false);
 
         // Hook up to health threshold event
-        Health healthComponent = GetComponent<Health>();
-        if (healthComponent != null)
-        {
+        if (TryGetComponent(out Health healthComponent))
             healthComponent.onHealthThresholdReached.AddListener(StartTeleportSequence);
-        }
     }
 
     void Update()
     {
-        if (!player || movementLocked || isTeleporting)
+        if (movementLocked || isTeleporting)
         {
             animator.SetFloat("Speed", 0f);
             return;
@@ -66,7 +76,7 @@ public class DemonKingMovementAI : MonoBehaviour
         direction.y = 0;
         direction.Normalize();
 
-        Vector3 movement = direction * moveSpeed * Time.deltaTime;
+        Vector3 movement = moveSpeed * Time.deltaTime * direction;
 
         if (direction != Vector3.zero)
             transform.rotation = Quaternion.LookRotation(direction);
@@ -80,7 +90,7 @@ public class DemonKingMovementAI : MonoBehaviour
     // Called by TargetDetector (UnityEvent)
     public void TriggerRandomAttack()
     {
-        if (!animator || isTeleporting) return;
+        if (isTeleporting) return;
 
         movementLocked = true;
         animator.SetFloat("Speed", 0f);
@@ -117,7 +127,7 @@ public class DemonKingMovementAI : MonoBehaviour
         controller.enabled = false;
 
         // Show plane VFX
-        if (planeVFX) planeVFX.SetActive(true);
+        planeVFX.SetActive(true);
 
         // Store original position
         originalPosition = transform.position;
@@ -177,6 +187,5 @@ public class DemonKingMovementAI : MonoBehaviour
         // Unlock movement
         isTeleporting = false;
         movementLocked = false;
-
     }
 }

@@ -66,28 +66,30 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
         Assert.IsNotNull(reward);
     }
 
-    private void Start()
-    {
-        DifficultyStats stats = difficultyStatsList.stats[System.Math.Clamp(difficultyLevel - 1, 0, difficultyStatsList.stats.Count - 1)];
-        
-        movement.moveSpeed = stats.moveSpeed;
-        movement.chaseRange = stats.chaseRange;
-        
-        detector.attackRange = stats.attackRange;
-        detector.attackInterval = stats.attackInterval;
-        
-        health.maxHealth = stats.maxHealth;
-        
-        bounceBack.resistance = stats.bounceBackResistance;
-        bounceBack.duration = stats.bounceBackDuration;
-        
-        melee.damage = stats.damage;
-        
-        reward.reward = stats.reward;
-    }
-
     public void SetDifficultyLevel(int level)
     {
         difficultyLevel = level;
+
+        DifficultyStats stats = difficultyStatsList.stats[System.Math.Clamp(difficultyLevel - 1, 0, difficultyStatsList.stats.Count - 1)];
+
+        movement.moveSpeed = stats.moveSpeed;
+        movement.chaseRange = stats.chaseRange;
+
+        detector.attackRange = stats.attackRange;
+        detector.attackInterval = stats.attackInterval;
+
+        health.maxHealth = stats.maxHealth;
+
+        bounceBack.resistance = stats.bounceBackResistance;
+        bounceBack.duration = stats.bounceBackDuration;
+
+        melee.damage = stats.damage;
+
+        reward.reward = stats.reward;
+    }
+
+    public int GetDifficultyLevel()
+    {
+        return difficultyLevel;
     }
 }
