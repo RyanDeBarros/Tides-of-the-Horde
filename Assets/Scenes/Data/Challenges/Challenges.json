@@ -17,6 +17,24 @@
             "challengeClass": "C_StartAtHP",
             "values": [0.1],
             "difficulty": 3
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>+1</color> stronger enemies",
+            "challengeClass": "C_EnemyDifficultyIncrease",
+            "values": [1],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>+2</color> stronger enemies",
+            "challengeClass": "C_EnemyDifficultyIncrease",
+            "values": [2],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>+3</color> stronger enemies",
+            "challengeClass": "C_EnemyDifficultyIncrease",
+            "values": [3],
+            "difficulty": 3
         }
     ],
     "rewards": [
