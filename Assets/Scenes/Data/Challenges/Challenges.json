@@ -111,13 +111,13 @@
             "difficulty": 3
         },
         {
-            "statement": "Add <color=green>25%</color> crystal multiplier",
+            "statement": "Add <color=green>25%</color> crystal gain multiplier",
             "rewardClass": "CR_CurrencyMultiplierBoost",
             "values": [0.25],
             "difficulty": 1
         },
         {
-            "statement": "Add <color=green>50%</color> crystal multiplier",
+            "statement": "Add <color=green>50%</color> crystal gain multiplier",
             "rewardClass": "CR_CurrencyMultiplierBoost",
             "values": [0.5],
             "difficulty": 2
