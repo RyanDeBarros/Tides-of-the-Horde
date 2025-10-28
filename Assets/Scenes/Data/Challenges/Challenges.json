@@ -71,6 +71,24 @@
             "challengeClass": "C_CurrencyMultiplierHandicap",
             "values": [0.75],
             "difficulty": 3
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>40%</color> current max health",
+            "challengeClass": "C_SurviveWithMinHP",
+            "values": [0.40],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>70%</color> current max health",
+            "challengeClass": "C_SurviveWithMinHP",
+            "values": [0.70],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>90%</color> current max health",
+            "challengeClass": "C_SurviveWithMinHP",
+            "values": [0.90],
+            "difficulty": 3
         }
     ],
     "rewards": [
