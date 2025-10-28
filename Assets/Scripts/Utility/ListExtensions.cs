@@ -35,7 +35,7 @@ public static class ListExtensions
 
         for (int k = 0; k < count; k++)
         {
-            int index = RandomSupport.GetWeightedIndex(tempWeights);
+            int index = tempWeights.GetWeightedIndex();
             result.Add(tempList[index]);
             tempList.RemoveAt(index);
             tempWeights.RemoveAt(index);
@@ -48,5 +48,30 @@ public static class ListExtensions
     {
         Assert.IsTrue(array.Length == 1);
         return array[0];
+    }
+
+    public static T GetRandomElement<T>(this List<T> list)
+    {
+        return list[new System.Random().Next(list.Count)];
+    }
+
+    public static int GetWeightedIndex(this List<float> weights)
+    {
+        if (weights == null || weights.Count == 0)
+            throw new System.ArgumentException("Weights list cannot be null or empty.");
+
+        float totalWeight = weights.Sum();
+        if (totalWeight <= 0f)
+            throw new System.ArgumentException("The total weight must be positive.");
+
+        float randomValue = (float)(new System.Random().NextDouble() * totalWeight);
+        float cumulative = 0f;
+        for (int i = 0; i < weights.Count; i++)
+        {
+            cumulative += weights[i];
+            if (randomValue < cumulative)
+                return i;
+        }
+        return weights.Count - 1;
     }
 }

@@ -96,14 +96,14 @@ public class ChallengeTracker : MonoBehaviour
         currentReward = null;
 
         ChallengePerDifficulty c = challengeDictionary[GetRandomDifficulty()];
-        currentChallengeJSON = RandomSupport.RandomElement(c.challenges);
-        currentRewardJSON = RandomSupport.RandomElement(c.rewards);
+        currentChallengeJSON = c.challenges.GetRandomElement();
+        currentRewardJSON = c.rewards.GetRandomElement();
     }
 
     private int GetRandomDifficulty()
     {
         List<float> weights = challengeDictionary.Select(kvp => kvp.Value.weight).ToList();
-        return challengeDictionary.Keys.ElementAt(RandomSupport.GetWeightedIndex(weights));
+        return challengeDictionary.Keys.ElementAt(weights.GetWeightedIndex());
     }
 
     public string GetChallengeStatement()

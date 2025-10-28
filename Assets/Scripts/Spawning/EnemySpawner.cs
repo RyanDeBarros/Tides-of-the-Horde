@@ -111,7 +111,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int _ = 0; _ < numEnemies; ++_)
         {
-            Vector3 spawnPoint = RandomSupport.RandomElement(activeSpawnZones).GetRandomPoint();
+            Vector3 spawnPoint = activeSpawnZones.GetRandomElement().GetRandomPoint();
             SpawnAtPoint(type, spawnPoint, difficultyLevel);
         }
     }
