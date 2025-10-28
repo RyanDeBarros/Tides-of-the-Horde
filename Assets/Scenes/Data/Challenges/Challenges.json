@@ -53,6 +53,24 @@
             "challengeClass": "C_ShopDisabled",
             "difficulty": 3,
             "weight": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>-20%</color> crystal collection",
+            "challengeClass": "C_CurrencyMultiplierHandicap",
+            "values": [0.20],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>-50%</color> crystal collection",
+            "challengeClass": "C_CurrencyMultiplierHandicap",
+            "values": [0.50],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>-75%</color> crystal collection",
+            "challengeClass": "C_CurrencyMultiplierHandicap",
+            "values": [0.75],
+            "difficulty": 3
         }
     ],
     "rewards": [
@@ -114,7 +132,7 @@
     "weights": [
         {
             "difficulty": 1,
-            "weight": 1
+            "weight": 1.5
         },
         {
             "difficulty": 2,
@@ -122,7 +140,7 @@
         },
         {
             "difficulty": 3,
-            "weight": 1
+            "weight": 0.5
         }
     ]
 }

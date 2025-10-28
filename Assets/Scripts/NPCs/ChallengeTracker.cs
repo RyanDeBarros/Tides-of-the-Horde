@@ -14,6 +14,7 @@ public class JSONChallengeList
         public string challengeClass;
         public float[] values;
         public int difficulty;
+        public float weight = 1f;
     }
 
     [Serializable]
@@ -23,6 +24,7 @@ public class JSONChallengeList
         public string rewardClass;
         public float[] values;
         public int difficulty;
+        public float weight = 1f;
     }
 
     [Serializable]
@@ -96,8 +98,8 @@ public class ChallengeTracker : MonoBehaviour
         currentReward = null;
 
         ChallengePerDifficulty c = challengeDictionary[GetRandomDifficulty()];
-        currentChallengeJSON = c.challenges.GetRandomElement();  // TODO add weights to challenges/rewards themselves
-        currentRewardJSON = c.rewards.GetRandomElement();
+        currentChallengeJSON = c.challenges.GetWeightedRandomElement(c.challenges.Select(challenge => challenge.weight).ToList());
+        currentRewardJSON = c.rewards.GetWeightedRandomElement(c.rewards.Select(reward => reward.weight).ToList());
     }
 
     private int GetRandomDifficulty()

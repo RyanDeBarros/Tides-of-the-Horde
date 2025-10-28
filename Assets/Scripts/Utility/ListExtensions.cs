@@ -55,6 +55,11 @@ public static class ListExtensions
         return list[new System.Random().Next(list.Count)];
     }
 
+    public static T GetWeightedRandomElement<T>(this List<T> list, List<float> weights)
+    {
+        return list.GetWeightedRandomDistinctElements(1, weights)[0];
+    }
+
     public static int GetWeightedIndex(this List<float> weights)
     {
         if (weights == null || weights.Count == 0)
