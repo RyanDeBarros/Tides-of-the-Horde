@@ -150,12 +150,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  thresholdPercent: 10
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  onHealthThresholdReached:
+    m_PersistentCalls:
+      m_Calls: []
+  dieStateName: Die
+  extraDelay: 0.15
+  disableOnDeath:
+  - {fileID: 1001082693539445144}
+  sinkDuration: 1.5
+  sinkSpeed: 0.6
 --- !u!114 &3620802734628203079
 MonoBehaviour:
   m_ObjectHideFlags: 0

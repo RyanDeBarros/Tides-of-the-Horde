@@ -67,6 +67,18 @@ public class BubbleSpell : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider target)
+    {
+        if (target.TryGetComponent<BounceBack>(out var bounceBack))
+        {
+            Vector3 direction = target.transform.position - transform.position;
+            direction.y = 0f;
+            direction.Normalize();
+
+            bounceBack.Bounce(direction, bounceBackStrength);
+        }
+    }
+
     private void OnDrawGizmos()
     {
         if (collider != null)
