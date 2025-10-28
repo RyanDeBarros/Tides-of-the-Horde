@@ -23,6 +23,7 @@ public class ShopUI : MonoBehaviour
     private PlayerCurrency playerCurrency;
     private bool open = true;
     private Coroutine popup;
+    private bool shopEnabled = true;
 
     private void Awake()
     {
@@ -47,14 +48,18 @@ public class ShopUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            if (open)
-                Close();
-            else
-                Open();
+            if (shopEnabled)
+            {
+                if (open)
+                    Close();
+                else
+                    Open();
+            }
+            // TODO else popup message saying shop is disabled?
         }
     }
 
-    public void Open()
+    private void Open()
     {
         open = true;
         Time.timeScale = 0f;
@@ -65,7 +70,7 @@ public class ShopUI : MonoBehaviour
         SetCheckShopPopupAlpha(0f);
     }
 
-    public void Close()
+    private void Close()
     {
         open = false;
         Time.timeScale = 1f;
@@ -76,6 +81,9 @@ public class ShopUI : MonoBehaviour
 
     public void RefreshOptions()
     {
+        if (!shopEnabled)
+            return;
+
         List<PlayerUnlockNode> nodes = playerUnlock.GetRandomUnlocks(unlockSelects.Count, playerCurrency.GetCurrency());
         for (int i = 0; i < unlockSelects.Count; ++i)
         {
@@ -134,5 +142,15 @@ public class ShopUI : MonoBehaviour
         checkShopPopup.color = new Color(c.r, c.g, c.b, alpha);
         c = checkShopPopupBKG.color;
         checkShopPopupBKG.color = new Color(c.r, c.g, c.b, alpha);
+    }
+
+    public void EnableShop()
+    {
+        shopEnabled = true;
+    }
+
+    public void DisableShop()
+    {
+        shopEnabled = false;
     }
 }

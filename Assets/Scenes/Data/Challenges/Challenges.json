@@ -35,6 +35,24 @@
             "challengeClass": "C_EnemyDifficultyIncrease",
             "values": [3],
             "difficulty": 3
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with the shop <color=red>disabled</color>",
+            "challengeClass": "C_ShopDisabled",
+            "difficulty": 1,
+            "weight": 0.1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with the shop <color=red>disabled</color>",
+            "challengeClass": "C_ShopDisabled",
+            "difficulty": 2,
+            "weight": 0.5
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with the shop <color=red>disabled</color>",
+            "challengeClass": "C_ShopDisabled",
+            "difficulty": 3,
+            "weight": 1
         }
     ],
     "rewards": [

@@ -96,7 +96,7 @@ public class ChallengeTracker : MonoBehaviour
         currentReward = null;
 
         ChallengePerDifficulty c = challengeDictionary[GetRandomDifficulty()];
-        currentChallengeJSON = c.challenges.GetRandomElement();
+        currentChallengeJSON = c.challenges.GetRandomElement();  // TODO add weights to challenges/rewards themselves
         currentRewardJSON = c.rewards.GetRandomElement();
     }
 
