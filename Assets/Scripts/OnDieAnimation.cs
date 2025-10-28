@@ -12,6 +12,7 @@ public class OnDieAnimation : MonoBehaviour
 
     [SerializeField] private string dieStateName = "Die";
     [SerializeField] private float extraDelay = 0.15f;
+    [SerializeField] private Behaviour[] disableOnDeath;
 
     [Header("Sink Settings")]
     [SerializeField] private float sinkDuration = 1.5f;
@@ -33,6 +34,7 @@ public class OnDieAnimation : MonoBehaviour
         DisableComponent<NavMeshAgent>(c => c.enabled = false);
         DisableComponent<CharacterController>(c => c.enabled = false);
         DisableComponent<Collider>(c => c.enabled = false);
+        foreach (var c in disableOnDeath) c.enabled = false;
 
         if (anim)
             StartCoroutine(PlayDieThenSink());

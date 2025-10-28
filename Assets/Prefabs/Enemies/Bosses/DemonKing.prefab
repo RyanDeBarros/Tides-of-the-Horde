@@ -306,8 +306,12 @@ MonoBehaviour:
   anim: {fileID: 4872275864640833774}
   dieStateName: Die
   extraDelay: 0.15
-  sinkDuration: 1.5
-  sinkSpeed: 0.6
+  disableOnDeath:
+  - {fileID: 9199881825282460984}
+  - {fileID: 2701051810322495637}
+  - {fileID: 3729822997592497888}
+  sinkDuration: 2.5
+  sinkSpeed: 1
 --- !u!114 &4046973865690285927
 MonoBehaviour:
   m_ObjectHideFlags: 0
