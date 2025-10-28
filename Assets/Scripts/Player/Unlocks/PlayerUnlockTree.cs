@@ -14,12 +14,14 @@ public class PlayerUnlockNodeData
         public string description;
         public string icon;
         public List<float> values;
+        public float weight = 0f;
     }
 
     public string id;
     public string name;
     public string defaultIcon;
     public string defaultDescription;
+    public float defaultWeight = 1f;
     public List<string> prerequisites;
     public string action;
     public List<string> parameters;
@@ -39,6 +41,7 @@ public class PlayerUnlockNode
         public string description;
         public Texture iconTexture;
         public int cost;
+        public float weight;
         public float[] values;
         public Action<float[]> onActivate;
 
@@ -74,6 +77,11 @@ public class PlayerUnlockNode
     public int GetCost()
     {
         return tiers[currentTier].cost;
+    }
+
+    public float GetWeight()
+    {
+        return tiers[currentTier].weight;
     }
 
     public Texture GetIconTexture()
@@ -113,6 +121,7 @@ public class PlayerUnlockNode
             description = tier.description ?? data.defaultDescription,
             iconTexture = unlocker.GetIconTexture(tier.icon ?? data.defaultIcon),
             cost = tier.cost,
+            weight = tier.weight > 0f ? tier.weight : data.defaultWeight,
             values = tier.values.ToArray(),
             onActivate = actionTable.GetAction(data.action, data.parameters)
         }).ToList();
@@ -191,11 +200,16 @@ public class PlayerUnlockTree : MonoBehaviour
         // Non-health upgrades
         if (healthUpgrade.CanActivate())
             --count;
-        if (count > 0) randomUnlocks.AddRange(nodes.Values
-            .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID)
-            .OrderBy(node => node.GetCost())
-            .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost)
-            .ToList().GetRandomDistinctElements(count));
+
+        if (count > 0)
+        {
+            var unlocks = nodes.Values
+                .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID)
+                .OrderBy(node => node.GetCost())
+                .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost);
+
+            randomUnlocks.AddRange(unlocks.ToList().GetWeightedRandomDistinctElements(count, unlocks.Select(unlock => unlock.GetWeight()).ToList()));
+        }
 
         // Health upgrade
         if (healthUpgrade.CanActivate())

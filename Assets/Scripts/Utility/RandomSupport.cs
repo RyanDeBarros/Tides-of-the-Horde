@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class RandomSupport
 {
@@ -10,16 +11,9 @@ public class RandomSupport
         if (weights == null || weights.Count == 0)
             throw new ArgumentException("Weights list cannot be null or empty.");
 
-        float totalWeight = 0f;
-        foreach (float w in weights)
-        {
-            if (w < 0f)
-                throw new ArgumentException("Weights cannot be negative.");
-            totalWeight += w;
-        }
-
-        if (totalWeight == 0f)
-            throw new ArgumentException("At least one weight must be non-zero.");
+        float totalWeight = weights.Sum();
+        if (totalWeight <= 0f)
+            throw new ArgumentException("The total weight must be positive.");
 
         float randomValue = (float)(rng.NextDouble() * totalWeight);
         float cumulative = 0f;
