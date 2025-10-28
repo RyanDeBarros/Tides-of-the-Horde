@@ -26,4 +26,9 @@ public class PlayerCurrency : MonoBehaviour
         currency -= amount;
         onCurrencyChanged?.Invoke(currency);
     }
+
+    public void AddMultiplier(float boost)
+    {
+        currencyCollectMultiplier += boost;
+    }
 }
