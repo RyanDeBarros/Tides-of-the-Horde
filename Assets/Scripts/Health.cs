@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.AI;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.Assertions;
 using System;
@@ -17,22 +17,12 @@ public class Health : MonoBehaviour
     public UnityEvent onDeath;
     public UnityEvent onHealthThresholdReached; // New event for 10% intervals
 
-    [SerializeField] private string dieStateName = "Die"; 
-    [SerializeField] private float extraDelay = 0.15f;    
-    [SerializeField] private Behaviour[] disableOnDeath;
+    private bool dead;
 
-    [Header("Sink Settings")]
-    [SerializeField] private float sinkDuration = 1.5f;
-    [SerializeField] private float sinkSpeed = 0.6f;
-
-    Animator anim;
-    bool dead;
-
-    void Awake()
+    private void Awake()
     {
         currentHealth = maxHealth;
         HealthChanged();
-        anim = GetComponentInChildren<Animator>();
     }
 
     public int GetCurrentHealth()
@@ -57,7 +47,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    void CheckHealthThreshold(int previousHealth)
+    private void CheckHealthThreshold(int previousHealth)
     {
         float thresholdInterval = maxHealth * (thresholdPercent / 100f);
         int currentThreshold = (int)(currentHealth / thresholdInterval);
@@ -98,56 +88,11 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
-        if (dead) return;
-        dead = true;
-
-        onDeath?.Invoke();
-
-        
-        foreach (var b in disableOnDeath) if (b) b.enabled = false;
-        var agent = GetComponent<NavMeshAgent>(); if (agent) agent.enabled = false;
-        var cc = GetComponent<CharacterController>(); if (cc) cc.enabled = false;
-        var rb = GetComponent<Rigidbody>(); if (rb) rb.isKinematic = true;
-        var col = GetComponent<Collider>(); if (col) col.enabled = false; 
-
-        if (anim)
+        if (!dead)
         {
-            anim.ResetTrigger("Hit"); 
-            anim.SetTrigger("Die");
-
-            
-            float len = 0f;
-            var rc = anim.runtimeAnimatorController;
-            if (rc != null)
-                foreach (var clip in rc.animationClips)
-                    if (clip.name == dieStateName) { len = clip.length; break; }
-            if (len <= 0f) len = 2f;
-
-            StartCoroutine(PlayDieThenSink(len + extraDelay));
+            dead = true;
+            onDeath.Invoke();
         }
-        else
-        {
-            
-            StartCoroutine(SinkAndDestroy());
-        }
-    }
-
-    System.Collections.IEnumerator PlayDieThenSink(float wait)
-    {
-        yield return new WaitForSeconds(wait);
-        yield return SinkAndDestroy();
-    }
-
-    System.Collections.IEnumerator SinkAndDestroy()
-    {
-        float t = 0f;
-        while (t < sinkDuration)
-        {
-            transform.Translate(Vector3.down * sinkSpeed * Time.deltaTime, Space.World);
-            t += Time.deltaTime;
-            yield return null;
-        }
-        Destroy(gameObject);
     }
 
     private void HealthChanged()
