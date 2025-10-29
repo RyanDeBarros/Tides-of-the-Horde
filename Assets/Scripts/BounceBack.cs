@@ -22,6 +22,9 @@ public class BounceBack : MonoBehaviour
 
     private void Update()
     {
+        if (!characterController.enabled)
+            return;
+
         if (isBouncing)
         {
             elapsedTime += Time.deltaTime;
