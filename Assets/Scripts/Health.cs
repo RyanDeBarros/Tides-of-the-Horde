@@ -1,6 +1,7 @@
-using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Assertions;
+using System;
 
 public class Health : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class Health : MonoBehaviour
     void Awake()
     {
         currentHealth = maxHealth;
-        onHealthChanged?.Invoke(currentHealth, maxHealth);
+        HealthChanged();
     }
 
     public int GetCurrentHealth()
@@ -31,7 +32,8 @@ public class Health : MonoBehaviour
         int previousHealth = currentHealth;
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        onHealthChanged?.Invoke(currentHealth, maxHealth);
+
+        HealthChanged();
 
         // Check if we crossed a 10% threshold
         CheckHealthThreshold(previousHealth);
@@ -60,7 +62,7 @@ public class Health : MonoBehaviour
         Assert.IsTrue(amount >= 0);
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
-        onHealthChanged?.Invoke(currentHealth, maxHealth);
+        HealthChanged();
     }
 
     public void HealPercent(float fraction)
@@ -68,16 +70,27 @@ public class Health : MonoBehaviour
         Heal((int)(fraction * maxHealth));
     }
 
+    public void LowerToPercent(float fraction)
+    {
+        currentHealth = Math.Min(currentHealth, (int)(fraction * maxHealth));
+        HealthChanged();
+    }
+
     public void IncreaseMaxHealth(int amount)
     {
         Assert.IsTrue(amount >= 0);
         maxHealth += amount;
-        onHealthChanged?.Invoke(currentHealth, maxHealth);
+        HealthChanged();
     }
 
     private void Die()
     {
         onDeath?.Invoke();
         Destroy(gameObject);
+    }
+
+    private void HealthChanged()
+    {
+        onHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 }

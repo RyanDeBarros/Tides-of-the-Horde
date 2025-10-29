@@ -26,14 +26,4 @@ public class PlayerCurrency : MonoBehaviour
         currency -= amount;
         onCurrencyChanged?.Invoke(currency);
     }
-
-    // TODO NPC challenge ideas:
-    // Challenges:
-    // - Defeat X# of enemies of some type and with some spell within time limit
-    // - Survive wave without losing more than X health
-    // - Defeat X# of enemies without moving
-    // Rewards:
-    // - Currency bonus
-    // - Currency collect multiplier increase
-    // - Shop discounts
 }
