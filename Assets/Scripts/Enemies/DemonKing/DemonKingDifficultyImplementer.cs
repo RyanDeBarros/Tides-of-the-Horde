@@ -2,28 +2,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
+public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 {
     [System.Serializable]
     public class DifficultyStats
     {
-        // OrcMovementAI
-        public float moveSpeed = 5f;
+        // DemonKingMovementAI
+        public float moveSpeed = 10f;
         public float chaseRange = 30f;
 
+        public float sinkSpeed = 6f; // Speed at which boss sinks into ground
+        public float sinkDepth = 5f; // How far underground to go
+        public float teleportDuration = 3f; // Total time underground
+        public float behindPlayerDistance = 4f; // Distance behind player to spawn
+
+        // SwordHitbox
+        public int damage = 5;
+        public float bounceBackStrength = 75f;
+
         // TargetDetector
-        public float attackRange = 5f;
+        public float attackRange = 7f;
         public float attackInterval = 1f;
 
         // Health
-        public int maxHealth = 100;
+        public int maxHealth = 1000;
 
         // BounceBack
-        public float bounceBackResistance = 1f;
-        public float bounceBackDuration = 0.1f;
-
-        // MeleeHitbox
-        public int damage = 1;
+        public float bounceBackResistance = 2f;
+        public float bounceBackDuration = 0.07f;
 
         // RewardOnDeath
         public int reward = 10;
@@ -39,11 +45,11 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 
     private static DifficultyStatsList difficultyStatsList = null;
 
-    private OrcMovementAI movement;
+    private DemonKingMovementAI movement;
+    private SwordHitbox melee;
     private TargetDetector detector;
     private Health health;
     private BounceBack bounceBack;
-    private MeleeHitbox melee;
     private RewardOnDeath reward;
 
     private int difficultyLevel;
@@ -52,16 +58,16 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
     {
         difficultyStatsList ??= JsonUtility.FromJson<DifficultyStatsList>(statsFile.text);
 
-        movement = GetComponent<OrcMovementAI>();
+        movement = GetComponent<DemonKingMovementAI>();
         Assert.IsNotNull(movement);
+        melee = GetComponentInChildren<SwordHitbox>();
+        Assert.IsNotNull(melee);
         detector = GetComponent<TargetDetector>();
         Assert.IsNotNull(detector);
         health = GetComponent<Health>();
         Assert.IsNotNull(health);
         bounceBack = GetComponent<BounceBack>();
         Assert.IsNotNull(bounceBack);
-        melee = GetComponentInChildren<MeleeHitbox>();
-        Assert.IsNotNull(melee);
         reward = GetComponent<RewardOnDeath>();
         Assert.IsNotNull(reward);
     }
@@ -74,6 +80,13 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 
         movement.moveSpeed = stats.moveSpeed;
         movement.chaseRange = stats.chaseRange;
+        movement.sinkSpeed = stats.sinkSpeed;
+        movement.sinkDepth = stats.sinkDepth;
+        movement.teleportDuration = stats.teleportDuration;
+        movement.behindPlayerDistance = stats.behindPlayerDistance;
+
+        melee.damage = stats.damage;
+        melee.bounceBackStrength = stats.bounceBackStrength;
 
         detector.attackRange = stats.attackRange;
         detector.attackInterval = stats.attackInterval;
@@ -82,8 +95,6 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 
         bounceBack.resistance = stats.bounceBackResistance;
         bounceBack.duration = stats.bounceBackDuration;
-
-        melee.damage = stats.damage;
 
         reward.reward = stats.reward;
     }

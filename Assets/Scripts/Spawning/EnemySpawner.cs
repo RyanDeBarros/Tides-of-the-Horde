@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 class OnDestroyHandler : MonoBehaviour
 {
-    public System.Action<GameObject> onDestroyed;
+    public readonly UnityEvent<GameObject> onDestroyed = new();
 
     private void OnDestroy()
     {
@@ -26,6 +27,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject skeletonPrefab;
     [SerializeField] private GameObject bishopPrefab;
     [SerializeField] private GameObject orcPrefab;
+    [SerializeField] private GameObject demonKingPrefab;
 
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
@@ -52,6 +54,7 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
         Assert.IsNotNull(orcPrefab);
+        Assert.IsNotNull(demonKingPrefab);
     }
 
     private void Start()
@@ -115,7 +118,7 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject instance = Instantiate(GetEnemyPrefab(type), point, Quaternion.identity);
         spawnedEnemies.Add(instance);
-        instance.AddComponent<OnDestroyHandler>().onDestroyed = go => spawnedEnemies.Remove(go);
+        instance.AddComponent<OnDestroyHandler>().onDestroyed.AddListener(go => spawnedEnemies.Remove(go));
         if (instance.TryGetComponent(out IDifficultyImplementer difficulty))
             difficulty.SetDifficultyLevel(difficultyLevel);
     }
@@ -127,6 +130,7 @@ public class EnemySpawner : MonoBehaviour
             EnemyType.Skeleton => skeletonPrefab,
             EnemyType.Bishop => bishopPrefab,
             EnemyType.Orc => orcPrefab,
+            EnemyType.DemonKing => demonKingPrefab,
             _ => null
         };
         Assert.IsNotNull(prefab);

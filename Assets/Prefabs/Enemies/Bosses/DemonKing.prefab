@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 4046973865690285927}
   - component: {fileID: 1416742053595806769}
   - component: {fileID: 5753715555274969651}
+  - component: {fileID: 476565866697689289}
   m_Layer: 0
   m_Name: DemonKing
   m_TagString: Untagged
@@ -331,6 +332,19 @@ MonoBehaviour:
   boundsX: {x: -500, y: 500}
   boundsY: {x: -50, y: 100}
   boundsZ: {x: -500, y: 500}
+--- !u!114 &476565866697689289
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522856944775851731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 228f45562cb63a444b3e6bb47b1a52be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statsFile: {fileID: 4900000, guid: 8c76f37b6ae46c44b82eb93a1f4e36eb, type: 3}
 --- !u!1 &6247734207120758011
 GameObject:
   m_ObjectHideFlags: 0
