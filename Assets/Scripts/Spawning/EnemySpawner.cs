@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
+    private List<Waypoint> waypoints;
     private readonly HashSet<GameObject> spawnedEnemies = new();
 
     private enum LevelPhase
@@ -60,6 +61,9 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(bishopPrefab);
         Assert.IsNotNull(orcPrefab);
         Assert.IsNotNull(demonKingPrefab);
+
+        spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
+        waypoints = new(FindObjectsByType<Waypoint>(FindObjectsSortMode.InstanceID));
     }
 
     private void Start()
@@ -67,7 +71,6 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(waveFile);
         waveTimeline = WaveTimeline.Read(waveFile);
 
-        spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
         uiController.HideUI();
 
         StartCoroutine(StartLevelRoutine());
@@ -129,6 +132,8 @@ public class EnemySpawner : MonoBehaviour
         instance.AddComponent<OnDestroyHandler>().onDestroyed.AddListener(go => spawnedEnemies.Remove(go));
         if (instance.TryGetComponent(out IDifficultyImplementer difficulty))
             difficulty.SetDifficultyLevel(difficultyLevel + difficultyLevelOffset);
+        if (instance.TryGetComponent(out WaypointPatroller waypointPatroller))
+            waypointPatroller.waypoints = waypoints;
     }
 
     private GameObject GetEnemyPrefab(EnemyType type)

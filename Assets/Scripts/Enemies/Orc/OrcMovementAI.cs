@@ -10,16 +10,21 @@ public class OrcMovementAI : MonoBehaviour
     public float stoppingDistance = 1.5f;
 
     [Header("Movement")]
-    public float moveSpeed = 4f;            
-    public float turnSpeed = 12f;           
+    public float moveSpeed = 4f;
+    public float turnSpeed = 12f;
+    public float patrolSpeedMultiplier = 0.5f;
 
-    CharacterController cc;
-    CharacterController playerCC;           
+    private CharacterController cc;
+    private CharacterController playerCC;
+    private WaypointPatroller waypointPatroller;
 
     private void Awake()
     {
         cc = GetComponent<CharacterController>();
         Assert.IsNotNull(cc);
+
+        waypointPatroller = GetComponent<WaypointPatroller>();
+        Assert.IsNotNull(waypointPatroller);
 
         if (!player)
         {
@@ -28,6 +33,12 @@ public class OrcMovementAI : MonoBehaviour
         }
         if (player) playerCC = player.GetComponent<CharacterController>();
         Assert.IsNotNull(playerCC);
+    }
+
+    private void Start()
+    {
+        waypointPatroller.characterController = cc;
+        waypointPatroller.moveSpeed = patrolSpeedMultiplier * moveSpeed;
     }
 
     private void Update()
@@ -40,12 +51,13 @@ public class OrcMovementAI : MonoBehaviour
         float centerDist = toXZ.magnitude;
         if (centerDist <= chaseRange)
         {
+            waypointPatroller.StopPatrol();
             if (Mathf.Abs(centerDist) > 0.0001f)
             {
                 Quaternion face = Quaternion.LookRotation(toXZ);
                 transform.rotation = Quaternion.Slerp(transform.rotation, face, turnSpeed * Time.deltaTime);
             }
-        
+
             float myR = cc.radius;
             float targetR = playerCC ? playerCC.radius : 0f;
             float edgeDist = centerDist - (myR + targetR);
@@ -53,9 +65,10 @@ public class OrcMovementAI : MonoBehaviour
             float moveDisplacement = edgeDist - stoppingDistance;
             moveDisplacement = Mathf.Min(Mathf.Abs(edgeDist - stoppingDistance), moveSpeed * Time.deltaTime) * Mathf.Sign(moveDisplacement);
             velocity += toXZ.normalized * moveDisplacement / Time.deltaTime;
+            cc.Move(velocity * Time.deltaTime);
         }
-
-        cc.Move(velocity * Time.deltaTime);
+        else
+            waypointPatroller.StartPatrol();
     }
 
     private void OnDrawGizmosSelected()

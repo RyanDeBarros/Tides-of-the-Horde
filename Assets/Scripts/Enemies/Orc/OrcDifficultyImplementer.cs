@@ -10,6 +10,7 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
         // OrcMovementAI
         public float moveSpeed = 5f;
         public float chaseRange = 30f;
+        public float patrolSpeedMultiplier = 0.5f;
 
         // TargetDetector
         public float attackRange = 5f;
@@ -73,6 +74,7 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 
         movement.moveSpeed = stats.moveSpeed;
         movement.chaseRange = stats.chaseRange;
+        movement.patrolSpeedMultiplier = stats.patrolSpeedMultiplier;
 
         detector.attackRange = stats.attackRange;
         detector.attackInterval = stats.attackInterval;

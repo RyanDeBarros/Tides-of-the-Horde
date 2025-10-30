@@ -7,20 +7,31 @@ public class SkeletonMovementAI : MonoBehaviour
     public float moveSpeed = 5f;
     public float chaseRange = 10f;
     public float stoppingDistance = 2f;
+    public float patrolSpeedMultiplier = 0.5f;
 
     private CharacterController controller;
+    private WaypointPatroller waypointPatroller;
 
-    void Start()
+    private void Awake()
     {
-        // Get the CharacterController component
         controller = GetComponent<CharacterController>();
-        
+        Assert.IsNotNull(controller);
+
+        waypointPatroller = GetComponent<WaypointPatroller>();
+        Assert.IsNotNull(waypointPatroller);
+
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
     }
 
-    void Update()
+    private void Start()
+    {
+        waypointPatroller.characterController = controller;
+        waypointPatroller.moveSpeed = patrolSpeedMultiplier * moveSpeed;
+    }
+
+    private void Update()
     {
         if (!controller.enabled)
             return;
@@ -30,19 +41,24 @@ public class SkeletonMovementAI : MonoBehaviour
 
         // Calculate distance and decide if we should chase
         float distanceToPlayer = direction.magnitude;
-        bool shouldChase = (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance);
         direction.Normalize();
         transform.rotation = Quaternion.LookRotation(direction);
 
-        if (shouldChase)
+        if (distanceToPlayer <= chaseRange)
         {
-            Vector3 movement = moveSpeed * Time.deltaTime * direction;
-            controller.Move(movement);
+            waypointPatroller.StopPatrol();
+            if (distanceToPlayer > stoppingDistance)
+            {
+                Vector3 movement = moveSpeed * Time.deltaTime * direction;
+                controller.Move(movement);
+            }
         }
+        else
+            waypointPatroller.StartPatrol();
     }
 
     // Visualize ranges in the Scene view
-    void OnDrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, chaseRange);
