@@ -72,6 +72,7 @@ public class EnemySpawner : MonoBehaviour
         waveTimeline = WaveTimeline.Read(waveFile);
 
         uiController.HideUI();
+        shopUI.gameObject.SetActive(false);
 
         StartCoroutine(StartLevelRoutine());
     }
@@ -96,6 +97,7 @@ public class EnemySpawner : MonoBehaviour
     private void StartWaves()
     {
         uiController.ShowUI();
+        shopUI.gameObject.SetActive(true);
         waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
         waveTimeline.doEnemiesRemain = DoEnemiesRemain;
         waveTimeline.Init();

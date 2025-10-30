@@ -46,7 +46,6 @@ public class ShopUI : MonoBehaviour
 
     private void Update()
     {
-        // TODO disable shop before spawning waves start.
         if (Input.GetKeyDown(KeyCode.B))
         {
             if (shopEnabled)
@@ -67,7 +66,8 @@ public class ShopUI : MonoBehaviour
         uiRoot.SetActive(true);
         camera.DisableCamera();
         spellManager.enabled = false;
-        StopCoroutine(popup);
+        if (popup != null)
+            StopCoroutine(popup);
         SetCheckShopPopupAlpha(0f);
     }
 
