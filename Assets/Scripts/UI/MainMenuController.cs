@@ -72,12 +72,14 @@ public class MainMenuManager : MonoBehaviour
     {
         AudioListener.volume = volume;
         PlayerPrefs.SetFloat("MasterVolume", volume);
+        PlayerPrefs.Save();
     }
 
     public void OnGraphicsQualityChanged(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
         PlayerPrefs.SetInt("GraphicsQuality", qualityIndex);
+        PlayerPrefs.Save();
     }
 
     void LoadSettings()
