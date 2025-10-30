@@ -176,11 +176,11 @@ MonoBehaviour:
   health: {fileID: 2721521129437341166}
   anim: {fileID: 7381937793323350824}
   dieStateName: Die
-  extraDelay: 0.15
+  extraDelay: 0
   disableOnDeath:
   - {fileID: 1001082693539445144}
-  sinkDuration: 1.5
-  sinkSpeed: 0.6
+  sinkDuration: 0.1
+  sinkSpeed: 1
 --- !u!114 &3620802734628203079
 MonoBehaviour:
   m_ObjectHideFlags: 0
