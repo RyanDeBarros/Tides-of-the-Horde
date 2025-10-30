@@ -51,6 +51,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnWaveFile: {fileID: 0}
   dialogFile: {fileID: 0}
+  enemySpawner: {fileID: 3850396755786596804}
+  npcDialog: {fileID: 5548753456616675179}
 --- !u!1 &7726332571218978483
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,6 +194,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
+--- !u!114 &3850396755786596804 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1425429705884659240, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
+  m_PrefabInstance: {fileID: 2785335293265407980}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4471a3a9a7121245a09b94fc50638b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8726197971451578922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6899181903508301254, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}

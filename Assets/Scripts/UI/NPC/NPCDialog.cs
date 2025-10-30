@@ -84,6 +84,7 @@ public class NPCDialog : MonoBehaviour
         spellManager.enabled = false;
         playerMovement.enabled = false;
 
+        Assert.IsNotNull(dialogFile);
         challengeTracker.SelectRandomChallenge();
         SetTextPage(JsonUtility.FromJson<DialogPage>(dialogFile.text));
     }

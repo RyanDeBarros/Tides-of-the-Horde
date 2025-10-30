@@ -51,8 +51,6 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         Assert.IsNotNull(uiController);
-        Assert.IsNotNull(waveFile);
-        waveTimeline = WaveTimeline.Read(waveFile);
         Assert.IsNotNull(shopUI);
         Assert.IsNotNull(challengeGiver);
         challengeGiver.onConversationEnd.AddListener(StartWaves);
@@ -66,6 +64,9 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        Assert.IsNotNull(waveFile);
+        waveTimeline = WaveTimeline.Read(waveFile);
+
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
         uiController.HideUI();
 
