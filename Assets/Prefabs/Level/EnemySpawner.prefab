@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiController: {fileID: 0}
-  waveFile: {fileID: 4900000, guid: 35bbbdfd7cc9ffd43b7a961c701b6d06, type: 3}
+  waveFile: {fileID: 0}
   shopUI: {fileID: 0}
   challengeGiver: {fileID: 0}
   challengeTracker: {fileID: 0}

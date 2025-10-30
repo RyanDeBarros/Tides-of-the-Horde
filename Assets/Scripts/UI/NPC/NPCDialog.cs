@@ -54,6 +54,11 @@ public class NPCDialog : MonoBehaviour
     private readonly List<OnHover> textOnHovers = new();
     private CoroutineQueue typewriterAnimationQueue;
 
+    public void Initialize(TextAsset dialogFile)
+    {
+        this.dialogFile = dialogFile;
+    }
+
     private void Awake()
     {
         Assert.IsNotNull(textArea);

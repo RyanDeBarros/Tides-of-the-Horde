@@ -43,6 +43,11 @@ public class EnemySpawner : MonoBehaviour
 
     private LevelPhase levelPhase = LevelPhase.ChallengeGiver;
 
+    public void Initialize(TextAsset waveFile)
+    {
+        this.waveFile = waveFile;
+    }
+
     private void Awake()
     {
         Assert.IsNotNull(uiController);
