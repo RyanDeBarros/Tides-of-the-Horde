@@ -46,6 +46,7 @@ public class ShopUI : MonoBehaviour
 
     private void Update()
     {
+        // TODO disable shop before spawning waves start.
         if (Input.GetKeyDown(KeyCode.B))
         {
             if (shopEnabled)
