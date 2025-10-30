@@ -45,6 +45,23 @@ public class HUDController : MonoBehaviour
 
         for (int i = 0; i < spells.Count; ++i)
             spells[i].SetKeyHint(i + 1);
+
+        LoadSavedSettings();
+    }
+
+    void LoadSavedSettings()
+    {
+        if (PlayerPrefs.HasKey("GraphicsQuality"))
+        {
+            int savedQuality = PlayerPrefs.GetInt("GraphicsQuality");
+            QualitySettings.SetQualityLevel(savedQuality);
+        }
+
+        if (PlayerPrefs.HasKey("MasterVolume"))
+        {
+            float savedVolume = PlayerPrefs.GetFloat("MasterVolume");
+            AudioListener.volume = savedVolume;
+        }
     }
 
     void Update()
