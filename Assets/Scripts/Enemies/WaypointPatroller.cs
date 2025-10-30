@@ -31,7 +31,7 @@ public class WaypointPatroller : MonoBehaviour
 
     private void Update()
     {
-        if (!patrolling)
+        if (!patrolling || !characterController.enabled)
             return;
 
         Vector3 displacement = current_waypoint.transform.position - transform.position;
