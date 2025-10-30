@@ -411,7 +411,7 @@ MonoBehaviour:
   bombSpellIcon: {fileID: 2800000, guid: 3ada41d904892d64a9905734e889490a, type: 3}
   bubbleSpellIcon: {fileID: 2800000, guid: f26b168fa1f89274e8f6e565297c2882, type: 3}
   sniperSpellIcon: {fileID: 2800000, guid: 68fea59bcd9ad084bb0639f88f77ec16, type: 3}
-  healthIcon: {fileID: 2800000, guid: b0c7669b478240240af80f640001ac04, type: 3}
+  healthIcon: {fileID: 2800000, guid: b5cd81e4340af5b468586b84ed63b31b, type: 3}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0
