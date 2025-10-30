@@ -28,6 +28,9 @@ public class MainMenuManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
+        volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+        graphicsDropdown.onValueChanged.AddListener(OnGraphicsQualityChanged);
+
         LoadSettings();
 
         ShowMainMenu();
@@ -90,6 +93,7 @@ public class MainMenuManager : MonoBehaviour
 
         int savedQuality = PlayerPrefs.GetInt("GraphicsQuality", 2);
         graphicsDropdown.value = savedQuality;
+        
         QualitySettings.SetQualityLevel(savedQuality);
     }
 }
