@@ -12,6 +12,7 @@ public class HUDController : MonoBehaviour
     [Header("Player References")]
     [SerializeField] private Health playerHealth;
     [SerializeField] private PlayerCurrency playerCurrency;
+    [SerializeField] private PlayerCamera playerCamera;
 
     [Header("Spells")]
     [SerializeField] private List<SpellSelectController> spells;
@@ -92,21 +93,11 @@ public class HUDController : MonoBehaviour
 
     public void ShowDeathScreen()
     {
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
-        {
-            Camera playerCamera = player.GetComponentInChildren<Camera>();
-            if (playerCamera != null)
-            {
-                playerCamera.transform.SetParent(null);
-                DontDestroyOnLoad(playerCamera.gameObject);
-            }
-        }
-        
         Time.timeScale = 0f;
         deathScreenPanel.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
+        playerCamera.DisableCamera();
     }
 
     public void Respawn()
@@ -115,6 +106,7 @@ public class HUDController : MonoBehaviour
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        playerCamera.EnableCamera();
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(
             UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex
@@ -128,6 +120,7 @@ public class HUDController : MonoBehaviour
         Cursor.visible = true;
         Time.timeScale = 0f;
         pauseMenuPanel.SetActive(true);
+        playerCamera.DisableCamera();
     }
 
     public void ResumeGame()
@@ -137,6 +130,7 @@ public class HUDController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         Time.timeScale = 1f;
+        playerCamera.EnableCamera();
     }
 
     public void GoToMainMenu()
