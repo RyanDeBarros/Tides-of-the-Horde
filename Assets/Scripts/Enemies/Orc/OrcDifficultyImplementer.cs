@@ -68,9 +68,8 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 
     public void SetDifficultyLevel(int level)
     {
-        difficultyLevel = level;
-
-        DifficultyStats stats = difficultyStatsList.stats[System.Math.Clamp(difficultyLevel - 1, 0, difficultyStatsList.stats.Count - 1)];
+        difficultyLevel = System.Math.Clamp(level, 1, difficultyStatsList.stats.Count);
+        DifficultyStats stats = difficultyStatsList.stats[difficultyLevel - 1];
 
         movement.moveSpeed = stats.moveSpeed;
         movement.chaseRange = stats.chaseRange;

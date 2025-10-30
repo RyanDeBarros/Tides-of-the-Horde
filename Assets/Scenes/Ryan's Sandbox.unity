@@ -846,10 +846,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 310567764}
     - target: {fileID: 1425429705884659240, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
-      propertyPath: demonKingPrefab
-      value: 
-      objectReference: {fileID: 5522856944775851731, guid: b3d1f8efc5d4fbc468eecc4d130328c7, type: 3}
-    - target: {fileID: 1425429705884659240, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
       propertyPath: challengeTracker
       value: 
       objectReference: {fileID: 432315620}

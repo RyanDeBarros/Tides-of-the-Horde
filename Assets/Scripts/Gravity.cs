@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -33,7 +31,8 @@ public class Gravity : MonoBehaviour
             velocity.y = -2f; // small negative to stick to ground
 
         velocity.y += gravity * Time.deltaTime;
-        characterController.Move(velocity * Time.deltaTime);
+        if (characterController.enabled)
+            characterController.Move(velocity * Time.deltaTime);
     }
 
     public bool GetIsGrounded()

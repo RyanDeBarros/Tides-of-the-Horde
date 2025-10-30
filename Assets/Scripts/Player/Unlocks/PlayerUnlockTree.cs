@@ -59,6 +59,13 @@ public class PlayerUnlockNode
     private readonly List<PlayerUnlockNode> preRequisites = new();
     private readonly List<PlayerUnlockNode> postRequisites = new();
 
+    private readonly PlayerCurrency currency;
+
+    public PlayerUnlockNode(PlayerCurrency currency)
+    {
+        this.currency = currency;
+    }
+
     public string GetID()
     {
         return id;
@@ -76,7 +83,7 @@ public class PlayerUnlockNode
 
     public int GetCost()
     {
-        return tiers[currentTier].cost;
+        return currency.ShopPrice(tiers[currentTier].cost);
     }
 
     public float GetWeight()
@@ -174,9 +181,11 @@ public class PlayerUnlockTree : MonoBehaviour
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
         UnlockActionTable unlockActionTable = new(gameObject);
 
+        PlayerCurrency playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
+
         // Load data
         data.nodes.ForEach(d => {
-            PlayerUnlockNode node = new();
+            PlayerUnlockNode node = new(playerCurrency);
             node.LoadData(this, d, unlockActionTable);
             nodes[d.id] = node;
         });

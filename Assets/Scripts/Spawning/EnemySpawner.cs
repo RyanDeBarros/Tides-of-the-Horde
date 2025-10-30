@@ -29,6 +29,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject orcPrefab;
     [SerializeField] private GameObject demonKingPrefab;
 
+    [Min(0)] public int difficultyLevelOffset = 0;
+
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
     private readonly HashSet<GameObject> spawnedEnemies = new();
@@ -109,7 +111,7 @@ public class EnemySpawner : MonoBehaviour
 
         for (int _ = 0; _ < numEnemies; ++_)
         {
-            Vector3 spawnPoint = RandomSupport.RandomElement(activeSpawnZones).GetRandomPoint();
+            Vector3 spawnPoint = activeSpawnZones.GetRandomElement().GetRandomPoint();
             SpawnAtPoint(type, spawnPoint, difficultyLevel);
         }
     }
@@ -120,7 +122,7 @@ public class EnemySpawner : MonoBehaviour
         spawnedEnemies.Add(instance);
         instance.AddComponent<OnDestroyHandler>().onDestroyed.AddListener(go => spawnedEnemies.Remove(go));
         if (instance.TryGetComponent(out IDifficultyImplementer difficulty))
-            difficulty.SetDifficultyLevel(difficultyLevel);
+            difficulty.SetDifficultyLevel(difficultyLevel + difficultyLevelOffset);
     }
 
     private GameObject GetEnemyPrefab(EnemyType type)
