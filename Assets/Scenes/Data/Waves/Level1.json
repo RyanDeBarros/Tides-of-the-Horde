@@ -34,6 +34,7 @@
         {
             "preWaveWaitTime": 1.0,
             "postWaveWaitTime": 1.0,
+            "song": "Battle 1",
             "subwaves": [
                 {
                     "duration": 10.0,
@@ -63,5 +64,6 @@
             ]
         }
     ],
-    "wavesSong": "Battle 1"
+    "defaultSong": "Prologue",
+    "waitingSong": "Silent Forest"
 }

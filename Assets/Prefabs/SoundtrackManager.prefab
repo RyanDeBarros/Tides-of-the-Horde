@@ -62,4 +62,6 @@ MonoBehaviour:
     loop: 1
     volume: 1
   crossFadeDuration: 0.5
+  dimmedVolumeFactor: 0.5
+  dimmedTransitionDuration: 0.3
   numberOfSources: 3

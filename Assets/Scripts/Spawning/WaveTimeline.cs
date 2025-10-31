@@ -91,6 +91,7 @@ public class WaveTimeline
         public float preWaveWaitTime;
         public float postWaveWaitTime;
         public List<Subwave> subwaves;
+        public string song;
 
         private float fullSpawnDuration;
 
@@ -116,7 +117,8 @@ public class WaveTimeline
     }
 
     [SerializeField] private List<Wave> waves;
-    [SerializeField] private string wavesSong; // TODO set wavesSong in JSON per wave - that way boss music can be played during boss music. Also, use a different song for the wait period between waves.
+    [SerializeField] private string defaultSong;
+    [SerializeField] private string waitingSong;
     private int waveNumber = 0;
     private float waveTimeElapsed = 0f;
     private WaveState waveState = WaveState.PreSpawn;
@@ -127,7 +129,9 @@ public class WaveTimeline
 
     public static WaveTimeline Read(TextAsset file)
     {
-        return JsonUtility.FromJson<WaveTimeline>(file.text);
+        WaveTimeline timeline = JsonUtility.FromJson<WaveTimeline>(file.text);
+        timeline.waves.ForEach(wave => wave.song ??= timeline.defaultSong);
+        return timeline;
     }
 
     public void Init()
@@ -135,7 +139,8 @@ public class WaveTimeline
         Assert.IsNotNull(onWaveNumberChanged);
         Assert.IsNotNull(doEnemiesRemain);
         onWaveNumberChanged.Invoke(waveNumber + 1);
-        SoundtrackManager.Instance.PlayTrack(wavesSong);
+        SoundtrackManager.Instance.PlayTrack(waitingSong); // TODO instead of restarting song - either continue where it left off or play it in background at 0 volume.
+        SoundtrackManager.Instance.DimTrack();
     }
 
     public void ManualUpdate()
@@ -181,6 +186,8 @@ public class WaveTimeline
         Wave wave = waves[waveNumber];
         waveState = wave.subwaves.Count > 0 ? WaveState.Spawning : WaveState.PostSpawn;
         waveTimeElapsed -= wave.preWaveWaitTime;
+        SoundtrackManager.Instance.PlayTrack(wave.song);
+        SoundtrackManager.Instance.UnDimTrack();
         SyncTimeline();
     }
 
@@ -206,6 +213,7 @@ public class WaveTimeline
     private void TransitionToPostSpawn()
     {
         waveState = WaveState.PostSpawn;
+        SoundtrackManager.Instance.DimTrack();
         SyncTimeline();
     }
 
