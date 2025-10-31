@@ -57,9 +57,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 55474439cb2959942a431507585ef56e, type: 3}
     loop: 1
     volume: 1
-  - identifier: Shop
+  - identifier: Worm
     clip: {fileID: 8300000, guid: 5564d5bc6a8be9640aa617d127654c7f, type: 3}
     loop: 1
     volume: 1
-  crossFadeDuration: 0.4
+  crossFadeDuration: 0.5
   numberOfSources: 3

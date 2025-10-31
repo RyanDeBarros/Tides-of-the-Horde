@@ -21,7 +21,8 @@ public class ShopUI : MonoBehaviour
     private SpellManager spellManager;
     private PlayerUnlockTree playerUnlock;
     private PlayerCurrency playerCurrency;
-    private bool open = true;
+    
+    private bool open = false;
     private Coroutine popup;
     private bool shopEnabled = true;
 
@@ -41,7 +42,7 @@ public class ShopUI : MonoBehaviour
 
     private void Start()
     {
-        Close();
+        uiRoot.SetActive(false);
     }
 
     private void Update()
@@ -61,6 +62,8 @@ public class ShopUI : MonoBehaviour
 
     private void Open()
     {
+        if (open) return;
+
         open = true;
         Time.timeScale = 0f;
         uiRoot.SetActive(true);
@@ -73,6 +76,8 @@ public class ShopUI : MonoBehaviour
 
     private void Close()
     {
+        if (!open) return;
+
         open = false;
         Time.timeScale = 1f;
         uiRoot.SetActive(false);

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class SoundtrackManager : MonoBehaviour
 {
-    private static SoundtrackManager instance;
+    public static SoundtrackManager Instance { get; private set; }
 
     [Serializable]
     private class Track
@@ -18,21 +18,22 @@ public class SoundtrackManager : MonoBehaviour
     }
 
     [SerializeField] private List<Track> trackList;
-    [SerializeField] private float crossFadeDuration = 0.4f;
+    [SerializeField] private float crossFadeDuration = 0.5f;
     [SerializeField, Min(2)] private int numberOfSources = 3;
 
     private Dictionary<string, Track> tracks;
     private AudioSource[] sources;
     private int activeSourceIndex = 0;
+    private string activeIdentifier;
 
     private void Awake()
     {
-        if (instance != null && instance != this)
+        if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
             return;
         }
-        instance = this;
+        Instance = this;
 
         tracks = trackList.ToDictionary(t => t.identifier);
         sources = new AudioSource[numberOfSources];
@@ -40,20 +41,31 @@ public class SoundtrackManager : MonoBehaviour
         {
             sources[i] = gameObject.AddComponent<AudioSource>();
             sources[i].playOnAwake = false;
+            sources[i].volume = 0f;
         }
+    }
+
+    public string CurrentTrackIdentifier()
+    {
+        return activeIdentifier;
     }
 
     public void PlayTrack(string identifier)
     {
-        if (!tracks.TryGetValue(identifier, out Track track)) return;
+        if (!tracks.TryGetValue(identifier, out Track track))
+        {
+            Debug.LogWarning($"Unrecognized song identifier \"{identifier}\"");
+            return;
+        }
 
         AudioSource fromSource = sources[activeSourceIndex];
         if (fromSource.clip == track.clip) return;
 
-        ++activeSourceIndex;
+        activeSourceIndex = (activeSourceIndex + 1) % sources.Length;
         AudioSource toSource = sources[activeSourceIndex];
         toSource.clip = track.clip;
         toSource.loop = track.loop;
+        activeIdentifier = identifier;
 
         StartCoroutine(FadeOut(fromSource));
         StartCoroutine(FadeIn(toSource, track.volume));
@@ -68,6 +80,7 @@ public class SoundtrackManager : MonoBehaviour
             yield return null;
         }
 
+        source.volume = 0f;
         source.Stop();
     }
 

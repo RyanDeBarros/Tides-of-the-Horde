@@ -116,6 +116,7 @@ public class WaveTimeline
     }
 
     [SerializeField] private List<Wave> waves;
+    [SerializeField] private string wavesSong; // TODO set wavesSong in JSON per wave - that way boss music can be played during boss music. Also, use a different song for the wait period between waves.
     private int waveNumber = 0;
     private float waveTimeElapsed = 0f;
     private WaveState waveState = WaveState.PreSpawn;
@@ -134,6 +135,7 @@ public class WaveTimeline
         Assert.IsNotNull(onWaveNumberChanged);
         Assert.IsNotNull(doEnemiesRemain);
         onWaveNumberChanged.Invoke(waveNumber + 1);
+        SoundtrackManager.Instance.PlayTrack(wavesSong);
     }
 
     public void ManualUpdate()
