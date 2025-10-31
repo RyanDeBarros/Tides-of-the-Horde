@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class HUDController : MonoBehaviour
@@ -13,6 +14,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private Health playerHealth;
     [SerializeField] private PlayerCurrency playerCurrency;
     [SerializeField] private PlayerCamera playerCamera;
+    [SerializeField] private SpellManager spellManager;
 
     [Header("Spells")]
     [SerializeField] private List<SpellSelectController> spells;
@@ -28,11 +30,14 @@ public class HUDController : MonoBehaviour
     public Button pauseMainMenuButton;
 
     private bool isPaused = false;
+    private bool enableCameraOnResume = true;
 
     private void Awake()
     {
         Assert.IsNotNull(playerHealth);
         Assert.IsNotNull(playerCurrency);
+        Assert.IsNotNull(playerCamera);
+        Assert.IsNotNull(spellManager);
     }
 
     void Start()
@@ -95,8 +100,6 @@ public class HUDController : MonoBehaviour
     {
         Time.timeScale = 0f;
         deathScreenPanel.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         playerCamera.DisableCamera();
     }
 
@@ -104,38 +107,33 @@ public class HUDController : MonoBehaviour
     {
         deathScreenPanel.SetActive(false);
         Time.timeScale = 1f;
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         playerCamera.EnableCamera();
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene(
-            UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex
-        );
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void PauseGame()
     {
         isPaused = true;
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
         Time.timeScale = 0f;
         pauseMenuPanel.SetActive(true);
+        enableCameraOnResume = playerCamera.IsCameraEnabled();
         playerCamera.DisableCamera();
+        spellManager.enabled = false;
     }
 
     public void ResumeGame()
     {
         isPaused = false;
         pauseMenuPanel.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         Time.timeScale = 1f;
-        playerCamera.EnableCamera();
+        spellManager.enabled = true;
+        if (enableCameraOnResume) playerCamera.EnableCamera();
     }
 
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("MainMenu");
     }
 }
