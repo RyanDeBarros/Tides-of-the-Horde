@@ -126,9 +126,12 @@ public class HUDController : MonoBehaviour
     {
         isPaused = false;
         pauseMenuPanel.SetActive(false);
-        Time.timeScale = 1f;
-        spellManager.enabled = true;
-        if (enableCameraOnResume) playerCamera.EnableCamera();
+        if (enableCameraOnResume)
+        {
+            Time.timeScale = 1f;
+            spellManager.enabled = true;
+            playerCamera.EnableCamera();
+        }
     }
 
     public void GoToMainMenu()

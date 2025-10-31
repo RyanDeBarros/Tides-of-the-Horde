@@ -146,7 +146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3729143786891775739}
   - component: {fileID: 1839483178472882230}
-  - component: {fileID: 3683901011815995550}
+  - component: {fileID: 3984884172182692989}
   m_Layer: 5
   m_Name: HUDManager
   m_TagString: Untagged
@@ -189,6 +189,8 @@ MonoBehaviour:
   crystalsText: {fileID: 3209034132579709502}
   playerHealth: {fileID: 0}
   playerCurrency: {fileID: 0}
+  playerCamera: {fileID: 0}
+  spellManager: {fileID: 0}
   spells:
   - {fileID: 628050106469985120}
   - {fileID: 4378143338922906117}
@@ -200,6 +202,21 @@ MonoBehaviour:
   pauseMenuPanel: {fileID: 8554355296929236625}
   resumeButton: {fileID: 3276961983269123360}
   pauseMainMenuButton: {fileID: 5565612260179143158}
+--- !u!114 &3984884172182692989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483610944811762694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83b863885790770479ba7ec231f44cdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 8785011575906441620}
+  - {fileID: 8645259273458000795}
 --- !u!1 &682780923273290584
 GameObject:
   m_ObjectHideFlags: 0

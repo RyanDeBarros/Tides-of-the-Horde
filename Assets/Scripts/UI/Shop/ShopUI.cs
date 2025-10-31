@@ -46,8 +46,6 @@ public class ShopUI : MonoBehaviour
 
     private void Update()
     {
-        if (!camera.IsCameraEnabled()) return;
-
         if (Input.GetKeyDown(KeyCode.B))
         {
             if (shopEnabled)
@@ -63,6 +61,8 @@ public class ShopUI : MonoBehaviour
 
     private void Open()
     {
+        if (!camera.IsCameraEnabled()) return;
+
         open = true;
         Time.timeScale = 0f;
         uiRoot.SetActive(true);
