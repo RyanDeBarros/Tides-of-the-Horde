@@ -9,6 +9,12 @@
                     "enemy": "Skeleton",
                     "spawnRate": 1.0,
                     "difficulty": 1
+                },
+                {
+                    "enemy": "DemonKing",
+                    "spawnOnce": true,
+                    "timeOffset": 1.0,
+                    "difficulty": 1
                 }
             ]
         },

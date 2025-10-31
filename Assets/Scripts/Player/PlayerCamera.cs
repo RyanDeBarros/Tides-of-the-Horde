@@ -20,6 +20,8 @@ public class PlayerCamera : MonoBehaviour
         cam = GetComponentInChildren<Camera>();
         Assert.IsNotNull(cam);
 
+        // TODO FIX: camera initially rotates on start, probably because of initial mouseX / mouseY in Update().
+
         EnableCamera();
 
         initialPitch = cam.transform.eulerAngles.x;

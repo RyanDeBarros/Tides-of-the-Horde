@@ -14,12 +14,14 @@ public class PlayerUnlockNodeData
         public string description;
         public string icon;
         public List<float> values;
+        public float weight = 0f;
     }
 
     public string id;
     public string name;
     public string defaultIcon;
     public string defaultDescription;
+    public float defaultWeight = 1f;
     public List<string> prerequisites;
     public string action;
     public List<string> parameters;
@@ -39,6 +41,7 @@ public class PlayerUnlockNode
         public string description;
         public Texture iconTexture;
         public int cost;
+        public float weight;
         public float[] values;
         public Action<float[]> onActivate;
 
@@ -55,6 +58,13 @@ public class PlayerUnlockNode
 
     private readonly List<PlayerUnlockNode> preRequisites = new();
     private readonly List<PlayerUnlockNode> postRequisites = new();
+
+    private readonly PlayerCurrency currency;
+
+    public PlayerUnlockNode(PlayerCurrency currency)
+    {
+        this.currency = currency;
+    }
 
     public string GetID()
     {
@@ -73,7 +83,12 @@ public class PlayerUnlockNode
 
     public int GetCost()
     {
-        return tiers[currentTier].cost;
+        return currency.ShopPrice(tiers[currentTier].cost);
+    }
+
+    public float GetWeight()
+    {
+        return tiers[currentTier].weight;
     }
 
     public Texture GetIconTexture()
@@ -113,6 +128,7 @@ public class PlayerUnlockNode
             description = tier.description ?? data.defaultDescription,
             iconTexture = unlocker.GetIconTexture(tier.icon ?? data.defaultIcon),
             cost = tier.cost,
+            weight = tier.weight > 0f ? tier.weight : data.defaultWeight,
             values = tier.values.ToArray(),
             onActivate = actionTable.GetAction(data.action, data.parameters)
         }).ToList();
@@ -165,9 +181,11 @@ public class PlayerUnlockTree : MonoBehaviour
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
         UnlockActionTable unlockActionTable = new(gameObject);
 
+        PlayerCurrency playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
+
         // Load data
         data.nodes.ForEach(d => {
-            PlayerUnlockNode node = new();
+            PlayerUnlockNode node = new(playerCurrency);
             node.LoadData(this, d, unlockActionTable);
             nodes[d.id] = node;
         });
@@ -191,11 +209,16 @@ public class PlayerUnlockTree : MonoBehaviour
         // Non-health upgrades
         if (healthUpgrade.CanActivate())
             --count;
-        if (count > 0) randomUnlocks.AddRange(nodes.Values
-            .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID)
-            .OrderBy(node => node.GetCost())
-            .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost)
-            .ToList().GetRandomDistinctElements(count));
+
+        if (count > 0)
+        {
+            var unlocks = nodes.Values
+                .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID)
+                .OrderBy(node => node.GetCost())
+                .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost);
+
+            randomUnlocks.AddRange(unlocks.ToList().GetWeightedRandomDistinctElements(count, unlocks.Select(unlock => unlock.GetWeight()).ToList()));
+        }
 
         // Health upgrade
         if (healthUpgrade.CanActivate())

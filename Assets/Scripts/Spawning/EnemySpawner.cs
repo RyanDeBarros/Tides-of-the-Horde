@@ -1,11 +1,13 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 class OnDestroyHandler : MonoBehaviour
 {
-    public System.Action<GameObject> onDestroyed;
+    public readonly UnityEvent<GameObject> onDestroyed = new();
 
     private void OnDestroy()
     {
@@ -18,15 +20,28 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private SpawnWaveUIController uiController;
     [SerializeField] private TextAsset waveFile;
     [SerializeField] private ShopUI shopUI;
+    [SerializeField] private ChallengeGiver challengeGiver;
+    [SerializeField] private ChallengeTracker challengeTracker;
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
     [SerializeField] private GameObject bishopPrefab;
     [SerializeField] private GameObject orcPrefab;
+    [SerializeField] private GameObject demonKingPrefab;
+
+    [Min(0)] public int difficultyLevelOffset = 0;
 
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
     private readonly HashSet<GameObject> spawnedEnemies = new();
+
+    private enum LevelPhase
+    {
+        ChallengeGiver,
+        Waves
+    }
+
+    private LevelPhase levelPhase = LevelPhase.ChallengeGiver;
 
     private void Awake()
     {
@@ -34,27 +49,56 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(waveFile);
         waveTimeline = WaveTimeline.Read(waveFile);
         Assert.IsNotNull(shopUI);
+        Assert.IsNotNull(challengeGiver);
+        challengeGiver.onConversationEnd.AddListener(StartWaves);
+        Assert.IsNotNull(challengeTracker);
 
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
         Assert.IsNotNull(orcPrefab);
-
-        waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
-        waveTimeline.doEnemiesRemain = DoEnemiesRemain;
+        Assert.IsNotNull(demonKingPrefab);
     }
 
     private void Start()
     {
-        waveTimeline.Init();
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
+        uiController.HideUI();
+
+        StartCoroutine(StartLevelRoutine());
+    }
+
+    private IEnumerator StartLevelRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+        StartLevel();
+    }
+
+    private void StartLevel()
+    {
+        challengeGiver.SpawnNPC();
     }
 
     private void Update()
     {
+        if (levelPhase == LevelPhase.Waves)
+            UpdateSpawnTimeline();
+    }
+
+    private void StartWaves()
+    {
+        uiController.ShowUI();
+        waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
+        waveTimeline.doEnemiesRemain = DoEnemiesRemain;
+        waveTimeline.Init();
+        levelPhase = LevelPhase.Waves;
+    }
+
+    private void UpdateSpawnTimeline()
+    {
         waveTimeline.ManualUpdate();
         uiController.SetNormalizedSpawningTimeLeft(waveTimeline.GetNormalizedSpawningTimeLeft());
         uiController.SetNormalizedWaitTime(waveTimeline.GetNormalizedWaitTime());
-        
+
         foreach (((EnemyType type, int difficultyLevel), int toSpawn) in waveTimeline.GetEnemiesToSpawn())
             SpawnEnemies(type, toSpawn, difficultyLevel);
     }
@@ -65,10 +109,9 @@ public class EnemySpawner : MonoBehaviour
         List<SpawnZone> activeSpawnZones = spawnZones.Where(spawner => spawner.IsSpawnable()).ToList();
         if (activeSpawnZones.Count == 0) return;
 
-        for (int i = 0; i < numEnemies; ++i)
+        for (int _ = 0; _ < numEnemies; ++_)
         {
-            int zoneIndex = Random.Range(0, activeSpawnZones.Count());
-            Vector3 spawnPoint = activeSpawnZones[zoneIndex].GetRandomPoint();
+            Vector3 spawnPoint = activeSpawnZones.GetRandomElement().GetRandomPoint();
             SpawnAtPoint(type, spawnPoint, difficultyLevel);
         }
     }
@@ -77,9 +120,9 @@ public class EnemySpawner : MonoBehaviour
     {
         GameObject instance = Instantiate(GetEnemyPrefab(type), point, Quaternion.identity);
         spawnedEnemies.Add(instance);
-        instance.AddComponent<OnDestroyHandler>().onDestroyed = go => spawnedEnemies.Remove(go);
+        instance.AddComponent<OnDestroyHandler>().onDestroyed.AddListener(go => spawnedEnemies.Remove(go));
         if (instance.TryGetComponent(out IDifficultyImplementer difficulty))
-            difficulty.SetDifficultyLevel(difficultyLevel);
+            difficulty.SetDifficultyLevel(difficultyLevel + difficultyLevelOffset);
     }
 
     private GameObject GetEnemyPrefab(EnemyType type)
@@ -89,6 +132,7 @@ public class EnemySpawner : MonoBehaviour
             EnemyType.Skeleton => skeletonPrefab,
             EnemyType.Bishop => bishopPrefab,
             EnemyType.Orc => orcPrefab,
+            EnemyType.DemonKing => demonKingPrefab,
             _ => null
         };
         Assert.IsNotNull(prefab);
@@ -103,7 +147,10 @@ public class EnemySpawner : MonoBehaviour
             shopUI.RefreshOptions();
         }
         else
+        {
+            challengeTracker.RewardIfSuccess();
             uiController.HideUI();
+        }
     }
 
     private bool DoEnemiesRemain()
