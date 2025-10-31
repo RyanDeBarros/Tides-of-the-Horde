@@ -1,8 +1,8 @@
 {
     "waves": [
         {
-            "preWaveWaitTime": 1.0,
-            "postWaveWaitTime": 1.0,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
             "subwaves": [
                 {
                     "duration": 3.0,
@@ -13,8 +13,8 @@
             ]
         },
         {
-            "preWaveWaitTime": 1.0,
-            "postWaveWaitTime": 1.0,
+            "preWaveWaitTime": 0.0,
+            "postWaveWaitTime": 3.0,
             "subwaves": [
                 {
                     "duration": 3.0,
@@ -32,8 +32,8 @@
             ]
         },
         {
-            "preWaveWaitTime": 1.0,
-            "postWaveWaitTime": 1.0,
+            "preWaveWaitTime": 0.0,
+            "postWaveWaitTime": 3.0,
             "song": "Battle 1",
             "subwaves": [
                 {

@@ -24,7 +24,15 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField, Min(2)] private int numberOfSources = 3;
 
     private Dictionary<string, Track> tracks;
-    private readonly Dictionary<string, int> trackPositions = new();
+
+    private class TrackCache
+    {
+        public float lastTime = 0f;
+        public float position = 0f;
+    }
+
+    private readonly Dictionary<string, TrackCache> trackCache = new();
+    
     private AudioSource[] sources;
     private int activeSourceIndex = 0;
     private string activeIdentifier;
@@ -75,7 +83,7 @@ public class SoundtrackManager : MonoBehaviour
         toSource.loop = track.loop;
 
         if (!restart)
-            toSource.timeSamples = trackPositions[identifier];
+            toSource.time = Time.time - trackCache[identifier].lastTime + trackCache[identifier].position;
 
         if (dimCoroutine != null)
             StopCoroutine(dimCoroutine);
@@ -96,7 +104,7 @@ public class SoundtrackManager : MonoBehaviour
 
         source.volume = 0f;
         if (identifier != null)
-            trackPositions[identifier] = source.timeSamples;
+            trackCache[identifier] = new() { lastTime = Time.time, position = source.time };
         source.Stop();
     }
 
