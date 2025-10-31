@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8242276565798616951}
   - component: {fileID: 5445867534279781679}
   - component: {fileID: 2522379979865063530}
-  - component: {fileID: -9203229720022445971}
+  - component: {fileID: 4271090423083697294}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -93,7 +93,7 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563976600490383831}
   m_Enabled: 1
---- !u!114 &-9203229720022445971
+--- !u!114 &4271090423083697294
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,8 +116,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -411,7 +411,7 @@ MonoBehaviour:
   bombSpellIcon: {fileID: 2800000, guid: 3ada41d904892d64a9905734e889490a, type: 3}
   bubbleSpellIcon: {fileID: 2800000, guid: f26b168fa1f89274e8f6e565297c2882, type: 3}
   sniperSpellIcon: {fileID: 2800000, guid: 68fea59bcd9ad084bb0639f88f77ec16, type: 3}
-  healthIcon: {fileID: 2800000, guid: b0c7669b478240240af80f640001ac04, type: 3}
+  healthIcon: {fileID: 2800000, guid: b5cd81e4340af5b468586b84ed63b31b, type: 3}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0
