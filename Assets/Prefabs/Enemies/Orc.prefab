@@ -68,6 +68,7 @@ GameObject:
   - component: {fileID: 1670915203915621149}
   - component: {fileID: 458530350395169553}
   - component: {fileID: 1961417952955607821}
+  - component: {fileID: 6786188735310239353}
   - component: {fileID: 5512871995234863560}
   - component: {fileID: 5878343526247759158}
   - component: {fileID: 1497454574808624728}
@@ -218,12 +219,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  thresholdPercent: 10
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   onDeath:
     m_PersistentCalls:
       m_Calls: []
+  onHealthThresholdReached:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6786188735310239353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045373013286125374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f286f61244fad8d4bbe7fd8af2a92198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 1961417952955607821}
+  anim: {fileID: 1192491411146982190}
+  dieStateName: Die
+  extraDelay: 0
+  disableOnDeath:
+  - {fileID: 7476458676621689791}
+  - {fileID: 458530350395169553}
+  - {fileID: 1670915203915621149}
+  sinkDuration: 0.1
+  sinkSpeed: 1
 --- !u!114 &5512871995234863560
 MonoBehaviour:
   m_ObjectHideFlags: 0

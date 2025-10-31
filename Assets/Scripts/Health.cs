@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 using UnityEngine.Assertions;
 using System;
@@ -16,7 +17,9 @@ public class Health : MonoBehaviour
     public UnityEvent onDeath;
     public UnityEvent onHealthThresholdReached; // New event for 10% intervals
 
-    void Awake()
+    private bool dead;
+
+    private void Awake()
     {
         currentHealth = maxHealth;
         HealthChanged();
@@ -44,7 +47,7 @@ public class Health : MonoBehaviour
         }
     }
 
-    void CheckHealthThreshold(int previousHealth)
+    private void CheckHealthThreshold(int previousHealth)
     {
         float thresholdInterval = maxHealth * (thresholdPercent / 100f);
         int currentThreshold = (int)(currentHealth / thresholdInterval);
@@ -83,10 +86,13 @@ public class Health : MonoBehaviour
         HealthChanged();
     }
 
-    private void Die()
+    public void Die()
     {
-        onDeath?.Invoke();
-        Destroy(gameObject);
+        if (!dead)
+        {
+            dead = true;
+            onDeath.Invoke();
+        }
     }
 
     private void HealthChanged()

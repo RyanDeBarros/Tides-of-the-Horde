@@ -10,6 +10,9 @@ public class FireballProjectile : MonoBehaviour
     private Vector3 direction;
     private Rigidbody rb;
 
+    [Header("Explosion Settings")]
+    public GameObject explosionFX;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -50,7 +53,24 @@ public class FireballProjectile : MonoBehaviour
                 playerHealth.TakeDamage((int)damage);
             }
         }
-        
+        SpawnExplosion();
         Destroy(gameObject);
+    }
+
+    private void SpawnExplosion()
+    {
+        if (!explosionFX) return;
+
+        GameObject explosion = Instantiate(explosionFX, transform.position, Quaternion.identity);
+
+        if (explosion.TryGetComponent<ParticleSystem>(out var ps))
+        {
+            ps.Play();
+            Destroy(explosion, ps.main.duration);
+        }
+        else
+        {
+            Destroy(explosion, 3f);
+        }
     }
 }

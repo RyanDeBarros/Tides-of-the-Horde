@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class SkeletonMovementAI : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class SkeletonMovementAI : MonoBehaviour
     public float stoppingDistance = 2f;
 
     private CharacterController controller;
-    private Vector3 velocity; // Needed to track downward velocity (gravity)
 
     void Start()
     {
@@ -17,43 +17,28 @@ public class SkeletonMovementAI : MonoBehaviour
         
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
+        Assert.IsNotNull(player);
     }
 
     void Update()
     {
-        if (player == null)
+        if (!controller.enabled)
             return;
 
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
+
         // Calculate distance and decide if we should chase
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        float distanceToPlayer = direction.magnitude;
         bool shouldChase = (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance);
+        direction.Normalize();
+        transform.rotation = Quaternion.LookRotation(direction);
 
         if (shouldChase)
         {
-            ChasePlayer();
+            Vector3 movement = moveSpeed * Time.deltaTime * direction;
+            controller.Move(movement);
         }
-
-        // Move the controller (this applies both movement and gravity)
-        controller.Move(velocity * Time.deltaTime);
-    }
-
-    void ChasePlayer()
-    {
-        // 1. Calculate direction towards player (ignore height difference)
-        Vector3 direction = (player.position - transform.position).normalized;
-        direction.y = 0; 
-
-        // 2. Create the movement vector based on direction and speed
-        Vector3 movement = direction * moveSpeed * Time.deltaTime;
-
-        // 3. Rotate to face the player
-        if (direction != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(direction);
-        }
-
-        // 4. Apply the movement to the CharacterController
-        controller.Move(movement);
     }
 
     // Visualize ranges in the Scene view
