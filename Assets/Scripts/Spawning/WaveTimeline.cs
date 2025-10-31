@@ -139,7 +139,7 @@ public class WaveTimeline
         Assert.IsNotNull(onWaveNumberChanged);
         Assert.IsNotNull(doEnemiesRemain);
         onWaveNumberChanged.Invoke(waveNumber + 1);
-        SoundtrackManager.Instance.PlayTrack(waitingSong, restart: false); // TODO instead of restarting song - either continue where it left off or play it in background at 0 volume.
+        SoundtrackManager.Instance.PlayTrack(waitingSong, restart: false);
         SoundtrackManager.Instance.DimTrack();
     }
 

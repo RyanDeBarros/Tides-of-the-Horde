@@ -61,7 +61,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 5564d5bc6a8be9640aa617d127654c7f, type: 3}
     loop: 1
     volume: 0.9
-  crossFadeDuration: 0.5
+  crossFadeDuration: 1
   dimmedVolumeFactor: 0.5
   dimmedTransitionDuration: 0.3
   numberOfSources: 3
