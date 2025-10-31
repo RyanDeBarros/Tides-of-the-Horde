@@ -52,7 +52,7 @@ MonoBehaviour:
   spawnWaveFile: {fileID: 0}
   dialogFile: {fileID: 0}
   enemySpawner: {fileID: 3850396755786596804}
-  npcDialog: {fileID: 5548753456616675179}
+  npcDialog: {fileID: 1846684184539267383}
 --- !u!1 &7726332571218978483
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,6 +403,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+--- !u!114 &1846684184539267383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6425814742974164807, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+  m_PrefabInstance: {fileID: 4651559867012279920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1eb54a3d8e2287641ba61ebc9195e882, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &5189260850496047480 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 616531569822295816, guid: 9133876c6c261edbcb084a122361753d, type: 3}
@@ -419,17 +430,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 641069492720201249, guid: 9133876c6c261edbcb084a122361753d, type: 3}
   m_PrefabInstance: {fileID: 4651559867012279920}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5548753456616675179 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 976305659377187099, guid: 9133876c6c261edbcb084a122361753d, type: 3}
-  m_PrefabInstance: {fileID: 4651559867012279920}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eb54a3d8e2287641ba61ebc9195e882, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6178491567469731723 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1527776172639613435, guid: 9133876c6c261edbcb084a122361753d, type: 3}
@@ -507,7 +507,7 @@ PrefabInstance:
     - target: {fileID: 3581564894138012485, guid: 40ebbcb2cff31f2409c04f6486f28aa1, type: 3}
       propertyPath: dialog
       value: 
-      objectReference: {fileID: 5548753456616675179}
+      objectReference: {fileID: 1846684184539267383}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
