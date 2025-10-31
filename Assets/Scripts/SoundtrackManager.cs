@@ -24,6 +24,7 @@ public class SoundtrackManager : MonoBehaviour
     [SerializeField, Min(2)] private int numberOfSources = 3;
 
     private Dictionary<string, Track> tracks;
+    private readonly Dictionary<string, int> trackPositions = new();
     private AudioSource[] sources;
     private int activeSourceIndex = 0;
     private string activeIdentifier;
@@ -38,6 +39,9 @@ public class SoundtrackManager : MonoBehaviour
             return;
         }
         Instance = this;
+        if (transform.parent != null)
+            transform.SetParent(null);
+        DontDestroyOnLoad(gameObject);
 
         tracks = trackList.ToDictionary(t => t.identifier);
         sources = new AudioSource[numberOfSources];
@@ -54,7 +58,7 @@ public class SoundtrackManager : MonoBehaviour
         return activeIdentifier;
     }
 
-    public void PlayTrack(string identifier)
+    public void PlayTrack(string identifier, bool restart = true)
     {
         if (!tracks.TryGetValue(identifier, out Track track))
         {
@@ -69,16 +73,19 @@ public class SoundtrackManager : MonoBehaviour
         AudioSource toSource = sources[activeSourceIndex];
         toSource.clip = track.clip;
         toSource.loop = track.loop;
-        activeIdentifier = identifier;
+
+        if (!restart)
+            toSource.timeSamples = trackPositions[identifier];
 
         if (dimCoroutine != null)
             StopCoroutine(dimCoroutine);
         dimmed = false;
-        StartCoroutine(FadeOut(fromSource));
+        StartCoroutine(FadeOut(fromSource, activeIdentifier));
+        activeIdentifier = identifier;
         StartCoroutine(FadeIn(toSource, track.volume));
     }
 
-    private IEnumerator FadeOut(AudioSource source)
+    private IEnumerator FadeOut(AudioSource source, string identifier)
     {
         float fromVolume = source.volume;
         for (float t = 0f; t < crossFadeDuration; t += Time.deltaTime)
@@ -88,6 +95,8 @@ public class SoundtrackManager : MonoBehaviour
         }
 
         source.volume = 0f;
+        if (identifier != null)
+            trackPositions[identifier] = source.timeSamples;
         source.Stop();
     }
 
@@ -137,7 +146,6 @@ public class SoundtrackManager : MonoBehaviour
         }
 
         source.volume = toVolume;
-        if (dimCoroutine != null)
-            StopCoroutine(dimCoroutine);
+        dimCoroutine = null;
     }
 }
