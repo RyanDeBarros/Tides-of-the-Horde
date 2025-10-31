@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &9178492192000602168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4542268320645861354}
+  - component: {fileID: 3242610776667496712}
+  m_Layer: 0
+  m_Name: SoundtrackManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4542268320645861354
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9178492192000602168}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3242610776667496712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9178492192000602168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb2dac806836214d95b31fc33bf1edd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackList:
+  - identifier: Prologue
+    clip: {fileID: 8300000, guid: 97576925574fcfa42b95682b3c07f6f3, type: 3}
+    loop: 1
+    volume: 1
+  - identifier: Silent Forest
+    clip: {fileID: 8300000, guid: 632ad97168e467842bdc7d41a9e416e9, type: 3}
+    loop: 1
+    volume: 1
+  - identifier: Battle 1
+    clip: {fileID: 8300000, guid: 55474439cb2959942a431507585ef56e, type: 3}
+    loop: 1
+    volume: 1
+  - identifier: Shop
+    clip: {fileID: 8300000, guid: 5564d5bc6a8be9640aa617d127654c7f, type: 3}
+    loop: 1
+    volume: 1
+  crossFadeDuration: 0.4
+  numberOfSources: 3
