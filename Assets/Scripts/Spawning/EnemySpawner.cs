@@ -33,6 +33,7 @@ public class EnemySpawner : MonoBehaviour
 
     private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
+    private List<Waypoint> waypoints;
     private readonly HashSet<GameObject> spawnedEnemies = new();
 
     private enum LevelPhase
@@ -43,11 +44,14 @@ public class EnemySpawner : MonoBehaviour
 
     private LevelPhase levelPhase = LevelPhase.ChallengeGiver;
 
+    public void Initialize(TextAsset waveFile)
+    {
+        this.waveFile = waveFile;
+    }
+
     private void Awake()
     {
         Assert.IsNotNull(uiController);
-        Assert.IsNotNull(waveFile);
-        waveTimeline = WaveTimeline.Read(waveFile);
         Assert.IsNotNull(shopUI);
         Assert.IsNotNull(challengeGiver);
         challengeGiver.onConversationEnd.AddListener(StartWaves);
@@ -57,12 +61,18 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(bishopPrefab);
         Assert.IsNotNull(orcPrefab);
         Assert.IsNotNull(demonKingPrefab);
+
+        spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
+        waypoints = new(FindObjectsByType<Waypoint>(FindObjectsSortMode.InstanceID));
     }
 
     private void Start()
     {
-        spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
+        Assert.IsNotNull(waveFile);
+        waveTimeline = WaveTimeline.Read(waveFile);
+
         uiController.HideUI();
+        shopUI.gameObject.SetActive(false);
 
         StartCoroutine(StartLevelRoutine());
     }
@@ -87,6 +97,7 @@ public class EnemySpawner : MonoBehaviour
     private void StartWaves()
     {
         uiController.ShowUI();
+        shopUI.gameObject.SetActive(true);
         waveTimeline.onWaveNumberChanged = OnWaveNumberChanged;
         waveTimeline.doEnemiesRemain = DoEnemiesRemain;
         waveTimeline.Init();
@@ -123,6 +134,8 @@ public class EnemySpawner : MonoBehaviour
         instance.AddComponent<OnDestroyHandler>().onDestroyed.AddListener(go => spawnedEnemies.Remove(go));
         if (instance.TryGetComponent(out IDifficultyImplementer difficulty))
             difficulty.SetDifficultyLevel(difficultyLevel + difficultyLevelOffset);
+        if (instance.TryGetComponent(out WaypointPatroller waypointPatroller))
+            waypointPatroller.waypoints = waypoints;
     }
 
     private GameObject GetEnemyPrefab(EnemyType type)

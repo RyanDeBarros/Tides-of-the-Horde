@@ -54,6 +54,11 @@ public class NPCDialog : MonoBehaviour
     private readonly List<OnHover> textOnHovers = new();
     private CoroutineQueue typewriterAnimationQueue;
 
+    public void Initialize(TextAsset dialogFile)
+    {
+        this.dialogFile = dialogFile;
+    }
+
     private void Awake()
     {
         Assert.IsNotNull(textArea);
@@ -69,6 +74,11 @@ public class NPCDialog : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void Start()
+    {
+        Assert.IsNotNull(dialogFile);
+    }
+
     public void Open()
     {
         if (open) return;
@@ -79,6 +89,7 @@ public class NPCDialog : MonoBehaviour
         spellManager.enabled = false;
         playerMovement.enabled = false;
 
+        Assert.IsNotNull(dialogFile);
         challengeTracker.SelectRandomChallenge();
         SetTextPage(JsonUtility.FromJson<DialogPage>(dialogFile.text));
     }

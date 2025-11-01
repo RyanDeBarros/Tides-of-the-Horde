@@ -9,12 +9,6 @@
                     "enemy": "Skeleton",
                     "spawnRate": 1.0,
                     "difficulty": 1
-                },
-                {
-                    "enemy": "DemonKing",
-                    "spawnOnce": true,
-                    "timeOffset": 1.0,
-                    "difficulty": 1
                 }
             ]
         },
@@ -58,6 +52,12 @@
                     "duration": 10.0,
                     "enemy": "Bishop",
                     "spawnRate": 0.5,
+                    "difficulty": 1
+                },
+                {
+                    "enemy": "DemonKing",
+                    "spawnOnce": true,
+                    "timeOffset": 1.0,
                     "difficulty": 1
                 }
             ]

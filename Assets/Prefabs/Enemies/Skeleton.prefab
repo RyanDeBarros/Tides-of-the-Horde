@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 1440669383180710773}
   - component: {fileID: 381224887220896308}
   - component: {fileID: 2159564664796972101}
+  - component: {fileID: 1822851808941021713}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -111,7 +112,7 @@ Transform:
   m_GameObject: {fileID: 877391312677472464}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.1, y: 1.58, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -328,6 +329,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsFile: {fileID: 4900000, guid: dbbff7d815a8ec7468d07736d4ba171a, type: 3}
+--- !u!114 &1822851808941021713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877391312677472464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545eefbe73a117e4fb099b1668568193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceptance_threshold: 1
+  waypoints: []
+  characterController: {fileID: 5840853363918661323}
+  moveSpeed: 5
 --- !u!1 &4069443703503164984
 GameObject:
   m_ObjectHideFlags: 0
