@@ -129,9 +129,9 @@ GameObject:
   - component: {fileID: 1416742053595806769}
   - component: {fileID: 5753715555274969651}
   - component: {fileID: 476565866697689289}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DemonKing
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -938,6 +938,10 @@ PrefabInstance:
     - target: {fileID: 2004883512271767695, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
       propertyPath: m_Name
       value: DemonKingPBRDefault
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004883512271767695, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2035824380270046211, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

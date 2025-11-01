@@ -17,7 +17,6 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
     [SerializeField] public float gravity = -40f;
     [SerializeField] public float initialVerticalVelocity = 12f;
     [SerializeField] public float initialForwardVelocity = 20f;
-    [SerializeField] public float crosshairAimingClip = 30f;
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
@@ -49,7 +48,7 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         animator.ExecuteAttack2();
-        Vector3 direction = crosshairsController.GetWorldDirection(manager.GetStaffTipPosition(), maxClip: crosshairAimingClip);
+        Vector3 direction = crosshairsController.GetWorldDirection();
         GameObject instance = Instantiate(spellPrefab, manager.GetStaffTipPosition(), Quaternion.LookRotation(direction));
         BombSpell spell = instance.GetComponent<BombSpell>();
         Assert.IsNotNull(spell);
