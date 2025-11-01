@@ -22,6 +22,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private ShopUI shopUI;
     [SerializeField] private ChallengeGiver challengeGiver;
     [SerializeField] private ChallengeTracker challengeTracker;
+    [SerializeField] private float challengerSpawnDelay = 2f;
+    [SerializeField] private string waitForChallengerSong;
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
@@ -74,12 +76,13 @@ public class EnemySpawner : MonoBehaviour
         uiController.HideUI();
         shopUI.gameObject.SetActive(false);
 
+        SoundtrackManager.Instance.PlayTrack(waitForChallengerSong);
         StartCoroutine(StartLevelRoutine());
     }
 
     private IEnumerator StartLevelRoutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(challengerSpawnDelay);
         StartLevel();
     }
 

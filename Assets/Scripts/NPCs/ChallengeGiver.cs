@@ -12,6 +12,7 @@ public class ChallengeGiver : MonoBehaviour
     [SerializeField] private TextMeshPro keyHint;
     [SerializeField] private Color keyHintActiveColor;
     [SerializeField] private Color keyHintInactiveColor;
+    [SerializeField] private string songIdentifier = "Worm";
 
     public UnityEvent onConversationEnd;
 
@@ -72,6 +73,7 @@ public class ChallengeGiver : MonoBehaviour
     public void SpawnNPC()
     {
         gameObject.SetActive(true);
+        SoundtrackManager.Instance.PlayTrack(songIdentifier);
         spawnRoutine ??= StartCoroutine(SpawnRoutine());
     }
 
