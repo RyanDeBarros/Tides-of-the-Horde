@@ -409,6 +409,10 @@ PrefabInstance:
       propertyPath: playerCurrency
       value: 
       objectReference: {fileID: 1821964629}
+    - target: {fileID: 2547837979637691847, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6285749625068482116, guid: 9133876c6c261edbcb084a122361753d, type: 3}
       propertyPath: m_Name
       value: HUD

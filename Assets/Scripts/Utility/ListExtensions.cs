@@ -44,9 +44,10 @@ public static class ListExtensions
         return result;
     }
 
-    public static T GetUniqueElement<T>(this T[] array)
+    public static T GetUniqueElement<T>(this T[] array) where T : class
     {
         Assert.IsTrue(array.Length == 1);
+        Assert.IsNotNull(array[0]);
         return array[0];
     }
 

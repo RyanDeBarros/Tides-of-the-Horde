@@ -20,6 +20,7 @@ public class ChallengeGiver : MonoBehaviour
     private Coroutine spawnRoutine = null;
     private Coroutine despawnRoutine = null;
     private Transform player;
+    private PlayerCamera playerCamera;
 
     private bool isTalking = false;
 
@@ -32,6 +33,8 @@ public class ChallengeGiver : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag(playerTag).transform;
         Assert.IsNotNull(player);
+        playerCamera = player.GetComponent<PlayerCamera>();
+        Assert.IsNotNull(playerCamera);
 
         Assert.IsNotNull(dialog);
         dialog.onClose = DespawnNPC;
@@ -52,7 +55,7 @@ public class ChallengeGiver : MonoBehaviour
             if (Vector3.Distance(transform.position, player.position) < talkDistance)
             {
                 keyHint.color = keyHintActiveColor;
-                if (Input.GetKeyDown(KeyCode.E))
+                if (playerCamera.IsCameraEnabled() && Input.GetKeyDown(KeyCode.E))
                     Talk();
             }
             else
