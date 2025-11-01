@@ -74,6 +74,11 @@ public class NPCDialog : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    private void Start()
+    {
+        Assert.IsNotNull(dialogFile);
+    }
+
     public void Open()
     {
         if (open) return;
