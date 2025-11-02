@@ -692,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 5320236217061405832, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: MeleeSFX
       value: 
-      objectReference: {fileID: 8300000, guid: 0c42f41e2b707e54a9aea22e3bbf0f41, type: 3}
+      objectReference: {fileID: 8300000, guid: 51aa667a76328d540b69f8ca1b14c269, type: 3}
     - target: {fileID: 5320236217061405832, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: audioSource
       value: 
