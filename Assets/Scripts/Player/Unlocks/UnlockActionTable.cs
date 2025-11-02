@@ -6,8 +6,10 @@ using UnityEngine.Assertions;
 public enum UnlockAction
 {
     Unlock,
+    UnlockDash,
     UpgradeSpell,
-    UpgradeHealth
+    UpgradeHealth,
+    UpgradeDash
 }
 
 public enum SpellUpgradeParameter
@@ -25,14 +27,20 @@ public class UnlockActionTable
 {
     private readonly SpellManager spellManager;
     private readonly Health playerHealth;
+    private readonly PlayerDash playerDash;
+    private readonly DashCooldownUI dashUI;
 
-    public UnlockActionTable(GameObject player)
+    public UnlockActionTable(GameObject player, DashCooldownUI dashUI)
     {
         spellManager = player.GetComponent<SpellManager>();
         playerHealth = player.GetComponent<Health>();
+        playerDash = player.GetComponent<PlayerDash>();
+        this.dashUI = dashUI;
 
         Assert.IsNotNull(spellManager);
         Assert.IsNotNull(playerHealth);
+        Assert.IsNotNull(playerDash);
+        Assert.IsNotNull(dashUI);
     }
     public Action<float[]> GetAction(string actionString, List<string> parameters)
     {
@@ -40,8 +48,10 @@ public class UnlockActionTable
         return action switch
         {
             UnlockAction.Unlock => GetSpellUnlockAction(parameters),
+            UnlockAction.UnlockDash => GetDashUnlockAction(),
             UnlockAction.UpgradeSpell => GetSpellUpgradeAction(parameters),
-            UnlockAction.UpgradeHealth => GetHealthUpgradeAction(parameters),
+            UnlockAction.UpgradeHealth => GetHealthUpgradeAction(),
+            UnlockAction.UpgradeDash => GetDashUpgradeAction(parameters),
             _ => throw new NotImplementedException()
         };
     }
@@ -50,6 +60,11 @@ public class UnlockActionTable
     {
         SpellType spellType = Enum.Parse<SpellType>(parameters[0]);
         return _ => spellManager.UnlockSpell(spellType);
+    }
+
+    private Action<float[]> GetDashUnlockAction()
+    {
+        return _ => { playerDash.Unlock(); dashUI.Show(); };
     }
 
     private Action<float[]> GetSpellUpgradeAction(List<string> parameters)
@@ -175,7 +190,7 @@ public class UnlockActionTable
         };
     }
 
-    private Action<float[]> GetHealthUpgradeAction(List<string> _)
+    private Action<float[]> GetHealthUpgradeAction()
     {
         return values => {
             float maxHealthIncrease = values[0];
@@ -183,5 +198,11 @@ public class UnlockActionTable
             playerHealth.IncreaseMaxHealth((int)maxHealthIncrease);
             playerHealth.HealPercent(healPercent);
         };
+    }
+
+    private Action<float[]> GetDashUpgradeAction(List<string> parameters)
+    {
+        // TODO
+        return values => { };
     }
 }
