@@ -159,6 +159,7 @@ MonoBehaviour:
   stoppingDistance: 1
   moveSpeed: 4
   turnSpeed: 12
+  patrolSpeedMultiplier: 0.5
 --- !u!114 &1670915203915621149
 MonoBehaviour:
   m_ObjectHideFlags: 0

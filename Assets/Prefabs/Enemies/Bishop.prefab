@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 7036064065616852401}
   - component: {fileID: 579546405161707787}
   - component: {fileID: 4709246141123758158}
+  - component: {fileID: 3597290828824335131}
   m_Layer: 8
   m_Name: Bishop
   m_TagString: Enemy
@@ -237,6 +238,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsFile: {fileID: 4900000, guid: 603180203ef49d34797ddb67847f119a, type: 3}
+--- !u!114 &3597290828824335131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329783544436130698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545eefbe73a117e4fb099b1668568193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceptance_threshold: 1
+  waypoints: []
+  characterController: {fileID: 4359709406603153001}
+  moveSpeed: 3.5
 --- !u!1 &3424555026866121806
 GameObject:
   m_ObjectHideFlags: 0
