@@ -39,7 +39,7 @@ public class MeleeHitbox : MonoBehaviour
             return;
 
         colliders.ForEach(collider => {
-            Collider[] cols = Physics.OverlapSphere(collider.transform.position, collider.radius, targetMask);
+            Collider[] cols = Physics.OverlapSphere(collider.transform.TransformPoint(collider.center), collider.radius, targetMask);
             foreach (Collider col in cols)
             {
                 Health h = col.GetComponentInParent<Health>();

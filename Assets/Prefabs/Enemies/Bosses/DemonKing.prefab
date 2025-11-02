@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 1416742053595806769}
   - component: {fileID: 5753715555274969651}
   - component: {fileID: 476565866697689289}
+  - component: {fileID: 1427956218210571630}
   m_Layer: 8
   m_Name: DemonKing
   m_TagString: Enemy
@@ -368,6 +369,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsFile: {fileID: 4900000, guid: 8c76f37b6ae46c44b82eb93a1f4e36eb, type: 3}
+--- !u!114 &1427956218210571630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522856944775851731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545eefbe73a117e4fb099b1668568193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceptance_threshold: 1
+  waypoints: []
+  characterController: {fileID: 6265030949369529525}
+  moveSpeed: 10
 --- !u!1 &6247734207120758011
 GameObject:
   m_ObjectHideFlags: 0
