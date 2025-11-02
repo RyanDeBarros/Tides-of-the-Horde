@@ -16,7 +16,8 @@ public class Health : MonoBehaviour
     public UnityEvent onDeath;
     public UnityEvent onHealthThresholdReached; // New event for 10% intervals
 
-    private bool dead;
+    private bool invulnerable = false;
+    private bool dead = false;
 
     private void Awake()
     {
@@ -31,6 +32,8 @@ public class Health : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        if (invulnerable) return;
+
         int previousHealth = currentHealth;
         currentHealth -= amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
@@ -40,10 +43,7 @@ public class Health : MonoBehaviour
         // Check if we crossed a 10% threshold
         CheckHealthThreshold(previousHealth);
 
-        if (currentHealth <= 0)
-        {
-            Die();
-        }
+        if (currentHealth <= 0) Die();
     }
 
     private void CheckHealthThreshold(int previousHealth)
@@ -83,6 +83,11 @@ public class Health : MonoBehaviour
         Assert.IsTrue(amount >= 0);
         maxHealth += amount;
         HealthChanged();
+    }
+
+    public void SetInvulnerable(bool isInvulnerable)
+    {
+        invulnerable = isInvulnerable;
     }
 
     public void Die()
