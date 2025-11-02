@@ -48,12 +48,14 @@ public class SpellSelectController : MonoBehaviour
     {
         image.texture = null;
         SetCooldown(1f);
+        gameObject.SetActive(false);
     }
 
     public void ShowUnlocked()
     {
         image.texture = texture;
         SetCooldown(0f);
+        gameObject.SetActive(true);
     }
 
     public void SetKeyHint(int number)
