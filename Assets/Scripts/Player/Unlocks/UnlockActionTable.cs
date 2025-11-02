@@ -12,7 +12,7 @@ public enum UnlockAction
     UpgradeDash
 }
 
-public enum SpellUpgradeParameter
+public enum UpgradeParameter
 {
     Damage,
     Range,
@@ -20,6 +20,7 @@ public enum SpellUpgradeParameter
     BounceBack,
     Radius,
     Speed,
+    Duration,
     MaxEnemiesHit
 }
 
@@ -70,11 +71,11 @@ public class UnlockActionTable
     private Action<float[]> GetSpellUpgradeAction(List<string> parameters)
     {
         SpellType spellType = Enum.Parse<SpellType>(parameters[0]);
-        SpellUpgradeParameter upgradeParameter = Enum.Parse<SpellUpgradeParameter>(parameters[1]);
+        UpgradeParameter upgradeParameter = Enum.Parse<UpgradeParameter>(parameters[1]);
         return values => UpgradeSpell(spellType, upgradeParameter, values[0]);
     }
 
-    private void UpgradeSpell(SpellType spell, SpellUpgradeParameter param, float value)
+    private void UpgradeSpell(SpellType spell, UpgradeParameter param, float value)
     {
         ISpellCaster spellCaster = spellManager.GetSpellCaster(spell);
         switch (spell)
@@ -96,93 +97,95 @@ public class UnlockActionTable
         };
     }
 
-    private void UpgradeMeleeSpell(MeleeSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter, float value)
+    private void UpgradeMeleeSpell(MeleeSpellCaster spellCaster, UpgradeParameter upgradeParameter, float value)
     {
-        switch (spellUpgradeParameter)
+        switch (upgradeParameter)
         {
-            case SpellUpgradeParameter.Damage:
-                spellCaster.damage = (int)(spellCaster.damage * value);
+            case UpgradeParameter.Damage:
+                spellCaster.damage = (int)(spellCaster.damage * (1f + value));
                 break;
-            case SpellUpgradeParameter.Range:
-                spellCaster.moveSpeed *= value;
+            case UpgradeParameter.Range:
+                spellCaster.moveSpeed *= (1f + value);
                 break;
-            case SpellUpgradeParameter.Cooldown:
-                spellCaster.cooldown *= value;
+            case UpgradeParameter.Cooldown:
+                spellCaster.cooldown *= (1f - value);
                 break;
-            case SpellUpgradeParameter.BounceBack:
-                spellCaster.bounceBackStrength *= value;
+            case UpgradeParameter.BounceBack:
+                spellCaster.bounceBackStrength *= (1f + value);
                 break;
             default:
                 throw new NotImplementedException();
         };
     }
 
-    private void UpgradeBombSpell(BombSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter, float value)
+    private void UpgradeBombSpell(BombSpellCaster spellCaster, UpgradeParameter upgradeParameter, float value)
     {
-        switch (spellUpgradeParameter)
+        switch (upgradeParameter)
         {
-            case SpellUpgradeParameter.Damage:
+            case UpgradeParameter.Damage:
+                value += 1f;
                 spellCaster.innerDamage = (int)(spellCaster.innerDamage * value);
                 spellCaster.outerDamage = (int)(spellCaster.outerDamage * value);
                 break;
-            case SpellUpgradeParameter.Range:
+            case UpgradeParameter.Range:
+                value += 1f;
                 spellCaster.gravity *= value;
                 spellCaster.initialVerticalVelocity *= value;
                 spellCaster.initialForwardVelocity *= value;
                 spellCaster.crosshairAimingClip *= value; // TODO test that modifying crosshairAimingClip makes sense
                 break;
-            case SpellUpgradeParameter.Cooldown:
-                spellCaster.cooldown *= value;
+            case UpgradeParameter.Cooldown:
+                spellCaster.cooldown *= (1f - value);
                 break;
-            case SpellUpgradeParameter.BounceBack:
-                spellCaster.bounceBackStrength *= value;
+            case UpgradeParameter.BounceBack:
+                spellCaster.bounceBackStrength *= (1f + value);
                 break;
-            case SpellUpgradeParameter.Radius:
-                spellCaster.aoeRadius *= value;
-                break;
-            default:
-                throw new NotImplementedException();
-        };
-    }
-
-    private void UpgradeBubbleSpell(BubbleSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter, float value)
-    {
-        switch (spellUpgradeParameter)
-        {
-            case SpellUpgradeParameter.Range:
-                spellCaster.repelRadius *= value;
-                break;
-            case SpellUpgradeParameter.Cooldown:
-                spellCaster.cooldown *= value;
-                break;
-            case SpellUpgradeParameter.BounceBack:
-                spellCaster.bounceBackStrength *= value;
+            case UpgradeParameter.Radius:
+                spellCaster.aoeRadius *= (1f + value);
                 break;
             default:
                 throw new NotImplementedException();
         };
     }
 
-    private void UpgradeSniperSpell(SniperSpellCaster spellCaster, SpellUpgradeParameter spellUpgradeParameter, float value)
+    private void UpgradeBubbleSpell(BubbleSpellCaster spellCaster, UpgradeParameter upgradeParameter, float value)
     {
-        switch (spellUpgradeParameter)
+        switch (upgradeParameter)
         {
-            case SpellUpgradeParameter.Damage:
-                spellCaster.damage = (int)(spellCaster.damage * value);
+            case UpgradeParameter.Range:
+                spellCaster.repelRadius *= (1f + value);
                 break;
-            case SpellUpgradeParameter.Range:
-                spellCaster.range *= value;
+            case UpgradeParameter.Cooldown:
+                spellCaster.cooldown *= (1f - value);
                 break;
-            case SpellUpgradeParameter.Cooldown:
-                spellCaster.cooldown *= value;
+            case UpgradeParameter.BounceBack:
+                spellCaster.bounceBackStrength *= (1f + value);
                 break;
-            case SpellUpgradeParameter.Radius:
-                spellCaster.spellScale *= value;
+            default:
+                throw new NotImplementedException();
+        };
+    }
+
+    private void UpgradeSniperSpell(SniperSpellCaster spellCaster, UpgradeParameter upgradeParameter, float value)
+    {
+        switch (upgradeParameter)
+        {
+            case UpgradeParameter.Damage:
+                spellCaster.damage = (int)(spellCaster.damage * (1f + value));
                 break;
-            case SpellUpgradeParameter.Speed:
-                spellCaster.initialSpeed *= value;
+            case UpgradeParameter.Range:
+                spellCaster.range *= (1f + value);
                 break;
-            case SpellUpgradeParameter.MaxEnemiesHit:
+            case UpgradeParameter.Cooldown:
+                spellCaster.cooldown *= (1f - value);
+                break;
+            case UpgradeParameter.Radius:
+                spellCaster.spellScale *= (1f + value);
+                break;
+            case UpgradeParameter.Speed:
+                spellCaster.initialSpeed *= (1f + value);
+                break;
+            case UpgradeParameter.MaxEnemiesHit:
                 spellCaster.maxEnemiesCanHit += (int)value;
                 break;
             default:
@@ -193,16 +196,23 @@ public class UnlockActionTable
     private Action<float[]> GetHealthUpgradeAction()
     {
         return values => {
-            float maxHealthIncrease = values[0];
-            float healPercent = values[1];
-            playerHealth.IncreaseMaxHealth((int)maxHealthIncrease);
-            playerHealth.HealPercent(healPercent);
+            playerHealth.IncreaseMaxHealth((int)values[0]);
+            playerHealth.HealPercent(values[1]);
         };
     }
 
     private Action<float[]> GetDashUpgradeAction(List<string> parameters)
     {
-        // TODO
-        return values => { };
+        switch (Enum.Parse<UpgradeParameter>(parameters[0]))
+        {
+            case UpgradeParameter.Cooldown:
+                return values => playerDash.cooldown *= (1f - values[0]);
+            case UpgradeParameter.Speed:
+                return values => playerDash.dashSpeed *= (1f + values[0]);
+            case UpgradeParameter.Duration:
+                return values => playerDash.dashDuration *= (1f + values[0]);
+            default:
+                throw new NotImplementedException();
+        }
     }
 }
