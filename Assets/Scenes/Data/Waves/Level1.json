@@ -5,9 +5,9 @@
             "postWaveWaitTime": 3.0,
             "subwaves": [
                 {
-                    "duration": 3.0,
+                    "duration": 5.0,
                     "enemy": "Skeleton",
-                    "spawnRate": 1.0,
+                    "spawnRate": 2.0,
                     "difficulty": 1
                 }
             ]
