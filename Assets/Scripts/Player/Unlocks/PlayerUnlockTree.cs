@@ -210,19 +210,32 @@ public class PlayerUnlockTree : MonoBehaviour
         List<PlayerUnlockNode> randomUnlocks = new();
         PlayerUnlockNode healthUpgrade = nodes[upgradeHealthID];
 
-        // Non-health upgrades
         if (healthUpgrade.CanActivate())
             --count;
 
+        // Potentially expensive upgrade
+        PlayerUnlockNode expensiveNode = null;
+        if (count > 1)
+        {
+            --count;
+
+            var unlocks = nodes.Values.Where(node => node.CanActivate() && node.GetID() != upgradeHealthID);
+            expensiveNode = unlocks.ToList().GetWeightedRandomElement(unlocks.Select(unlock => unlock.GetWeight()).ToList());
+        }
+
+        // Affordable upgrades
         if (count > 0)
         {
             var unlocks = nodes.Values
-                .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID)
+                .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID && node != expensiveNode)
                 .OrderBy(node => node.GetCost())
                 .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost);
 
             randomUnlocks.AddRange(unlocks.ToList().GetWeightedRandomDistinctElements(count, unlocks.Select(unlock => unlock.GetWeight()).ToList()));
         }
+
+        if (expensiveNode != null)
+            randomUnlocks.Add(expensiveNode);
 
         // Health upgrade
         if (healthUpgrade.CanActivate())
