@@ -22,6 +22,12 @@ public class DemonKingMovementAI : MonoBehaviour
     public float teleportDuration = 2f; // Total time underground
     public float behindPlayerDistance = 3f; // Distance behind player to spawn
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip AttackSFX;
+    [SerializeField] private AudioClip AttackSFX2;
+    [SerializeField] private AudioClip TeleportSfX;
+
     private bool isTeleporting = false;
     private CharacterController controller;
     private Vector3 velocity;
@@ -117,6 +123,10 @@ public class DemonKingMovementAI : MonoBehaviour
     private IEnumerator TeleportBehindPlayer()
     {
         isTeleporting = true;
+
+        // play sfx
+        if (audioSource != null && TeleportSfX != null)
+            audioSource.PlayOneShot(TeleportSfX);
 
         // Disable character controller to manually control position
         controller.enabled = false;
