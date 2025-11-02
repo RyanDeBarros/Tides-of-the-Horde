@@ -617,15 +617,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1602286648583038328, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 31.9
       objectReference: {fileID: 0}
     - target: {fileID: 1602286648583038328, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 38.89
       objectReference: {fileID: 0}
     - target: {fileID: 1602286648583038328, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -20.2
       objectReference: {fileID: 0}
     - target: {fileID: 1602286648583038328, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -658,18 +658,6 @@ PrefabInstance:
     - target: {fileID: 1781781942579334019, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
       propertyPath: m_Name
       value: Arena1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3436735842367750881, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -35
-      objectReference: {fileID: 0}
-    - target: {fileID: 3436735842367750881, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3436735842367750881, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 55
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
