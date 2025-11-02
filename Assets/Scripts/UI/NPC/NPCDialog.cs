@@ -41,9 +41,7 @@ public class NPCDialog : MonoBehaviour
 
     public Action onClose;
 
-    private new PlayerCamera camera;
-    private SpellManager spellManager;
-    private PlayerMovement playerMovement;
+    private PlayerEnabler player;
 
     private ChallengeTracker challengeTracker;
 
@@ -64,9 +62,7 @@ public class NPCDialog : MonoBehaviour
         Assert.IsNotNull(textArea);
         Assert.IsNotNull(font);
 
-        camera = FindObjectsByType<PlayerCamera>(FindObjectsSortMode.None).GetUniqueElement();
-        spellManager = FindObjectsByType<SpellManager>(FindObjectsSortMode.None).GetUniqueElement();
-        playerMovement = FindObjectsByType<PlayerMovement>(FindObjectsSortMode.None).GetUniqueElement();
+        player = FindObjectsByType<PlayerEnabler>(FindObjectsSortMode.None).GetUniqueElement();
         challengeTracker = FindObjectsByType<ChallengeTracker>(FindObjectsSortMode.None).GetUniqueElement();
 
         typewriterAnimationQueue = gameObject.AddComponent<CoroutineQueue>();
@@ -85,9 +81,7 @@ public class NPCDialog : MonoBehaviour
 
         open = true;
         gameObject.SetActive(true);
-        camera.DisableCamera();
-        spellManager.enabled = false;
-        playerMovement.enabled = false;
+        player.DisablePlayer();
 
         Assert.IsNotNull(dialogFile);
         challengeTracker.SelectRandomChallenge();
@@ -101,9 +95,7 @@ public class NPCDialog : MonoBehaviour
         open = false;
         ClearTextPage();
         gameObject.SetActive(false);
-        camera.EnableCamera();
-        spellManager.enabled = true;
-        playerMovement.enabled = true;
+        player.EnablePlayer();
         onClose.Invoke();
     }
 
