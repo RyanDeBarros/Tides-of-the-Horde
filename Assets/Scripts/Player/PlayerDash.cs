@@ -76,4 +76,14 @@ public class PlayerDash : MonoBehaviour
             dashDir = (forward * vertical + right * horizontal).normalized;
         }
     }
+
+    public float GetNormalizedCooldown()
+    {
+        if (dashing)
+            return 1f;
+        else if (timeElapsed > 0f)
+            return Mathf.Clamp01(timeElapsed / cooldown);
+        else
+            return 0f;
+    }
 }
