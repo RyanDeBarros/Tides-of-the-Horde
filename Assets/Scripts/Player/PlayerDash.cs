@@ -9,9 +9,9 @@ public class PlayerDash : MonoBehaviour
 
     public float dashDuration = 0.15f;
     public float dashSpeed = 30f;
-    // TODO UI for dash cooldown
     public float cooldown = 1f;
 
+    private bool unlocked = false;
     private float timeElapsed = 0f;
     private bool dashing = false;
     private Vector3 dashDir = Vector3.zero;
@@ -27,8 +27,16 @@ public class PlayerDash : MonoBehaviour
         Assert.IsNotNull(cam);
     }
 
+    public void Unlock()
+    {
+        unlocked = true;
+    }
+
     private void Update()
     {
+        if (!unlocked)
+            return;
+
         if (dashing)
         {
             timeElapsed -= Time.deltaTime;

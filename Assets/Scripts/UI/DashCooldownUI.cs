@@ -13,17 +13,22 @@ public class DashCooldownUI : MonoBehaviour
         Assert.IsNotNull(dash);
     }
 
+    private void Start()
+    {
+        Hide();
+    }
+
     private void Update()
     {
         cooldown.localScale = new(1f, dash.GetNormalizedCooldown());
     }
 
-    public void ShowUI()
+    public void Show()
     {
         gameObject.SetActive(true);
     }
 
-    public void HideUI()
+    public void Hide()
     {
         gameObject.SetActive(false);
     }

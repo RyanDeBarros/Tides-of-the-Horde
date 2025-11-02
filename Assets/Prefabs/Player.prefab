@@ -432,11 +432,13 @@ MonoBehaviour:
   upgradeTreeFile: {fileID: 4900000, guid: 811c8408662fd404fa4abce5f40a7489, type: 3}
   unlockMeleeID: MeleeSpell-Unlock
   upgradeHealthID: Health-Upgrade
+  dashCooldownUI: {fileID: 0}
   meleeSpellIcon: {fileID: 2800000, guid: c89e6c7d0af05674592e8d72f4b58a3b, type: 3}
   bombSpellIcon: {fileID: 2800000, guid: 3ada41d904892d64a9905734e889490a, type: 3}
   bubbleSpellIcon: {fileID: 2800000, guid: f26b168fa1f89274e8f6e565297c2882, type: 3}
   sniperSpellIcon: {fileID: 2800000, guid: 68fea59bcd9ad084bb0639f88f77ec16, type: 3}
   healthIcon: {fileID: 2800000, guid: b5cd81e4340af5b468586b84ed63b31b, type: 3}
+  dashIcon: {fileID: 2800000, guid: 4c163202142c9e547b6106c0b4868b44, type: 3}
 --- !u!114 &2840767228657566480
 MonoBehaviour:
   m_ObjectHideFlags: 0

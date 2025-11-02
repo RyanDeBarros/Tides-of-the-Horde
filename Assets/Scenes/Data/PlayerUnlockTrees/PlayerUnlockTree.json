@@ -61,6 +61,20 @@
             ]
         },
         {
+            "id": "Dash-Unlock",
+            "name": "Dash",
+            "defaultIcon": "Dash",
+            "defaultDescription": "Unlock (SPACE to use)",
+            "defaultWeight": 3,
+            "prerequisites": [],
+            "action": "UnlockDash",
+            "tiers": [
+                {
+                    "cost": 15
+                }
+            ]
+        },
+        {
             "id": "MeleeSpell-Upgrade-Damage",
             "name": "Melee Spell",
             "defaultIcon": "MeleeSpell",

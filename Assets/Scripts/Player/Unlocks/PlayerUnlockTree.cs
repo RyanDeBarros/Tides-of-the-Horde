@@ -154,6 +154,7 @@ public class PlayerUnlockTree : MonoBehaviour
     [SerializeField] private TextAsset upgradeTreeFile;
     [SerializeField] private string unlockMeleeID = "MeleeSpell-Unlock";
     [SerializeField] private string upgradeHealthID = "Health-Upgrade";
+    [SerializeField] private DashCooldownUI dashCooldownUI;
 
     [Header("Icons")]
     [SerializeField] private Texture meleeSpellIcon;
@@ -161,11 +162,14 @@ public class PlayerUnlockTree : MonoBehaviour
     [SerializeField] private Texture bubbleSpellIcon;
     [SerializeField] private Texture sniperSpellIcon;
     [SerializeField] private Texture healthIcon;
+    [SerializeField] private Texture dashIcon;
 
     private readonly Dictionary<string, PlayerUnlockNode> nodes = new();
 
     private void Awake()
     {
+        Assert.IsNotNull(dashCooldownUI);
+
         Assert.IsNotNull(upgradeTreeFile);
         LoadUnlockTree(upgradeTreeFile.text);
     }
@@ -179,7 +183,7 @@ public class PlayerUnlockTree : MonoBehaviour
     private void LoadUnlockTree(string json)
     {
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
-        UnlockActionTable unlockActionTable = new(gameObject);
+        UnlockActionTable unlockActionTable = new(gameObject, dashCooldownUI);
 
         PlayerCurrency playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
 
@@ -236,6 +240,7 @@ public class PlayerUnlockTree : MonoBehaviour
             "BubbleSpell" => bubbleSpellIcon,
             "SniperSpell" => sniperSpellIcon,
             "Health" => healthIcon,
+            "Dash" => dashIcon,
             _ => throw new NotImplementedException(),
         };
     }

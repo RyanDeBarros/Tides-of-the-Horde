@@ -219,6 +219,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6046191443424738508}
     m_Modifications:
+    - target: {fileID: 1042728479023503675, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+      propertyPath: dashCooldownUI
+      value: 
+      objectReference: {fileID: 1173316468503929440}
     - target: {fileID: 1836143556417962073, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -434,6 +438,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+--- !u!114 &1173316468503929440 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5820300060208925712, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+  m_PrefabInstance: {fileID: 4651559867012279920}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3137796c7a744304c8ce743b16360d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1846684184539267383 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6425814742974164807, guid: 9133876c6c261edbcb084a122361753d, type: 3}
