@@ -14,6 +14,10 @@ public class ChallengeGiver : MonoBehaviour
     [SerializeField] private Color keyHintInactiveColor;
     [SerializeField] private string songIdentifier = "Worm";
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip NpcSFX;
+
     public UnityEvent onConversationEnd;
 
     private ChallengeGiverAnimator animator;
@@ -39,6 +43,9 @@ public class ChallengeGiver : MonoBehaviour
 
         Assert.IsNotNull(dialog);
         dialog.onClose = DespawnNPC;
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -82,7 +89,9 @@ public class ChallengeGiver : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
-        // TODO play SFX
+        yield return null;
+        if (audioSource != null && NpcSFX != null)
+            audioSource.PlayOneShot(NpcSFX);
         yield return animator.AnimateSpawn();
         keyHint.enabled = true;
     }
@@ -94,7 +103,9 @@ public class ChallengeGiver : MonoBehaviour
 
     private IEnumerator DespawnRoutine()
     {
-        // TODO play SFX
+        yield return null;
+        if (audioSource != null && NpcSFX != null)
+            audioSource.PlayOneShot(NpcSFX);
         keyHint.enabled = false;
         yield return animator.AnimateDespawn();
         gameObject.SetActive(false);

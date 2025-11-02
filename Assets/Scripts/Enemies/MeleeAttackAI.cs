@@ -23,7 +23,6 @@ public class MeleeAttackAI : MonoBehaviour
         trigHash = Animator.StringToHash(attackTrigger);
     }
 
-    /// Call this from your AI/BT to start an attack
     public void TryAttack()
     {
         animator.ResetTrigger(trigHash);
