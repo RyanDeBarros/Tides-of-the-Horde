@@ -1,0 +1,130 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7551558017530756215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4923396060290730105}
+  - component: {fileID: -2533673372131911330}
+  - component: {fileID: 4362143524704394160}
+  - component: {fileID: -2295139256518842974}
+  - component: {fileID: 5717765672750204481}
+  m_Layer: 0
+  m_Name: SpellCaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4923396060290730105
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551558017530756215}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2533673372131911330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551558017530756215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4350f465ebe3caf4e8bbc1288427ad0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellPrefab: {fileID: 5248948003974826257, guid: 5944822d3caf6f345bc69d793cd5d312, type: 3}
+  cooldown: 0.5
+  damage: 35
+  bounceBackStrength: 200
+  animationSpeedMultiplier: 2
+  lifetime: 0.3
+  moveSpeed: 5
+  shockwaveGrowSpeed: 5
+  blastGrowSpeed: 6
+  shockwaveForwardOffset: 1
+--- !u!114 &4362143524704394160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551558017530756215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b70ec1e0a6fecd48a3468a08d84a2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellPrefab: {fileID: 8438370997894918911, guid: 159432f55a33e3446b0f66d37d0fad56, type: 3}
+  cooldown: 0.5
+  innerDamage: 120
+  outerDamage: 50
+  bounceBackStrength: 50
+  aoeRadius: 3
+  enemyLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  explosionFX: {fileID: 4979637674263650540, guid: 277ddebc43e3a664984908ca5d934200, type: 3}
+  animationSpeedMultiplier: 3
+  gravity: -40
+  initialVerticalVelocity: 12
+  initialForwardVelocity: 20
+  crosshairAimingClip: 30
+--- !u!114 &-2295139256518842974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551558017530756215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d207b4f8deaeda4caf99fbbba3fcead, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellPrefab: {fileID: 1762032029977660656, guid: 0d4660fe0d1a2904a9c902a7182ffe1d, type: 3}
+  cooldown: 2
+  repelRadius: 3
+  bounceBackStrength: 200
+  animationSpeedMultiplier: 1.5
+  duration: 1.5
+  growDuration: 0.2
+--- !u!114 &5717765672750204481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7551558017530756215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd9089cefc7d0334899c6798ff717dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spellPrefab: {fileID: 7676459378857334991, guid: ffea2b360e9a05c42b989423e31629ef, type: 3}
+  cooldown: 0.5
+  range: 30
+  maxEnemiesCanHit: 3
+  damage: 20
+  spellScale: 1
+  vfxExplosionRadius: 1
+  explosionFX: {fileID: 4979637674263650540, guid: 277ddebc43e3a664984908ca5d934200, type: 3}
+  animationSpeedMultiplier: 2.5
+  verticalSpawnOffset: 0.3
+  initialSpeed: 50
+  acceleration: 50
+  crosshairAimingClip: 50
