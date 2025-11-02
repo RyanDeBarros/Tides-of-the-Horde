@@ -199,6 +199,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1427956218210571630, guid: b3d1f8efc5d4fbc468eecc4d130328c7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5225442633808930422, guid: b3d1f8efc5d4fbc468eecc4d130328c7, type: 3}
       propertyPath: maxHealth
       value: 10
@@ -209,7 +213,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5522856944775851731, guid: b3d1f8efc5d4fbc468eecc4d130328c7, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6363160919599880630, guid: b3d1f8efc5d4fbc468eecc4d130328c7, type: 3}
       propertyPath: m_LocalPosition.x
