@@ -15,18 +15,16 @@ public class PlayerCamera : MonoBehaviour
     private float currentPitch = 0f;
     private bool cameraEnabled = true;
 
-    void Awake()
+    private void Awake()
     {
         cam = GetComponentInChildren<Camera>();
         Assert.IsNotNull(cam);
 
-        // TODO FIX: camera initially rotates on start, probably because of initial mouseX / mouseY in Update().
-
-        EnableCamera();
-
         initialPitch = cam.transform.eulerAngles.x;
         if (initialPitch > 180f) initialPitch -= 360f; // convert to [-180, 180] range
         currentPitch = initialPitch;
+
+        EnableCamera();
     }
 
     void Update()

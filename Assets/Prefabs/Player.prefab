@@ -309,6 +309,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53c195494bac26c4982d6c31ba63b88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterController: {fileID: 1743212581410189318}
+  cam: {fileID: 5323173174553920161}
+  inputDeadzone: 0.15
+  dashDuration: 0.15
+  dashSpeed: 30
+  cooldown: 1
 --- !u!114 &7622766684650392044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,6 +449,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ddedf36554127304d950c5457f029d7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  camera: {fileID: 5323173174553920161}
+  movement: {fileID: 4938711925551577409}
+  dash: {fileID: 6328866537227378538}
+  spellManager: {fileID: 7622766684650392044}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0

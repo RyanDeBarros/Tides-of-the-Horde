@@ -71,7 +71,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 moveDir = (forward * z + right * x);
         if (moveDir.sqrMagnitude > 0.01f)
         {
-            moveDir = moveDir.normalized;
+            moveDir.Normalize();
 
             float moveSpeed = running ? runningSpeed : walkingSpeed;
             characterController.Move(moveSpeed * Time.deltaTime * moveDir);
