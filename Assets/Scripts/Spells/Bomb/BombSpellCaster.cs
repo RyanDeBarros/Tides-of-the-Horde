@@ -18,10 +18,6 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
     [SerializeField] public float initialVerticalVelocity = 12f;
     [SerializeField] public float initialForwardVelocity = 20f;
 
-    [Header("Audio Settings")]
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip BombSFX;
-
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
     private float cooldownLeft = 0f;
@@ -33,7 +29,6 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
         crosshairsController = FindFirstObjectByType<CrosshairsController>();
         Assert.IsNotNull(crosshairsController);
         Assert.IsNotNull(spellPrefab);
-        Assert.IsNotNull(audioSource);
     }
 
     void Update()
@@ -49,13 +44,6 @@ public class BombSpellCaster : MonoBehaviour, ISpellCaster
     public void CastSpell(SpellManager manager)
     {
         if (cooldownLeft > 0f) return;
-
-        // play bomb sound
-        if (audioSource != null && BombSFX != null)
-        {
-            audioSource.PlayOneShot(BombSFX);
-
-        }
 
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
