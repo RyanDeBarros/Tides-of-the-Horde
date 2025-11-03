@@ -57,7 +57,7 @@ MonoBehaviour:
   keyHintInactiveColor: {r: 0.30817598, g: 0.30817598, b: 0.30817598, a: 1}
   songIdentifier: Worm
   audioSource: {fileID: 2987973699443273195}
-  NpcSFX: {fileID: 8300000, guid: e2d7fee36f24e2743b9c0159286a8764, type: 3}
+  npcSFX: {fileID: 8300000, guid: e2d7fee36f24e2743b9c0159286a8764, type: 3}
   onConversationEnd:
     m_PersistentCalls:
       m_Calls: []

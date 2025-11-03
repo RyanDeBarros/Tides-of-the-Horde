@@ -16,7 +16,7 @@ public class ChallengeGiver : MonoBehaviour
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip NpcSFX;
+    [SerializeField] private AudioClip npcSFX;
 
     public UnityEvent onConversationEnd;
 
@@ -89,9 +89,9 @@ public class ChallengeGiver : MonoBehaviour
 
     private IEnumerator SpawnRoutine()
     {
-        yield return null;
-        if (audioSource != null && NpcSFX != null)
-            audioSource.PlayOneShot(NpcSFX);
+        if (audioSource != null && npcSFX != null)
+            audioSource.PlayOneShot(npcSFX);
+
         yield return animator.AnimateSpawn();
         keyHint.enabled = true;
     }
@@ -104,8 +104,8 @@ public class ChallengeGiver : MonoBehaviour
     private IEnumerator DespawnRoutine()
     {
         yield return null;
-        if (audioSource != null && NpcSFX != null)
-            audioSource.PlayOneShot(NpcSFX);
+        if (audioSource != null && npcSFX != null)
+            audioSource.PlayOneShot(npcSFX);
         keyHint.enabled = false;
         yield return animator.AnimateDespawn();
         gameObject.SetActive(false);
