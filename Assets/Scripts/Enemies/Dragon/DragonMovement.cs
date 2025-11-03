@@ -72,10 +72,6 @@ public class DragonMovement : MonoBehaviour
         }
     }
 
-    public void Attack()
-    {
-        animator.StartAttackAnimation();
-    }
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;

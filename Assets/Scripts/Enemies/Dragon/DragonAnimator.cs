@@ -5,6 +5,7 @@ public class DragonAnimator : MonoBehaviour
 {
     private Animator animator;
     private DragonAOEAttack attacker;
+    private TargetDetector detector;
 
     private void Awake()
     {
@@ -13,6 +14,10 @@ public class DragonAnimator : MonoBehaviour
 
         attacker = GetComponentInParent<DragonAOEAttack>();
         Assert.IsNotNull(attacker);
+
+        detector = GetComponentInParent<TargetDetector>();
+        Assert.IsNotNull(detector);
+        detector.attackConditions.Add(CanAttack);
     }
 
     public void SetFlying(Vector3 direction)
@@ -23,6 +28,7 @@ public class DragonAnimator : MonoBehaviour
 
     public void StartAttackAnimation()
     {
+        Assert.IsTrue(CanAttack());
         animator.SetTrigger("Attack");
     }
 
@@ -35,5 +41,10 @@ public class DragonAnimator : MonoBehaviour
     {
         var state = animator.GetCurrentAnimatorStateInfo(0);
         return state.IsName("Flying Forward") || state.IsName("Flying Backward") || state.IsName("Idle");
+    }
+
+    private bool CanAttack()
+    {
+        return CanFly() && !attacker.IsExploding();
     }
 }
