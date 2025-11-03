@@ -6,9 +6,9 @@ using UnityEngine.UI;
 public class SpellSelectController : MonoBehaviour
 {
     [SerializeField] private RawImage image;
-    [SerializeField] private Texture texture;
     [SerializeField] private Transform cooldown;
     [SerializeField] private TextMeshProUGUI keyHint;
+    [SerializeField] private HUDController hud;
     [SerializeField] private float deselectedScale = 0.5f;
     [SerializeField] private SpellType spellType;
 
@@ -16,7 +16,6 @@ public class SpellSelectController : MonoBehaviour
     {
         Assert.IsNotNull(image);
         Assert.IsNotNull(cooldown);
-        Assert.IsNotNull(texture);
         Assert.IsNotNull(keyHint);
         ShowLocked();
         ShowDeselected();
@@ -51,15 +50,22 @@ public class SpellSelectController : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void ShowUnlocked()
+    public void ShowUnlocked(int numberKey, SpellType spellType, Texture texture)
     {
+        keyHint.SetText($"{numberKey}");
+        this.spellType = spellType;
         image.texture = texture;
         SetCooldown(0f);
         gameObject.SetActive(true);
     }
 
-    public void SetKeyHint(int number)
+    public bool IsUnlocked()
     {
-        keyHint.SetText(number.ToString());
+        return gameObject.activeSelf;
+    }
+
+    public int GetNumberKey()
+    {
+        return gameObject.activeSelf ? int.Parse(keyHint.text) : -1;
     }
 }

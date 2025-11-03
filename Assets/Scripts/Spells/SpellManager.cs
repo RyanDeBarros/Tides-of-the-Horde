@@ -46,12 +46,7 @@ public class SpellManager : MonoBehaviour
     {
         UnlockSpell(activeSpell);
         GetActiveSpellCaster().Select();
-        hud.GetSpells().ForEach(spell => {
-            if (spell.GetSpellType() == activeSpell)
-                spell.ShowSelected();
-            else
-                spell.ShowDeselected();
-        });
+        hud.UpdateSpellSelection(activeSpell);
     }
 
     void Update()
@@ -61,10 +56,7 @@ public class SpellManager : MonoBehaviour
         if (Input.GetMouseButtonDown(LMB))
             GetActiveSpellCaster().CastSpell(this);
 
-        hud.GetSpells().ForEach(spell => {
-            if (spellCasters.TryGetValue(spell.GetSpellType(), out UnlockableSpellCaster caster))
-                spell.SetCooldown(caster.caster.GetNormalizedCooldown());
-        });
+        hud.SetSpellCooldowns(spellCasters.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.caster.GetNormalizedCooldown()));
     }
 
     private void CheckForToggleInput()
@@ -76,11 +68,11 @@ public class SpellManager : MonoBehaviour
             ToggleActiveSpellDown();
         else
         {
-            for (int i = 0; i < Math.Min(9, hud.GetSpells().Count); ++i)
+            for (int i = 1; i <= Math.Min(9, hud.NumberOfUnlockedSpells()); ++i)
             {
-                if (Input.GetKeyDown(KeyCode.Alpha0 + (i + 1) % 10))
+                if (Input.GetKeyDown(KeyCode.Alpha0 + i))
                 {
-                    SpellType spellType = hud.GetSpells()[i].GetSpellType();
+                    SpellType spellType = hud.GetMappedSpell(i);
                     if (!spellCasters[spellType].locked)
                         SetActiveSpell(spellType);
                     break;
@@ -112,13 +104,7 @@ public class SpellManager : MonoBehaviour
         Assert.IsTrue(IsUnlocked(spellType));
         activeSpell = spellType;
         GetActiveSpellCaster().Select();
-
-        hud.GetSpells().ForEach(spell => {
-            if (spell.GetSpellType() == activeSpell)
-                spell.ShowSelected();
-            else
-                spell.ShowDeselected();
-        });
+        hud.UpdateSpellSelection(activeSpell);
     }
 
     private ISpellCaster GetActiveSpellCaster()
@@ -162,9 +148,7 @@ public class SpellManager : MonoBehaviour
             return;
 
         spellCasters[spellType].locked = false;
-        var spellUI = hud.GetSpells().Where(spell => spell.GetSpellType() == spellType);
-        Assert.IsTrue(spellUI.Any());
-        spellUI.First().ShowUnlocked();
+        hud.UnlockSpell(spellType);
     }
 
     public void LockSpell(SpellType spellType)
@@ -173,9 +157,7 @@ public class SpellManager : MonoBehaviour
             return;
 
         spellCasters[spellType].locked = true;
-        var spellUI = hud.GetSpells().Where(spell => spell.GetSpellType() == spellType);
-        Assert.IsTrue(spellUI.Any());
-        spellUI.First().ShowLocked();
+        hud.LockSpell(spellType);
     }
 
     public bool IsUnlocked(SpellType spellType)
