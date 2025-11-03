@@ -103,9 +103,9 @@ public class ChallengeGiver : MonoBehaviour
 
     private IEnumerator DespawnRoutine()
     {
-        yield return null;
         if (audioSource != null && npcSFX != null)
             audioSource.PlayOneShot(npcSFX);
+
         keyHint.enabled = false;
         yield return animator.AnimateDespawn();
         gameObject.SetActive(false);
