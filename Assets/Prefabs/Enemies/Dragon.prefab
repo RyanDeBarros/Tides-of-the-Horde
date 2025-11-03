@@ -103,6 +103,8 @@ GameObject:
   - component: {fileID: 4528246736461806038}
   - component: {fileID: 1499814353859219318}
   - component: {fileID: 685738803363306555}
+  - component: {fileID: 1397774575576606774}
+  - component: {fileID: 2422754742542669783}
   m_Layer: 0
   m_Name: Dragon
   m_TagString: Untagged
@@ -317,6 +319,34 @@ MonoBehaviour:
   sinkSpeed: 0.6
   audioSource: {fileID: 0}
   deathSFX: {fileID: 0}
+--- !u!114 &1397774575576606774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443340333259638365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aab262814f5ffa41a3247ca39c7735a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resistance: 3
+  duration: 0.1
+--- !u!114 &2422754742542669783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443340333259638365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a86c09021ee4ae489948cce0d48eec9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reward: 10
+  playerTag: Player
 --- !u!1 &7475851343837136096
 GameObject:
   m_ObjectHideFlags: 0
