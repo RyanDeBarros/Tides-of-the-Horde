@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3804423857881519981
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6899181903508301254}
+  - component: {fileID: 1425429705884659240}
+  m_Layer: 0
+  m_Name: EnemySpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6899181903508301254
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3804423857881519981}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -32.208668, y: 17.60661, z: 8.357362}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1425429705884659240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3804423857881519981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4471a3a9a7121245a09b94fc50638b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiController: {fileID: 0}
+  waveFile: {fileID: 0}
+  shopUI: {fileID: 0}
+  challengeGiver: {fileID: 0}
+  challengeTracker: {fileID: 0}
+  challengerSpawnDelay: 2
+  waitForChallengerSong: Silent Forest
+  skeletonPrefab: {fileID: 877391312677472464, guid: fccc1973f5c0cd04c984fcb96ac5b7a9, type: 3}
+  bishopPrefab: {fileID: 3329783544436130698, guid: 7ab1660e7b553294288bbcb42e6dca6f, type: 3}
+  orcPrefab: {fileID: 3045373013286125374, guid: a02ec8ba325ccb34e924c1135e14d0e8, type: 3}
+  demonKingPrefab: {fileID: 5522856944775851731, guid: 6e3d16a9d1fa7b74492bbafaeeaa070b, type: 3}
+  difficultyLevelOffset: 0

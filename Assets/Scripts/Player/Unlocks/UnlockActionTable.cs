@@ -114,7 +114,6 @@ public class UnlockActionTable
                 spellCaster.gravity *= value;
                 spellCaster.initialVerticalVelocity *= value;
                 spellCaster.initialForwardVelocity *= value;
-                spellCaster.crosshairAimingClip *= value; // TODO test that modifying crosshairAimingClip makes sense
                 break;
             case SpellUpgradeParameter.Cooldown:
                 spellCaster.cooldown *= value;

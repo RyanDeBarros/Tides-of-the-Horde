@@ -52,6 +52,7 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
         spell.repelRadius = repelRadius;
         spell.growDuration = growDuration;
         spell.bounceBackStrength = bounceBackStrength;
+        spell.playerHealth = GetComponentInParent<Health>();
     }
 
     public float GetNormalizedCooldown()

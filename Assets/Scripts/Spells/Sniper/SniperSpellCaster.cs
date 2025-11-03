@@ -19,7 +19,6 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
     [SerializeField] private float verticalSpawnOffset = 0.3f;
     [SerializeField] public float initialSpeed = 50f;
     [SerializeField] private float acceleration = 50f;
-    [SerializeField] private float crosshairAimingClip = 50f;
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
@@ -69,7 +68,7 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
             attacking = false;
             // cast spell on climax
             GameObject instance = Instantiate(spellPrefab, spellManager.GetStaffTipPosition() + verticalSpawnOffset * Vector3.up,
-                Quaternion.LookRotation(crosshairsController.GetWorldDirection(spellManager.GetStaffTipPosition(), maxClip: crosshairAimingClip)));
+                Quaternion.LookRotation(crosshairsController.GetWorldDirection()));
             SniperSpell spell = instance.GetComponent<SniperSpell>();
             Assert.IsNotNull(spell);
             spell.range = range;

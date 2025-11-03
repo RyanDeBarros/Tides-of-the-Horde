@@ -59,11 +59,15 @@ public class SoundtrackManager : MonoBehaviour
             sources[i].playOnAwake = false;
             sources[i].volume = 0f;
         }
+
+        trackList.ForEach(t => StartCoroutine(PrepareClip(t.clip)));
     }
 
-    public string CurrentTrackIdentifier()
+    private IEnumerator PrepareClip(AudioClip track)
     {
-        return activeIdentifier;
+        track.LoadAudioData();
+        while (track.loadState == AudioDataLoadState.Loading)
+            yield return null;
     }
 
     public void PlayTrack(string identifier, bool restart = true)
@@ -85,6 +89,7 @@ public class SoundtrackManager : MonoBehaviour
         if (!restart)
             toSource.time = Time.time - trackCache[identifier].lastTime + trackCache[identifier].position;
 
+        StartCoroutine(PrepareClip(toSource.clip));
         if (dimCoroutine != null)
             StopCoroutine(dimCoroutine);
         dimmed = false;

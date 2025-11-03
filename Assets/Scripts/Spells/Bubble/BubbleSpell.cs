@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -9,6 +7,7 @@ public class BubbleSpell : MonoBehaviour
     public float repelRadius = 3f;
     public float growDuration = 0.2f;
     public float bounceBackStrength = 200f;
+    public Health playerHealth;
 
     [Header("Visual Settings")]
     public GameObject bubbleVisualPrefab;
@@ -32,11 +31,18 @@ public class BubbleSpell : MonoBehaviour
         }
     }
 
+    public void Start()
+    {
+        Assert.IsNotNull(playerHealth);
+        playerHealth.SetInvulnerable(true);
+    }
+
     void Update()
     {
         timeElapsed += Time.deltaTime;
         if (timeElapsed > duration)
         {
+            playerHealth.SetInvulnerable(false);
             Destroy(gameObject);
             return;
         }
