@@ -180,6 +180,7 @@ MonoBehaviour:
   moveSpeed: 5
   chaseRange: 30
   stoppingDistance: 2
+  patrolSpeedMultiplier: 0.5
 --- !u!114 &2143102535228542233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -427,6 +428,10 @@ PrefabInstance:
     - target: {fileID: 6285209290496832306, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
       propertyPath: m_Name
       value: SkeletonPBRDefault
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285209290496832306, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6285209290506305774, guid: 67ddb690e8bc43439efb218ba32a3d45, type: 3}
       propertyPath: m_Controller

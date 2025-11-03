@@ -7,13 +7,14 @@ public class DemonKingMovementAI : MonoBehaviour
 {
     [Header("References")]
     public Transform player;
-    public Animator animator;
+    public DemonKingAnimator animator;
     public GameObject planeVFX; // The plane object to show during teleport
 
     [Header("Movement")]
     public float moveSpeed = 5f;
     public float chaseRange = 10f;
     public float stoppingDistance = 2f;
+    public float turnSpeed = 360f;
 
     [Header("Teleport Settings")]
     public float sinkSpeed = 3f; // Speed at which boss sinks into ground
@@ -21,19 +22,18 @@ public class DemonKingMovementAI : MonoBehaviour
     public float teleportDuration = 2f; // Total time underground
     public float behindPlayerDistance = 3f; // Distance behind player to spawn
 
-    bool movementLocked = false;
-    bool isTeleporting = false;
-    CharacterController controller;
-    Vector3 velocity;
-    Vector3 originalPosition;
+    private bool isTeleporting = false;
+    private CharacterController controller;
+    private Vector3 velocity;
+    private Vector3 originalPosition;
 
-    void Start()
+    void Awake()
     {
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
-        
+
         if (!animator)
-            animator = GetComponentInChildren<Animator>();
+            animator = GetComponentInChildren<DemonKingAnimator>();
         Assert.IsNotNull(animator);
 
         if (!player)
@@ -55,9 +55,9 @@ public class DemonKingMovementAI : MonoBehaviour
 
     void Update()
     {
-        if (movementLocked || isTeleporting)
+        if (animator.IsMovementLocked() || isTeleporting)
         {
-            animator.SetFloat("Speed", 0f);
+            animator.SetSpeed(0f);
             return;
         }
 
@@ -65,7 +65,7 @@ public class DemonKingMovementAI : MonoBehaviour
         bool shouldChase = distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance;
 
         if (shouldChase) ChasePlayer();
-        else animator.SetFloat("Speed", 0f); // Idle
+        else animator.SetSpeed(0f); // Idle
 
         controller.Move(velocity * Time.deltaTime);
     }
@@ -73,40 +73,36 @@ public class DemonKingMovementAI : MonoBehaviour
     void ChasePlayer()
     {
         Vector3 direction = (player.position - transform.position);
-        direction.y = 0;
-        direction.Normalize();
+        direction.y = 0f;
 
-        Vector3 movement = moveSpeed * Time.deltaTime * direction;
+        if (direction.sqrMagnitude > 0.001f)
+        {
+            direction.Normalize();
 
-        if (direction != Vector3.zero)
-            transform.rotation = Quaternion.LookRotation(direction);
+            // Rotate towards the player smoothly
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
 
-        controller.Move(movement);
+            // Rotate a portion of the way each frame based on turnSpeed (degrees per second)
+            transform.rotation = Quaternion.RotateTowards(
+                transform.rotation,
+                targetRotation,
+                turnSpeed * Time.deltaTime
+            );
 
-        // Animation blending: walk only while moving
-        animator.SetFloat("Speed", movement.magnitude > 0.01f ? 1f : 0f);
-    }
+            // Move towards the player
+            Vector3 movement = moveSpeed * Time.deltaTime * direction;
+            controller.Move(movement);
 
-    // Called by TargetDetector (UnityEvent)
-    public void TriggerRandomAttack()
-    {
-        if (isTeleporting) return;
-
-        movementLocked = true;
-        animator.SetFloat("Speed", 0f);
-
-        if (Random.Range(0, 2) == 0)
-            animator.SetTrigger("Attack1");
+            // Animation blending: walk only while moving
+            animator.SetSpeed(movement.magnitude > 0.01f ? 1f : 0f);
+        }
         else
-            animator.SetTrigger("Attack2");
-
-        // Unlock after attack duration (adjust to animation length)
-        Invoke(nameof(UnlockMovement), 1f);
+            animator.SetSpeed(0f);
     }
 
-    void UnlockMovement()
+    public bool IsTeleporting()
     {
-        movementLocked = false;
+        return isTeleporting;
     }
 
     // Called when health reaches a 10% threshold
@@ -118,10 +114,9 @@ public class DemonKingMovementAI : MonoBehaviour
         }
     }
 
-    IEnumerator TeleportBehindPlayer()
+    private IEnumerator TeleportBehindPlayer()
     {
         isTeleporting = true;
-        movementLocked = true;
 
         // Disable character controller to manually control position
         controller.enabled = false;
@@ -160,10 +155,7 @@ public class DemonKingMovementAI : MonoBehaviour
         // Face the player
         Vector3 lookDirection = (player.position - transform.position);
         lookDirection.y = 0;
-        if (lookDirection != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(lookDirection);
-        }
+        if (lookDirection != Vector3.zero) transform.rotation = Quaternion.LookRotation(lookDirection);
 
         // Rise up from ground
         float riseTimer = 0f;
@@ -186,6 +178,5 @@ public class DemonKingMovementAI : MonoBehaviour
 
         // Unlock movement
         isTeleporting = false;
-        movementLocked = false;
     }
 }
