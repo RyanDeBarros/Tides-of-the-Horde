@@ -45,6 +45,6 @@ public class DragonAnimator : MonoBehaviour
 
     private bool CanAttack()
     {
-        return CanFly() && !attacker.IsExploding();
+        return CanFly() && attacker.CanExplode();
     }
 }

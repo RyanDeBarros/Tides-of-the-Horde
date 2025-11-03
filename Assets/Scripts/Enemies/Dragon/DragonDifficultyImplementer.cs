@@ -5,6 +5,8 @@ using UnityEngine.Assertions;
 
 public class DragonDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 {
+    // TODO
+
     [Serializable]
     public class DifficultyStats
     {

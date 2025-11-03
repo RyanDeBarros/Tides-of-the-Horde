@@ -42,7 +42,7 @@ public class DragonMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!controller.enabled || !animator.CanFly() || attacker.IsExploding())
+        if (!controller.enabled || !animator.CanFly() || !attacker.CanMove())
             return;
 
         Vector3 direction = player.position - transform.position;
