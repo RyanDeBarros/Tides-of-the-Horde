@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a86c09021ee4ae489948cce0d48eec9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  reward: 10
+  reward: 5
   playerTag: Player
 --- !u!1 &7475851343837136096
 GameObject:

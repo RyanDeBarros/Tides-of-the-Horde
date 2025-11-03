@@ -8,27 +8,31 @@ public class DragonDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
     [Serializable]
     public class DifficultyStats
     {
-        //        // OrcMovementAI
-        //        public float moveSpeed = 5f;
-        //        public float chaseRange = 30f;
-        //        public float patrolSpeedMultiplier = 0.5f;
+        // DragonMovement
+        public float moveSpeed = 5f;
+        public float chaseRange = 40f;
+        public float patrolSpeedMultiplier = 0.5f;
 
-        //        // TargetDetector
-        //        public float attackRange = 5f;
-        //        public float attackInterval = 1f;
+        // DragonAOEAttack
+        public float aoeRadius = 10f;
+        public float aoeFillSpeed = 20f;
+        public int damage = 5;
+        public float postExplosionDelay = 1f;
+        public float cooldown = 3f;
 
-        //        // Health
-        //        public int maxHealth = 100;
+        // TargetDetector
+        public float attackRange = 5f;
+        public float attackInterval = 1f;
 
-        //        // BounceBack
-        //        public float bounceBackResistance = 1f;
-        //        public float bounceBackDuration = 0.1f;
+        // Health
+        public int maxHealth = 100;
 
-        //        // MeleeHitbox
-        //        public int damage = 1;
+        // BounceBack
+        public float bounceBackResistance = 3f;
+        public float bounceBackDuration = 0.1f;
 
-        //        // RewardOnDeath
-        //        public int reward = 10;
+        // RewardOnDeath
+        public int reward = 5;
     }
 
     [Serializable]
@@ -41,12 +45,12 @@ public class DragonDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 
     private static DifficultyStatsList difficultyStatsList = null;
 
-//    private OrcMovementAI movement;
-//    private TargetDetector detector;
-//    private Health health;
-//    private BounceBack bounceBack;
-//    private MeleeHitbox melee;
-//    private RewardOnDeath reward;
+    private DragonMovement movement;
+    private DragonAOEAttack attacker;
+    private TargetDetector detector;
+    private Health health;
+    private BounceBack bounceBack;
+    private RewardOnDeath reward;
 
     private int difficultyLevel;
 
@@ -54,40 +58,44 @@ public class DragonDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
     {
         difficultyStatsList ??= JsonUtility.FromJson<DifficultyStatsList>(statsFile.text);
 
-        //    movement = GetComponent<OrcMovementAI>();
-        //    Assert.IsNotNull(movement);
-        //    detector = GetComponent<TargetDetector>();
-        //    Assert.IsNotNull(detector);
-        //    health = GetComponent<Health>();
-        //    Assert.IsNotNull(health);
-        //    bounceBack = GetComponent<BounceBack>();
-        //    Assert.IsNotNull(bounceBack);
-        //    melee = GetComponentInChildren<MeleeHitbox>();
-        //    Assert.IsNotNull(melee);
-        //    reward = GetComponent<RewardOnDeath>();
-        //    Assert.IsNotNull(reward);
+        movement = GetComponent<DragonMovement>();
+        Assert.IsNotNull(movement);
+        attacker = GetComponent<DragonAOEAttack>();
+        Assert.IsNotNull(attacker);
+        detector = GetComponent<TargetDetector>();
+        Assert.IsNotNull(detector);
+        health = GetComponent<Health>();
+        Assert.IsNotNull(health);
+        bounceBack = GetComponent<BounceBack>();
+        Assert.IsNotNull(bounceBack);
+        reward = GetComponent<RewardOnDeath>();
+        Assert.IsNotNull(reward);
     }
 
     public void SetDifficultyLevel(int level)
     {
         difficultyLevel = Math.Clamp(level, 1, difficultyStatsList.stats.Count);
-        //DifficultyStats stats = difficultyStatsList.stats[difficultyLevel - 1];
+        DifficultyStats stats = difficultyStatsList.stats[difficultyLevel - 1];
 
-        //movement.moveSpeed = stats.moveSpeed;
-        //movement.chaseRange = stats.chaseRange;
-        //movement.patrolSpeedMultiplier = stats.patrolSpeedMultiplier;
+        movement.moveSpeed = stats.moveSpeed;
+        movement.chaseRange = stats.chaseRange;
+        movement.patrolSpeedMultiplier = stats.patrolSpeedMultiplier;
+        
+        attacker.aoeRadius = stats.aoeRadius;
+        attacker.aoeFillSpeed = stats.aoeFillSpeed;
+        attacker.damage = stats.damage;
+        attacker.postExplosionDelay = stats.postExplosionDelay;
+        attacker.cooldown = stats.cooldown;
 
-        //detector.attackRange = stats.attackRange;
-        //detector.attackInterval = stats.attackInterval;
+        detector.attackRange = stats.attackRange;
+        detector.attackInterval = stats.attackInterval;
 
-        //health.maxHealth = stats.maxHealth;
+        health.maxHealth = stats.maxHealth;
 
-        //bounceBack.resistance = stats.bounceBackResistance;
-        //bounceBack.duration = stats.bounceBackDuration;
+        bounceBack.resistance = stats.bounceBackResistance;
+        bounceBack.duration = stats.bounceBackDuration;
 
-        //melee.damage = stats.damage;
-
-        //reward.reward = stats.reward;
+        reward.reward = stats.reward;
     }
 
     public int GetDifficultyLevel()

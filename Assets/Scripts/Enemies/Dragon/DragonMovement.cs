@@ -4,8 +4,8 @@ using UnityEngine.Assertions;
 public class DragonMovement : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float chaseRange = 10f;
-    public float stoppingDistance = 2f;
+    public float chaseRange = 40f;
+    public float stoppingDistance = 4f;
     public float patrolSpeedMultiplier = 0.5f;
 
     private CharacterController controller;
@@ -13,6 +13,8 @@ public class DragonMovement : MonoBehaviour
     private DragonAOEAttack attacker;
     private WaypointPatroller waypointPatroller;
     private Transform player;
+
+    private float lockY = 0f;
 
     // TODO fix death animation
 
@@ -38,6 +40,8 @@ public class DragonMovement : MonoBehaviour
     {
         waypointPatroller.characterController = controller;
         waypointPatroller.moveSpeed = patrolSpeedMultiplier * moveSpeed;
+
+        lockY = transform.position.y;
     }
 
     private void Update()
@@ -70,6 +74,15 @@ public class DragonMovement : MonoBehaviour
             waypointPatroller.StartPatrol();
             animator.SetFlying(transform.forward);
         }
+
+        LockY();
+    }
+
+    private void LockY()
+    {
+        Vector3 pos = transform.position;
+        pos.y = lockY;
+        transform.position = pos;
     }
 
     private void OnDrawGizmosSelected()

@@ -1,15 +1,24 @@
 {
     "stats": [
         {
-            "maxHealth": 50,
+            "damage": 5,
+            "aoeRadius": 10,
+            "postExplosionDelay": 1,
+            "maxHealth": 100,
             "reward": 5
         },
         {
-            "maxHealth": 100,
+            "damage": 7,
+            "aoeRadius": 12.5,
+            "postExplosionDelay": 0.75,
+            "maxHealth": 150,
             "reward": 10
         },
         {
-            "maxHealth": 150,
+            "damage": 9,
+            "aoeRadius": 15,
+            "postExplosionDelay": 0.5,
+            "maxHealth": 200,
             "reward": 15
         }
     ]
