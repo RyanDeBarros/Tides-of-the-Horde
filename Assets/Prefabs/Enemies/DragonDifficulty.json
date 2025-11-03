@@ -1,0 +1,16 @@
+{
+    "stats": [
+        {
+            "maxHealth": 50,
+            "reward": 5
+        },
+        {
+            "maxHealth": 100,
+            "reward": 10
+        },
+        {
+            "maxHealth": 150,
+            "reward": 15
+        }
+    ]
+}

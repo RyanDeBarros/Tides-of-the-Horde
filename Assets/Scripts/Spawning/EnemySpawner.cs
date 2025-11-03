@@ -29,6 +29,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject skeletonPrefab;
     [SerializeField] private GameObject bishopPrefab;
     [SerializeField] private GameObject orcPrefab;
+    [SerializeField] private GameObject dragonPrefab;
     [SerializeField] private GameObject demonKingPrefab;
 
     [Min(0)] public int difficultyLevelOffset = 0;
@@ -148,6 +149,7 @@ public class EnemySpawner : MonoBehaviour
             EnemyType.Skeleton => skeletonPrefab,
             EnemyType.Bishop => bishopPrefab,
             EnemyType.Orc => orcPrefab,
+            EnemyType.Dragon => dragonPrefab,
             EnemyType.DemonKing => demonKingPrefab,
             _ => null
         };

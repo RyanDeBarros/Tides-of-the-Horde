@@ -9,6 +9,12 @@
                     "enemy": "Skeleton",
                     "spawnRate": 2.0,
                     "difficulty": 1
+                },
+                {
+                    "duration": 5.0,
+                    "enemy": "Dragon",
+                    "spawnRate": 1.0,
+                    "difficulty": 1
                 }
             ]
         },

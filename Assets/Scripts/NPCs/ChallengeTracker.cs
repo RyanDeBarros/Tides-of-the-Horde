@@ -174,11 +174,14 @@ public class ChallengeTracker : MonoBehaviour
     public void DeclineChallenge()
     {
         currentChallengeJSON = null;
+        currentRewardJSON = null;
+        currentChallenge = null;
+        currentReward = null;
     }
 
     public void RewardIfSuccess()
     {
-        if (currentChallenge.IsSuccess())
+        if (currentChallenge != null && currentChallenge.IsSuccess())
             currentReward.GiveReward();
     }
 }
