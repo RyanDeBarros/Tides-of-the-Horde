@@ -20,6 +20,10 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
     [SerializeField] public float initialSpeed = 50f;
     [SerializeField] private float acceleration = 50f;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip SniperSFX;
+
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
     private SpellManager spellManager;
@@ -33,6 +37,7 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         crosshairsController = FindFirstObjectByType<CrosshairsController>();
         Assert.IsNotNull(crosshairsController);
         Assert.IsNotNull(spellPrefab);
+        Assert.IsNotNull(audioSource);
     }
 
     void Start()
@@ -71,6 +76,14 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
                 Quaternion.LookRotation(crosshairsController.GetWorldDirection()));
             SniperSpell spell = instance.GetComponent<SniperSpell>();
             Assert.IsNotNull(spell);
+
+            // play sniper sound
+            if (audioSource != null && SniperSFX != null)
+            {
+                audioSource.PlayOneShot(SniperSFX);
+
+            }
+
             spell.range = range;
             spell.maxEnemiesCanHit = maxEnemiesCanHit;
             spell.damage = damage;

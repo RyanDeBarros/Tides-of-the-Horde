@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Assertions;
+using UnityEngine.Audio;
 
 public class OnDieAnimation : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class OnDieAnimation : MonoBehaviour
     [SerializeField] private float sinkDuration = 1.5f;
     [SerializeField] private float sinkSpeed = 0.6f;
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip deathSFX;
+
     private void Awake()
     {
         if (health == null)
@@ -27,10 +32,17 @@ public class OnDieAnimation : MonoBehaviour
 
         if (anim == null)
             anim = GetComponentInChildren<Animator>();
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
     }
 
     private void OnDie()
     {
+        // Play death sound
+        if (audioSource != null && deathSFX != null)
+            audioSource.PlayOneShot(deathSFX);
+
         DisableComponent<NavMeshAgent>(c => c.enabled = false);
         DisableComponent<CharacterController>(c => c.enabled = false);
         DisableComponent<Collider>(c => c.enabled = false);
