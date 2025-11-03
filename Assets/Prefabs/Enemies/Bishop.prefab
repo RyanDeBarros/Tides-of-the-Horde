@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 7036064065616852401}
   - component: {fileID: 579546405161707787}
   - component: {fileID: 4709246141123758158}
+  - component: {fileID: 3998604636235535210}
   - component: {fileID: 7823630502877586338}
   m_Layer: 8
   m_Name: Bishop
@@ -67,7 +68,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.447601, y: 3.6009808, z: -4.0062256}
-  m_LocalScale: {x: 0.71999997, y: 0.71999997, z: 0.96}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8321252099260928394}
@@ -239,6 +240,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsFile: {fileID: 4900000, guid: 603180203ef49d34797ddb67847f119a, type: 3}
+--- !u!114 &3998604636235535210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329783544436130698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 545eefbe73a117e4fb099b1668568193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  acceptance_threshold: 1
+  waypoints: []
+  characterController: {fileID: 0}
+  moveSpeed: 5
 --- !u!114 &7823630502877586338
 MonoBehaviour:
   m_ObjectHideFlags: 0
