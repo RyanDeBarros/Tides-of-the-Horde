@@ -9,12 +9,14 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
     [Header("Punch")]
     public int punchDamage = 5;
+    public float punchBounceBackStrength = 120f;
     public float punchProbabilityWeight = 1.0f;
     public float punchAttackRange = 5f;
     [SerializeField] private List<SphereCollider> punchColliders;
 
     [Header("Bite")]
     public int biteDamage = 10;
+    public float biteBounceBackStrength = 100f;
     public float biteProbabilityWeight = 0.75f;
     public float biteAttackRange = 5f;
     [SerializeField] private List<SphereCollider> bigBiteColliders;
@@ -39,6 +41,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
     private CharacterController characterController;
     private Transform player;
     private Health playerHealth;
+    private BounceBack playerBounceBack;
 
     private enum AttackState
     {
@@ -75,6 +78,9 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
         playerHealth = player.GetComponent<Health>();
         Assert.IsNotNull(playerHealth);
+
+        playerBounceBack = player.GetComponent<BounceBack>();
+        Assert.IsNotNull(playerBounceBack);
     }
 
     private void Update()
@@ -132,6 +138,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
         {
             playerWasHit = true;
             playerHealth.TakeDamage(punchDamage);
+            BouncePlayer(punchBounceBackStrength);
         }
     }
 
@@ -143,6 +150,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
         {
             playerWasHit = true;
             playerHealth.TakeDamage(biteDamage);
+            BouncePlayer(biteBounceBackStrength);
         }
     }
 
@@ -161,7 +169,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
         {
             attackState = AttackState.ChargeForward;
             timeElapsed = 0f;
-            chargeTimeLeft = Mathf.Max(direction.magnitude - movement.stoppingDistance, 0f) / chargeForwardSpeed;
+            chargeTimeLeft = Mathf.Max(direction.magnitude - 0.5f * movement.stoppingDistance, 0f) / chargeForwardSpeed;
         }
     }
 
@@ -190,8 +198,18 @@ public class FlyingDemonAttackAI : MonoBehaviour
             if (playerHealth.IsInvulnerable())
                 Stun();
             else
+            {
                 playerHealth.TakeDamage(biteDamage);
+                BouncePlayer(chargeBounceBackStrength);
+            }
         }
+    }
+
+    private void BouncePlayer(float strength)
+    {
+        Vector3 direction = player.transform.position - transform.position;
+        direction.y = 0f;
+        playerBounceBack.Bounce(direction.normalized, strength);
     }
 
     private void ChooseNextAttack()
