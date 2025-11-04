@@ -22,7 +22,7 @@ public class UnlockSelect : MonoBehaviour
         Assert.IsNotNull(icon);
         Assert.IsNotNull(availableInfoRoot);
 
-        playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
+        playerCurrency = GlobalFind.FindUniqueObjectByType<PlayerCurrency>(true);
     }
 
     public void Setup(PlayerUnlockNode node)
