@@ -48,4 +48,14 @@ public class DemonKingAnimator : MonoBehaviour
     {
         animator.SetFloat("Speed", speed);
     }
+
+    public void TriggerGetHit()
+    {
+        animator.SetTrigger("GetHit");
+    }
+
+    public void OnGetHitEnd()
+    {
+        movement.StartTeleportSequence();
+    }
 }

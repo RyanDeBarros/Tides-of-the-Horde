@@ -28,12 +28,20 @@ public class DemonKingMovementAI : MonoBehaviour
     [SerializeField] private AudioClip AttackSFX2;
     [SerializeField] private AudioClip TeleportSfX;
 
-    private bool isTeleporting = false;
+    private enum TeleportState
+    {
+        None,
+        GetHitAnimation,
+        Teleporting
+    }
+
+    private TeleportState teleportState;
+
     private CharacterController controller;
     private Vector3 velocity;
     private Vector3 originalPosition;
 
-    void Awake()
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
@@ -56,12 +64,12 @@ public class DemonKingMovementAI : MonoBehaviour
 
         // Hook up to health threshold event
         if (TryGetComponent(out Health healthComponent))
-            healthComponent.onHealthThresholdReached.AddListener(StartTeleportSequence);
+            healthComponent.onHealthThresholdReached.AddListener(GetHit);
     }
 
-    void Update()
+    private void Update()
     {
-        if (animator.IsMovementLocked() || isTeleporting)
+        if (animator.IsMovementLocked() || teleportState != TeleportState.None)
         {
             animator.SetSpeed(0f);
             return;
@@ -76,7 +84,7 @@ public class DemonKingMovementAI : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
     }
 
-    void ChasePlayer()
+    private void ChasePlayer()
     {
         Vector3 direction = (player.position - transform.position);
         direction.y = 0f;
@@ -108,21 +116,24 @@ public class DemonKingMovementAI : MonoBehaviour
 
     public bool IsTeleporting()
     {
-        return isTeleporting;
+        return teleportState != TeleportState.None;
     }
 
-    // Called when health reaches a 10% threshold
+    private void GetHit()
+    {
+        teleportState = TeleportState.GetHitAnimation;
+        animator.TriggerGetHit();
+    }
+
     public void StartTeleportSequence()
     {
-        if (!isTeleporting)
-        {
+        if (teleportState != TeleportState.Teleporting)
             StartCoroutine(TeleportBehindPlayer());
-        }
     }
 
     private IEnumerator TeleportBehindPlayer()
     {
-        isTeleporting = true;
+        teleportState = TeleportState.Teleporting;
 
         // play sfx
         if (audioSource != null && TeleportSfX != null)
@@ -187,6 +198,6 @@ public class DemonKingMovementAI : MonoBehaviour
         controller.enabled = true;
 
         // Unlock movement
-        isTeleporting = false;
+        teleportState = TeleportState.None;
     }
 }
