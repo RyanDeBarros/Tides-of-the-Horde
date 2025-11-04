@@ -60,9 +60,7 @@ public class ShopUI : MonoBehaviour
 
     private void Open()
     {
-        if (open) return;
-
-        if (!camera.IsCameraEnabled()) return;
+        if (open || !player.CameraEnabled()) return;
 
         open = true;
         Time.timeScale = 0f;

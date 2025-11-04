@@ -13,10 +13,9 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI crystalsText;
 
     [Header("Player References")]
+    [SerializeField] private PlayerEnabler player;
     [SerializeField] private Health playerHealth;
     [SerializeField] private PlayerCurrency playerCurrency;
-    [SerializeField] private PlayerCamera playerCamera;
-    [SerializeField] private SpellManager spellManager;
 
     [Serializable]
     private class SpellSelectTexture
@@ -40,14 +39,13 @@ public class HUDController : MonoBehaviour
     public Button pauseMainMenuButton;
 
     private bool isPaused = false;
-    private bool enableCameraOnResume = true;
+    private bool enablePlayerOnResume = true;
 
     private void Awake()
     {
+        Assert.IsNotNull(player);
         Assert.IsNotNull(playerHealth);
         Assert.IsNotNull(playerCurrency);
-        Assert.IsNotNull(playerCamera);
-        Assert.IsNotNull(spellManager);
         Assert.IsTrue(spellSelectControllers.Count == spells.Count && spells.Count == Enum.GetValues(typeof(SpellType)).Length);
     }
 
@@ -149,15 +147,12 @@ public class HUDController : MonoBehaviour
     {
         Time.timeScale = 0f;
         deathScreenPanel.SetActive(true);
-        playerCamera.DisableCamera();
+        player.DisablePlayer();
     }
 
     public void Respawn()
     {
-        deathScreenPanel.SetActive(false);
         Time.timeScale = 1f;
-        playerCamera.EnableCamera();
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -166,20 +161,18 @@ public class HUDController : MonoBehaviour
         isPaused = true;
         Time.timeScale = 0f;
         pauseMenuPanel.SetActive(true);
-        enableCameraOnResume = playerCamera.IsCameraEnabled();
-        playerCamera.DisableCamera();
-        spellManager.enabled = false;
+        enablePlayerOnResume = player.CameraEnabled();
+        player.DisablePlayer();
     }
 
     public void ResumeGame()
     {
         isPaused = false;
         pauseMenuPanel.SetActive(false);
-        if (enableCameraOnResume)
+        if (enablePlayerOnResume)
         {
             Time.timeScale = 1f;
-            spellManager.enabled = true;
-            playerCamera.EnableCamera();
+            player.EnablePlayer();
         }
     }
 

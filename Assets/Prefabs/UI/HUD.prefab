@@ -187,15 +187,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthText: {fileID: 6224167468869326771}
   crystalsText: {fileID: 3209034132579709502}
+  player: {fileID: 0}
   playerHealth: {fileID: 0}
   playerCurrency: {fileID: 0}
-  playerCamera: {fileID: 0}
-  spellManager: {fileID: 0}
-  spells:
+  spellSelectControllers:
   - {fileID: 628050106469985120}
   - {fileID: 4378143338922906117}
   - {fileID: 6810008443907732704}
   - {fileID: 1603898655021756481}
+  spells:
+  - spellType: 0
+    texture: {fileID: 2800000, guid: c89e6c7d0af05674592e8d72f4b58a3b, type: 3}
+  - spellType: 1
+    texture: {fileID: 2800000, guid: 3ada41d904892d64a9905734e889490a, type: 3}
+  - spellType: 2
+    texture: {fileID: 2800000, guid: f26b168fa1f89274e8f6e565297c2882, type: 3}
+  - spellType: 3
+    texture: {fileID: 2800000, guid: 68fea59bcd9ad084bb0639f88f77ec16, type: 3}
   deathScreenPanel: {fileID: 1660054194885640239}
   respawnButton: {fileID: 8626631028360114418}
   mainMenuButton: {fileID: 7575293681980140626}
