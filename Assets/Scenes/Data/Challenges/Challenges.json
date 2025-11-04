@@ -1,6 +1,42 @@
 {
     "challenges": [
         {
+            "statement": "<color=blue>Survive</color> the Tide starting with <color=red>50% HP</color>",
+            "challengeClass": "C_StartAtHP",
+            "values": [0.5],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide starting with <color=red>30% HP</color>",
+            "challengeClass": "C_StartAtHP",
+            "values": [0.3],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide starting with <color=red>10% HP</color>",
+            "challengeClass": "C_StartAtHP",
+            "values": [0.1],
+            "difficulty": 3
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>+1</color> stronger enemies",
+            "challengeClass": "C_EnemyDifficultyIncrease",
+            "values": [1],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>+2</color> stronger enemies",
+            "challengeClass": "C_EnemyDifficultyIncrease",
+            "values": [2],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>+3</color> stronger enemies",
+            "challengeClass": "C_EnemyDifficultyIncrease",
+            "values": [3],
+            "difficulty": 3
+        },
+        {
             "statement": "<color=blue>Survive</color> the Tide with the shop <color=red>disabled</color>",
             "challengeClass": "C_ShopDisabled",
             "difficulty": 1,
@@ -17,6 +53,42 @@
             "challengeClass": "C_ShopDisabled",
             "difficulty": 3,
             "weight": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>-20%</color> crystal collection",
+            "challengeClass": "C_CurrencyMultiplierHandicap",
+            "values": [0.20],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>-50%</color> crystal collection",
+            "challengeClass": "C_CurrencyMultiplierHandicap",
+            "values": [0.50],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>-75%</color> crystal collection",
+            "challengeClass": "C_CurrencyMultiplierHandicap",
+            "values": [0.75],
+            "difficulty": 3
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>40%</color> current max health",
+            "challengeClass": "C_SurviveWithMinHP",
+            "values": [0.40],
+            "difficulty": 1
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>70%</color> current max health",
+            "challengeClass": "C_SurviveWithMinHP",
+            "values": [0.70],
+            "difficulty": 2
+        },
+        {
+            "statement": "<color=blue>Survive</color> the Tide with <color=red>90%</color> current max health",
+            "challengeClass": "C_SurviveWithMinHP",
+            "values": [0.90],
+            "difficulty": 3
         }
     ],
     "rewards": [
