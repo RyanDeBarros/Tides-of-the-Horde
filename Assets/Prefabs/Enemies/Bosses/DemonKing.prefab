@@ -221,6 +221,7 @@ MonoBehaviour:
   sinkDepth: 5
   teleportDuration: 4
   behindPlayerDistance: 4
+  regularTeleportChance: 0.1
   audioSource: {fileID: 0}
   AttackSFX: {fileID: 8300000, guid: cc0042b685115504ca7d83096eaea4fe, type: 3}
   AttackSFX2: {fileID: 8300000, guid: 30b642b0abb62004cb4ceddecf159d85, type: 3}
@@ -273,6 +274,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 9199881825282460984}
   animator: {fileID: 7582381997971118884}
+  attack1ProbabilityWeight: 1
+  attack2ProbabilityWeight: 1
 --- !u!114 &5225442633808930422
 MonoBehaviour:
   m_ObjectHideFlags: 0

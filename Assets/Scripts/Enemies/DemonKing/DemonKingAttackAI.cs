@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -5,6 +8,10 @@ class DemonKingAttackAI : MonoBehaviour
 {
     [SerializeField] private DemonKingMovementAI movement;
     [SerializeField] private DemonKingAnimator animator;
+
+    // TODO add to difficulty
+    public float attack1ProbabilityWeight = 1f;
+    public float attack2ProbabilityWeight = 1f;
 
     private void Awake()
     {
@@ -22,9 +29,12 @@ class DemonKingAttackAI : MonoBehaviour
     {
         if (movement.IsTeleporting() || animator.IsMovementLocked()) return;
 
-        if (Random.Range(0, 2) == 0)
-            animator.TriggerAttack1();
-        else
-            animator.TriggerAttack2();
+        Dictionary<Action, float> attacks = new() {
+            { () => animator.TriggerAttack1(), attack1ProbabilityWeight },
+            { () => animator.TriggerAttack2(), attack2ProbabilityWeight }
+            // TODO ranged attack
+        };
+        Action attack = attacks.Keys.ToList().GetWeightedRandomElement(attacks.Values.ToList());
+        attack.Invoke();
     }
 }

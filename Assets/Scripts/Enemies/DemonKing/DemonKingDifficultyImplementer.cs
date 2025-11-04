@@ -16,6 +16,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         public float sinkDepth = 5f; // How far underground to go
         public float teleportDuration = 3f; // Total time underground
         public float behindPlayerDistance = 4f; // Distance behind player to spawn
+        public float regularTeleportChance = 0.1f;
 
         // SwordHitbox
         public int damage = 5;
@@ -85,6 +86,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         movement.sinkDepth = stats.sinkDepth;
         movement.teleportDuration = stats.teleportDuration;
         movement.behindPlayerDistance = stats.behindPlayerDistance;
+        movement.regularTeleportChance = stats.regularTeleportChance;
 
         melee.damage = stats.damage;
         melee.bounceBackStrength = stats.bounceBackStrength;

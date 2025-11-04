@@ -21,6 +21,7 @@ public class DemonKingMovementAI : MonoBehaviour
     public float sinkDepth = 5f; // How far underground to go
     public float teleportDuration = 2f; // Total time underground
     public float behindPlayerDistance = 3f; // Distance behind player to spawn
+    public float regularTeleportChance = 0.1f;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
@@ -31,8 +32,6 @@ public class DemonKingMovementAI : MonoBehaviour
     private bool isTeleporting = false;
 
     private CharacterController controller;
-    private Vector3 velocity;
-    private Vector3 originalPosition;
 
     private void Awake()
     {
@@ -68,43 +67,37 @@ public class DemonKingMovementAI : MonoBehaviour
             return;
         }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        bool shouldChase = distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance;
+        Vector3 myPos = transform.position;
+        myPos.y = 0f;
+        Vector3 playerPos = player.position;
+        playerPos.y = 0f;
+        float distanceToPlayer = Vector3.Distance(myPos, playerPos);
 
-        if (shouldChase) ChasePlayer();
-        else animator.SetSpeed(0f); // Idle
-
-        controller.Move(velocity * Time.deltaTime);
+        if (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance)
+        {
+            if (Random.value <= regularTeleportChance * Time.deltaTime)
+                StartTeleportSequence();
+            else
+            {
+                ChasePlayer();
+                animator.SetSpeed(1f);
+            }
+        }
+        else
+            animator.SetSpeed(0f);
     }
 
     private void ChasePlayer()
     {
         Vector3 direction = (player.position - transform.position);
         direction.y = 0f;
+        direction.Normalize();
 
-        if (direction.sqrMagnitude > 0.001f)
-        {
-            direction.Normalize();
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
 
-            // Rotate towards the player smoothly
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-            // Rotate a portion of the way each frame based on turnSpeed (degrees per second)
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
-                targetRotation,
-                turnSpeed * Time.deltaTime
-            );
-
-            // Move towards the player
-            Vector3 movement = moveSpeed * Time.deltaTime * direction;
-            controller.Move(movement);
-
-            // Animation blending: walk only while moving
-            animator.SetSpeed(movement.magnitude > 0.01f ? 1f : 0f);
-        }
-        else
-            animator.SetSpeed(0f);
+        Vector3 movement = moveSpeed * Time.deltaTime * direction;
+        controller.Move(movement);
     }
 
     public bool IsTeleporting()
@@ -141,7 +134,7 @@ public class DemonKingMovementAI : MonoBehaviour
         planeVFX.SetActive(true);
 
         // Store original position
-        originalPosition = transform.position;
+        Vector3 originalPosition = transform.position;
         Vector3 targetSinkPosition = originalPosition - new Vector3(0, sinkDepth, 0);
 
         // Sink into ground
