@@ -64,6 +64,8 @@ public class ShopUI : MonoBehaviour
     {
         if (open) return;
 
+        if (!camera.IsCameraEnabled()) return;
+
         open = true;
         Time.timeScale = 0f;
         uiRoot.SetActive(true);
