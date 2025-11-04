@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3299712059124125513}
   m_Layer: 8
   m_Name: FlyingDemon
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   chargeBackDistance: 3.5
   chargeBackSpeed: 8
   chargeForwardSpeed: 40
-  dizzyDuration: 2
+  dizzyDuration: 3
   smallBiteColliders:
   - {fileID: 2547167615446399068}
   minCooldown: 1

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -29,7 +30,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
     public float chargeBackDistance = 3.5f;
     public float chargeBackSpeed = 8f;
     public float chargeForwardSpeed = 20f;
-    public float dizzyDuration = 2f;
+    public float dizzyDuration = 3f;
     [SerializeField] private List<SphereCollider> smallBiteColliders;
 
     [Header("Cooldowns")]
@@ -85,7 +86,6 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
     private void Update()
     {
-
         if (attackState == AttackState.Cooldown)
         {
             timeElapsed += Time.deltaTime;
@@ -112,7 +112,10 @@ public class FlyingDemonAttackAI : MonoBehaviour
                 if (timeElapsed < dizzyDuration)
                     animator.SetDizzy();
                 else
+                {
+                    attackState = AttackState.ChargeBite;
                     OnAttackEnd();
+                }
                 break;
             case AttackState.ChargeBite:
                 UpdateChargeBite();
@@ -184,24 +187,26 @@ public class FlyingDemonAttackAI : MonoBehaviour
         else
         {
             attackState = AttackState.ChargeBite;
+            characterController.enabled = false;
             animator.SmallBiteAttack();
         }
     }
 
     private void UpdateChargeBite()
     {
-        if (playerWasHit) return;
-
         if (AnyHits(smallBiteColliders))
         {
-            playerWasHit = true;
             if (playerHealth.IsInvulnerable())
+            {
                 Stun();
-            else
+                characterController.enabled = true;
+            }
+            else if (!playerWasHit)
             {
                 playerHealth.TakeDamage(biteDamage);
                 BouncePlayer(chargeBounceBackStrength);
             }
+            playerWasHit = true;
         }
     }
 
@@ -292,14 +297,19 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
     public void OnAttackEnd()
     {
+        if (attackState == AttackState.ChargeDizzy) return;
+
         timeElapsed = 0f;
         cooldown = Random.Range(minCooldown, maxCooldown);
         attackState = AttackState.Cooldown;
+        characterController.enabled = true;
     }
 
     public void Stun()
     {
         attackState = AttackState.ChargeDizzy;
+        timeElapsed = 0f;
+        animator.PlayGetHit();
         animator.SetDizzy();
     }
 }

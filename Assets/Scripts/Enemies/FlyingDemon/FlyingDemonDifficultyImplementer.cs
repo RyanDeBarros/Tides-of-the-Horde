@@ -40,7 +40,7 @@ public class FlyingDemonDifficultyImplementer : MonoBehaviour, IDifficultyImplem
         public float chargeBackDistance = 3.5f;
         public float chargeBackSpeed = 8f;
         public float chargeForwardSpeed = 20f;
-        public float dizzyDuration = 2f;
+        public float dizzyDuration = 3f;
 
         public float minAttackCooldown = 1.0f;
         public float maxAttackCooldown = 2.0f;

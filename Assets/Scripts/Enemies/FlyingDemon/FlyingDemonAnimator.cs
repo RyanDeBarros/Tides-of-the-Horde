@@ -17,10 +17,10 @@ public class FlyingDemonAnimator : MonoBehaviour
 
         Health health = GetComponentInParent<Health>();
         Assert.IsNotNull(health);
-        health.onHealthThresholdReached.AddListener(GetHitAnimation);
+        health.onHealthThresholdReached.AddListener(PlayGetHit);
     }
 
-    private void GetHitAnimation()
+    public void PlayGetHit()
     {
         ResetTriggers();
         animator.SetTrigger("GetHit");
