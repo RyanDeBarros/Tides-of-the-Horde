@@ -9,7 +9,6 @@ class DemonKingAttackAI : MonoBehaviour
     [SerializeField] private DemonKingMovementAI movement;
     [SerializeField] private DemonKingAnimator animator;
 
-    // TODO add to difficulty
     public float attack1ProbabilityWeight = 1f;
     public float attack2ProbabilityWeight = 1f;
 

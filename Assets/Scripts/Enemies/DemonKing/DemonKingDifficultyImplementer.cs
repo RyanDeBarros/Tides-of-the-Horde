@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -14,17 +16,21 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
         public float sinkSpeed = 6f; // Speed at which boss sinks into ground
         public float sinkDepth = 5f; // How far underground to go
-        public float teleportDuration = 3f; // Total time underground
+        public float teleportDuration = 2.5f; // Total time underground
         public float behindPlayerDistance = 4f; // Distance behind player to spawn
-        public float regularTeleportChance = 0.1f;
+        public List<float> regularTeleportChance = new() { 0.1f, 0.125f, 0.15f, 0.175f, 0.2f };
+
+        // DemonKingAttackAI
+        public float attack1ProbabilityWeight = 1f;
+        public float attack2ProbabilityWeight = 1f;
 
         // SwordHitbox
-        public int damage = 5;
+        public List<int> damage = new() { 5, 6, 7, 8, 9 };
         public float bounceBackStrength = 75f;
 
         // TargetDetector
-        public float attackRange = 7f;
-        public float attackInterval = 1f;
+        public List<float> attackRange = new() { 7f, 7.25f, 7.5f, 7.75f, 8f };
+        public List<float> attackInterval = new() { 1f, 0.975f, 0.95f, 0.925f, 0.9f };
 
         // Health
         public int maxHealth = 3000;
@@ -48,6 +54,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
     private static DifficultyStatsList difficultyStatsList = null;
 
     private DemonKingMovementAI movement;
+    private DemonKingAttackAI attackAI;
     private SwordHitbox melee;
     private TargetDetector detector;
     private Health health;
@@ -55,6 +62,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
     private RewardOnDeath reward;
 
     private int difficultyLevel;
+    private int intelligence = 0;
 
     private void Awake()
     {
@@ -62,6 +70,8 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
         movement = GetComponent<DemonKingMovementAI>();
         Assert.IsNotNull(movement);
+        attackAI = GetComponent<DemonKingAttackAI>();
+        Assert.IsNotNull(attackAI);
         melee = GetComponentInChildren<SwordHitbox>();
         Assert.IsNotNull(melee);
         detector = GetComponent<TargetDetector>();
@@ -76,7 +86,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
     public void SetDifficultyLevel(int level)
     {
-        difficultyLevel = System.Math.Clamp(level, 1, difficultyStatsList.stats.Count);
+        difficultyLevel = Math.Clamp(level, 1, difficultyStatsList.stats.Count);
         DifficultyStats stats = difficultyStatsList.stats[difficultyLevel - 1];
 
         movement.moveSpeed = stats.moveSpeed;
@@ -86,13 +96,16 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         movement.sinkDepth = stats.sinkDepth;
         movement.teleportDuration = stats.teleportDuration;
         movement.behindPlayerDistance = stats.behindPlayerDistance;
-        movement.regularTeleportChance = stats.regularTeleportChance;
+        movement.regularTeleportChance = stats.regularTeleportChance[intelligence];
 
-        melee.damage = stats.damage;
+        attackAI.attack1ProbabilityWeight = stats.attack1ProbabilityWeight;
+        attackAI.attack2ProbabilityWeight = stats.attack2ProbabilityWeight;
+
+        melee.damage = stats.damage[intelligence];
         melee.bounceBackStrength = stats.bounceBackStrength;
 
-        detector.attackRange = stats.attackRange;
-        detector.attackInterval = stats.attackInterval;
+        detector.attackRange = stats.attackRange[intelligence];
+        detector.attackInterval = stats.attackInterval[intelligence];
 
         health.maxHealth = stats.maxHealth;
 
@@ -109,9 +122,15 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
     public void GetSmarter()
     {
-        // TODO use lists in stats file for these values:
-        // TODO increase damage
-        // TODO increase speed
-        // TODO increase teleport frequency
+        DifficultyStats stats = difficultyStatsList.stats[difficultyLevel - 1];
+        ++intelligence;
+        if (intelligence < stats.regularTeleportChance.Count)
+            movement.regularTeleportChance = stats.regularTeleportChance[intelligence];
+        if (intelligence < stats.damage.Count)
+            melee.damage = stats.damage[intelligence];
+        if (intelligence < stats.attackRange.Count)
+            detector.attackRange = stats.attackRange[intelligence];
+        if (intelligence < stats.attackInterval.Count)
+            detector.attackInterval = stats.attackInterval[intelligence];
     }
 }

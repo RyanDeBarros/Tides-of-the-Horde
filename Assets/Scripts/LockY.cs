@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class LockY : MonoBehaviour
 {
-    private float y = 0f;
+    public float y = 0f;
 
     private void Start()
     {

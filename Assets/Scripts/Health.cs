@@ -54,10 +54,9 @@ public class Health : MonoBehaviour
         int previousThreshold = (int)(previousHealth / thresholdInterval);
 
         // If we crossed into a new threshold bracket
-        if (currentThreshold < previousThreshold && currentHealth > 0)
-        {
+        if (currentThreshold < previousThreshold && currentHealth > 0
+                && (previousHealth != maxHealth || currentThreshold != previousThreshold - 1))
             onHealthThresholdReached?.Invoke();
-        }
     }
 
     public void Heal(int amount)
