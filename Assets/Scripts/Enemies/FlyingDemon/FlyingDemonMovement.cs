@@ -11,15 +11,16 @@ public class FlyingDemonMovement : MonoBehaviour
     [Header("Ranges")]
     public float chaseRange = 50f;
     public float runToRange = 15f;
-    public float stoppingDistance = 3f;
+    public float stoppingDistance = 3.5f;
 
     [Header("Side Step")]
     public float sideStepSpeed = 10f;
     public float sideStepDuration = 0.8f;
-    public float minSideStepDelay = 1.0f;
-    public float maxSideStepDelay = 2.0f;
+    public float minSideStepCooldown = 1.5f;
+    public float maxSideStepCooldown = 3.0f;
 
     private FlyingDemonAnimator animator;
+    private FlyingDemonAttackAI attacker;
     private WaypointPatroller waypointPatroller;
     private CharacterController characterController;
     private Transform player;
@@ -27,12 +28,15 @@ public class FlyingDemonMovement : MonoBehaviour
     private float lockY = 0f;
     private int sideSteppingDir = 0;
     private float sideSteppingTimeElapsed = 0f;
-    private float sideSteppingDelay = 0f;
+    private float sideSteppingCooldown = 0f;
 
     private void Awake()
     {
         animator = GetComponentInChildren<FlyingDemonAnimator>();
         Assert.IsNotNull(animator);
+
+        attacker = GetComponent<FlyingDemonAttackAI>();
+        Assert.IsNotNull(attacker);
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
@@ -52,7 +56,7 @@ public class FlyingDemonMovement : MonoBehaviour
 
     private void Update()
     {
-        if (!characterController.enabled)
+        if (!characterController.enabled || !attacker.AllowMovement())
             return;
 
         Vector3 direction = player.position - transform.position;
@@ -67,20 +71,18 @@ public class FlyingDemonMovement : MonoBehaviour
 
             if (distanceToPlayer >= runToRange)
             {
-                sideSteppingDelay = 0f;
-                sideSteppingDir = 0;
-                sideSteppingTimeElapsed = 0f;
+                ResetSideStep();
 
                 characterController.Move(chargeSpeed * Time.deltaTime * direction);
                 animator.SetRunning();
             }
             else
             {
-                UpdateSideStep();
-
                 float displacement = distanceToPlayer - stoppingDistance;
                 displacement = Mathf.Min(Mathf.Abs(displacement), moveSpeed * Time.deltaTime) * Mathf.Sign(displacement);
                 characterController.Move(displacement * direction);
+
+                UpdateSideStep();
 
                 if (sideSteppingDir == 0)
                 {
@@ -113,14 +115,14 @@ public class FlyingDemonMovement : MonoBehaviour
     {
         if (sideSteppingDir == 0)
         {
-            if (sideSteppingDelay == 0f)
-                sideSteppingDelay = Random.Range(minSideStepDelay, maxSideStepDelay);
+            if (sideSteppingCooldown == 0f)
+                sideSteppingCooldown = Random.Range(minSideStepCooldown, maxSideStepCooldown);
 
             sideSteppingTimeElapsed += Time.deltaTime;
-            if (sideSteppingTimeElapsed > sideSteppingDelay)
+            if (sideSteppingTimeElapsed > sideSteppingCooldown && !attacker.IsAttacking())
             {
                 sideSteppingDir = Mathf.RoundToInt(Random.value) * 2 - 1;
-                sideSteppingDelay = 0f;
+                sideSteppingCooldown = 0f;
                 sideSteppingTimeElapsed = 0f;
             }
         }
@@ -141,5 +143,17 @@ public class FlyingDemonMovement : MonoBehaviour
                     animator.SetMovingLeft();
             }
         }
+    }
+
+    private void ResetSideStep()
+    {
+        sideSteppingCooldown = 0f;
+        sideSteppingDir = 0;
+        sideSteppingTimeElapsed = 0f;
+    }
+
+    public bool CanAttack()
+    {
+        return sideSteppingDir == 0;
     }
 }

@@ -5,11 +5,15 @@ using UnityEngine.Assertions;
 public class FlyingDemonAnimator : MonoBehaviour
 {
     private Animator animator;
+    private FlyingDemonAttackAI attacker;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         Assert.IsNotNull(animator);
+
+        attacker = GetComponentInParent<FlyingDemonAttackAI>();
+        Assert.IsNotNull(attacker);
 
         Health health = GetComponentInParent<Health>();
         Assert.IsNotNull(health);
@@ -18,6 +22,7 @@ public class FlyingDemonAnimator : MonoBehaviour
 
     private void GetHitAnimation()
     {
+        ResetTriggers();
         animator.SetTrigger("GetHit");
     }
 
@@ -87,17 +92,32 @@ public class FlyingDemonAnimator : MonoBehaviour
 
     public void PunchAttack()
     {
+        ResetTriggers();
         animator.SetTrigger("Attack1");
     }
 
     public void BigBiteAttack()
     {
+        ResetTriggers();
         animator.SetTrigger("Attack2");
     }
 
-    // TODO Do dash attack into small bite. If bubble spell is active, stun boss -> set dizzy.
     public void SmallBiteAttack()
     {
+        ResetTriggers();
         animator.SetTrigger("Attack3");
+    }
+
+    private void ResetTriggers()
+    {
+        animator.ResetTrigger("GetHit");
+        animator.ResetTrigger("Attack1");
+        animator.ResetTrigger("Attack2");
+        animator.ResetTrigger("Attack3");
+    }
+
+    public void OnAttackEnd()
+    {
+        attacker.OnAttackEnd();
     }
 }

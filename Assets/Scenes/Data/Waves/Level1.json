@@ -40,6 +40,12 @@
                     "spawnOnce": true,
                     "timeOffset": 3.0,
                     "difficulty": 1
+                },
+                {
+                    "enemy": "FlyingDemon",
+                    "spawnOnce": true,
+                    "timeOffset": 4.0,
+                    "difficulty": 1
                 }
             ]
         },
