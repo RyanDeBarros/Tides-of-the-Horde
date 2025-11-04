@@ -79,6 +79,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10eef640a3b0f86448de021fd624d4d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+  chargeSpeed: 15
+  patrolSpeedMultiplier: 0.5
+  chaseRange: 50
+  runToRange: 15
+  stoppingDistance: 3
 --- !u!114 &6346164076468609636
 MonoBehaviour:
   m_ObjectHideFlags: 0
