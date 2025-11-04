@@ -42,4 +42,9 @@ public class PlayerEnabler : MonoBehaviour
         dash.enabled = false;
         spellManager.enabled = false;
     }
+
+    public bool CameraEnabled()
+    {
+        return camera.IsCameraEnabled();
+    }
 }
