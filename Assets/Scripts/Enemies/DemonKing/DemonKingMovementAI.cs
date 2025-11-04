@@ -123,6 +123,9 @@ public class DemonKingMovementAI : MonoBehaviour
     {
         teleportState = TeleportState.GetHitAnimation;
         animator.TriggerGetHit();
+        var difficulty = GetComponent<DemonKingDifficultyImplementer>();
+        Assert.IsNotNull(difficulty);
+        difficulty.GetSmarter();
     }
 
     public void StartTeleportSequence()

@@ -102,4 +102,12 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
     {
         return difficultyLevel;
     }
+
+    public void GetSmarter()
+    {
+        // TODO use lists in stats file for these values:
+        // TODO increase damage
+        // TODO increase speed
+        // TODO increase teleport frequency
+    }
 }
