@@ -106,9 +106,9 @@ GameObject:
   - component: {fileID: 2422754742542669783}
   - component: {fileID: 8209752110854130650}
   - component: {fileID: 8186671327767500097}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Dragon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -345,7 +345,6 @@ MonoBehaviour:
   - {fileID: 5984126950147037728}
   - {fileID: 6839700783640135395}
   - {fileID: 4528246736461806038}
-  autoSink: 1
   sinkDuration: 1
   sinkSpeed: 0
   audioSource: {fileID: 8186671327767500097}
@@ -1136,6 +1135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathSinkDelay: 0.4
   deathSinkSpeed: 8
+  telegraphAttackSFX: {fileID: 0}
 --- !u!1001 &8125061728076760682
 PrefabInstance:
   m_ObjectHideFlags: 0
