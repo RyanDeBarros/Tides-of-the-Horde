@@ -10,6 +10,7 @@ public enum EnemyType
     Bishop,
     Orc,
     Dragon,
+    FlyingDemon,
     DemonKing,
 }
 
