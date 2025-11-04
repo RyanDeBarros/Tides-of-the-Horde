@@ -211,12 +211,14 @@ GameObject:
   - component: {fileID: 5323173174553920161}
   - component: {fileID: 3457600730889820102}
   - component: {fileID: 4938711925551577409}
+  - component: {fileID: 6328866537227378538}
   - component: {fileID: 7622766684650392044}
   - component: {fileID: 1743212581410189318}
   - component: {fileID: 2302053948118948893}
   - component: {fileID: 784144791415049494}
   - component: {fileID: 5650140055875109725}
   - component: {fileID: 1042728479023503675}
+  - component: {fileID: 2840767228657566480}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -295,6 +297,24 @@ MonoBehaviour:
   runningSpeed: 16
   rotationSpeed: 10
   inputDeadzone: 0.15
+--- !u!114 &6328866537227378538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381584739051638850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53c195494bac26c4982d6c31ba63b88e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 1743212581410189318}
+  cam: {fileID: 5323173174553920161}
+  inputDeadzone: 0.15
+  dashDuration: 0.15
+  dashSpeed: 30
+  cooldown: 1
 --- !u!114 &7622766684650392044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,10 +374,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  thresholdPercent: 10
   onHealthChanged:
     m_PersistentCalls:
       m_Calls: []
   onDeath:
+    m_PersistentCalls:
+      m_Calls: []
+  onHealthThresholdReached:
     m_PersistentCalls:
       m_Calls: []
 --- !u!114 &784144791415049494
@@ -374,6 +398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currency: 0
   currencyCollectMultiplier: 1
+  shopDiscount: 0
   onCurrencyChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -407,11 +432,29 @@ MonoBehaviour:
   upgradeTreeFile: {fileID: 4900000, guid: 811c8408662fd404fa4abce5f40a7489, type: 3}
   unlockMeleeID: MeleeSpell-Unlock
   upgradeHealthID: Health-Upgrade
+  dashCooldownUI: {fileID: 0}
   meleeSpellIcon: {fileID: 2800000, guid: c89e6c7d0af05674592e8d72f4b58a3b, type: 3}
   bombSpellIcon: {fileID: 2800000, guid: 3ada41d904892d64a9905734e889490a, type: 3}
   bubbleSpellIcon: {fileID: 2800000, guid: f26b168fa1f89274e8f6e565297c2882, type: 3}
   sniperSpellIcon: {fileID: 2800000, guid: 68fea59bcd9ad084bb0639f88f77ec16, type: 3}
   healthIcon: {fileID: 2800000, guid: b5cd81e4340af5b468586b84ed63b31b, type: 3}
+  dashIcon: {fileID: 2800000, guid: 4c163202142c9e547b6106c0b4868b44, type: 3}
+--- !u!114 &2840767228657566480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381584739051638850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddedf36554127304d950c5457f029d7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 5323173174553920161}
+  movement: {fileID: 4938711925551577409}
+  dash: {fileID: 6328866537227378538}
+  spellManager: {fileID: 7622766684650392044}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0

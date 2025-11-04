@@ -61,6 +61,20 @@
             ]
         },
         {
+            "id": "Dash-Unlock",
+            "name": "Dash",
+            "defaultIcon": "Dash",
+            "defaultDescription": "Unlock (SPACE to use)",
+            "defaultWeight": 3,
+            "prerequisites": [],
+            "action": "UnlockDash",
+            "tiers": [
+                {
+                    "cost": 15
+                }
+            ]
+        },
+        {
             "id": "MeleeSpell-Upgrade-Damage",
             "name": "Melee Spell",
             "defaultIcon": "MeleeSpell",
@@ -71,7 +85,7 @@
                 {
                     "cost": 15,
                     "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
-                    "values": [1.25]
+                    "values": [0.25]
                 }
             ]
         },
@@ -86,7 +100,7 @@
                 {
                     "cost": 25,
                     "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
-                    "values": [1.25]
+                    "values": [0.25]
                 }
             ]
         },
@@ -101,12 +115,12 @@
                 {
                     "cost": 25,
                     "description": "<color=red><b>+</b></color> Range (<color=yellow>1</color>)",
-                    "values": [1.25]
+                    "values": [0.25]
                 },
                 {
                     "cost": 50,
                     "description": "<color=red><b>+</b></color> Range (<color=yellow>2</color>)",
-                    "values": [1.25]
+                    "values": [0.25]
                 }
             ]
         },
@@ -116,7 +130,6 @@
             "defaultIcon": "Health",
             "prerequisites": [],
             "action": "UpgradeHealth",
-            "parameters": [],
             "tiers": [
                 {
                     "cost": 20,
@@ -142,6 +155,81 @@
                     "cost": 200,
                     "description": "Increase Max Health (<color=yellow>5</color>)\n & Heal <color=red>20%</color>",
                     "values": [20, 0.20]
+                }
+            ]
+        },
+        {
+            "id": "Dash-Upgrade-Cooldown",
+            "name": "Dash",
+            "defaultIcon": "Dash",
+            "prerequisites": ["Dash-Unlock"],
+            "action": "UpgradeDash",
+            "parameters": ["Cooldown"],
+            "tiers": [
+                {
+                    "cost": 20,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>1</color>)",
+                    "values": [0.20]
+                },
+                {
+                    "cost": 35,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>2</color>)",
+                    "values": [0.20]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>3</color>)",
+                    "values": [0.20]
+                }
+            ]
+        },
+        {
+            "id": "Dash-Upgrade-Speed",
+            "name": "Dash",
+            "defaultIcon": "Dash",
+            "prerequisites": ["Dash-Unlock"],
+            "action": "UpgradeDash",
+            "parameters": ["Speed"],
+            "tiers": [
+                {
+                    "cost": 20,
+                    "description": "<color=red><b>+</b></color> Speed (<color=yellow>1</color>)",
+                    "values": [0.20]
+                },
+                {
+                    "cost": 35,
+                    "description": "<color=red><b>+</b></color> Speed (<color=yellow>2</color>)",
+                    "values": [0.20]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> Speed (<color=yellow>3</color>)",
+                    "values": [0.20]
+                }
+            ]
+        },
+        {
+            "id": "Dash-Upgrade-Duration",
+            "name": "Dash",
+            "defaultIcon": "Dash",
+            "prerequisites": ["Dash-Unlock"],
+            "action": "UpgradeDash",
+            "parameters": ["Duration"],
+            "tiers": [
+                {
+                    "cost": 20,
+                    "description": "<color=red><b>+</b></color> Duration (<color=yellow>1</color>)",
+                    "values": [0.20]
+                },
+                {
+                    "cost": 35,
+                    "description": "<color=red><b>+</b></color> Duration (<color=yellow>2</color>)",
+                    "values": [0.20]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> Duration (<color=yellow>3</color>)",
+                    "values": [0.20]
                 }
             ]
         }

@@ -154,6 +154,7 @@ public class PlayerUnlockTree : MonoBehaviour
     [SerializeField] private TextAsset upgradeTreeFile;
     [SerializeField] private string unlockMeleeID = "MeleeSpell-Unlock";
     [SerializeField] private string upgradeHealthID = "Health-Upgrade";
+    [SerializeField] private DashCooldownUI dashCooldownUI;
 
     [Header("Icons")]
     [SerializeField] private Texture meleeSpellIcon;
@@ -161,11 +162,14 @@ public class PlayerUnlockTree : MonoBehaviour
     [SerializeField] private Texture bubbleSpellIcon;
     [SerializeField] private Texture sniperSpellIcon;
     [SerializeField] private Texture healthIcon;
+    [SerializeField] private Texture dashIcon;
 
     private readonly Dictionary<string, PlayerUnlockNode> nodes = new();
 
     private void Awake()
     {
+        Assert.IsNotNull(dashCooldownUI);
+
         Assert.IsNotNull(upgradeTreeFile);
         LoadUnlockTree(upgradeTreeFile.text);
     }
@@ -179,7 +183,7 @@ public class PlayerUnlockTree : MonoBehaviour
     private void LoadUnlockTree(string json)
     {
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
-        UnlockActionTable unlockActionTable = new(gameObject);
+        UnlockActionTable unlockActionTable = new(gameObject, dashCooldownUI);
 
         PlayerCurrency playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
 
@@ -206,19 +210,32 @@ public class PlayerUnlockTree : MonoBehaviour
         List<PlayerUnlockNode> randomUnlocks = new();
         PlayerUnlockNode healthUpgrade = nodes[upgradeHealthID];
 
-        // Non-health upgrades
         if (healthUpgrade.CanActivate())
             --count;
 
+        // Potentially expensive upgrade
+        PlayerUnlockNode expensiveNode = null;
+        if (count > 1)
+        {
+            --count;
+
+            var unlocks = nodes.Values.Where(node => node.CanActivate() && node.GetID() != upgradeHealthID);
+            expensiveNode = unlocks.ToList().GetWeightedRandomElement(unlocks.Select(unlock => unlock.GetWeight()).ToList());
+        }
+
+        // Affordable upgrades
         if (count > 0)
         {
             var unlocks = nodes.Values
-                .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID)
+                .Where(node => node.CanActivate() && node.GetID() != upgradeHealthID && node != expensiveNode)
                 .OrderBy(node => node.GetCost())
                 .TakeWhile((node, index) => index < count || node.GetCost() <= maxCost);
 
             randomUnlocks.AddRange(unlocks.ToList().GetWeightedRandomDistinctElements(count, unlocks.Select(unlock => unlock.GetWeight()).ToList()));
         }
+
+        if (expensiveNode != null)
+            randomUnlocks.Add(expensiveNode);
 
         // Health upgrade
         if (healthUpgrade.CanActivate())
@@ -236,6 +253,7 @@ public class PlayerUnlockTree : MonoBehaviour
             "BubbleSpell" => bubbleSpellIcon,
             "SniperSpell" => sniperSpellIcon,
             "Health" => healthIcon,
+            "Dash" => dashIcon,
             _ => throw new NotImplementedException(),
         };
     }

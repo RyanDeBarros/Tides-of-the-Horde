@@ -17,8 +17,7 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private float checkShopPopupDuration = 1f;
     [SerializeField] private int checkShopPopupRepetitions = 3;
 
-    private new PlayerCamera camera;
-    private SpellManager spellManager;
+    private PlayerEnabler player;
     private PlayerUnlockTree playerUnlock;
     private PlayerCurrency playerCurrency;
     
@@ -32,8 +31,7 @@ public class ShopUI : MonoBehaviour
         Assert.IsNotNull(checkShopPopup);
         Assert.IsNotNull(checkShopPopupBKG);
 
-        camera = FindObjectsByType<PlayerCamera>(FindObjectsSortMode.None).GetUniqueElement();
-        spellManager = FindObjectsByType<SpellManager>(FindObjectsSortMode.None).GetUniqueElement();
+        player = FindObjectsByType<PlayerEnabler>(FindObjectsSortMode.None).GetUniqueElement();
         playerUnlock = FindObjectsByType<PlayerUnlockTree>(FindObjectsSortMode.None).GetUniqueElement();
         playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
 
@@ -69,8 +67,7 @@ public class ShopUI : MonoBehaviour
         open = true;
         Time.timeScale = 0f;
         uiRoot.SetActive(true);
-        camera.DisableCamera();
-        spellManager.enabled = false;
+        player.DisablePlayer();
         if (popup != null)
             StopCoroutine(popup);
         SetCheckShopPopupAlpha(0f);
@@ -83,8 +80,7 @@ public class ShopUI : MonoBehaviour
         open = false;
         Time.timeScale = 1f;
         uiRoot.SetActive(false);
-        camera.EnableCamera();
-        spellManager.enabled = true;
+        player.EnablePlayer();
     }
 
     public void RefreshOptions()
