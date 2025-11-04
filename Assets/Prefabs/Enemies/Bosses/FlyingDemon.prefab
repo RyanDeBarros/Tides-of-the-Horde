@@ -85,6 +85,9 @@ MonoBehaviour:
   chaseRange: 50
   runToRange: 15
   stoppingDistance: 3
+  sideStepSpeed: 10
+  sideStepDuration: 0.8
+  maxSideStepDelay: 2
 --- !u!114 &6346164076468609636
 MonoBehaviour:
   m_ObjectHideFlags: 0
