@@ -5,11 +5,14 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MainMenu.unity
     guid: 5c8327c34fb07590aaac701abcf3d840
-  - enabled: 1
+  - enabled: 0
     path: Assets/Arena/scenes/purple-red-Arena.unity
     guid: 0ae25ccf712d9c242a38b17936cb484a
+  - enabled: 1
+    path: Assets/Scenes/MainMenu_Mohammed.unity
+    guid: 7a59851a2f5b11e4b85f70e6f15e5961
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
