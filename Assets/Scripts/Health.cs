@@ -90,6 +90,11 @@ public class Health : MonoBehaviour
         invulnerable = isInvulnerable;
     }
 
+    public bool IsInvulnerable()
+    {
+        return invulnerable;
+    }
+
     public void Die()
     {
         if (!dead)

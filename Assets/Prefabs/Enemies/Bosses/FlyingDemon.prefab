@@ -83,6 +83,7 @@ MonoBehaviour:
   moveSpeed: 5
   chargeSpeed: 15
   patrolSpeedMultiplier: 0.5
+  turnSpeed: 360
   chaseRange: 50
   runToRange: 15
   stoppingDistance: 3.5
@@ -105,19 +106,22 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  attackRange: 5
   punchDamage: 5
   punchProbabilityWeight: 0
+  punchAttackRange: 5
   punchColliders: []
   biteDamage: 10
   biteProbabilityWeight: 0
+  biteAttackRange: 5
   bigBiteColliders: []
   chargeDamage: 8
   chargeBounceBackStrength: 100
   chargeProbabilityWeight: 0.3
+  chargeAttackRange: 10
   chargeBackDistance: 3.5
   chargeBackSpeed: 8
-  chargeForwardSpeed: 20
+  chargeForwardSpeed: 40
+  dizzyDuration: 2
   smallBiteColliders: []
   minCooldown: 1
   maxCooldown: 2

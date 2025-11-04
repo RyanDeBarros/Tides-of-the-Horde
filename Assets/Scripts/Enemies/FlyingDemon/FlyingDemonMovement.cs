@@ -7,6 +7,7 @@ public class FlyingDemonMovement : MonoBehaviour
     public float moveSpeed = 5f;
     public float chargeSpeed = 15f;
     public float patrolSpeedMultiplier = 0.5f;
+    [SerializeField] private float turnSpeed = 360f;
 
     [Header("Ranges")]
     public float chaseRange = 50f;
@@ -66,7 +67,8 @@ public class FlyingDemonMovement : MonoBehaviour
         if (distanceToPlayer <= chaseRange)
         {
             waypointPatroller.StopPatrol();
-            transform.rotation = Quaternion.LookRotation(direction);
+
+            FacePlayer();
             direction.Normalize();
 
             if (distanceToPlayer >= runToRange)
@@ -104,11 +106,18 @@ public class FlyingDemonMovement : MonoBehaviour
         LockY();
     }
 
-    private void LockY()
+    public void LockY()
     {
         Vector3 pos = transform.position;
         pos.y = lockY;
         transform.position = pos;
+    }
+
+    public void FacePlayer()
+    {
+        Vector3 direction = player.transform.position - transform.position;
+        direction.y = 0f;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
     }
 
     private void UpdateSideStep()

@@ -23,10 +23,11 @@ public class FlyingDemonAttackAI : MonoBehaviour
     public int chargeDamage = 8;
     public float chargeBounceBackStrength = 100f;
     public float chargeProbabilityWeight = 0.3f;
-    public float chargeAttackRange = 7f;
+    public float chargeAttackRange = 8f;
     public float chargeBackDistance = 3.5f;
     public float chargeBackSpeed = 8f;
     public float chargeForwardSpeed = 20f;
+    public float dizzyDuration = 2f;
     [SerializeField] private List<SphereCollider> smallBiteColliders;
 
     [Header("Cooldowns")]
@@ -37,6 +38,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
     private FlyingDemonMovement movement;
     private CharacterController characterController;
     private Transform player;
+    private Health playerHealth;
 
     private enum AttackState
     {
@@ -45,6 +47,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
         ChargeBackward,
         ChargeForward,
         ChargeBite,
+        ChargeDizzy,
         Cooldown
     }
 
@@ -69,6 +72,9 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
+
+        playerHealth = player.GetComponent<Health>();
+        Assert.IsNotNull(playerHealth);
     }
 
     private void Update()
@@ -95,10 +101,19 @@ public class FlyingDemonAttackAI : MonoBehaviour
             case AttackState.ChargeForward:
                 UpdateChargeForward();
                 break;
+            case AttackState.ChargeDizzy:
+                timeElapsed += Time.deltaTime;
+                if (timeElapsed < dizzyDuration)
+                    animator.SetDizzy();
+                else
+                    OnAttackEnd();
+                break;
             case AttackState.ChargeBite:
                 UpdateChargeBite();
                 break;
         }
+
+        movement.LockY();
     }
 
     private bool AnyHits(List<SphereCollider> colliders)
@@ -116,7 +131,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
         if (AnyHits(punchColliders))
         {
             playerWasHit = true;
-            // TODO damage player
+            playerHealth.TakeDamage(punchDamage);
         }
     }
 
@@ -127,25 +142,26 @@ public class FlyingDemonAttackAI : MonoBehaviour
         if (AnyHits(bigBiteColliders))
         {
             playerWasHit = true;
-            // TODO damage player
+            playerHealth.TakeDamage(biteDamage);
         }
     }
 
     private void UpdateChargeBackward()
     {
         timeElapsed += Time.deltaTime;
+        Vector3 direction = player.transform.position - transform.position;
+        direction.y = 0f;
+        movement.FacePlayer();
         if (timeElapsed < chargeTimeLeft)
         {
-            Vector3 direction = (transform.position - player.transform.position).normalized;
-            transform.rotation = Quaternion.LookRotation(-direction);
-            characterController.Move(chargeBackSpeed * Time.deltaTime * direction);
+            characterController.Move(chargeBackSpeed * Time.deltaTime * -direction.normalized);
             animator.SetMovingBackward();
         }
         else
         {
             attackState = AttackState.ChargeForward;
             timeElapsed = 0f;
-            chargeTimeLeft = chargeBackDistance / chargeForwardSpeed;
+            chargeTimeLeft = Mathf.Max(direction.magnitude - movement.stoppingDistance, 0f) / chargeForwardSpeed;
         }
     }
 
@@ -171,7 +187,10 @@ public class FlyingDemonAttackAI : MonoBehaviour
         if (AnyHits(smallBiteColliders))
         {
             playerWasHit = true;
-            // TODO damage player if bubble spell is not activated, otherwise stun boss -> set dizzy.
+            if (playerHealth.IsInvulnerable())
+                Stun();
+            else
+                playerHealth.TakeDamage(biteDamage);
         }
     }
 
@@ -249,12 +268,20 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
     public bool AllowMovement()
     {
-        return attackState != AttackState.ChargeBackward && attackState != AttackState.ChargeForward;
+        return attackState != AttackState.ChargeBackward && attackState != AttackState.ChargeForward
+            && attackState != AttackState.ChargeDizzy && attackState != AttackState.ChargeBite;
     }
 
     public void OnAttackEnd()
     {
+        timeElapsed = 0f;
         cooldown = Random.Range(minCooldown, maxCooldown);
         attackState = AttackState.Cooldown;
+    }
+
+    public void Stun()
+    {
+        attackState = AttackState.ChargeDizzy;
+        animator.SetDizzy();
     }
 }
