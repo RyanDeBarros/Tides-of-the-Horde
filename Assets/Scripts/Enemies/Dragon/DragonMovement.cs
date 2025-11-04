@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -15,8 +16,6 @@ public class DragonMovement : MonoBehaviour
     private Transform player;
 
     private float lockY = 0f;
-
-    // TODO fix death animation
 
     private void Awake()
     {

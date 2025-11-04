@@ -3,9 +3,17 @@ using UnityEngine.Assertions;
 
 public class DragonAnimator : MonoBehaviour
 {
+    [SerializeField] private float deathSinkDelay = 0.4f;
+    [SerializeField] private float deathSinkSpeed = 8f;
+    // TODO set death SFX in OnDieAnimation inspector
+    // TODO spatial SFX for telegraph
+
     private Animator animator;
     private DragonAOEAttack attacker;
     private TargetDetector detector;
+
+    private bool dead = false;
+    private float timeElapsed = 0f;
 
     private void Awake()
     {
@@ -18,6 +26,20 @@ public class DragonAnimator : MonoBehaviour
         detector = GetComponentInParent<TargetDetector>();
         Assert.IsNotNull(detector);
         detector.attackConditions.Add(CanAttack);
+    }
+
+    private void Update()
+    {
+        if (dead)
+        {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed > deathSinkDelay)
+            {
+                Vector3 pos = transform.position;
+                pos.y -= deathSinkSpeed * Time.deltaTime;
+                transform.position = pos;
+            }
+        }
     }
 
     public void SetFlying(Vector3 direction)
@@ -35,6 +57,11 @@ public class DragonAnimator : MonoBehaviour
     public void OnAttackCallback()
     {
         attacker.Explode();
+    }
+
+    public void OnDieCallback()
+    {
+        dead = true;
     }
 
     public bool CanFly()
