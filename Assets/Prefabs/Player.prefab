@@ -219,6 +219,7 @@ GameObject:
   - component: {fileID: 5650140055875109725}
   - component: {fileID: 1042728479023503675}
   - component: {fileID: 2840767228657566480}
+  - component: {fileID: 929097096339481985}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -455,6 +456,20 @@ MonoBehaviour:
   movement: {fileID: 4938711925551577409}
   dash: {fileID: 6328866537227378538}
   spellManager: {fileID: 7622766684650392044}
+--- !u!114 &929097096339481985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381584739051638850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aab262814f5ffa41a3247ca39c7735a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resistance: 1
+  duration: 0.1
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0
