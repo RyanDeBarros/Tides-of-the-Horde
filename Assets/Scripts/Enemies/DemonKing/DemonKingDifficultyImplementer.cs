@@ -10,6 +10,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         // DemonKingMovementAI
         public float moveSpeed = 10f;
         public float chaseRange = 30f;
+        public float turnSpeed = 800f;
 
         public float sinkSpeed = 6f; // Speed at which boss sinks into ground
         public float sinkDepth = 5f; // How far underground to go
@@ -79,6 +80,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
         movement.moveSpeed = stats.moveSpeed;
         movement.chaseRange = stats.chaseRange;
+        movement.turnSpeed = stats.turnSpeed;
         movement.sinkSpeed = stats.sinkSpeed;
         movement.sinkDepth = stats.sinkDepth;
         movement.teleportDuration = stats.teleportDuration;

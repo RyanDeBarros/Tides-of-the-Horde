@@ -14,7 +14,7 @@ public class DemonKingMovementAI : MonoBehaviour
     public float moveSpeed = 5f;
     public float chaseRange = 10f;
     public float stoppingDistance = 2f;
-    public float turnSpeed = 360f;
+    public float turnSpeed = 800f;
 
     [Header("Teleport Settings")]
     public float sinkSpeed = 3f; // Speed at which boss sinks into ground
@@ -28,14 +28,7 @@ public class DemonKingMovementAI : MonoBehaviour
     [SerializeField] private AudioClip AttackSFX2;
     [SerializeField] private AudioClip TeleportSfX;
 
-    private enum TeleportState
-    {
-        None,
-        GetHitAnimation,
-        Teleporting
-    }
-
-    private TeleportState teleportState;
+    private bool isTeleporting = false;
 
     private CharacterController controller;
     private Vector3 velocity;
@@ -46,11 +39,11 @@ public class DemonKingMovementAI : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
 
-        if (!animator)
+        if (animator == null)
             animator = GetComponentInChildren<DemonKingAnimator>();
         Assert.IsNotNull(animator);
 
-        if (!player)
+        if (player == null)
         {
             GameObject go = GameObject.FindGameObjectWithTag("Player");
             if (go != null)
@@ -69,7 +62,7 @@ public class DemonKingMovementAI : MonoBehaviour
 
     private void Update()
     {
-        if (animator.IsMovementLocked() || teleportState != TeleportState.None)
+        if (animator.IsMovementLocked() || isTeleporting)
         {
             animator.SetSpeed(0f);
             return;
@@ -116,12 +109,11 @@ public class DemonKingMovementAI : MonoBehaviour
 
     public bool IsTeleporting()
     {
-        return teleportState != TeleportState.None;
+        return isTeleporting;
     }
 
     private void GetHit()
     {
-        teleportState = TeleportState.GetHitAnimation;
         animator.TriggerGetHit();
         var difficulty = GetComponent<DemonKingDifficultyImplementer>();
         Assert.IsNotNull(difficulty);
@@ -130,13 +122,13 @@ public class DemonKingMovementAI : MonoBehaviour
 
     public void StartTeleportSequence()
     {
-        if (teleportState != TeleportState.Teleporting)
+        if (!isTeleporting)
             StartCoroutine(TeleportBehindPlayer());
     }
 
     private IEnumerator TeleportBehindPlayer()
     {
-        teleportState = TeleportState.Teleporting;
+        isTeleporting = true;
 
         // play sfx
         if (audioSource != null && TeleportSfX != null)
@@ -201,6 +193,6 @@ public class DemonKingMovementAI : MonoBehaviour
         controller.enabled = true;
 
         // Unlock movement
-        teleportState = TeleportState.None;
+        isTeleporting = false;
     }
 }

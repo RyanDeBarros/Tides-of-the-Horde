@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 6265030949369529525}
   - component: {fileID: 9199881825282460984}
   - component: {fileID: 3729822997592497888}
-  - component: {fileID: 2701051810322495637}
+  - component: {fileID: 4486287939115185358}
   - component: {fileID: 5225442633808930422}
   - component: {fileID: 553115262544188337}
   - component: {fileID: 4046973865690285927}
@@ -216,7 +216,7 @@ MonoBehaviour:
   moveSpeed: 10
   chaseRange: 30
   stoppingDistance: 2.6
-  turnSpeed: 360
+  turnSpeed: 800
   sinkSpeed: 6
   sinkDepth: 5
   teleportDuration: 4
@@ -244,9 +244,9 @@ MonoBehaviour:
   OnCanAttack:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7582381997971118884}
-        m_TargetAssemblyTypeName: DemonKingAnimator, Assembly-CSharp
-        m_MethodName: TriggerRandomAttack
+      - m_Target: {fileID: 4486287939115185358}
+        m_TargetAssemblyTypeName: DemonKingAttackAI, Assembly-CSharp
+        m_MethodName: TriggerAttack
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -259,7 +259,7 @@ MonoBehaviour:
   OnDistanceUpdated:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2701051810322495637
+--- !u!114 &4486287939115185358
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -268,11 +268,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 5522856944775851731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150200c67a2501a4a938ab76528a6807, type: 3}
+  m_Script: {fileID: 11500000, guid: 22b3760d2d52e014d9f2bccdf87ec7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 4872275864640833774}
-  attackTrigger: Fire
+  movement: {fileID: 9199881825282460984}
+  animator: {fileID: 7582381997971118884}
 --- !u!114 &5225442633808930422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   extraDelay: 0.15
   disableOnDeath:
   - {fileID: 9199881825282460984}
-  - {fileID: 2701051810322495637}
+  - {fileID: 0}
   - {fileID: 3729822997592497888}
   sinkDuration: 2.5
   sinkSpeed: 1
@@ -1273,15 +1273,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6861204580605634825, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.36
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6861204580605634825, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.36
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6861204580605634825, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.36
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6861204580605634825, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1603,6 +1603,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 4872275864640833774}
   movement: {fileID: 9199881825282460984}
+  attackAI: {fileID: 4486287939115185358}
 --- !u!1001 &9195961314267373946
 PrefabInstance:
   m_ObjectHideFlags: 0
