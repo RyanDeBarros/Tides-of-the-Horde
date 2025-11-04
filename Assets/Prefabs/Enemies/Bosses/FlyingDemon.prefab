@@ -124,9 +124,9 @@ GameObject:
   - component: {fileID: 8775335849692378853}
   - component: {fileID: 8088306018587523817}
   - component: {fileID: 3299712059124125513}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FlyingDemon
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -214,19 +214,19 @@ MonoBehaviour:
     m_Bits: 64
   punchDamage: 5
   punchBounceBackStrength: 120
-  punchProbabilityWeight: 0
+  punchProbabilityWeight: 1
   punchAttackRange: 5
   punchColliders:
   - {fileID: 6624738009325856607}
   biteDamage: 10
   biteBounceBackStrength: 100
-  biteProbabilityWeight: 0
+  biteProbabilityWeight: 0.75
   biteAttackRange: 5
   bigBiteColliders:
   - {fileID: 4287093122360859726}
   chargeDamage: 8
   chargeBounceBackStrength: 100
-  chargeProbabilityWeight: 1
+  chargeProbabilityWeight: 0.3
   chargeAttackRange: 10
   chargeBackDistance: 3.5
   chargeBackSpeed: 8
