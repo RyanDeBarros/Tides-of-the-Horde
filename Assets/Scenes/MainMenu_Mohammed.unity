@@ -930,7 +930,7 @@ MonoBehaviour:
   volumeSlider: {fileID: 1168726654}
   graphicsDropdown: {fileID: 757309039}
   settingsBackButton: {fileID: 1952060608}
-  creditsBackButton: {fileID: 0}
+  creditsBackButton: {fileID: 1941007183}
 --- !u!4 &476584720
 Transform:
   m_ObjectHideFlags: 0
@@ -3078,6 +3078,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 155275464248538025, guid: 03908339ebb876649998de9b027b8006, type: 3}
   m_PrefabInstance: {fileID: 1941007181}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1941007183 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1760285478033023819, guid: 03908339ebb876649998de9b027b8006, type: 3}
+  m_PrefabInstance: {fileID: 1941007181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1952060605 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 155275464248538025, guid: 03908339ebb876649998de9b027b8006, type: 3}
@@ -3403,7 +3414,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -630, y: 255}
-  m_SizeDelta: {x: 300, y: 300}
+  m_SizeDelta: {x: 350, y: 350}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2119578211
 MonoBehaviour:
@@ -3418,7 +3429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.7783019, b: 0.8864905, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
