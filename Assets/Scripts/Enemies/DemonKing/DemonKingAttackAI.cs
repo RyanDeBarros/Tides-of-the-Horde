@@ -131,6 +131,7 @@ class DemonKingAttackAI : MonoBehaviour
     {
         if (movement.IsTeleporting() || animator.IsMovementLocked()) return;
 
+        // TODO add cooldown to attacks
         if (Mathf.RoundToInt(Random.value) == 0)
             animator.TriggerAttack1();
         else

@@ -54,6 +54,8 @@ class SpikeTrap : MonoBehaviour
                 else
                 {
                     SetTelegraphScale(1f);
+                    spikesVFX.SetActive(true);
+                    SetSpikesScale(0f);
                     timeElapsed = 0f;
                     state = State.Rising;
                     collider.enabled = true;
@@ -135,9 +137,8 @@ class SpikeTrap : MonoBehaviour
 
         state = State.Telegraphing;
         collider.enabled = true;
-        spikesVFX.SetActive(true);
-        SetSpikesScale(0f);
         telegraphVFX.SetActive(true);
+        telegraphVFX.transform.Rotate(0f, Random.value * 360f, 0f);
         SetTelegraphScale(0f);
     }
 

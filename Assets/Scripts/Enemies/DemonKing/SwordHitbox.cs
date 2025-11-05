@@ -1,6 +1,7 @@
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Assertions;
 
 public class SwordHitbox : MonoBehaviour
 {
@@ -15,60 +16,58 @@ public class SwordHitbox : MonoBehaviour
     [Header("Detection")]
     public LayerMask playerLayer;
 
-    private readonly HashSet<Health> hitThisSwing = new();
+    private bool playerHit = false;
 
     private bool attacking = false;
 
+    private void Awake()
+    {
+        Assert.IsNotNull(hitCollider);
+    }
+
     private void Start()
     {
-        if (hitCollider) hitCollider.enabled = false;
+        hitCollider.enabled = false;
     }
 
     private void Update()
     {
-        if (!attacking || hitCollider == null) return;
+        if (!attacking || playerHit) return;
 
         Vector3 center = hitCollider.transform.TransformPoint(hitCollider.center);
         Vector3 halfExtents = hitCollider.size * 0.5f;
 
-        Collider[] hits = Physics.OverlapBox(center, halfExtents, hitCollider.transform.rotation, playerLayer);
-
-        foreach (Collider hit in hits)
+        Collider[] hits = new Collider[1];
+        if (Physics.OverlapBoxNonAlloc(center, halfExtents, hits, hitCollider.transform.rotation, playerLayer) > 0)
         {
-            Health health = hit.GetComponent<Health>();
-            if (health != null && !hitThisSwing.Contains(health))
+            Transform player = hits[0].transform;
+
+            Health health = player.GetComponent<Health>();
+            Assert.IsNotNull(health);
+            health.TakeDamage(damage);
+
+            // Bounce back the player
+            if (player.TryGetComponent<BounceBack>(out var bounceBack))
             {
-                health.TakeDamage(damage);
-
-                // Bounce back the player
-                Vector3 direction = hit.transform.position - transform.position;
+                Vector3 direction = player.position - transform.position;
                 direction.y = 0; // Keep bounce horizontal
-                TryBouncingBack(hit, direction.normalized);
-
-                hitThisSwing.Add(health);
+                bounceBack.Bounce(direction.normalized, bounceBackStrength);
             }
-        }
-    }
 
-    private void TryBouncingBack(Collider target, Vector3 direction)
-    {
-        if (target.TryGetComponent<BounceBack>(out var bounceBack))
-        {
-            bounceBack.Bounce(direction, bounceBackStrength);
+            playerHit = true;
         }
     }
 
     // Animation Events
     public void EnableHitbox()
     {
-        hitThisSwing.Clear();
+        playerHit = false;
         attacking = true;
     }
 
     public void DisableHitbox()
     {
         attacking = false;
-        hitThisSwing.Clear();
     }
 
     // Draw wireframe in editor
@@ -82,5 +81,4 @@ public class SwordHitbox : MonoBehaviour
         // Draw the wire cube using local center and size
         Gizmos.DrawWireCube(hitCollider.center, hitCollider.size);
     }
-
 }

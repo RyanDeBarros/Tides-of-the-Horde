@@ -41,6 +41,38 @@ Transform:
   - {fileID: 1293044887187224239}
   m_Father: {fileID: 1328823984244454106}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &52675896963225039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1211834340275798697}
+  m_Layer: 0
+  m_Name: Telegraph
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1211834340275798697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 52675896963225039}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 214216469597414663}
+  m_Father: {fileID: 1328823984244454106}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1456782154518545640
 GameObject:
   m_ObjectHideFlags: 0
@@ -54,7 +86,7 @@ GameObject:
   - component: {fileID: 4557363065171354156}
   - component: {fileID: 1870642168403741274}
   m_Layer: 0
-  m_Name: Telegraph
+  m_Name: Mat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -68,12 +100,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1456782154518545640}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 0.1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1328823984244454106}
+  m_Father: {fileID: 1211834340275798697}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &8330565860577223042
 MeshFilter:
@@ -137,19 +169,19 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 951
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.5
+  m_Height: 100
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3256864734209685171
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,6 +192,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6357584344218125205}
   - component: {fileID: 484253054907717313}
+  - component: {fileID: 357618747851070249}
   m_Layer: 0
   m_Name: DemonKingSpikes
   m_TagString: Untagged
@@ -198,7 +231,34 @@ MonoBehaviour:
   playerTag: Player
   collider: {fileID: 1870642168403741274}
   spikesVFX: {fileID: 23382016805342084}
-  telegraphVFX: {fileID: 1456782154518545640}
+  telegraphVFX: {fileID: 52675896963225039}
+--- !u!54 &357618747851070249
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3256864734209685171}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 64
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 951
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6236753959781572104
 GameObject:
   m_ObjectHideFlags: 0
@@ -225,11 +285,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_LocalScale: {x: 2, y: 1.3, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 214216469597414663}
   - {fileID: 8598938572832577237}
+  - {fileID: 1211834340275798697}
   m_Father: {fileID: 6357584344218125205}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2023422462906846988
@@ -296,7 +356,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (9)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -370,7 +431,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (7)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -444,7 +506,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (6)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -518,7 +581,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (2)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -592,7 +656,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -666,7 +731,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (3)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -740,7 +806,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -814,7 +881,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (4)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -888,7 +956,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (8)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -962,7 +1031,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: crystal-pink-sharp (5)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 327978903166375256, guid: 514623ae280114647868e46eb01e3442, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
