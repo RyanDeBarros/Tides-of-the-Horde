@@ -216,14 +216,15 @@ MonoBehaviour:
   planeVFX: {fileID: 8864811851381855948}
   moveSpeed: 10
   chaseRange: 60
-  stoppingDistance: 2.6
+  stoppingDistance: 2.8
   turnSpeed: 800
   sinkSpeed: 6
   riseSpeed: 8
   sinkDepth: 5
   teleportDuration: 4
   behindPlayerDistance: 4
-  regularTeleportChance: 0.1
+  minRegularTeleportDelay: 4
+  maxRegularTeleportDelay: 20
   audioSource: {fileID: 0}
   AttackSFX: {fileID: 8300000, guid: cc0042b685115504ca7d83096eaea4fe, type: 3}
   AttackSFX2: {fileID: 8300000, guid: 30b642b0abb62004cb4ceddecf159d85, type: 3}
@@ -243,7 +244,7 @@ MonoBehaviour:
   playerTag: Player
   ignoreVertical: 1
   attackRange: 7
-  attackInterval: 1
+  attackInterval: 1.5
   OnCanAttack:
     m_PersistentCalls:
       m_Calls:
@@ -275,9 +276,12 @@ MonoBehaviour:
   movement: {fileID: 9199881825282460984}
   animator: {fileID: 7582381997971118884}
   detector: {fileID: 0}
-  rangedAttackChance: 1
+  comboProbability: 0.2
+  minRangedAttackDelay: 4
+  maxRangedAttackDelay: 20
   spikesInitialDamage: 5
   spikesDamageOverTime: 5
+  spikesSlowingFactor: 0.75
   spikesFocusRadius: 20
   spikesTelegraphDuration: 2
   spikesRisingDuration: 0.5
@@ -1075,10 +1079,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -1.360576
       objectReference: {fileID: 0}
-    - target: {fileID: 3684064996267892739, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
-      propertyPath: m_ApplyRootMotion
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3686236114086170733, guid: cbcfad9fdf9ac2a469865f6f51e9311e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 8.041813
@@ -1548,7 +1548,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.93, y: 1.67, z: 5.29}
+  m_Size: {x: 1.1, y: 1.67, z: 5.29}
   m_Center: {x: 0.00000059834383, y: 0.05643675, z: 1.5048227}
 --- !u!95 &4872275864640833774 stripped
 Animator:

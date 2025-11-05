@@ -14,7 +14,7 @@ public class DemonKingMovementAI : MonoBehaviour
     [Header("Movement")]
     public float moveSpeed = 10f;
     public float chaseRange = 60f;
-    [SerializeField] private float stoppingDistance = 2f;
+    [SerializeField] private float stoppingDistance = 2.8f;
     public float turnSpeed = 800f;
 
     [Header("Teleport Settings")]
@@ -23,15 +23,18 @@ public class DemonKingMovementAI : MonoBehaviour
     public float sinkDepth = 5f; // How far underground to go
     public float teleportDuration = 2f; // Total time underground
     public float behindPlayerDistance = 3f; // Distance behind player to spawn
-    public float regularTeleportChance = 0.1f;
+    public float minRegularTeleportDelay = 4f;
+    public float maxRegularTeleportDelay = 20f;
+
+    private bool isTeleporting = false;
+    private float teleportDelayElapsed = 0f;
+    private float regularTeleportDelay = 0f;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip AttackSFX;
     [SerializeField] private AudioClip AttackSFX2;
     [SerializeField] private AudioClip TeleportSfX;
-
-    private bool isTeleporting = false;
 
     private CharacterController controller;
 
@@ -65,6 +68,11 @@ public class DemonKingMovementAI : MonoBehaviour
             healthComponent.onHealthThresholdReached.AddListener(GetHit);
     }
 
+    private void Start()
+    {
+        regularTeleportDelay = Random.Range(minRegularTeleportDelay, maxRegularTeleportDelay);
+    }
+
     private void Update()
     {
         if (animator.IsMovementLocked() || isTeleporting || attackAI.IsMovementLocked())
@@ -78,7 +86,8 @@ public class DemonKingMovementAI : MonoBehaviour
 
         if (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance)
         {
-            if (Random.value <= regularTeleportChance * Time.deltaTime) // TODO different method for probability
+            teleportDelayElapsed += Time.deltaTime;
+            if (teleportDelayElapsed >= regularTeleportDelay)
                 StartTeleportSequence();
             else
             {
@@ -101,6 +110,13 @@ public class DemonKingMovementAI : MonoBehaviour
 
         Vector3 movement = moveSpeed * Time.deltaTime * direction;
         controller.Move(movement);
+    }
+
+    public void FacePlayer()
+    {
+        Vector3 direction = (player.position - transform.position);
+        direction.y = 0f;
+        transform.rotation = Quaternion.LookRotation(direction.normalized);
     }
 
     public bool IsTeleporting()
@@ -190,5 +206,7 @@ public class DemonKingMovementAI : MonoBehaviour
 
         // Unlock movement
         isTeleporting = false;
+        teleportDelayElapsed = 0f;
+        regularTeleportDelay = Random.Range(minRegularTeleportDelay, maxRegularTeleportDelay);
     }
 }

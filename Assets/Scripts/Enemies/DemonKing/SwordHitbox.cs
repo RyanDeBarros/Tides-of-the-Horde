@@ -34,8 +34,10 @@ public class SwordHitbox : MonoBehaviour
     {
         if (!attacking || playerHit) return;
 
+        // TODO use rigid body so as to use Continuous collision detection
+
         Vector3 center = hitCollider.transform.TransformPoint(hitCollider.center);
-        Vector3 halfExtents = hitCollider.size * 0.5f;
+        Vector3 halfExtents = Vector3.Scale(hitCollider.size * 0.5f, hitCollider.transform.lossyScale);
 
         Collider[] hits = new Collider[1];
         if (Physics.OverlapBoxNonAlloc(center, halfExtents, hits, hitCollider.transform.rotation, playerLayer) > 0)

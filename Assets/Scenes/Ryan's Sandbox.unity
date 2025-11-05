@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4486287939115185358, guid: b3d1f8efc5d4fbc468eecc4d130328c7, type: 3}
+      propertyPath: comboProbability
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5522856944775851731, guid: b3d1f8efc5d4fbc468eecc4d130328c7, type: 3}
       propertyPath: m_Name
       value: DemonKing

@@ -36,6 +36,18 @@ public class DemonKingAnimator : MonoBehaviour
         animator.SetTrigger("Attack2");
     }
 
+    public void TriggerComboAttack()
+    {
+        movementLocked = true;
+        animator.SetTrigger("ComboAttack");
+    }
+
+    // Called by animator
+    public void OnComboAttackReadjust()
+    {
+        movement.FacePlayer();
+    }
+
     // Called by animator
     public void UnlockMovement()
     {

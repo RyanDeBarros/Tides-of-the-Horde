@@ -10,7 +10,16 @@ class DemonKingAttackAI : MonoBehaviour
     [SerializeField] private DemonKingAnimator animator;
     [SerializeField] private TargetDetector detector;
 
-    public float rangedAttackChance = 0.1f;
+    // TODO add to difficulty
+    public float comboProbability = 0.2f;
+
+    [Header("Ranged Attack")]
+    public float minRangedAttackDelay = 4f;
+    public float maxRangedAttackDelay = 20f;
+    private float rangedAttackDelayElapsed = 0f;
+    private float rangedAttackDelay = 0f;
+
+    [Header("Spike Traps")]
     // TODO add to difficulty
     public int spikesInitialDamage = 5;
     public float spikesDamageOverTime = 5f;
@@ -60,14 +69,22 @@ class DemonKingAttackAI : MonoBehaviour
         allSpikeTraps = FindObjectsByType<SpikeTrap>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
     }
 
+    private void Start()
+    {
+        rangedAttackDelay = Random.Range(minRangedAttackDelay, maxRangedAttackDelay);
+    }
+
     private void Update()
     {
         switch (rangedAttackState)
         {
             case RangedAttackState.None:
-                if (!detector.PlayerIsInRange() && Random.value <= rangedAttackChance * Time.deltaTime // TODO different method for probability. also use a cooldown.
-                        && !animator.IsMovementLocked() && !movement.IsTeleporting())
-                    StartRangedAttackTelegraph();
+                if (!detector.PlayerIsInRange() && !animator.IsMovementLocked() && !movement.IsTeleporting())
+                {
+                    rangedAttackDelayElapsed += Time.deltaTime;
+                    if (rangedAttackDelayElapsed >= rangedAttackDelay)
+                        StartRangedAttackTelegraph();
+                }
                 break;
             case RangedAttackState.Telegraph:
                 timeElapsed += Time.deltaTime;
@@ -136,6 +153,8 @@ class DemonKingAttackAI : MonoBehaviour
         rangedAttackState = RangedAttackState.Telegraph;
         timeElapsed = 0f;
         animator.TriggerTelegraph();
+        rangedAttackDelayElapsed = 0f;
+        rangedAttackDelay = Random.Range(minRangedAttackDelay, maxRangedAttackDelay);
     }
 
     // Called by TargetDetector
@@ -143,11 +162,15 @@ class DemonKingAttackAI : MonoBehaviour
     {
         if (movement.IsTeleporting() || animator.IsMovementLocked()) return;
 
-        // TODO add cooldown to attacks
-        if (Mathf.RoundToInt(Random.value) == 0)
-            animator.TriggerAttack1();
+        if (Random.value < comboProbability)
+            animator.TriggerComboAttack();
         else
-            animator.TriggerAttack2();
+        {
+            if (Mathf.RoundToInt(Random.value) == 0)
+                animator.TriggerAttack1();
+            else
+                animator.TriggerAttack2();
+        }
     }
 
     public bool IsMovementLocked()

@@ -5,6 +5,12 @@ using UnityEngine.Assertions;
 
 public static class ListExtensions
 {
+    public static void AssignToIfInRange<T>(this List<T> list, int index, ref T target)
+    {
+        if (index >= 0 && index < list.Count)
+            target = list[index];
+    }
+
     public static List<T> GetRandomDistinctElements<T>(this IEnumerable<T> list, int count)
     {
         // Fisher-Yates shuffle

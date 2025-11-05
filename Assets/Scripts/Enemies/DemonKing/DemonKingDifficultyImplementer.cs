@@ -19,10 +19,12 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         public float sinkDepth = 5f; // How far underground to go
         public float teleportDuration = 2f; // Total time underground
         public float behindPlayerDistance = 4f; // Distance behind player to spawn
-        public List<float> regularTeleportChance = new() { 0.1f, 0.125f, 0.15f, 0.175f, 0.2f };
+        public List<float> minRegularTeleportDelay = new() { 4f, 3.7f, 3.4f, 3.1f, 2.8f };
+        public List<float> maxRegularTeleportDelay = new() { 20f, 19f, 18f, 17f, 16f };
 
         // DemonKingAttackAI
-        public List<float> rangedAttackChance = new() { 0.1f, 0.125f, 0.15f, 0.175f, 0.2f };
+        public List<float> minRangedAttackDelay = new() { 4f, 3.7f, 3.4f, 3.1f, 2.8f };
+        public List<float> maxRangedAttackDelay = new() { 20f, 19f, 18f, 17f, 16f };
 
         // SwordHitbox
         public List<int> damage = new() { 5, 6, 7, 8, 9 };
@@ -30,7 +32,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
         // TargetDetector
         public List<float> attackRange = new() { 7f, 7.25f, 7.5f, 7.75f, 8f };
-        public List<float> attackInterval = new() { 1f, 0.975f, 0.95f, 0.925f, 0.9f };
+        public List<float> attackInterval = new() { 1.7f, 1.65f, 0.6f, 1.55f, 1.5f };
 
         // Health
         public int maxHealth = 3000;
@@ -61,7 +63,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
     private BounceBack bounceBack;
     private RewardOnDeath reward;
 
-    private int difficultyLevel;
+    private int difficultyLevel = 1;
     private int intelligence = 0;
 
     private void Awake()
@@ -97,9 +99,11 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         movement.sinkDepth = stats.sinkDepth;
         movement.teleportDuration = stats.teleportDuration;
         movement.behindPlayerDistance = stats.behindPlayerDistance;
-        movement.regularTeleportChance = stats.regularTeleportChance[intelligence];
+        movement.minRegularTeleportDelay = stats.minRegularTeleportDelay[intelligence];
+        movement.maxRegularTeleportDelay = stats.maxRegularTeleportDelay[intelligence];
         
-        attackAI.rangedAttackChance = stats.rangedAttackChance[intelligence];
+        attackAI.minRangedAttackDelay = stats.minRangedAttackDelay[intelligence];
+        attackAI.maxRangedAttackDelay = stats.maxRangedAttackDelay[intelligence];
 
         melee.damage = stats.damage[intelligence];
         melee.bounceBackStrength = stats.bounceBackStrength;
@@ -124,15 +128,13 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
     {
         DifficultyStats stats = difficultyStatsList.stats[difficultyLevel - 1];
         ++intelligence;
-        if (intelligence < stats.regularTeleportChance.Count)
-            movement.regularTeleportChance = stats.regularTeleportChance[intelligence];
-        if (intelligence < stats.rangedAttackChance.Count)
-            attackAI.rangedAttackChance = stats.rangedAttackChance[intelligence];
-        if (intelligence < stats.damage.Count)
-            melee.damage = stats.damage[intelligence];
-        if (intelligence < stats.attackRange.Count)
-            detector.attackRange = stats.attackRange[intelligence];
-        if (intelligence < stats.attackInterval.Count)
-            detector.attackInterval = stats.attackInterval[intelligence];
+
+        stats.minRegularTeleportDelay.AssignToIfInRange(intelligence, ref movement.minRegularTeleportDelay);
+        stats.maxRegularTeleportDelay.AssignToIfInRange(intelligence, ref movement.maxRegularTeleportDelay);
+        stats.minRangedAttackDelay.AssignToIfInRange(intelligence, ref attackAI.minRangedAttackDelay);
+        stats.maxRangedAttackDelay.AssignToIfInRange(intelligence, ref attackAI.maxRangedAttackDelay);
+        stats.damage.AssignToIfInRange(intelligence, ref melee.damage);
+        stats.attackRange.AssignToIfInRange(intelligence, ref detector.attackRange);
+        stats.attackInterval.AssignToIfInRange(intelligence, ref detector.attackInterval);
     }
 }
