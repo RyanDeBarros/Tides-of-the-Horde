@@ -6,9 +6,10 @@ using UnityEngine.Assertions;
 public class DemonKingMovementAI : MonoBehaviour
 {
     [Header("References")]
-    public Transform player;
-    public DemonKingAnimator animator;
-    public GameObject planeVFX; // The plane object to show during teleport
+    [SerializeField] private Transform player;
+    [SerializeField] private DemonKingAnimator animator;
+    [SerializeField] private DemonKingAttackAI attackAI;
+    [SerializeField] private GameObject planeVFX; // The plane object to show during teleport
 
     [Header("Movement")]
     public float moveSpeed = 5f;
@@ -38,6 +39,10 @@ public class DemonKingMovementAI : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
 
+        if (attackAI == null)
+            attackAI = GetComponent<DemonKingAttackAI>();
+        Assert.IsNotNull(attackAI);
+
         if (animator == null)
             animator = GetComponentInChildren<DemonKingAnimator>();
         Assert.IsNotNull(animator);
@@ -61,11 +66,8 @@ public class DemonKingMovementAI : MonoBehaviour
 
     private void Update()
     {
-        if (animator.IsMovementLocked() || isTeleporting)
-        {
-            animator.SetSpeed(0f);
+        if (animator.IsMovementLocked() || isTeleporting || attackAI.IsMovementLocked())
             return;
-        }
 
         Vector3 myPos = transform.position;
         myPos.y = 0f;
@@ -75,7 +77,7 @@ public class DemonKingMovementAI : MonoBehaviour
 
         if (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance)
         {
-            if (Random.value <= regularTeleportChance * Time.deltaTime)
+            if (Random.value <= regularTeleportChance * Time.deltaTime) // TODO different method for probability
                 StartTeleportSequence();
             else
             {

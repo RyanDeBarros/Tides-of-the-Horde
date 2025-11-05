@@ -21,8 +21,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         public List<float> regularTeleportChance = new() { 0.1f, 0.125f, 0.15f, 0.175f, 0.2f };
 
         // DemonKingAttackAI
-        public float attack1ProbabilityWeight = 1f;
-        public float attack2ProbabilityWeight = 1f;
+        public List<float> rangedAttackChance = new() { 0.1f, 0.125f, 0.15f, 0.175f, 0.2f };
 
         // SwordHitbox
         public List<int> damage = new() { 5, 6, 7, 8, 9 };
@@ -97,9 +96,8 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         movement.teleportDuration = stats.teleportDuration;
         movement.behindPlayerDistance = stats.behindPlayerDistance;
         movement.regularTeleportChance = stats.regularTeleportChance[intelligence];
-
-        attackAI.attack1ProbabilityWeight = stats.attack1ProbabilityWeight;
-        attackAI.attack2ProbabilityWeight = stats.attack2ProbabilityWeight;
+        
+        attackAI.rangedAttackChance = stats.rangedAttackChance[intelligence];
 
         melee.damage = stats.damage[intelligence];
         melee.bounceBackStrength = stats.bounceBackStrength;
@@ -126,6 +124,8 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         ++intelligence;
         if (intelligence < stats.regularTeleportChance.Count)
             movement.regularTeleportChance = stats.regularTeleportChance[intelligence];
+        if (intelligence < stats.rangedAttackChance.Count)
+            attackAI.rangedAttackChance = stats.rangedAttackChance[intelligence];
         if (intelligence < stats.damage.Count)
             melee.damage = stats.damage[intelligence];
         if (intelligence < stats.attackRange.Count)

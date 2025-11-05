@@ -63,4 +63,15 @@ public class DemonKingAnimator : MonoBehaviour
         movement.StartTeleportSequence();
         movementLocked = false;
     }
+
+    public void TriggerTelegraph()
+    {
+        animator.SetTrigger("Telegraph");
+        movementLocked = false;
+    }
+
+    public void OnTelegraphEnd()
+    {
+        movementLocked = true;
+    }
 }

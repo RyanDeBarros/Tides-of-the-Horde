@@ -19,12 +19,12 @@ public class SwordHitbox : MonoBehaviour
 
     private bool attacking = false;
 
-    void Start()
+    private void Start()
     {
         if (hitCollider) hitCollider.enabled = false;
     }
 
-    void FixedUpdate()
+    private void Update()
     {
         if (!attacking || hitCollider == null) return;
 
