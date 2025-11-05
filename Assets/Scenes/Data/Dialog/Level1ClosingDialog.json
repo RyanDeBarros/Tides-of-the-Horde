@@ -5,17 +5,6 @@
         },
         {
             "text": "[Add lore...]"
-        },
-        {
-            "text": "TODO (you completed / did not complete the challenge) - don't use JSON for dialog options/challenges - only lore.",
-            "topPadding": 10.0
-        },
-        {
-            "text": "Ok",
-            "topPadding": 10.0,
-            "halign": 1.0,
-            "clickable": true,
-            "clickResponse": "ok"
         }
     ]
 }

@@ -181,7 +181,18 @@ public class ChallengeTracker : MonoBehaviour
 
     public void RewardIfSuccess()
     {
-        if (currentChallenge != null && currentChallenge.IsSuccess())
+        if (ChallengeCompleted())
             currentReward.GiveReward();
+        // TODO reward should persist across levels, and should not be re-obtainable?
+    }
+
+    public bool HasChallenge()
+    {
+        return currentChallenge != null;
+    }
+
+    public bool ChallengeCompleted()
+    {
+        return HasChallenge() && currentChallenge.IsSuccess();
     }
 }

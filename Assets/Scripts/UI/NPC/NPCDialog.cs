@@ -97,10 +97,10 @@ public class NPCDialog : MonoBehaviour
         if (dialogPhase == DialogPhase.Opening)
         {
             challengeTracker.SelectRandomChallenge();
-            SetTextPage(JsonUtility.FromJson<DialogPage>(openingDialogFile.text));
+            SetOpeningTextPage();
         }
         else if (dialogPhase == DialogPhase.Closing)
-            SetTextPage(JsonUtility.FromJson<DialogPage>(closingDialogFile.text));
+            SetClosingTextPage();
         else
             throw new NotImplementedException();
     }
@@ -116,11 +116,41 @@ public class NPCDialog : MonoBehaviour
         onClose.Invoke();
     }
 
-    private void SetTextPage(DialogPage page)
+    private void SetOpeningTextPage()
+    {
+        List<DialogOption> options = JsonUtility.FromJson<DialogPage>(openingDialogFile.text).options;
+        options.Add(new DialogOption() { text = "Complete this challenge and I'll reward you:", topPadding = 10f });
+        options.Add(new DialogOption() { challenge = true, halign = 0.5f });
+        options.Add(new DialogOption() { reward = true, halign = 0.5f });
+        options.Add(new DialogOption() { text = "Accept", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "accept" });
+        options.Add(new DialogOption() { text = "Decline", halign = 1f, clickable = true, clickResponse = "decline" });
+        SetTextPage(options);
+    }
+
+    private void SetClosingTextPage()
+    {
+        List<DialogOption> options = JsonUtility.FromJson<DialogPage>(closingDialogFile.text).options;
+
+        if (challengeTracker.HasChallenge())
+        {
+            if (challengeTracker.ChallengeCompleted())
+            {
+                options.Add(new DialogOption() { text = "You completed my challenge! Here is your reward:", topPadding = 10f });
+                options.Add(new DialogOption() { reward = true, halign = 0.5f });
+            }
+            else
+                options.Add(new DialogOption() { text = "Unfortunately, you failed my challenge!", topPadding = 10f });
+        }
+
+        options.Add(new DialogOption() { text = "Continue", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "claim" });
+        SetTextPage(options);
+    }
+
+    private void SetTextPage(List<DialogOption> options)
     {
         ClearTextPage();
         // TODO while typewriting - play typing SFX: begin continuously playing here, and then stop it in RunAtEnd().
-        page.options.ForEach(option => typewriterAnimationQueue.AppendCoroutine(AddText(option)));
+        options.ForEach(option => typewriterAnimationQueue.AppendCoroutine(AddText(option)));
         typewriterAnimationQueue.RunAtEnd(() => {
             textButtons.ForEach(button => button.enabled = true);
             textOnHovers.ForEach(onHover => onHover.enabled = true);
@@ -217,7 +247,7 @@ public class NPCDialog : MonoBehaviour
         Dictionary<string, Action> actions = new(StringComparer.InvariantCultureIgnoreCase) {
             ["accept"] = challengeTracker.AcceptChallenge,
             ["decline"] = challengeTracker.DeclineChallenge,
-            ["ok"] = () => { }
+            ["claim"] = challengeTracker.RewardIfSuccess
         };
 
         if (actions.TryGetValue(clickResponse, out Action action))

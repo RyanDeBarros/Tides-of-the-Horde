@@ -173,7 +173,6 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            challengeTracker.RewardIfSuccess();
             uiController.HideUI();
             levelPhase = LevelPhase.ChallengeGiverEnd;
             challengeGiver.GetDialog().dialogPhase = NPCDialog.DialogPhase.Closing;
