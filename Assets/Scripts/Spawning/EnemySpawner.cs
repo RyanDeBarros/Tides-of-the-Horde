@@ -23,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private ShopUI shopUI;
     [SerializeField] private ChallengeGiver challengeGiver;
     [SerializeField] private ChallengeTracker challengeTracker;
+    [SerializeField] private Portal portal;
     [SerializeField] private string waitForChallengerSong;
 
     [Header("Enemy Prefabs")]
@@ -63,6 +64,7 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(challengeGiver);
         challengeGiver.onConversationEnd.AddListener(OnConversationEnd);
         Assert.IsNotNull(challengeTracker);
+        Assert.IsNotNull(portal);
 
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
@@ -82,10 +84,10 @@ public class EnemySpawner : MonoBehaviour
         shopUI.gameObject.SetActive(false);
 
         SoundtrackManager.Instance.PlayTrack(waitForChallengerSong);
-
-        // TODO only execute when portal start is done
-        levelPhase = LevelPhase.ChallengeGiverStart;
-        challengeGiver.SpawnNPC();
+        portal.SpawnPlayer(() => {
+            levelPhase = LevelPhase.ChallengeGiverStart;
+            challengeGiver.SpawnNPC();
+        });
     }
 
     private void Update()
@@ -99,7 +101,7 @@ public class EnemySpawner : MonoBehaviour
         if (levelPhase == LevelPhase.ChallengeGiverStart)
             StartWaves();
         else if (levelPhase == LevelPhase.ChallengeGiverEnd)
-            ; // TODO spawn portal end
+            portal.PrepareToDespawnPlayer();
         else
             throw new NotImplementedException();
     }

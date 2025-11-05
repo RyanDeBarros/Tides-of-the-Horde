@@ -52,7 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnWaveFile: {fileID: 4900000, guid: 35bbbdfd7cc9ffd43b7a961c701b6d06, type: 3}
-  dialogFile: {fileID: 4900000, guid: 88c33012100681341945dd32be12fd1d, type: 3}
+  openingDialogFile: {fileID: 0}
+  closingDialogFile: {fileID: 0}
   enemySpawner: {fileID: 3850396755786596804}
   npcDialog: {fileID: 1846684184539267383}
 --- !u!1 &7726332571218978483
@@ -180,6 +181,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe1f226daabf73d4784ae27f0917051a, type: 3}
+--- !u!114 &3675138649892057947 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2592480809175852985, guid: fe1f226daabf73d4784ae27f0917051a, type: 3}
+  m_PrefabInstance: {fileID: 1223537287433704674}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07c59de6f5a5f2499704004de2ec32f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8772958698618537289 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7585521763522089387, guid: fe1f226daabf73d4784ae27f0917051a, type: 3}
@@ -193,6 +205,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6046191443424738508}
     m_Modifications:
+    - target: {fileID: 1425429705884659240, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 3675138649892057947}
     - target: {fileID: 1425429705884659240, guid: 77b27910d1d90a546a71d86fa4871329, type: 3}
       propertyPath: shopUI
       value: 
