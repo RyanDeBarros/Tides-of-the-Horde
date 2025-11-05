@@ -9,8 +9,13 @@ class SpikeTrap : MonoBehaviour
     [SerializeField] private GameObject spikesVFX;
     [SerializeField] private GameObject telegraphVFX;
 
-    private int damage = 0;
-    // TODO slow down player?
+    private bool firstEntered = true;
+    public int initialDamage = 0;
+    public float damageOverTime = 0f;
+    private float damageDebt = 0f;
+    public float slowingFactor = 1f;
+
+    private PlayerMovement playerMovement = null;
 
     private enum State
     {
@@ -23,10 +28,10 @@ class SpikeTrap : MonoBehaviour
 
     private State state = State.Inactive;
     private float timeElapsed = 0f;
-    private float telegraphDuration = 0f;
-    private float risingDuration = 0f;
-    private float stayingDuration = 0f;
-    private float fallingDuration = 0f;
+    public float telegraphDuration = 0f;
+    public float risingDuration = 0f;
+    public float stayingDuration = 0f;
+    public float fallingDuration = 0f;
 
     private void Awake()
     {
@@ -95,6 +100,9 @@ class SpikeTrap : MonoBehaviour
                     collider.enabled = false;
                     spikesVFX.SetActive(false);
                     telegraphVFX.SetActive(false);
+                    if (playerMovement != null)
+                        playerMovement.slowingFactor = 1f;
+                    playerMovement = null;
                 }
                 break;
         }
@@ -119,27 +127,44 @@ class SpikeTrap : MonoBehaviour
     {
         if (!other.CompareTag(playerTag)) return;
 
-        // TODO can hit player multiple times if player stands in it? Damage over time or refreshes playerhit every X milliseconds?
-        collider.enabled = false;
+        playerMovement = other.GetComponent<PlayerMovement>();
+        Assert.IsNotNull(playerMovement);
+        playerMovement.slowingFactor = slowingFactor;
 
         Health health = other.GetComponent<Health>();
         Assert.IsNotNull(health);
-        health.TakeDamage(damage);
+
+        if (firstEntered)
+        {
+            firstEntered = false;
+            health.TakeDamage(initialDamage);
+        }
+        else
+        {
+            damageDebt += damageOverTime * Time.deltaTime;
+            health.TakeDamage((int)damageDebt);
+            damageDebt -= (int)damageDebt;
+        }
     }
 
-    public void Execute(float telegraphDuration, float risingDuration, float stayingDuration, float fallingDuration, int damage)
+    private void OnTriggerExit(Collider other)
     {
-        this.telegraphDuration = telegraphDuration;
-        this.risingDuration = risingDuration;
-        this.stayingDuration = stayingDuration;
-        this.fallingDuration = fallingDuration;
-        this.damage = damage;
+        if (!other.CompareTag(playerTag)) return;
 
+        Assert.IsNotNull(playerMovement);
+        playerMovement.slowingFactor = 1f;
+        playerMovement = null;
+    }
+
+    public void Execute()
+    {
         state = State.Telegraphing;
         collider.enabled = true;
         telegraphVFX.SetActive(true);
         telegraphVFX.transform.Rotate(0f, Random.value * 360f, 0f);
         SetTelegraphScale(0f);
+        damageDebt = 0f;
+        firstEntered = true;
     }
 
     private void SetTelegraphScale(float scale)

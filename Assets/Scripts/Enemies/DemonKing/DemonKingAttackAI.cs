@@ -12,7 +12,9 @@ class DemonKingAttackAI : MonoBehaviour
 
     public float rangedAttackChance = 0.1f;
     // TODO add to difficulty
-    public int rangedDamage = 10;
+    public int spikesInitialDamage = 5;
+    public float spikesDamageOverTime = 5f;
+    public float spikesSlowingFactor = 0.75f;
     public float spikesFocusRadius = 20f;
     public float spikesTelegraphDuration = 2f;
     public float spikesRisingDuration = 0.5f;
@@ -120,7 +122,17 @@ class DemonKingAttackAI : MonoBehaviour
             }
         }
 
-        activeSpikeTraps.ForEach(spikes => spikes.Execute(spikesTelegraphDuration, spikesRisingDuration, spikesStayingDuration, spikesFallingDuration, rangedDamage));
+        activeSpikeTraps.ForEach(spikes => {
+            spikes.telegraphDuration = spikesTelegraphDuration;
+            spikes.risingDuration = spikesRisingDuration;
+            spikes.stayingDuration = spikesStayingDuration;
+            spikes.fallingDuration = spikesFallingDuration;
+            spikes.initialDamage = spikesInitialDamage;
+            spikes.damageOverTime = spikesDamageOverTime;
+            spikes.slowingFactor = spikesSlowingFactor;
+            spikes.Execute();
+        });
+
         rangedAttackState = RangedAttackState.Telegraph;
         timeElapsed = 0f;
         animator.TriggerTelegraph();

@@ -276,11 +276,14 @@ MonoBehaviour:
   animator: {fileID: 7582381997971118884}
   detector: {fileID: 0}
   rangedAttackChance: 1
-  telegraphDuration: 1
-  rangedDamage: 10
-  spikesRisingSpeed: 5
-  randomSpikeTrapCount: 4
-  spikeTrapScaleMultiplier: 1
+  spikesInitialDamage: 5
+  spikesDamageOverTime: 5
+  spikesFocusRadius: 20
+  spikesTelegraphDuration: 2
+  spikesRisingDuration: 0.5
+  spikesStayingDuration: 0.5
+  spikesFallingDuration: 0.2
+  spikeTrapCount: 5
 --- !u!114 &5225442633808930422
 MonoBehaviour:
   m_ObjectHideFlags: 0
