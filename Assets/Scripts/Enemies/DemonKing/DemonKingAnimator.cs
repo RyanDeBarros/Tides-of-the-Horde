@@ -67,11 +67,11 @@ public class DemonKingAnimator : MonoBehaviour
     public void TriggerTelegraph()
     {
         animator.SetTrigger("Telegraph");
-        movementLocked = false;
+        movementLocked = true;
     }
 
     public void OnTelegraphEnd()
     {
-        movementLocked = true;
+        movementLocked = false;
     }
 }

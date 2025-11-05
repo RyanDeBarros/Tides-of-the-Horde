@@ -12,19 +12,25 @@ class DemonKingAttackAI : MonoBehaviour
 
     public float rangedAttackChance = 0.1f;
     // TODO add to difficulty
-    public float telegraphDuration = 1f;
     public int rangedDamage = 10;
-    public float spikesRisingSpeed = 5f;
+    public float spikesTelegraphDuration = 2f;
+    public float spikesRisingDuration = 0.5f;
+    public float spikesStayingDuration = 0.5f;
+    public float spikesFallingDuration = 0.2f;
+    public int randomSpikeTrapCount = 4;
 
     private enum RangedAttackState
     {
         None,
         Telegraph,
-        SpikesRising
+        Cooldown
     }
 
     private RangedAttackState rangedAttackState = RangedAttackState.None;
     private float timeElapsed = 0f;
+
+    private List<SpikeTrap> allSpikeTraps;
+    private List<SpikeTrap> activeSpikeTraps;
 
     private void Awake()
     {
@@ -41,6 +47,8 @@ class DemonKingAttackAI : MonoBehaviour
         if (detector == null)
             detector = GetComponent<TargetDetector>();
         Assert.IsNotNull(detector);
+
+        allSpikeTraps = FindObjectsByType<SpikeTrap>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
     }
 
     private void Update()
@@ -48,22 +56,19 @@ class DemonKingAttackAI : MonoBehaviour
         switch (rangedAttackState)
         {
             case RangedAttackState.None:
-                if (!detector.PlayerIsInRange() && Random.value <= rangedAttackChance * Time.deltaTime // TODO different method for probability
+                if (!detector.PlayerIsInRange() && Random.value <= rangedAttackChance * Time.deltaTime // TODO different method for probability. also use a cooldown.
                         && !animator.IsMovementLocked() && !movement.IsTeleporting())
                     StartRangedAttackTelegraph();
                 break;
             case RangedAttackState.Telegraph:
                 timeElapsed += Time.deltaTime;
-                if (timeElapsed < telegraphDuration)
-                    UpdateRangedTelegraph();
-                else
+                if (timeElapsed >= spikesTelegraphDuration)
                 {
                     timeElapsed = 0f;
-                    rangedAttackState = RangedAttackState.SpikesRising;
+                    rangedAttackState = RangedAttackState.Cooldown;
                 }
                 break;
-            case RangedAttackState.SpikesRising:
-                // TODO animate spikes rising and deal damage to player
+            case RangedAttackState.Cooldown:
                 break;
         }
     }
@@ -73,12 +78,11 @@ class DemonKingAttackAI : MonoBehaviour
         rangedAttackState = RangedAttackState.Telegraph;
         timeElapsed = 0f;
         animator.TriggerTelegraph();
-        // TODO init spikes
-    }
 
-    private void UpdateRangedTelegraph()
-    {
-        // TODO shadows on ground where spikes will emerge
+        // TODO give priority to spike traps that are near player within some radius
+        activeSpikeTraps = allSpikeTraps.Where(spikeTrap => spikeTrap.IsInactive()).GetRandomDistinctElements(randomSpikeTrapCount);
+        // TODO add extra spike trap at player position, which shouldn't overlap with other active spike traps
+        activeSpikeTraps.ForEach(spikes => spikes.Execute(spikesTelegraphDuration, spikesRisingDuration, spikesStayingDuration, spikesFallingDuration, rangedDamage));
     }
 
     // Called by TargetDetector

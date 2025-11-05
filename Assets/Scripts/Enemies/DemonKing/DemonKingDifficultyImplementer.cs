@@ -11,12 +11,13 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
     {
         // DemonKingMovementAI
         public float moveSpeed = 10f;
-        public float chaseRange = 30f;
+        public float chaseRange = 60f;
         public float turnSpeed = 800f;
 
         public float sinkSpeed = 6f; // Speed at which boss sinks into ground
+        public float riseSpeed = 8f; // Speed at which boss rises from ground
         public float sinkDepth = 5f; // How far underground to go
-        public float teleportDuration = 2.5f; // Total time underground
+        public float teleportDuration = 2f; // Total time underground
         public float behindPlayerDistance = 4f; // Distance behind player to spawn
         public List<float> regularTeleportChance = new() { 0.1f, 0.125f, 0.15f, 0.175f, 0.2f };
 
@@ -92,6 +93,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         movement.chaseRange = stats.chaseRange;
         movement.turnSpeed = stats.turnSpeed;
         movement.sinkSpeed = stats.sinkSpeed;
+        movement.riseSpeed = stats.riseSpeed;
         movement.sinkDepth = stats.sinkDepth;
         movement.teleportDuration = stats.teleportDuration;
         movement.behindPlayerDistance = stats.behindPlayerDistance;

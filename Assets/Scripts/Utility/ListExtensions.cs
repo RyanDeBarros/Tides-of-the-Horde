@@ -5,7 +5,7 @@ using UnityEngine.Assertions;
 
 public static class ListExtensions
 {
-    public static List<T> GetRandomDistinctElements<T>(this List<T> list, int count)
+    public static List<T> GetRandomDistinctElements<T>(this IEnumerable<T> list, int count)
     {
         // Fisher-Yates shuffle
 
@@ -20,18 +20,18 @@ public static class ListExtensions
         return result.GetRange(0, System.Math.Min(count, result.Count));
     }
 
-    public static List<T> GetWeightedRandomDistinctElements<T>(this List<T> list, int count, List<float> weights)
+    public static List<T> GetWeightedRandomDistinctElements<T>(this IEnumerable<T> list, int count, List<float> weights)
     {
         Assert.IsNotNull(list);
         Assert.IsNotNull(weights);
-        if (list.Count != weights.Count)
+        if (list.Count() != weights.Count)
             throw new System.ArgumentException("List and weights must have the same length.");
 
         List<T> result = new();
         List<T> tempList = new(list);
         List<float> tempWeights = new(weights);
 
-        count = System.Math.Min(count, list.Count);
+        count = System.Math.Min(count, tempList.Count);
 
         for (int k = 0; k < count; k++)
         {
@@ -56,7 +56,7 @@ public static class ListExtensions
         return list[new System.Random().Next(list.Count)];
     }
 
-    public static T GetWeightedRandomElement<T>(this List<T> list, List<float> weights)
+    public static T GetWeightedRandomElement<T>(this IEnumerable<T> list, List<float> weights)
     {
         return list.GetWeightedRandomDistinctElements(1, weights)[0];
     }

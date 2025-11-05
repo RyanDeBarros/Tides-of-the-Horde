@@ -12,13 +12,14 @@ public class DemonKingMovementAI : MonoBehaviour
     [SerializeField] private GameObject planeVFX; // The plane object to show during teleport
 
     [Header("Movement")]
-    public float moveSpeed = 5f;
-    public float chaseRange = 10f;
-    public float stoppingDistance = 2f;
+    public float moveSpeed = 10f;
+    public float chaseRange = 60f;
+    [SerializeField] private float stoppingDistance = 2f;
     public float turnSpeed = 800f;
 
     [Header("Teleport Settings")]
-    public float sinkSpeed = 3f; // Speed at which boss sinks into ground
+    public float sinkSpeed = 6f; // Speed at which boss sinks into ground
+    public float riseSpeed = 8f; // Speed at which boss rises from ground
     public float sinkDepth = 5f; // How far underground to go
     public float teleportDuration = 2f; // Total time underground
     public float behindPlayerDistance = 3f; // Distance behind player to spawn
@@ -151,7 +152,6 @@ public class DemonKingMovementAI : MonoBehaviour
             yield return null;
         }
 
-        // Wait underground (optional - part of teleportDuration)
         yield return new WaitForSeconds(teleportDuration - sinkDuration);
 
         // Calculate position behind player
@@ -169,6 +169,7 @@ public class DemonKingMovementAI : MonoBehaviour
         if (lookDirection != Vector3.zero) transform.rotation = Quaternion.LookRotation(lookDirection);
 
         // Rise up from ground
+        sinkDuration = sinkDepth / riseSpeed;
         float riseTimer = 0f;
         while (riseTimer < sinkDuration)
         {

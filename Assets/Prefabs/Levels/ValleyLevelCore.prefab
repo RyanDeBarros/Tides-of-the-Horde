@@ -1,5 +1,99 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &173127972814432134
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7008775546969910450}
+  m_Layer: 0
+  m_Name: SpikeTraps
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7008775546969910450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 173127972814432134}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3595404833391898716}
+  - {fileID: 7268898608615961923}
+  - {fileID: 1135804022522446115}
+  - {fileID: 7042142030740842798}
+  - {fileID: 674477876525294645}
+  - {fileID: 886514288759855128}
+  - {fileID: 4242863331502249783}
+  - {fileID: 3424568164902580032}
+  - {fileID: 164787723902953908}
+  - {fileID: 7948517372979839484}
+  - {fileID: 7287793190780738424}
+  - {fileID: 5983551657607427793}
+  - {fileID: 2299038344168180036}
+  - {fileID: 5703272202793157560}
+  - {fileID: 7986015286078765962}
+  - {fileID: 1271291491607624197}
+  - {fileID: 3081114246217897414}
+  - {fileID: 879116956363426317}
+  - {fileID: 5994745466597743634}
+  - {fileID: 3892925801250447713}
+  - {fileID: 8694323843151742425}
+  - {fileID: 3102882940479675099}
+  - {fileID: 3072074595748411195}
+  - {fileID: 730447323730037647}
+  - {fileID: 1605078867071751503}
+  - {fileID: 693979516453210643}
+  - {fileID: 9021274845538186050}
+  - {fileID: 9158750475463087872}
+  - {fileID: 1038990242593708760}
+  - {fileID: 7302819314739608623}
+  - {fileID: 8747564559350548378}
+  - {fileID: 5031007430972152609}
+  - {fileID: 1381783375585896810}
+  - {fileID: 6181380215976015919}
+  - {fileID: 486620556752732272}
+  - {fileID: 5064723605095828548}
+  - {fileID: 4665836390524955387}
+  - {fileID: 5791233867436453645}
+  - {fileID: 223258563948112827}
+  - {fileID: 2800518234743631620}
+  - {fileID: 5009931093231217115}
+  - {fileID: 8357345367013174219}
+  - {fileID: 6808262376899274560}
+  - {fileID: 7941903007315090273}
+  - {fileID: 2324807342168771696}
+  - {fileID: 3095536841072196125}
+  - {fileID: 3777334152791533245}
+  - {fileID: 3910611070233986081}
+  - {fileID: 6744337117354586890}
+  - {fileID: 3939632474671300302}
+  - {fileID: 7612248915614814905}
+  - {fileID: 6858491968245020500}
+  - {fileID: 1838124591953505322}
+  - {fileID: 6200452268912206420}
+  - {fileID: 1961497673535588326}
+  - {fileID: 5206530679082838309}
+  - {fileID: 5750881570638545747}
+  - {fileID: 5661291553113842352}
+  - {fileID: 2885964188189729664}
+  - {fileID: 1266362594594213915}
+  - {fileID: 1780874084969277716}
+  - {fileID: 6211439002056483747}
+  - {fileID: 6134949921544753056}
+  m_Father: {fileID: 8990052414462977502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &509473656624268463
 GameObject:
   m_ObjectHideFlags: 0
@@ -379,6 +473,7 @@ Transform:
   - {fileID: 1334136354938786145}
   - {fileID: 2222742259462169111}
   - {fileID: 753342588245813447}
+  - {fileID: 7008775546969910450}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6687510825595074958
@@ -669,6 +764,2982 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1602286648583038328, guid: 747ab37974ecf7d42a7b14f78553f41c, type: 3}
   m_PrefabInstance: {fileID: 342197454309635097}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &405921718533763231
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (58)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.78
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &6744337117354586890 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 405921718533763231}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &450751155103343829
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (52)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &6808262376899274560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 450751155103343829}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &510295842736436417
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (42)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 31.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &6858491968245020500 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 510295842736436417}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &604667357674482840
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (48)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5791233867436453645 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 604667357674482840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &795783065976037255
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (29)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -7.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -21.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5994745466597743634 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 795783065976037255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &807118230896719172
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -44.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -22.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5983551657607427793 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 807118230896719172}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &943808918428617781
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -52.34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &6134949921544753056 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 943808918428617781}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1004867628186237882
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (44)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 50.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 23.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &6181380215976015919 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 1004867628186237882}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1011581046583566390
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (25)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -16.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 35.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &6211439002056483747 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 1011581046583566390}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1024220620322382273
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (17)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -39.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &6200452268912206420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 1024220620322382273}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1187821480140024496
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -38.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 26.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5206530679082838309 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 1187821480140024496}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1633223276923838757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (21)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 43.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5661291553113842352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 1633223276923838757}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1665411154726109229
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -44.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5703272202793157560 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 1665411154726109229}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1726445561645924550
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (20)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -39.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5750881570638545747 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 1726445561645924550}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1799975572309305710
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (47)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 36.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &4665836390524955387 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 1799975572309305710}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2142715684202736206
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (50)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 9.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5009931093231217115 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 2142715684202736206}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2155843082766440628
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (40)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 60.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5031007430972152609 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 2155843082766440628}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2194148081492103121
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (46)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 38.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 44.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &5064723605095828548 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 2194148081492103121}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2347180516738860620
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (31)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -16.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &8694323843151742425 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 2347180516738860620}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2404705426287756303
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (43)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 43.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &8747564559350548378 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 2404705426287756303}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2668572901041287383
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (36)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 27.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -13.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &9021274845538186050 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 2668572901041287383}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2819471408111686805
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (37)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 39.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -12.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &9158750475463087872 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 2819471408111686805}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3153060784656312414
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (51)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &8357345367013174219 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 3153060784656312414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3575446098114122028
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (60)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 21.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 29.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &7612248915614814905 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 3575446098114122028}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3895019889675180276
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (53)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 7.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 17.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &7941903007315090273 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 3895019889675180276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3923870263116612201
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -29.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &7948517372979839484 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 3923870263116612201}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3958290039781505055
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -30.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &7986015286078765962 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 3958290039781505055}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4143342010965895867
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -55.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &7042142030740842798 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 4143342010965895867}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4385095927360550614
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (27)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &7268898608615961923 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 4385095927360550614}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4402792061779826925
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -40.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -34.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &7287793190780738424 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 4402792061779826925}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4423236595149094842
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (39)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 54.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -3.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &7302819314739608623 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 4423236595149094842}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4651165965734521473
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (24)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -27.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 19.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1780874084969277716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 4651165965734521473}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4735809702191476671
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -23.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1838124591953505322 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 4735809702191476671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4828438222372390003
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (18)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -30.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1961497673535588326 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 4828438222372390003}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5178434198386592465
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -46.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -9.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &2299038344168180036 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 5178434198386592465}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5304718808962529680
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (14)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -34.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1271291491607624197 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 5304718808962529680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5307962026202862478
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -26.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 31.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1266362594594213915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 5307962026202862478}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5410997910385109759
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (41)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 48.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 11.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1381783375585896810 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 5410997910385109759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5655623927519024858
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (34)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 33.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -25.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1605078867071751503 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 5655623927519024858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5865541904175900576
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.029999
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -48.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &674477876525294645 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 5865541904175900576}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5880346478733658502
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (35)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -17.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &693979516453210643 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 5880346478733658502}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5915967111781713946
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (62)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 36.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -42.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &730447323730037647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 5915967111781713946}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6055632240319416728
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (28)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -11.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &879116956363426317 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 6055632240319416728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6086374423443676045
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.59
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -42.120003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &886514288759855128 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 6086374423443676045}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6219912367993641293
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (38)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1038990242593708760 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 6219912367993641293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6339241966430962358
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (26)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 22.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &1135804022522446115 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 6339241966430962358}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6517795842120772129
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -18.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -30.720001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &164787723902953908 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 6517795842120772129}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6567234784245065774
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (49)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 37.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.58
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &223258563948112827 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 6567234784245065774}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6667454498324125852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -680,6 +3751,70 @@ PrefabInstance:
     - target: {fileID: 991924714232867968, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: m_Name
       value: MinimalLevelCore
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116159204251524569, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116159204251524569, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116159204251524569, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1116159204251524569, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2993382712568215142, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: BombSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 645326c6f645641499179d65c5933bf4, type: 3}
+    - target: {fileID: 2993382712568215142, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2889501740546728806}
+    - target: {fileID: 4251680224027408609, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251680224027408609, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251680224027408609, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4251680224027408609, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5320236217061405832, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: MeleeSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 51aa667a76328d540b69f8ca1b14c269, type: 3}
+    - target: {fileID: 5320236217061405832, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2889501740546728806}
+    - target: {fileID: 6016555290359721260, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016555290359721260, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016555290359721260, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6016555290359721260, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6046191443424738508, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -721,6 +3856,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6510593515948878743, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: SniperSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 45bdebd15e7e63c4fa5efe4713d31b61, type: 3}
+    - target: {fileID: 6510593515948878743, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2889501740546728806}
+    - target: {fileID: 8441387111944882292, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: BubbleSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 8558f52bea2c911448dc4fa151f9c404, type: 3}
+    - target: {fileID: 8441387111944882292, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: audioSource
+      value: 
+      objectReference: {fileID: 2889501740546728806}
+    - target: {fileID: 8629053048481401357, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: objects.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8629053048481401357, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: 'objects.Array.data[2]'
+      value: 
+      objectReference: {fileID: 173127972814432134}
+    - target: {fileID: 8648240592033008574, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648240592033008574, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648240592033008574, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8648240592033008574, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -730,4 +3905,1036 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 6046191443424738508, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
   m_PrefabInstance: {fileID: 6667454498324125852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &2398407940722002237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9065558973830566305, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+  m_PrefabInstance: {fileID: 6667454498324125852}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2889501740546728806
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2398407940722002237}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!1001 &6843922872458707941
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (45)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 46.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 36.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &486620556752732272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 6843922872458707941}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7123288329122747554
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.1899996
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -40.760002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &4242863331502249783 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 7123288329122747554}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7629059163397501897
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3595404833391898716 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 7629059163397501897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7805129721664234792
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (56)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.27
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 40.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3777334152791533245 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 7805129721664234792}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7943468084458201844
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (30)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3892925801250447713 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 7943468084458201844}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7962334773860698036
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (57)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 47.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3910611070233986081 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 7962334773860698036}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &7968784851628522843
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (59)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 38.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3939632474671300302 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 7968784851628522843}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8086121208128004117
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (22)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 47.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &2885964188189729664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 8086121208128004117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8257524565348005038
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (33)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 26.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -35.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3072074595748411195 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 8257524565348005038}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8272869651647232392
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (55)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.42
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 28.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3095536841072196125 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 8272869651647232392}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8284648951928477267
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -19.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -19.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3081114246217897414 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 8284648951928477267}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8301553440020879694
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (32)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -29.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3102882940479675099 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 8301553440020879694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8627823611842260181
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -8.73
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.850002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &3424568164902580032 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 8627823611842260181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &8681236608076500965
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (54)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 18.94
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &2324807342168771696 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 8681236608076500965}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &9144520808944708753
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 7008775546969910450}
+    m_Modifications:
+    - target: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_Name
+      value: DemonKingSpikes (61)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 30.79
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 24.17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+--- !u!4 &2800518234743631620 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6357584344218125205, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
+  m_PrefabInstance: {fileID: 9144520808944708753}
   m_PrefabAsset: {fileID: 0}
