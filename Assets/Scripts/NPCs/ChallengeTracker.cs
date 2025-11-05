@@ -97,7 +97,7 @@ public class ChallengeTracker : MonoBehaviour
         currentChallenge = null;
         currentReward = null;
 
-        ChallengePerDifficulty c = challengeDictionary[GetRandomDifficulty()];
+        ChallengePerDifficulty c = challengeDictionary[GetRandomDifficulty()]; // TODO difficulty should correspond to level #
         currentChallengeJSON = c.challenges.GetWeightedRandomElement(c.challenges.Select(challenge => challenge.weight).ToList());
         currentRewardJSON = c.rewards.GetWeightedRandomElement(c.rewards.Select(reward => reward.weight).ToList());
     }

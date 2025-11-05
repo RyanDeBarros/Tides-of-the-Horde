@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -28,6 +29,11 @@ public class ChallengeGiver : MonoBehaviour
     private PlayerCamera playerCamera;
 
     private bool isTalking = false;
+
+    public NPCDialog GetDialog()
+    {
+        return dialog;
+    }
 
     private void Awake()
     {
@@ -94,6 +100,7 @@ public class ChallengeGiver : MonoBehaviour
 
         yield return animator.AnimateSpawn();
         keyHint.enabled = true;
+        spawnRoutine = null;
     }
 
     private void DespawnNPC()

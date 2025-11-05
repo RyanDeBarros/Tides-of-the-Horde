@@ -29,7 +29,8 @@ public class DialogPage
 public class NPCDialog : MonoBehaviour
 {
     [SerializeField] private RectTransform textArea;
-    [SerializeField] private TextAsset dialogFile;
+    [SerializeField] private TextAsset openingDialogFile;
+    [SerializeField] private TextAsset closingDialogFile;
 
     [Header("Text Parameters")]
     [SerializeField] private float typingSeconds = 0.01f;
@@ -52,9 +53,18 @@ public class NPCDialog : MonoBehaviour
     private readonly List<OnHover> textOnHovers = new();
     private CoroutineQueue typewriterAnimationQueue;
 
-    public void Initialize(TextAsset dialogFile)
+    public enum DialogPhase
     {
-        this.dialogFile = dialogFile;
+        Opening,
+        Closing
+    }
+
+    public DialogPhase dialogPhase = DialogPhase.Opening;
+
+    public void Initialize(TextAsset openingDialogFile, TextAsset closingDialogFile)
+    {
+        this.openingDialogFile = openingDialogFile;
+        this.closingDialogFile = closingDialogFile;
     }
 
     private void Awake()
@@ -72,7 +82,8 @@ public class NPCDialog : MonoBehaviour
 
     private void Start()
     {
-        Assert.IsNotNull(dialogFile);
+        Assert.IsNotNull(openingDialogFile);
+        Assert.IsNotNull(closingDialogFile);
     }
 
     public void Open()
@@ -83,9 +94,15 @@ public class NPCDialog : MonoBehaviour
         gameObject.SetActive(true);
         player.DisablePlayer();
 
-        Assert.IsNotNull(dialogFile);
-        challengeTracker.SelectRandomChallenge();
-        SetTextPage(JsonUtility.FromJson<DialogPage>(dialogFile.text));
+        if (dialogPhase == DialogPhase.Opening)
+        {
+            challengeTracker.SelectRandomChallenge();
+            SetTextPage(JsonUtility.FromJson<DialogPage>(openingDialogFile.text));
+        }
+        else if (dialogPhase == DialogPhase.Closing)
+            SetTextPage(JsonUtility.FromJson<DialogPage>(closingDialogFile.text));
+        else
+            throw new NotImplementedException();
     }
 
     public void Close()
@@ -200,6 +217,7 @@ public class NPCDialog : MonoBehaviour
         Dictionary<string, Action> actions = new(StringComparer.InvariantCultureIgnoreCase) {
             ["accept"] = challengeTracker.AcceptChallenge,
             ["decline"] = challengeTracker.DeclineChallenge,
+            ["ok"] = () => { }
         };
 
         if (actions.TryGetValue(clickResponse, out Action action))

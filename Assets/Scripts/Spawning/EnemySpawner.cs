@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private ShopUI shopUI;
     [SerializeField] private ChallengeGiver challengeGiver;
     [SerializeField] private ChallengeTracker challengeTracker;
-    [SerializeField] private float challengerSpawnDelay = 2f;
     [SerializeField] private string waitForChallengerSong;
 
     [Header("Enemy Prefabs")]
@@ -42,12 +42,14 @@ public class EnemySpawner : MonoBehaviour
 
     private enum LevelPhase
     {
+        PortalStart,
         ChallengeGiverStart,
         Waves,
-        ChallengeGiverEnd
+        ChallengeGiverEnd,
+        PortalEnd
     }
 
-    private LevelPhase levelPhase = LevelPhase.ChallengeGiverStart;
+    private LevelPhase levelPhase = LevelPhase.PortalStart;
 
     public void Initialize(TextAsset waveFile)
     {
@@ -59,7 +61,7 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(uiController);
         Assert.IsNotNull(shopUI);
         Assert.IsNotNull(challengeGiver);
-        challengeGiver.onConversationEnd.AddListener(StartWaves);
+        challengeGiver.onConversationEnd.AddListener(OnConversationEnd);
         Assert.IsNotNull(challengeTracker);
 
         Assert.IsNotNull(skeletonPrefab);
@@ -80,17 +82,9 @@ public class EnemySpawner : MonoBehaviour
         shopUI.gameObject.SetActive(false);
 
         SoundtrackManager.Instance.PlayTrack(waitForChallengerSong);
-        StartCoroutine(StartLevelRoutine());
-    }
 
-    private IEnumerator StartLevelRoutine()
-    {
-        yield return new WaitForSeconds(challengerSpawnDelay);
-        StartLevel();
-    }
-
-    private void StartLevel()
-    {
+        // TODO only execute when portal start is done
+        levelPhase = LevelPhase.ChallengeGiverStart;
         challengeGiver.SpawnNPC();
     }
 
@@ -98,6 +92,16 @@ public class EnemySpawner : MonoBehaviour
     {
         if (levelPhase == LevelPhase.Waves)
             UpdateSpawnTimeline();
+    }
+
+    private void OnConversationEnd()
+    {
+        if (levelPhase == LevelPhase.ChallengeGiverStart)
+            StartWaves();
+        else if (levelPhase == LevelPhase.ChallengeGiverEnd)
+            ; // TODO spawn portal end
+        else
+            throw new NotImplementedException();
     }
 
     private void StartWaves()
@@ -171,6 +175,9 @@ public class EnemySpawner : MonoBehaviour
         {
             challengeTracker.RewardIfSuccess();
             uiController.HideUI();
+            levelPhase = LevelPhase.ChallengeGiverEnd;
+            challengeGiver.GetDialog().dialogPhase = NPCDialog.DialogPhase.Closing;
+            challengeGiver.SpawnNPC();
         }
     }
 

@@ -131,29 +131,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: ValleyLevelCore
       objectReference: {fileID: 0}
-    - target: {fileID: 6524463231400682395, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+    - target: {fileID: 8259804803065714136, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.5
+      value: 6.454
       objectReference: {fileID: 0}
-    - target: {fileID: 6524463231400682395, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6524463231400682395, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+    - target: {fileID: 8259804803065714136, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39
-      objectReference: {fileID: 0}
-    - target: {fileID: 6524463231400682395, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9945762
-      objectReference: {fileID: 0}
-    - target: {fileID: 6524463231400682395, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0.10401075
-      objectReference: {fileID: 0}
-    - target: {fileID: 6524463231400682395, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: -11.94
+      value: -39.176
       objectReference: {fileID: 0}
     - target: {fileID: 8990052414462977502, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: m_LocalPosition.x

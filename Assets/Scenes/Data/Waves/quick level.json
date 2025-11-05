@@ -1,0 +1,18 @@
+{
+    "waves": [
+        {
+            "preWaveWaitTime": 0.5,
+            "postWaveWaitTime": 0.5,
+            "subwaves": [
+                {
+                    "duration": 0.5,
+                    "enemy": "Skeleton",
+                    "spawnRate": 1.0,
+                    "difficulty": 1
+                }
+            ]
+        }
+    ],
+    "defaultSong": "Prologue",
+    "waitingSong": "Silent Forest"
+}
