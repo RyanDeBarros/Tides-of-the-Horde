@@ -42,11 +42,12 @@ public class EnemySpawner : MonoBehaviour
 
     private enum LevelPhase
     {
-        ChallengeGiver,
-        Waves
+        ChallengeGiverStart,
+        Waves,
+        ChallengeGiverEnd
     }
 
-    private LevelPhase levelPhase = LevelPhase.ChallengeGiver;
+    private LevelPhase levelPhase = LevelPhase.ChallengeGiverStart;
 
     public void Initialize(TextAsset waveFile)
     {
