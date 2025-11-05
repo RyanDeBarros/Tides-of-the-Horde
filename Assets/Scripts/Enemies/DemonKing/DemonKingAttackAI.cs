@@ -10,7 +10,6 @@ class DemonKingAttackAI : MonoBehaviour
     [SerializeField] private DemonKingAnimator animator;
     [SerializeField] private TargetDetector detector;
 
-    // TODO add to difficulty
     public float comboProbability = 0.2f;
 
     [Header("Ranged Attack")]
@@ -20,7 +19,6 @@ class DemonKingAttackAI : MonoBehaviour
     private float rangedAttackDelay = 0f;
 
     [Header("Spike Traps")]
-    // TODO add to difficulty
     public int spikesInitialDamage = 5;
     public float spikesDamageOverTime = 5f;
     public float spikesSlowingFactor = 0.75f;

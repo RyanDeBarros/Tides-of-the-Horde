@@ -23,10 +23,22 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         public List<float> maxRegularTeleportDelay = new() { 20f, 19f, 18f, 17f, 16f };
 
         // DemonKingAttackAI
+        public List<float> comboProbability = new() { 0.1f, 0.15f, 0.2f, 0.25f, 0.3f };
+
         public List<float> minRangedAttackDelay = new() { 4f, 3.7f, 3.4f, 3.1f, 2.8f };
         public List<float> maxRangedAttackDelay = new() { 20f, 19f, 18f, 17f, 16f };
 
-        // SwordHitbox
+        public int spikesInitialDamage = 5;
+        public float spikesDamageOverTime = 5f;
+        public float spikesSlowingFactor = 0.75f;
+        public float spikesFocusRadius = 20f;
+        public float spikesTelegraphDuration = 2f;
+        public float spikesRisingDuration = 0.5f;
+        public float spikesStayingDuration = 0.5f;
+        public float spikesFallingDuration = 0.2f;
+        public List<int> spikeTrapCount = new() { 4, 5, 6, 7, 8 };
+
+        // SwordHitboxController
         public List<int> damage = new() { 5, 6, 7, 8, 9 };
         public float bounceBackStrength = 75f;
 
@@ -57,7 +69,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
     private DemonKingMovementAI movement;
     private DemonKingAttackAI attackAI;
-    private SwordHitbox melee;
+    private SwordHitboxController melee;
     private TargetDetector detector;
     private Health health;
     private BounceBack bounceBack;
@@ -74,7 +86,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         Assert.IsNotNull(movement);
         attackAI = GetComponent<DemonKingAttackAI>();
         Assert.IsNotNull(attackAI);
-        melee = GetComponentInChildren<SwordHitbox>();
+        melee = GetComponentInChildren<SwordHitboxController>();
         Assert.IsNotNull(melee);
         detector = GetComponent<TargetDetector>();
         Assert.IsNotNull(detector);
@@ -102,8 +114,19 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         movement.minRegularTeleportDelay = stats.minRegularTeleportDelay[intelligence];
         movement.maxRegularTeleportDelay = stats.maxRegularTeleportDelay[intelligence];
         
+        attackAI.comboProbability = stats.comboProbability[intelligence];
         attackAI.minRangedAttackDelay = stats.minRangedAttackDelay[intelligence];
         attackAI.maxRangedAttackDelay = stats.maxRangedAttackDelay[intelligence];
+        
+        attackAI.spikesInitialDamage = stats.spikesInitialDamage;
+        attackAI.spikesDamageOverTime = stats.spikesDamageOverTime;
+        attackAI.spikesSlowingFactor = stats.spikesSlowingFactor;
+        attackAI.spikesFocusRadius = stats.spikesFocusRadius;
+        attackAI.spikesTelegraphDuration = stats.spikesTelegraphDuration;
+        attackAI.spikesRisingDuration = stats.spikesRisingDuration;
+        attackAI.spikesStayingDuration = stats.spikesStayingDuration;
+        attackAI.spikesFallingDuration = stats.spikesFallingDuration;
+        attackAI.spikeTrapCount = stats.spikeTrapCount[intelligence];
 
         melee.damage = stats.damage[intelligence];
         melee.bounceBackStrength = stats.bounceBackStrength;
@@ -133,6 +156,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         stats.maxRegularTeleportDelay.AssignToIfInRange(intelligence, ref movement.maxRegularTeleportDelay);
         stats.minRangedAttackDelay.AssignToIfInRange(intelligence, ref attackAI.minRangedAttackDelay);
         stats.maxRangedAttackDelay.AssignToIfInRange(intelligence, ref attackAI.maxRangedAttackDelay);
+        stats.spikeTrapCount.AssignToIfInRange(intelligence, ref attackAI.spikeTrapCount);
         stats.damage.AssignToIfInRange(intelligence, ref melee.damage);
         stats.attackRange.AssignToIfInRange(intelligence, ref detector.attackRange);
         stats.attackInterval.AssignToIfInRange(intelligence, ref detector.attackInterval);
