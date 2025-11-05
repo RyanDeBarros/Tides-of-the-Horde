@@ -13,11 +13,12 @@ class DemonKingAttackAI : MonoBehaviour
     public float rangedAttackChance = 0.1f;
     // TODO add to difficulty
     public int rangedDamage = 10;
+    public float spikesFocusRadius = 20f;
     public float spikesTelegraphDuration = 2f;
     public float spikesRisingDuration = 0.5f;
     public float spikesStayingDuration = 0.5f;
     public float spikesFallingDuration = 0.2f;
-    public int randomSpikeTrapCount = 4;
+    public int spikeTrapCount = 5;
 
     private enum RangedAttackState
     {
@@ -29,8 +30,9 @@ class DemonKingAttackAI : MonoBehaviour
     private RangedAttackState rangedAttackState = RangedAttackState.None;
     private float timeElapsed = 0f;
 
+    private Transform player;
     private List<SpikeTrap> allSpikeTraps;
-    private List<SpikeTrap> activeSpikeTraps;
+    private readonly List<SpikeTrap> activeSpikeTraps = new();
 
     private void Awake()
     {
@@ -47,6 +49,11 @@ class DemonKingAttackAI : MonoBehaviour
         if (detector == null)
             detector = GetComponent<TargetDetector>();
         Assert.IsNotNull(detector);
+
+        GameObject go = GameObject.FindGameObjectWithTag("Player");
+        Assert.IsNotNull(go);
+        player = go.transform;
+        Assert.IsNotNull(player);
 
         allSpikeTraps = FindObjectsByType<SpikeTrap>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToList();
     }
@@ -75,14 +82,48 @@ class DemonKingAttackAI : MonoBehaviour
 
     private void StartRangedAttackTelegraph()
     {
+        // Give priority to spike traps that are near player
+        activeSpikeTraps.Clear();
+        var availableSpikeTraps = allSpikeTraps
+            .Where(spikeTrap => spikeTrap.IsInactive())
+            .Select(spikeTrap => new {
+                spikeTrap,
+                distance = Vector3.Distance(
+                    new Vector3(spikeTrap.transform.position.x, 0f, spikeTrap.transform.position.z),
+                    new Vector3(player.position.x, 0f, player.position.z)
+                )
+            })
+            .OrderBy(x => x.distance);
+        
+        int count = System.Math.Min(spikeTrapCount, availableSpikeTraps.Count());
+        if (count <= 0) return;
+
+        // Add closest to player
+        --count;
+        activeSpikeTraps.Add(availableSpikeTraps.First().spikeTrap);
+
+        if (count > 0)
+        {
+            availableSpikeTraps.ToList().RemoveAt(0);
+            var closeSpikeTraps = availableSpikeTraps.Where(x => x.distance < spikesFocusRadius).Select(x => x.spikeTrap);
+            
+            if (count <= closeSpikeTraps.Count())
+            {
+                // Randomly add from close spike traps
+                activeSpikeTraps.AddRange(closeSpikeTraps.ToList().GetRandomDistinctElements(count));
+            }
+            else
+            {
+                // Add all close spike traps + remaining nearby spike traps
+                activeSpikeTraps.AddRange(closeSpikeTraps.ToList());
+                activeSpikeTraps.AddRange(availableSpikeTraps.Select(x => x.spikeTrap).Skip(count).Take(count - closeSpikeTraps.Count()).ToList());
+            }
+        }
+
+        activeSpikeTraps.ForEach(spikes => spikes.Execute(spikesTelegraphDuration, spikesRisingDuration, spikesStayingDuration, spikesFallingDuration, rangedDamage));
         rangedAttackState = RangedAttackState.Telegraph;
         timeElapsed = 0f;
         animator.TriggerTelegraph();
-
-        // TODO give priority to spike traps that are near player within some radius
-        activeSpikeTraps = allSpikeTraps.Where(spikeTrap => spikeTrap.IsInactive()).GetRandomDistinctElements(randomSpikeTrapCount);
-        // TODO add extra spike trap at player position, which shouldn't overlap with other active spike traps
-        activeSpikeTraps.ForEach(spikes => spikes.Execute(spikesTelegraphDuration, spikesRisingDuration, spikesStayingDuration, spikesFallingDuration, rangedDamage));
     }
 
     // Called by TargetDetector

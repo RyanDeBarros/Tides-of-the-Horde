@@ -49,13 +49,11 @@ class SpikeTrap : MonoBehaviour
         {
             case State.Telegraphing:
                 timeElapsed += Time.deltaTime;
-                Debug.Log($"Telegraphing: {timeElapsed} / {telegraphDuration}");
                 if (timeElapsed < telegraphDuration)
                     SetTelegraphScale(timeElapsed / telegraphDuration);
                 else
                 {
                     SetTelegraphScale(1f);
-                    SetSpikesScale(0f);
                     timeElapsed = 0f;
                     state = State.Rising;
                     collider.enabled = true;
@@ -63,7 +61,6 @@ class SpikeTrap : MonoBehaviour
                 break;
             case State.Rising:
                 timeElapsed += Time.deltaTime;
-                Debug.Log($"Rising: {timeElapsed} / {telegraphDuration}");
                 if (timeElapsed < risingDuration)
                     SetSpikesScale(timeElapsed / risingDuration);
                 else
@@ -75,7 +72,6 @@ class SpikeTrap : MonoBehaviour
                 break;
             case State.Staying:
                 timeElapsed += Time.deltaTime;
-                Debug.Log($"Staying: {timeElapsed} / {telegraphDuration}");
                 if (timeElapsed >= stayingDuration)
                 {
                     timeElapsed = 0f;
@@ -84,7 +80,6 @@ class SpikeTrap : MonoBehaviour
                 break;
             case State.Falling:
                 timeElapsed += Time.deltaTime;
-                Debug.Log($"Falling: {timeElapsed} / {telegraphDuration}");
                 if (timeElapsed < fallingDuration)
                 {
                     telegraphVFX.transform.localScale = new(1f, 1f - timeElapsed / fallingDuration, 1f);
