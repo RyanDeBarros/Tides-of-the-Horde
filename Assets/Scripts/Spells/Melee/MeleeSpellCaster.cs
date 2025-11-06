@@ -59,10 +59,7 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack1C
         
         // play melee sound
         if (audioSource != null && MeleeSFX != null)
-        {
             audioSource.PlayOneShot(MeleeSFX);
-        
-        }
 
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         attacking = true;
