@@ -9,7 +9,9 @@ class Portal : MonoBehaviour
     [SerializeField] private Transform playerSpawnPosition;
     [SerializeField] private float spawnDuration = 2f;
     [SerializeField] private float despawnDuration = 2f;
+    [SerializeField] private int levelIndex;
 
+    private PlayerCamera playerCamera;
     private PlayerMovement playerMovement;
     private PlayerDash playerDash;
     private SpellManager spellManager;
@@ -27,6 +29,9 @@ class Portal : MonoBehaviour
         Assert.IsNotNull(go);
         player = go.transform;
 
+        playerCamera = go.GetComponent<PlayerCamera>();
+        Assert.IsNotNull(playerCamera);
+
         playerMovement = go.GetComponent<PlayerMovement>();
         Assert.IsNotNull(playerMovement);
 
@@ -39,6 +44,11 @@ class Portal : MonoBehaviour
         var model = go.GetComponentInChildren<PlayerAnimatorController>();
         Assert.IsNotNull(model);
         playerModel = model.transform;
+    }
+
+    public void Initialize(int levelIndex)
+    {
+        this.levelIndex = levelIndex;
     }
 
     private void Update()
@@ -106,8 +116,8 @@ class Portal : MonoBehaviour
 
         playerModel.localScale = new(1f, 0f, 1f);
 
-        // TODO end level
-        Debug.Log("Return to level select...");
+        playerCamera.DisableCamera();
+        LevelSelectUI.CompleteLevel(levelIndex);
     }
 
     private void SetPlayerEnable(bool enabled)

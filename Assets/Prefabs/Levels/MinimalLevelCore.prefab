@@ -54,8 +54,10 @@ MonoBehaviour:
   spawnWaveFile: {fileID: 4900000, guid: 35bbbdfd7cc9ffd43b7a961c701b6d06, type: 3}
   openingDialogFile: {fileID: 0}
   closingDialogFile: {fileID: 0}
+  levelIndex: 0
   enemySpawner: {fileID: 3850396755786596804}
   npcDialog: {fileID: 1846684184539267383}
+  portal: {fileID: 3675138649892057947}
 --- !u!1 &7726332571218978483
 GameObject:
   m_ObjectHideFlags: 0
