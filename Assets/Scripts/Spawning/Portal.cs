@@ -65,8 +65,6 @@ class Portal : MonoBehaviour
 
     private IEnumerator SpawnPlayerRoutine(Action playerSpawnedCallback)
     {
-        // TODO does player have good spawn animation?
-
         SetPlayerEnable(false);
 
         player.SetPositionAndRotation(playerSpawnPosition.position, transform.rotation);

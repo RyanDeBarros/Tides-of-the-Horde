@@ -93,21 +93,21 @@
     ],
     "rewards": [
         {
-            "statement": "Receive <color=green>100</color> crystals",
-            "rewardClass": "CR_CurrencyBonus",
+            "statement": "Start levels with <color=green>+100</color> crystals",
+            "rewardClass": "CR_CurrencyStartingBonus",
             "values": [100],
             "difficulty": 1
         },
         {
-            "statement": "Receive <color=green>200</color> crystals",
-            "rewardClass": "CR_CurrencyBonus",
-            "values": [200],
+            "statement": "Start levels with <color=green>+150</color> crystals",
+            "rewardClass": "CR_CurrencyStartingBonus",
+            "values": [150],
             "difficulty": 2
         },
         {
-            "statement": "Receive <color=green>300</color> crystals",
-            "rewardClass": "CR_CurrencyBonus",
-            "values": [300],
+            "statement": "Start levels with <color=green>+200</color> crystals",
+            "rewardClass": "CR_CurrencyStartingBonus",
+            "values": [200],
             "difficulty": 3
         },
         {
