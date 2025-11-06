@@ -77,9 +77,8 @@ public class BombSpell : MonoBehaviour
         {
             explosion.TryGetComponent<AudioSource>(out var explosionAudioSource);
             if (explosionAudioSource != null && BombSFX != null)
-            {
                 explosionAudioSource.PlayOneShot(BombSFX);
-            }
+
             ps.Play();
             explosion.transform.localScale = Vector3.one * aoeRadius;
             Destroy(explosion, ps.main.duration);

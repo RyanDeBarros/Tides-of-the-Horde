@@ -79,10 +79,7 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
 
             // play sniper sound
             if (audioSource != null && SniperSFX != null)
-            {
                 audioSource.PlayOneShot(SniperSFX);
-
-            }
 
             spell.range = range;
             spell.maxEnemiesCanHit = maxEnemiesCanHit;

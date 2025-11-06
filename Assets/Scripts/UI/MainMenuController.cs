@@ -87,7 +87,7 @@ public class MainMenuManager : MonoBehaviour
 
     void LoadSettings()
     {
-        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 0.75f);
+        float savedVolume = PlayerPrefs.GetFloat("MasterVolume", 1f);
         volumeSlider.value = savedVolume;
         AudioListener.volume = savedVolume;
 
