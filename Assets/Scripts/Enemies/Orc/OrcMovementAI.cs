@@ -17,6 +17,7 @@ public class OrcMovementAI : MonoBehaviour
     private CharacterController cc;
     private CharacterController playerCC;
     private WaypointPatroller waypointPatroller;
+    private Animator animator;
 
     private void Awake()
     {
@@ -25,6 +26,12 @@ public class OrcMovementAI : MonoBehaviour
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
+
+        animator = GetComponentInChildren<Animator>();
+        if (animator == null)
+        {
+            Debug.LogWarning("No Animator found in children for Orc!");
+        }
 
         if (!player)
         {
@@ -47,6 +54,7 @@ public class OrcMovementAI : MonoBehaviour
         Vector3 toXZ = new(to.x, 0f, to.z);
 
         Vector3 velocity = Vector3.zero;
+        float currentMoveSpeed = 0f;
 
         float centerDist = toXZ.magnitude;
         if (centerDist <= chaseRange)
@@ -64,11 +72,26 @@ public class OrcMovementAI : MonoBehaviour
 
             float moveDisplacement = edgeDist - stoppingDistance;
             moveDisplacement = Mathf.Min(Mathf.Abs(edgeDist - stoppingDistance), moveSpeed * Time.deltaTime) * Mathf.Sign(moveDisplacement);
-            velocity += toXZ.normalized * moveDisplacement / Time.deltaTime;
-            cc.Move(velocity * Time.deltaTime);
+            
+            if (Mathf.Abs(moveDisplacement) > 0.01f)
+            {
+                velocity += toXZ.normalized * moveDisplacement / Time.deltaTime;
+                cc.Move(velocity * Time.deltaTime);
+                currentMoveSpeed = moveSpeed;
+            }
         }
         else
+        {
             waypointPatroller.StartPatrol();
+            currentMoveSpeed = moveSpeed * patrolSpeedMultiplier;
+        }
+        UpdateAnimationSpeed(currentMoveSpeed);
+    }
+
+    private void UpdateAnimationSpeed(float speed)
+    {
+        if (animator == null) return;
+        animator.SetFloat("AnimationSpeed", speed);
     }
 
     private void OnDrawGizmosSelected()

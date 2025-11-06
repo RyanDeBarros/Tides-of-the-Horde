@@ -3,6 +3,10 @@ using UnityEngine.Assertions;
 
 public class SkeletonMovementAI : MonoBehaviour
 {
+     [Header("Animation Settings")]
+    private Animator animator;
+    private float baseAnimationSpeed = 1f;
+
     public Transform player;
     public float moveSpeed = 5f;
     public float chaseRange = 10f;
@@ -23,6 +27,8 @@ public class SkeletonMovementAI : MonoBehaviour
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
+
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -51,18 +57,23 @@ public class SkeletonMovementAI : MonoBehaviour
             {
                 Vector3 movement = moveSpeed * Time.deltaTime * direction;
                 controller.Move(movement);
+                UpdateAnimationSpeed(moveSpeed);
             }
+            else
+                UpdateAnimationSpeed(0f);
         }
         else
+        {
             waypointPatroller.StartPatrol();
+            UpdateAnimationSpeed(moveSpeed * patrolSpeedMultiplier);
+        }
     }
-
-    // Visualize ranges in the Scene view
-    private void OnDrawGizmosSelected()
+        private void UpdateAnimationSpeed(float currentSpeed)
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
+        if (animator == null) return;
+        
+        float animationSpeed = baseAnimationSpeed * currentSpeed;
+        
+        animator.SetFloat("AnimationSpeed", animationSpeed);
     }
 }

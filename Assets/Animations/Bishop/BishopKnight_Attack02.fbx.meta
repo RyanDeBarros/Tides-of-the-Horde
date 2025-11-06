@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: 3b7a6df7ec1445b788b3f5304c3e4262
+AssetOrigin:
+  serializedVersion: 1
+  productId: 260493
+  packageName: RPG Monster BUNDLE PBR
+  packageVersion: 1.0
+  assetPath: Assets/RPGMonsterBundlePBR/RPGMonsterWave03PBR/Animation/BishopKnight/BishopKnight_Attack02.fbx
+  uploadId: 681971
 ModelImporter:
-  serializedVersion: 20300
+  serializedVersion: 22200
   internalIDToNameTable: []
   externalObjects: {}
   materials:
@@ -14,9 +21,8 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -55,7 +61,14 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.41957718
+        functionName: OnAttackSpawnFireball
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 389bdd063d20367daa255debc0819c79, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
@@ -68,10 +81,12 @@ ModelImporter:
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
+    importPhysicalCameras: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
     importLights: 1
+    nodeNameCollisionStrategy: 0
     fileIdsGeneration: 2
     swapUVChannels: 0
     generateSecondaryUV: 0
@@ -83,6 +98,7 @@ ModelImporter:
     skinWeightsMode: 0
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
+    optimizeBones: 1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -93,6 +109,7 @@ ModelImporter:
     secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
+    strictVertexDataChecks: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -119,22 +136,15 @@ ModelImporter:
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
-  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 48bcb49c2c474bdd96c4b10b0eca9986,
-    type: 3}
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 48bcb49c2c474bdd96c4b10b0eca9986, type: 3}
   autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 2
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 260493
-  packageName: RPG Monster BUNDLE PBR
-  packageVersion: 1.0
-  assetPath: Assets/RPGMonsterBundlePBR/RPGMonsterWave03PBR/Animation/BishopKnight/BishopKnight_Attack02.fbx
-  uploadId: 681971
