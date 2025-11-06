@@ -8,7 +8,7 @@ public class C_EnemyDifficultyIncrease : IChallenge
 
     public void Initialize(float[] values)
     {
-        spawner = GameObject.FindObjectsByType<EnemySpawner>(FindObjectsSortMode.None).GetUniqueElement();
+        spawner = GlobalFind.FindUniqueObjectByType<EnemySpawner>(true);
         Assert.IsNotNull(spawner);
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");

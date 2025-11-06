@@ -31,9 +31,9 @@ public class ShopUI : MonoBehaviour
         Assert.IsNotNull(checkShopPopup);
         Assert.IsNotNull(checkShopPopupBKG);
 
-        player = FindObjectsByType<PlayerEnabler>(FindObjectsSortMode.None).GetUniqueElement();
-        playerUnlock = FindObjectsByType<PlayerUnlockTree>(FindObjectsSortMode.None).GetUniqueElement();
-        playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
+        player = GlobalFind.FindUniqueObjectByType<PlayerEnabler>(true);
+        playerUnlock = GlobalFind.FindUniqueObjectByType<PlayerUnlockTree>(true);
+        playerCurrency = GlobalFind.FindUniqueObjectByType<PlayerCurrency>(true);
 
         SetCheckShopPopupAlpha(0f);
     }

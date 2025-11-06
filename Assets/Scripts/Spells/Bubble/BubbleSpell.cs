@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class BubbleSpell : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class BubbleSpell : MonoBehaviour
     public float growDuration = 0.2f;
     public float bounceBackStrength = 200f;
     public Health playerHealth;
+    public UnityEvent onDestroy;
 
     [Header("Visual Settings")]
     public GameObject bubbleVisualPrefab;
@@ -43,6 +45,7 @@ public class BubbleSpell : MonoBehaviour
         if (timeElapsed > duration)
         {
             playerHealth.SetInvulnerable(false);
+            onDestroy?.Invoke();
             Destroy(gameObject);
             return;
         }

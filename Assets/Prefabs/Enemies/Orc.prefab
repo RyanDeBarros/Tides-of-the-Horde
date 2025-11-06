@@ -131,7 +131,7 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -255,6 +255,8 @@ MonoBehaviour:
   - {fileID: 1670915203915621149}
   sinkDuration: 0.1
   sinkSpeed: 1
+  audioSource: {fileID: 0}
+  deathSFX: {fileID: 0}
 --- !u!114 &5512871995234863560
 MonoBehaviour:
   m_ObjectHideFlags: 0

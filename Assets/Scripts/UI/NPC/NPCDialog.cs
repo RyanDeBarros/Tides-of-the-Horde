@@ -62,8 +62,8 @@ public class NPCDialog : MonoBehaviour
         Assert.IsNotNull(textArea);
         Assert.IsNotNull(font);
 
-        player = FindObjectsByType<PlayerEnabler>(FindObjectsSortMode.None).GetUniqueElement();
-        challengeTracker = FindObjectsByType<ChallengeTracker>(FindObjectsSortMode.None).GetUniqueElement();
+        player = GlobalFind.FindUniqueObjectByType<PlayerEnabler>(true);
+        challengeTracker = GlobalFind.FindUniqueObjectByType<ChallengeTracker>(true);
 
         typewriterAnimationQueue = gameObject.AddComponent<CoroutineQueue>();
 

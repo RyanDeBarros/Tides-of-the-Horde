@@ -13,7 +13,7 @@ public class C_ShopDisabled : IChallenge
         health = player.GetComponent<Health>();
         Assert.IsNotNull(health);
 
-        shop = GameObject.FindObjectsByType<ShopUI>(FindObjectsSortMode.None).GetUniqueElement();
+        shop = GlobalFind.FindUniqueObjectByType<ShopUI>(true);
         Assert.IsNotNull(shop);
 
         shop.DisableShop();

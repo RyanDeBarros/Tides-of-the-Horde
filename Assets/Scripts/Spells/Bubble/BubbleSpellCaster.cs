@@ -22,6 +22,7 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
     private float cooldownLeft = 0f;
+    private bool bubbleOut = false;
 
     void Awake()
     {
@@ -35,7 +36,7 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
 
     void Update()
     {
-        if (cooldownLeft > 0f) cooldownLeft -= Time.deltaTime;
+        if (cooldownLeft > 0f && !bubbleOut) cooldownLeft -= Time.deltaTime;
     }
 
     public void Select()
@@ -45,18 +46,17 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
 
     public void CastSpell(SpellManager manager)
     {
-        if (cooldownLeft > 0f) return;
+        if (cooldownLeft > 0f || bubbleOut) return;
 
         // play Bubble sound
         if (audioSource != null && BubbleSFX != null)
-        {
             audioSource.PlayOneShot(BubbleSFX);
 
-        }
-
+        bubbleOut = true;
         cooldownLeft = cooldown;
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         animator.ExecuteAttack1();
+
         GameObject instance = Instantiate(spellPrefab, manager.GetPlayerPosition(), Quaternion.LookRotation(manager.GetPlayerForwardVector()), parent: manager.transform);
         BubbleSpell spell = instance.GetComponent<BubbleSpell>();
         Assert.IsNotNull(spell);
@@ -65,6 +65,7 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
         spell.growDuration = growDuration;
         spell.bounceBackStrength = bounceBackStrength;
         spell.playerHealth = GetComponentInParent<Health>();
+        spell.onDestroy.AddListener(() => { bubbleOut = false; });
     }
 
     public float GetNormalizedCooldown()

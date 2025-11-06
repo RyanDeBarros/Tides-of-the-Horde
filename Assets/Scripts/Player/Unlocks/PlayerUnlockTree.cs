@@ -185,7 +185,7 @@ public class PlayerUnlockTree : MonoBehaviour
         PlayerUnlockTreeData data = JsonUtility.FromJson<PlayerUnlockTreeData>(json);
         UnlockActionTable unlockActionTable = new(gameObject, dashCooldownUI);
 
-        PlayerCurrency playerCurrency = FindObjectsByType<PlayerCurrency>(FindObjectsSortMode.None).GetUniqueElement();
+        PlayerCurrency playerCurrency = GlobalFind.FindUniqueObjectByType<PlayerCurrency>(true);
 
         // Load data
         data.nodes.ForEach(d => {
