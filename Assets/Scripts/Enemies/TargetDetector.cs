@@ -1,4 +1,8 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 [DisallowMultipleComponent]
@@ -13,8 +17,10 @@ public class TargetDetector : MonoBehaviour
     public float attackInterval = 1.0f;
 
     [Header("Events")]
-    public UnityEvent OnCanAttack;     
-    public UnityEvent<float> OnDistanceUpdated; 
+    public UnityEvent OnCanAttack;
+    public UnityEvent<float> OnDistanceUpdated;
+
+    public readonly List<Func<bool>> attackConditions = new();
 
     Transform player;
     float nextAttackTime;
@@ -24,23 +30,27 @@ public class TargetDetector : MonoBehaviour
         var go = GameObject.FindWithTag(playerTag);
         if (!go) Debug.LogError($"[TargetDetector] No object tagged '{playerTag}' found!", this);
         else player = go.transform;
+        Assert.IsNotNull(player);
     }
 
     void Update()
     {
-        if (!player) return;
-
         float dist = ignoreVertical
             ? HorizontalDistance(transform.position, player.position)
             : Vector3.Distance(transform.position, player.position);
 
         OnDistanceUpdated?.Invoke(dist);
 
-        if (dist <= attackRange && Time.time >= nextAttackTime)
+        if (dist <= attackRange && Time.time >= nextAttackTime && ConditionsSatisfied())
         {
             nextAttackTime = Time.time + attackInterval;
             OnCanAttack?.Invoke();
         }
+    }
+
+    private bool ConditionsSatisfied()
+    {
+        return attackConditions.All(f => f());
     }
 
     static float HorizontalDistance(Vector3 a, Vector3 b)

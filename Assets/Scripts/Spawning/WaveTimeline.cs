@@ -9,6 +9,7 @@ public enum EnemyType
     Skeleton,
     Bishop,
     Orc,
+    Dragon,
     DemonKing,
 }
 
