@@ -124,6 +124,8 @@ GameObject:
   - component: {fileID: 8775335849692378853}
   - component: {fileID: 8088306018587523817}
   - component: {fileID: 3299712059124125513}
+  - component: {fileID: 9102878451973881690}
+  - component: {fileID: 160752166260935403}
   m_Layer: 8
   m_Name: FlyingDemon
   m_TagString: Enemy
@@ -333,6 +335,127 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   reward: 30
   playerTag: Player
+--- !u!114 &9102878451973881690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565950493443346975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f286f61244fad8d4bbe7fd8af2a92198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 4647048154988681697}
+  anim: {fileID: 1815187413245758638}
+  dieStateName: Die
+  extraDelay: 0.15
+  disableOnDeath:
+  - {fileID: 8971591378966497812}
+  - {fileID: 1187491437838976808}
+  - {fileID: 8775335849692378853}
+  sinkDuration: 1.5
+  sinkSpeed: 0.6
+  audioSource: {fileID: 160752166260935403}
+  deathSFX: {fileID: 0}
+--- !u!82 &160752166260935403
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565950493443346975}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &6056564345800127664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1299,6 +1422,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1986784892717818420}
   m_SourcePrefab: {fileID: 100100000, guid: da41aabb92614edcb4f34066fd76aa7d, type: 3}
+--- !u!95 &1815187413245758638 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3891923349461803650, guid: da41aabb92614edcb4f34066fd76aa7d, type: 3}
+  m_PrefabInstance: {fileID: 3400838939630513708}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1815187413254857538 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3891923349452803438, guid: da41aabb92614edcb4f34066fd76aa7d, type: 3}
