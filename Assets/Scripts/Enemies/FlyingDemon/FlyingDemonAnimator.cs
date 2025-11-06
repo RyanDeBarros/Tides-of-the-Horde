@@ -22,6 +22,7 @@ public class FlyingDemonAnimator : MonoBehaviour
 
     public void PlayGetHit()
     {
+        OnAttackEnd();
         ResetTriggers();
         animator.SetTrigger("GetHit");
     }
@@ -70,6 +71,7 @@ public class FlyingDemonAnimator : MonoBehaviour
 
     public void SetDizzy()
     {
+        OnAttackEnd();
         CancelMove();
         CancelSideStep();
         animator.SetBool("Dizzy", true);
