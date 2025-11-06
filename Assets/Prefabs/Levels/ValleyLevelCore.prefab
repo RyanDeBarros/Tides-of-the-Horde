@@ -681,14 +681,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MinimalLevelCore
       objectReference: {fileID: 0}
-    - target: {fileID: 5449051904751581597, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
-      propertyPath: closingDialogFile
-      value: 
-      objectReference: {fileID: 4900000, guid: 194350c16246fcf48b4def6aead17f27, type: 3}
-    - target: {fileID: 5449051904751581597, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
-      propertyPath: openingDialogFile
-      value: 
-      objectReference: {fileID: 4900000, guid: 88c33012100681341945dd32be12fd1d, type: 3}
     - target: {fileID: 6046191443424738508, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
