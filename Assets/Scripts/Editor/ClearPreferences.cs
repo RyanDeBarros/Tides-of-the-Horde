@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class ClearPlayerPrefsEditor
 {
-    [MenuItem("Tools/Player Preferences/Clear All Preferences")] // Ctrl/Cmd + Shift + D
+    [MenuItem("Tools/Player Preferences/Clear All Preferences")]
     private static void ClearAllPlayerPrefs()
     {
         if (EditorUtility.DisplayDialog(
-            "Clear All PlayerPrefs",
-            "Are you sure you want to delete all PlayerPrefs data?",
-            "Yes, delete everything",
-            "Cancel"))
+            title: "Clear All PlayerPrefs",
+            message: "Are you sure you want to delete all PlayerPrefs data?",
+            ok: "Yes, delete everything",
+            cancel: "Cancel"))
         {
             PlayerPrefs.DeleteAll();
             PlayerPrefs.Save();
