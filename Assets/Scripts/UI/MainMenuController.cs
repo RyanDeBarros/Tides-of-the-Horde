@@ -38,7 +38,9 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("purple-red-Arena"); 
+        //I comment this scripts to load the levelSelectScene instead of playing game directly
+        //SceneManager.LoadScene("purple-red-Arena");
+        SceneManager.LoadScene("LevelSelectScene");
     }
 
     public void ShowSettings()
