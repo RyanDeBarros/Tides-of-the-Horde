@@ -43,6 +43,9 @@ public class BounceBack : MonoBehaviour
 
     public void Bounce(Vector3 direction, float strength)
     {
+        if (TryGetComponent(out Health health) && health.IsInvulnerable())
+            return;
+
         this.direction = direction.normalized;
         peakVelocity = strength / resistance;
         elapsedTime = 0f;

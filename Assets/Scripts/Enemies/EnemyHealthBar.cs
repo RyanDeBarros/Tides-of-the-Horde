@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.UI;
 
 public class EnemyHealthBar : MonoBehaviour
@@ -6,24 +7,22 @@ public class EnemyHealthBar : MonoBehaviour
     [Header("Health Bar References")]
     public GameObject healthBarContainer;
     public Slider healthSlider;
+    [SerializeField] private Health enemyHealth;
 
     [Header("Settings")]
     public float showDuration = 3f;
     public Vector3 healthBarOffset = new Vector3(0, 2.5f, 0);
 
-    private Health enemyHealth;
     private float hideTimer = 0f;
     private bool isVisible = false;
 
     void Start()
     {
         enemyHealth = GetComponent<Health>();
-        healthBarContainer.SetActive(false);
+        Assert.IsNotNull(enemyHealth);
         
-        if (enemyHealth != null)
-        {
-            enemyHealth.onHealthChanged.AddListener(OnHealthChanged);
-        }
+        enemyHealth.onHealthChanged.AddListener(OnHealthChanged);
+        healthBarContainer.SetActive(false);
     }
 
     void Update()

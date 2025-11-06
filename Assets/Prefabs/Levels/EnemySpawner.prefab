@@ -55,5 +55,6 @@ MonoBehaviour:
   bishopPrefab: {fileID: 3329783544436130698, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}
   orcPrefab: {fileID: 3045373013286125374, guid: 4bb4e1e9a8284c343b7bea48a277a703, type: 3}
   dragonPrefab: {fileID: 3443340333259638365, guid: 6af01a8dc5da7a14497d16740d61fbd9, type: 3}
+  flyingDemonPrefab: {fileID: 4565950493443346975, guid: ef6a727bbb1f6b14f892e6031bb0f9fc, type: 3}
   demonKingPrefab: {fileID: 5522856944775851731, guid: b3d1f8efc5d4fbc468eecc4d130328c7, type: 3}
   difficultyLevelOffset: 0

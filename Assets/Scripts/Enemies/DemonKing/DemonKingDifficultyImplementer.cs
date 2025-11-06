@@ -25,14 +25,14 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         public float attackInterval = 1f;
 
         // Health
-        public int maxHealth = 1000;
+        public int maxHealth = 3000;
 
         // BounceBack
         public float bounceBackResistance = 2f;
         public float bounceBackDuration = 0.07f;
 
         // RewardOnDeath
-        public int reward = 10;
+        public int reward = 100;
     }
 
     [System.Serializable]

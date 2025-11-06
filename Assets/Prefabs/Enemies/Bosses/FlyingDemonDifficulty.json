@@ -1,0 +1,19 @@
+{
+    "stats": [
+        {
+            "damage": 5,
+            "maxHealth": 1000,
+            "reward": 100
+        },
+        {
+            "damage": 12,
+            "maxHealth": 2000,
+            "reward": 200
+        },
+        {
+            "damage": 20,
+            "maxHealth": 3000,
+            "reward": 300
+        }
+    ]
+}
