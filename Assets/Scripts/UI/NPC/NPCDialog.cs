@@ -29,7 +29,8 @@ public class DialogPage
 public class NPCDialog : MonoBehaviour
 {
     [SerializeField] private RectTransform textArea;
-    [SerializeField] private TextAsset dialogFile;
+    [SerializeField] private TextAsset openingDialogFile;
+    [SerializeField] private TextAsset closingDialogFile;
 
     [Header("Text Parameters")]
     [SerializeField] private float typingSeconds = 0.01f;
@@ -52,9 +53,18 @@ public class NPCDialog : MonoBehaviour
     private readonly List<OnHover> textOnHovers = new();
     private CoroutineQueue typewriterAnimationQueue;
 
-    public void Initialize(TextAsset dialogFile)
+    public enum DialogPhase
     {
-        this.dialogFile = dialogFile;
+        Opening,
+        Closing
+    }
+
+    public DialogPhase dialogPhase = DialogPhase.Opening;
+
+    public void Initialize(TextAsset openingDialogFile, TextAsset closingDialogFile)
+    {
+        this.openingDialogFile = openingDialogFile;
+        this.closingDialogFile = closingDialogFile;
     }
 
     private void Awake()
@@ -72,7 +82,8 @@ public class NPCDialog : MonoBehaviour
 
     private void Start()
     {
-        Assert.IsNotNull(dialogFile);
+        Assert.IsNotNull(openingDialogFile);
+        Assert.IsNotNull(closingDialogFile);
     }
 
     public void Open()
@@ -83,9 +94,15 @@ public class NPCDialog : MonoBehaviour
         gameObject.SetActive(true);
         player.DisablePlayer();
 
-        Assert.IsNotNull(dialogFile);
-        challengeTracker.SelectRandomChallenge();
-        SetTextPage(JsonUtility.FromJson<DialogPage>(dialogFile.text));
+        if (dialogPhase == DialogPhase.Opening)
+        {
+            challengeTracker.SelectRandomChallenge();
+            SetOpeningTextPage();
+        }
+        else if (dialogPhase == DialogPhase.Closing)
+            SetClosingTextPage();
+        else
+            throw new NotImplementedException();
     }
 
     public void Close()
@@ -99,11 +116,41 @@ public class NPCDialog : MonoBehaviour
         onClose.Invoke();
     }
 
-    private void SetTextPage(DialogPage page)
+    private void SetOpeningTextPage()
+    {
+        List<DialogOption> options = JsonUtility.FromJson<DialogPage>(openingDialogFile.text).options;
+        options.Add(new DialogOption() { text = "Complete this challenge and I'll reward you:", topPadding = 10f });
+        options.Add(new DialogOption() { challenge = true, halign = 0.5f });
+        options.Add(new DialogOption() { reward = true, halign = 0.5f });
+        options.Add(new DialogOption() { text = "Accept", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "accept" });
+        options.Add(new DialogOption() { text = "Decline", halign = 1f, clickable = true, clickResponse = "decline" });
+        SetTextPage(options);
+    }
+
+    private void SetClosingTextPage()
+    {
+        List<DialogOption> options = JsonUtility.FromJson<DialogPage>(closingDialogFile.text).options;
+
+        if (challengeTracker.HasChallenge())
+        {
+            if (challengeTracker.ChallengeCompleted())
+            {
+                options.Add(new DialogOption() { text = "You completed my challenge! Here is your reward:", topPadding = 10f });
+                options.Add(new DialogOption() { reward = true, halign = 0.5f });
+            }
+            else
+                options.Add(new DialogOption() { text = "Unfortunately, you failed my challenge!", topPadding = 10f });
+        }
+
+        options.Add(new DialogOption() { text = "Continue", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "claim" });
+        SetTextPage(options);
+    }
+
+    private void SetTextPage(List<DialogOption> options)
     {
         ClearTextPage();
         // TODO while typewriting - play typing SFX: begin continuously playing here, and then stop it in RunAtEnd().
-        page.options.ForEach(option => typewriterAnimationQueue.AppendCoroutine(AddText(option)));
+        options.ForEach(option => typewriterAnimationQueue.AppendCoroutine(AddText(option)));
         typewriterAnimationQueue.RunAtEnd(() => {
             textButtons.ForEach(button => button.enabled = true);
             textOnHovers.ForEach(onHover => onHover.enabled = true);
@@ -200,6 +247,7 @@ public class NPCDialog : MonoBehaviour
         Dictionary<string, Action> actions = new(StringComparer.InvariantCultureIgnoreCase) {
             ["accept"] = challengeTracker.AcceptChallenge,
             ["decline"] = challengeTracker.DeclineChallenge,
+            ["claim"] = challengeTracker.RewardIfSuccess
         };
 
         if (actions.TryGetValue(clickResponse, out Action action))

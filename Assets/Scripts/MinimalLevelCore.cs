@@ -4,11 +4,14 @@ using UnityEngine.Assertions;
 public class MinimalLevelCore : MonoBehaviour
 {
     [SerializeField] private TextAsset spawnWaveFile;
-    [SerializeField] private TextAsset dialogFile;
+    [SerializeField] private TextAsset openingDialogFile;
+    [SerializeField] private TextAsset closingDialogFile;
+    [SerializeField] private int levelIndex;
 
     [Header("References")]
     [SerializeField] private EnemySpawner enemySpawner;
     [SerializeField] private NPCDialog npcDialog;
+    [SerializeField] private Portal portal;
 
     private void Awake()
     {
@@ -16,6 +19,9 @@ public class MinimalLevelCore : MonoBehaviour
         enemySpawner.Initialize(spawnWaveFile);
 
         Assert.IsNotNull(npcDialog);
-        npcDialog.Initialize(dialogFile);
+        npcDialog.Initialize(openingDialogFile, closingDialogFile);
+
+        Assert.IsNotNull(portal);
+        portal.Initialize(levelIndex);
     }
 }

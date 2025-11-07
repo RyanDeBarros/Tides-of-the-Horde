@@ -128,28 +128,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
-      propertyPath: dialogFile
-      value: 
-      objectReference: {fileID: 4900000, guid: 88c33012100681341945dd32be12fd1d, type: 3}
-    - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: spawnWaveFile
       value: 
-      objectReference: {fileID: 4900000, guid: 35bbbdfd7cc9ffd43b7a961c701b6d06, type: 3}
+      objectReference: {fileID: 4900000, guid: 16a4f097b6148084aa14f0ca008fbdbc, type: 3}
+    - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+      propertyPath: closingDialogFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 194350c16246fcf48b4def6aead17f27, type: 3}
+    - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+      propertyPath: openingDialogFile
+      value: 
+      objectReference: {fileID: 4900000, guid: 88c33012100681341945dd32be12fd1d, type: 3}
     - target: {fileID: 6063426160740505232, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: m_Name
       value: ValleyLevelCore
       objectReference: {fileID: 0}
-    - target: {fileID: 7279054856999101636, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
-      propertyPath: m_Color.b
-      value: 1
+    - target: {fileID: 8259804803065714136, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.454
       objectReference: {fileID: 0}
-    - target: {fileID: 7279054856999101636, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
-      propertyPath: m_Color.g
-      value: 1
+    - target: {fileID: 8259804803065714136, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6
       objectReference: {fileID: 0}
-    - target: {fileID: 7279054856999101636, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
-      propertyPath: m_Color.r
-      value: 1
+    - target: {fileID: 8259804803065714136, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -39.176
       objectReference: {fileID: 0}
     - target: {fileID: 8990052414462977502, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: m_LocalPosition.x

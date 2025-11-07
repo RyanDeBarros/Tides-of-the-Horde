@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private ShopUI shopUI;
     [SerializeField] private ChallengeGiver challengeGiver;
     [SerializeField] private ChallengeTracker challengeTracker;
-    [SerializeField] private float challengerSpawnDelay = 2f;
+    [SerializeField] private Portal portal;
     [SerializeField] private string waitForChallengerSong;
 
     [Header("Enemy Prefabs")]
@@ -42,11 +43,14 @@ public class EnemySpawner : MonoBehaviour
 
     private enum LevelPhase
     {
-        ChallengeGiver,
-        Waves
+        PortalStart,
+        ChallengeGiverStart,
+        Waves,
+        ChallengeGiverEnd,
+        PortalEnd
     }
 
-    private LevelPhase levelPhase = LevelPhase.ChallengeGiver;
+    private LevelPhase levelPhase = LevelPhase.PortalStart;
 
     public void Initialize(TextAsset waveFile)
     {
@@ -58,8 +62,9 @@ public class EnemySpawner : MonoBehaviour
         Assert.IsNotNull(uiController);
         Assert.IsNotNull(shopUI);
         Assert.IsNotNull(challengeGiver);
-        challengeGiver.onConversationEnd.AddListener(StartWaves);
+        challengeGiver.onConversationEnd.AddListener(OnConversationEnd);
         Assert.IsNotNull(challengeTracker);
+        Assert.IsNotNull(portal);
 
         Assert.IsNotNull(skeletonPrefab);
         Assert.IsNotNull(bishopPrefab);
@@ -79,24 +84,26 @@ public class EnemySpawner : MonoBehaviour
         shopUI.gameObject.SetActive(false);
 
         SoundtrackManager.Instance.PlayTrack(waitForChallengerSong);
-        StartCoroutine(StartLevelRoutine());
-    }
-
-    private IEnumerator StartLevelRoutine()
-    {
-        yield return new WaitForSeconds(challengerSpawnDelay);
-        StartLevel();
-    }
-
-    private void StartLevel()
-    {
-        challengeGiver.SpawnNPC();
+        portal.SpawnPlayer(() => {
+            levelPhase = LevelPhase.ChallengeGiverStart;
+            challengeGiver.SpawnNPC();
+        });
     }
 
     private void Update()
     {
         if (levelPhase == LevelPhase.Waves)
             UpdateSpawnTimeline();
+    }
+
+    private void OnConversationEnd()
+    {
+        if (levelPhase == LevelPhase.ChallengeGiverStart)
+            StartWaves();
+        else if (levelPhase == LevelPhase.ChallengeGiverEnd)
+            portal.PrepareToDespawnPlayer();
+        else
+            throw new NotImplementedException();
     }
 
     private void StartWaves()
@@ -168,8 +175,10 @@ public class EnemySpawner : MonoBehaviour
         }
         else
         {
-            challengeTracker.RewardIfSuccess();
             uiController.HideUI();
+            levelPhase = LevelPhase.ChallengeGiverEnd;
+            challengeGiver.GetDialog().dialogPhase = NPCDialog.DialogPhase.Closing;
+            challengeGiver.SpawnNPC();
         }
     }
 

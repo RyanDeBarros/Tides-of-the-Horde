@@ -181,7 +181,17 @@ public class ChallengeTracker : MonoBehaviour
 
     public void RewardIfSuccess()
     {
-        if (currentChallenge != null && currentChallenge.IsSuccess())
+        if (ChallengeCompleted())
             currentReward.GiveReward();
+    }
+
+    public bool HasChallenge()
+    {
+        return currentChallenge != null;
+    }
+
+    public bool ChallengeCompleted()
+    {
+        return HasChallenge() && currentChallenge.IsSuccess();
     }
 }

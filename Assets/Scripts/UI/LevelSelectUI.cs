@@ -4,8 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
-public class LevelSelectU : MonoBehaviour
+public class LevelSelectUI : MonoBehaviour
 {
     [Serializable]
     public class LevelItem
