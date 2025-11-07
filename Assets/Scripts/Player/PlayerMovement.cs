@@ -14,12 +14,14 @@ public class PlayerMovement : MonoBehaviour
     private CharacterController characterController;
     private PlayerCamera cam;
     private PlayerAnimatorController animator;
+    private Animator unityAnimator;
 
     void Awake()
     {
         characterController = GetComponent<CharacterController>();
         cam = GetComponent<PlayerCamera>();
         animator = GetComponentInChildren<PlayerAnimatorController>();
+        unityAnimator = GetComponentInChildren<Animator>();
     }
 
     void Start()
@@ -49,18 +51,21 @@ public class PlayerMovement : MonoBehaviour
         if (Mathf.Abs(horizontal) > inputDeadzone || Mathf.Abs(vertical) > inputDeadzone)
         {
             bool running = Input.GetKey(KeyCode.LeftShift);
-            MovePlayer(horizontal, vertical, running);
+            float moveSpeed = MovePlayer(horizontal, vertical, running);
             animator.SetWalking(true);
             animator.SetRunning(running);
+            
+            UpdateAnimationSpeed(moveSpeed);
         }
         else
         {
             animator.SetWalking(false);
             animator.SetRunning(false);
+            UpdateAnimationSpeed(0f);
         }
     }
 
-    private void MovePlayer(float x, float z, bool running)
+    private float MovePlayer(float x, float z, bool running)
     {
         Vector3 forward = cam.GetForwardVector();
         forward.y = 0f;
@@ -82,6 +87,17 @@ public class PlayerMovement : MonoBehaviour
                 targetRotation,
                 Time.deltaTime * rotationSpeed
             );
+            
+            return moveSpeed;
         }
+        
+        return 0f;
+    }
+    
+    private void UpdateAnimationSpeed(float currentSpeed)
+    {
+        if (unityAnimator == null) return;
+        
+        unityAnimator.SetFloat("AnimationSpeed", currentSpeed * 0.5f);
     }
 }
