@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class LevelSelectUI : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class LevelSelectUI : MonoBehaviour
         public GameObject lockIcon;
     }
 
-    public List<LevelItem> levels = new();
+    [SerializeField] private List<LevelItem> levels = new();
 
     private const string HIGHEST_UNLOCKED_LEVEL_INDEX = "HIGHEST_UNLOCKED_LEVEL_INDEX";
 
@@ -64,5 +65,10 @@ public class LevelSelectUI : MonoBehaviour
     {
         MarkLevelCompleted(levelIndex);
         SceneManager.LoadScene("LevelSelectScene");
+    }
+
+    public static void ResetPersistentData()
+    {
+        PlayerDataManager.SetInt(HIGHEST_UNLOCKED_LEVEL_INDEX, 0);
     }
 }

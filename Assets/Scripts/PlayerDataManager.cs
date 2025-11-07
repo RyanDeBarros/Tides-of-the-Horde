@@ -6,16 +6,16 @@ using UnityEngine;
 
 public static class PlayerDataManager
 {
-    private static readonly string path = Path.Combine(Application.persistentDataPath, "player_data.json");
-    private static Dictionary<string, string> data = new();
+    public static readonly string PATH = Path.Combine(Application.persistentDataPath, "player_data.json");
+    private static readonly Dictionary<string, string> data = new();
 
     static PlayerDataManager()
     {
-        if (File.Exists(path))
+        if (File.Exists(PATH))
         {
             try
             {
-                var json = File.ReadAllText(path);
+                var json = File.ReadAllText(PATH);
                 data = JsonConvert.DeserializeObject<Dictionary<string, string>>(json) ?? new();
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ public static class PlayerDataManager
         try
         {
             var json = JsonConvert.SerializeObject(data, Formatting.Indented);
-            File.WriteAllText(path, json);
+            File.WriteAllText(PATH, json);
         }
         catch (Exception ex)
         {

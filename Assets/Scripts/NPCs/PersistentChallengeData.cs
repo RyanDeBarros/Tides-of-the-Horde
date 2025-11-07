@@ -74,4 +74,9 @@ public static class PersistentChallengeData
     {
         PlayerDataManager.Set(KEY, Data());
     }
+
+    public static void Reset()
+    {
+        data = new() { saveOnSet = true };
+    }
 }
