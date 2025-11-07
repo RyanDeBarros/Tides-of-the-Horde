@@ -81,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1360278492992299285
 Transform:
   m_ObjectHideFlags: 0
@@ -343,6 +343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarContainer: {fileID: 3666624813552591542}
   healthSlider: {fileID: 2376374847018382739}
+  enemyHealth: {fileID: 0}
   showDuration: 3
   healthBarOffset: {x: 0, y: 2.5, z: 0}
 --- !u!1 &8236134914262174659
@@ -390,11 +391,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6811378544138595227, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6811378544138595227, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalPosition.x

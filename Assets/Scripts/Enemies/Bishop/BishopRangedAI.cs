@@ -2,20 +2,13 @@ using UnityEngine;
 
 public class BishopRangedAI : MonoBehaviour
 {
-    [Header("Target Settings")]
     public Transform player;
-    
-    [Header("Movement Settings")]
     public float moveSpeed = 3.5f;
-    public float stoppingDistance = 3f; // Reduced for better backing away
-    
-    [Header("Attack Settings")]
+    public float stoppingDistance = 3f;
     public float attackRange = 8f;
     public float attackCooldown = 2f;
     public float fireballSpeed = 12f;
     public int damagePerFireball = 15;
-    
-    [Header("References")]
     public GameObject fireballPrefab;
     public Transform firePoint;
     
@@ -27,7 +20,7 @@ public class BishopRangedAI : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -46,14 +39,12 @@ public class BishopRangedAI : MonoBehaviour
 
         HandleMovement();
         HandleAttack();
-        UpdateAnimations();
     }
 
     void HandleMovement()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         
-        // Move towards player if outside attack range
         if (distanceToPlayer > attackRange)
         {
             Vector3 direction = (player.position - transform.position).normalized;
@@ -63,8 +54,8 @@ public class BishopRangedAI : MonoBehaviour
             controller.Move(moveDirection * Time.deltaTime);
             
             FacePlayer();
+            UpdateAnimationSpeed(moveSpeed);
         }
-        // Back away if too close
         else if (distanceToPlayer < stoppingDistance)
         {
             Vector3 directionAway = (transform.position - player.position).normalized;
@@ -72,12 +63,13 @@ public class BishopRangedAI : MonoBehaviour
             Vector3 moveDirection = directionAway * moveSpeed * 0.5f;
             controller.Move(moveDirection * Time.deltaTime);
             
-            FacePlayer(); // Still face player while backing away!
+            FacePlayer();
+            UpdateAnimationSpeed(moveSpeed * 0.5f);
         }
-        // In perfect position - just face player
         else
         {
             FacePlayer();
+            UpdateAnimationSpeed(0f);
         }
     }
 
@@ -93,16 +85,13 @@ public class BishopRangedAI : MonoBehaviour
         }
     }
 
-    void UpdateAnimations()
+    void UpdateAnimationSpeed(float currentSpeed)
     {
         if (animator == null) return;
-
-        // Calculate movement speed for walk/idle animations
-        float horizontalSpeed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
-        animator.SetFloat("Speed", horizontalSpeed);
         
-        // Handle attack animation
-        animator.SetBool("IsAttacking", isAttacking);
+        animator.SetFloat("AnimationSpeed", currentSpeed);
+        
+        animator.SetBool("IsMoving", currentSpeed > 0.1f);
     }
 
     void FacePlayer()
@@ -119,18 +108,16 @@ public class BishopRangedAI : MonoBehaviour
     {
         if (fireballPrefab == null) return;
 
-        // Trigger attack animation
         StartCoroutine(PlayAttackAnimation());
     }
 
     System.Collections.IEnumerator PlayAttackAnimation()
     {
         isAttacking = true;
+        animator.SetTrigger("Fire");
         
-        // Wait for attack animation to reach the point where fireball should spawn
-        yield return new WaitForSeconds(0.3f); // Adjust this timing to match your animation
+        yield return new WaitForSeconds(0.4f);
         
-        // Spawn fireball during attack animation
         GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
         Vector3 attackDirection = (player.position + Vector3.up * 0.5f) - firePoint.position;
         
@@ -142,13 +129,11 @@ public class BishopRangedAI : MonoBehaviour
             fireballScript.Initialize(attackDirection);
         }
         
-        // Wait for attack animation to finish
-        yield return new WaitForSeconds(0.5f); // Adjust to match your animation length
+        yield return new WaitForSeconds(0.5f);
         
         isAttacking = false;
     }
 
-    // Animation Event methods - call these from your attack animation if using animation events
     public void OnAttackSpawnFireball()
     {
         GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
@@ -166,14 +151,5 @@ public class BishopRangedAI : MonoBehaviour
     public void OnAttackEnd()
     {
         isAttacking = false;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
     }
 }

@@ -184,6 +184,8 @@ MonoBehaviour:
   - {fileID: 1001082693539445144}
   sinkDuration: 0.1
   sinkSpeed: 1
+  audioSource: {fileID: 0}
+  deathSFX: {fileID: 0}
 --- !u!114 &3620802734628203079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +272,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarContainer: {fileID: 362435641922987918}
   healthSlider: {fileID: 1666123820808401067}
+  enemyHealth: {fileID: 0}
   showDuration: 3
   healthBarOffset: {x: 0, y: 2.5, z: 0}
 --- !u!1 &3424555026866121806
