@@ -7,7 +7,14 @@ public class PlayerCurrency : MonoBehaviour
     [SerializeField, Min(0)] private int currency = 0;
     [SerializeField, Min(0f)] private float currencyCollectMultiplier = 1f;
     [SerializeField, Range(0f, 1f)] private float shopDiscount = 0f;
-    public UnityEvent<int> onCurrencyChanged;  
+    public UnityEvent<int> onCurrencyChanged;
+
+    private void Start()
+    {
+        currency += PersistentChallengeData.Data().StartingBonus;
+        shopDiscount += PersistentChallengeData.Data().ShopDiscount * (1f - shopDiscount);
+        currencyCollectMultiplier += PersistentChallengeData.Data().CurrencyBoost;
+    }
 
     public int GetCurrency()
     {
@@ -36,17 +43,6 @@ public class PlayerCurrency : MonoBehaviour
     public void SetMultiplier(float multiplier)
     {
         currencyCollectMultiplier = Mathf.Max(multiplier, 0f);
-    }
-
-    public void AddMultiplier(float boost)
-    {
-        currencyCollectMultiplier += Mathf.Max(boost, 0f);
-    }
-
-    public void CompoundShopDiscount(float discount)
-    {
-        discount = Mathf.Clamp01(discount);
-        shopDiscount += discount * (1f - shopDiscount);
     }
 
     public int ShopPrice(int originalPrice)
