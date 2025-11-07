@@ -26,27 +26,10 @@ public static class PlayerDataManager
         }
     }
 
-    private static void Set<T>(string key, T value)
+    public static void Set<T>(string key, T value)
     {
         data[key] = JsonConvert.SerializeObject(value, Formatting.Indented);
         Save();
-    }
-
-    private static bool Get<T>(string key, ref T value)
-    {
-        if (!data.ContainsKey(key))
-            return false;
-
-        try
-        {
-            value = JsonConvert.DeserializeObject<T>(data[key]);
-            return true;
-        }
-        catch (Exception ex)
-        {
-            Debug.LogError($"Failed to parse player data for key '{key}': {ex}");
-            return false;
-        }
     }
 
     private static void Save()
@@ -60,5 +43,75 @@ public static class PlayerDataManager
         {
             Debug.LogError($"Failed to save player data: {ex}");
         }
+    }
+
+    public static void SetBool(string key, bool value)
+    {
+        Set(key, value);
+    }
+
+    public static void SetInt(string key, int value)
+    {
+        Set(key, value);
+    }
+
+    public static void SetFloat(string key, float value)
+    {
+        Set(key, value);
+    }
+
+    public static void SetString(string key, string value)
+    {
+        Set(key, value);
+    }
+
+    public static void Get<T>(string key, ref T value)
+    {
+        if (!data.ContainsKey(key))
+            return;
+
+        try
+        {
+            value = JsonConvert.DeserializeObject<T>(data[key]);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError($"Failed to parse player data for key '{key}': {ex}");
+        }
+    }
+
+    public static bool GetBool(string key, in bool default_value)
+    {
+        bool value = default_value;
+        Get(key, ref value);
+        return value;
+    }
+
+    public static int GetInt(string key, in int default_value)
+    {
+        int value = default_value;
+        Get(key, ref value);
+        return value;
+    }
+
+    public static float GetFloat(string key, in float default_value)
+    {
+        float value = default_value;
+        Get(key, ref value);
+        return value;
+    }
+
+    public static string GetString(string key, in string default_value)
+    {
+        string value = default_value;
+        Get(key, ref value);
+        return value;
+    }
+
+    public static T GetObject<T>(string key, in T default_value)
+    {
+        T value = default_value;
+        Get(key, ref value);
+        return value;
     }
 }
