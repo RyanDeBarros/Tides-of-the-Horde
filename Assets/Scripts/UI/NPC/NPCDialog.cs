@@ -95,7 +95,7 @@ public class NPCDialog : MonoBehaviour
         player.DisablePlayer();
 
         if (dialogPhase == DialogPhase.Opening)
-            SetOpeningTextPage(challengeTracker.SelectRandomChallenge(GetLevelIndex()));
+            SetOpeningTextPage(challengeTracker.SelectRandomChallenge());
         else if (dialogPhase == DialogPhase.Closing)
             SetClosingTextPage();
         else
@@ -253,7 +253,7 @@ public class NPCDialog : MonoBehaviour
         Dictionary<string, Action> actions = new(StringComparer.InvariantCultureIgnoreCase) {
             ["accept"] = challengeTracker.AcceptChallenge,
             ["decline"] = challengeTracker.DeclineChallenge,
-            ["claim"] = () => challengeTracker.RewardIfSuccess(GetLevelIndex())
+            ["claim"] = () => challengeTracker.RewardIfSuccess()
         };
 
         if (actions.TryGetValue(clickResponse, out Action action))
@@ -262,10 +262,5 @@ public class NPCDialog : MonoBehaviour
             Debug.LogError($"Unrecognized click response: {clickResponse}");
 
         Close();
-    }
-
-    public int GetLevelIndex()
-    {
-        return GlobalFind.FindUniqueObjectByType<Portal>(true).levelIndex;
     }
 }

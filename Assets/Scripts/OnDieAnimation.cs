@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Assertions;
-using UnityEngine.Audio;
 
 public class OnDieAnimation : MonoBehaviour
 {

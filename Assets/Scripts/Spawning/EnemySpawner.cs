@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -148,6 +147,8 @@ public class EnemySpawner : MonoBehaviour
             difficulty.SetDifficultyLevel(difficultyLevel + difficultyLevelOffset);
         if (instance.TryGetComponent(out WaypointPatroller waypointPatroller))
             waypointPatroller.waypoints = waypoints;
+        if (instance.TryGetComponent(out Health health))
+            health.onDeath.AddListener(() => { Portal.GetLevelStatistics().AddEnemyDeath(type); });
     }
 
     private GameObject GetEnemyPrefab(EnemyType type)
