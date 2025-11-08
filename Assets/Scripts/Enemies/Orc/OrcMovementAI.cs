@@ -5,14 +5,15 @@ using UnityEngine.Assertions;
 public class OrcMovementAI : MonoBehaviour
 {
     [Header("Targets & Ranges")]
-    public Transform player;
+    [SerializeField] private Transform player;
     public float chaseRange = 30f;
     public float stoppingDistance = 1.5f;
 
     [Header("Movement")]
     public float moveSpeed = 4f;
-    public float turnSpeed = 12f;
+    [SerializeField] private float turnSpeed = 600f;
     public float patrolSpeedMultiplier = 0.5f;
+    [SerializeField] private float animationSpeedMultiplier = 0.3f;
 
     private CharacterController cc;
     private CharacterController playerCC;
@@ -26,19 +27,20 @@ public class OrcMovementAI : MonoBehaviour
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
+        waypointPatroller.onMove.AddListener(OnWaypointPatrollerMove);
 
         animator = GetComponentInChildren<Animator>();
-        if (animator == null)
-        {
-            Debug.LogWarning("No Animator found in children for Orc!");
-        }
+        Assert.IsNotNull(animator);
 
-        if (!player)
+        if (player == null)
         {
             var go = GameObject.FindGameObjectWithTag("Player");
-            if (go) player = go.transform;
+            Assert.IsNotNull(go);
+            player = go.transform;
+            Assert.IsNotNull(player);
         }
-        if (player) playerCC = player.GetComponent<CharacterController>();
+
+        playerCC = player.GetComponent<CharacterController>();
         Assert.IsNotNull(playerCC);
     }
 
@@ -53,46 +55,39 @@ public class OrcMovementAI : MonoBehaviour
         Vector3 to = player.position - transform.position;
         Vector3 toXZ = new(to.x, 0f, to.z);
 
-        Vector3 velocity = Vector3.zero;
-        float currentMoveSpeed = 0f;
-
         float centerDist = toXZ.magnitude;
         if (centerDist <= chaseRange)
         {
             waypointPatroller.StopPatrol();
-            if (Mathf.Abs(centerDist) > 0.0001f)
-            {
-                Quaternion face = Quaternion.LookRotation(toXZ);
-                transform.rotation = Quaternion.Slerp(transform.rotation, face, turnSpeed * Time.deltaTime);
-            }
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(toXZ), turnSpeed * Time.deltaTime);
 
             float myR = cc.radius;
             float targetR = playerCC ? playerCC.radius : 0f;
             float edgeDist = centerDist - (myR + targetR);
 
             float moveDisplacement = edgeDist - stoppingDistance;
-            moveDisplacement = Mathf.Min(Mathf.Abs(edgeDist - stoppingDistance), moveSpeed * Time.deltaTime) * Mathf.Sign(moveDisplacement);
-            
+            moveDisplacement = Mathf.Min(Mathf.Abs(moveDisplacement), moveSpeed * Time.deltaTime) * Mathf.Sign(moveDisplacement);
+
             if (Mathf.Abs(moveDisplacement) > 0.01f)
             {
-                velocity += toXZ.normalized * moveDisplacement / Time.deltaTime;
-                cc.Move(velocity * Time.deltaTime);
-                currentMoveSpeed = moveSpeed;
+                cc.Move(toXZ.normalized * moveDisplacement);
+                UpdateAnimationSpeed(moveDisplacement / Time.deltaTime);
             }
+            else
+                UpdateAnimationSpeed(0f);
         }
         else
-        {
             waypointPatroller.StartPatrol();
-            currentMoveSpeed = moveSpeed * patrolSpeedMultiplier;
-        }
-        UpdateAnimationSpeed(currentMoveSpeed);
+    }
+
+    private void OnWaypointPatrollerMove(Vector3 displacement)
+    {
+        UpdateAnimationSpeed(displacement.magnitude / Time.deltaTime);
     }
 
     private void UpdateAnimationSpeed(float speed)
     {
-        if (animator == null) return;
-        animator.SetFloat("AnimationSpeed", speed * 0.5f);
-
+        animator.SetFloat("AnimationSpeed", speed * animationSpeedMultiplier);
         animator.SetBool("IsMoving", speed > 0.1f);
     }
 
@@ -100,7 +95,7 @@ public class OrcMovementAI : MonoBehaviour
     {
         Gizmos.color = Color.yellow; Gizmos.DrawWireSphere(transform.position, chaseRange);
         
-        if (!cc) cc = GetComponent<CharacterController>();
+        cc = GetComponent<CharacterController>();
         float approxCenterStop = stoppingDistance + (cc ? cc.radius : 0.5f) + 0.5f; 
         Gizmos.color = Color.red; Gizmos.DrawWireSphere(transform.position, approxCenterStop);
     }

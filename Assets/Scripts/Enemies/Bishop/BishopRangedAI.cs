@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class BishopRangedAI : MonoBehaviour
 {
@@ -20,10 +21,16 @@ public class BishopRangedAI : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        Assert.IsNotNull(controller);
+
         animator = GetComponentInChildren<Animator>();
-        
+        Assert.IsNotNull(animator);
+
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
+        Assert.IsNotNull(player);
+        
+        Assert.IsNotNull(fireballPrefab);
         
         if (firePoint == null)
         {
@@ -31,12 +38,11 @@ public class BishopRangedAI : MonoBehaviour
             firePoint.SetParent(transform);
             firePoint.localPosition = new Vector3(0, 1f, 1f);
         }
+        Assert.IsNotNull(firePoint);
     }
 
     void Update()
     {
-        if (player == null) return;
-
         HandleMovement();
         HandleAttack();
     }
@@ -73,10 +79,7 @@ public class BishopRangedAI : MonoBehaviour
             isMoving = false;
         }
         
-        if (animator != null)
-        {
-            animator.SetBool("IsMoving", isMoving);
-        }
+        animator.SetBool("IsMoving", isMoving);
     }
 
     void HandleAttack()
@@ -103,8 +106,6 @@ public class BishopRangedAI : MonoBehaviour
 
     void Attack()
     {
-        if (fireballPrefab == null) return;
-
         StartCoroutine(PlayAttackAnimation());
     }
 
@@ -112,22 +113,9 @@ public class BishopRangedAI : MonoBehaviour
     {
         isAttacking = true;
         animator.SetTrigger("Fire");
-        
         yield return new WaitForSeconds(0.4f);
-        
-        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
-        Vector3 attackDirection = (player.position + Vector3.up * 0.5f) - firePoint.position;
-        
-        FireballProjectile fireballScript = fireball.GetComponent<FireballProjectile>();
-        if (fireballScript != null)
-        {
-            fireballScript.speed = fireballSpeed;
-            fireballScript.damage = damagePerFireball;
-            fireballScript.Initialize(attackDirection);
-        }
-        
+        OnAttackSpawnFireball();
         yield return new WaitForSeconds(0.5f);
-        
         isAttacking = false;
     }
 
@@ -137,12 +125,10 @@ public class BishopRangedAI : MonoBehaviour
         Vector3 attackDirection = (player.position + Vector3.up * 0.5f) - firePoint.position;
         
         FireballProjectile fireballScript = fireball.GetComponent<FireballProjectile>();
-        if (fireballScript != null)
-        {
-            fireballScript.speed = fireballSpeed;
-            fireballScript.damage = damagePerFireball;
-            fireballScript.Initialize(attackDirection);
-        }
+        Assert.IsNotNull(fireballScript);
+        fireballScript.speed = fireballSpeed;
+        fireballScript.damage = damagePerFireball;
+        fireballScript.Initialize(attackDirection);
     }
 
     public void OnAttackEnd()

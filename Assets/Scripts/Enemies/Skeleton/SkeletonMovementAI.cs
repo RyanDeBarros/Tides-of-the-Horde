@@ -11,6 +11,7 @@ public class SkeletonMovementAI : MonoBehaviour
     public float chaseRange = 10f;
     public float stoppingDistance = 2f;
     public float patrolSpeedMultiplier = 0.5f;
+    [SerializeField] private float animationSpeedMultiplier = 0.3f;
 
     private CharacterController controller;
     private WaypointPatroller waypointPatroller;
@@ -22,12 +23,14 @@ public class SkeletonMovementAI : MonoBehaviour
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
+        waypointPatroller.onMove.AddListener(OnWaypointPatrollerMove);
 
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
 
         animator = GetComponentInChildren<Animator>();
+        Assert.IsNotNull(animator);
     }
 
     private void Start()
@@ -62,17 +65,17 @@ public class SkeletonMovementAI : MonoBehaviour
                 UpdateAnimationSpeed(0f);
         }
         else
-        {
             waypointPatroller.StartPatrol();
-            UpdateAnimationSpeed(moveSpeed * patrolSpeedMultiplier);
-        }
     }
-        private void UpdateAnimationSpeed(float currentSpeed)
-    {
-        if (animator == null) return;
-        
-        animator.SetFloat("AnimationSpeed", currentSpeed * 0.5f);
 
+    private void OnWaypointPatrollerMove(Vector3 displacement)
+    {
+        UpdateAnimationSpeed(displacement.magnitude / Time.deltaTime);
+    }
+
+    private void UpdateAnimationSpeed(float currentSpeed)
+    {
+        animator.SetFloat("AnimationSpeed", currentSpeed * animationSpeedMultiplier);
         animator.SetBool("IsMoving", currentSpeed > 0.1f);
     }
 }

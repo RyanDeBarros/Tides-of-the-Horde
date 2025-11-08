@@ -160,8 +160,9 @@ MonoBehaviour:
   chaseRange: 30
   stoppingDistance: 1
   moveSpeed: 4
-  turnSpeed: 12
+  turnSpeed: 600
   patrolSpeedMultiplier: 0.5
+  animationSpeedMultiplier: 0.3
 --- !u!114 &1670915203915621149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,6 +330,9 @@ MonoBehaviour:
   waypoints: []
   characterController: {fileID: 7395914119646533096}
   moveSpeed: 5
+  onMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2159607101125487273
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,7 +375,7 @@ Transform:
   m_GameObject: {fileID: 8236134914262174659}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -475,6 +479,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 086cef9c5b4caf4408d077072a690d80, type: 2}
+    - target: {fileID: 8511647367367272476, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8511647367374690912, guid: 090745f32e1740478c948efbbba21c5a, type: 3}
       propertyPath: m_Layer
       value: 8

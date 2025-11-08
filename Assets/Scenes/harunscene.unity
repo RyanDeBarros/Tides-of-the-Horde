@@ -267,9 +267,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1822851808941021713, guid: ad358b1fffdddc5d0a08ebd64e43e38e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7409806717346102057, guid: ad358b1fffdddc5d0a08ebd64e43e38e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -19.190247
+      value: -17.08
       objectReference: {fileID: 0}
     - target: {fileID: 7409806717346102057, guid: ad358b1fffdddc5d0a08ebd64e43e38e, type: 3}
       propertyPath: m_LocalPosition.y
@@ -277,7 +281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7409806717346102057, guid: ad358b1fffdddc5d0a08ebd64e43e38e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.3346767
+      value: 17.96
       objectReference: {fileID: 0}
     - target: {fileID: 7409806717346102057, guid: ad358b1fffdddc5d0a08ebd64e43e38e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -331,6 +335,14 @@ PrefabInstance:
     - target: {fileID: 3329783544436130698, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}
       propertyPath: m_Name
       value: Bishop
+      objectReference: {fileID: 0}
+    - target: {fileID: 3329783544436130698, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3597290828824335131, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3914325643331020136, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}
       propertyPath: m_AnchorMax.x
@@ -448,6 +460,10 @@ PrefabInstance:
     - target: {fileID: 3045373013286125374, guid: 4bb4e1e9a8284c343b7bea48a277a703, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5328790251387851655, guid: 4bb4e1e9a8284c343b7bea48a277a703, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
