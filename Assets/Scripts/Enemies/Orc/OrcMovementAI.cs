@@ -92,6 +92,8 @@ public class OrcMovementAI : MonoBehaviour
     {
         if (animator == null) return;
         animator.SetFloat("AnimationSpeed", speed * 0.5f);
+
+        animator.SetBool("IsMoving", speed > 0.1f);
     }
 
     private void OnDrawGizmosSelected()

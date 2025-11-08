@@ -44,6 +44,7 @@ public class BishopRangedAI : MonoBehaviour
     void HandleMovement()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        bool isMoving = false;
         
         if (distanceToPlayer > attackRange)
         {
@@ -54,7 +55,7 @@ public class BishopRangedAI : MonoBehaviour
             controller.Move(moveDirection * Time.deltaTime);
             
             FacePlayer();
-            UpdateAnimationSpeed(moveSpeed);
+            isMoving = true;
         }
         else if (distanceToPlayer < stoppingDistance)
         {
@@ -64,12 +65,17 @@ public class BishopRangedAI : MonoBehaviour
             controller.Move(moveDirection * Time.deltaTime);
             
             FacePlayer();
-            UpdateAnimationSpeed(moveSpeed);
+            isMoving = true;
         }
         else
         {
             FacePlayer();
-            UpdateAnimationSpeed(0f);
+            isMoving = false;
+        }
+        
+        if (animator != null)
+        {
+            animator.SetBool("IsMoving", isMoving);
         }
     }
 
@@ -83,15 +89,6 @@ public class BishopRangedAI : MonoBehaviour
             Attack();
             lastAttackTime = Time.time;
         }
-    }
-
-    void UpdateAnimationSpeed(float currentSpeed)
-    {
-        if (animator == null) return;
-        
-        animator.SetFloat("AnimationSpeed", currentSpeed * 0.5f);
-        
-        animator.SetBool("IsMoving", currentSpeed > 0.1f);
     }
 
     void FacePlayer()

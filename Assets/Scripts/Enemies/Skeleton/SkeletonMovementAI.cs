@@ -72,5 +72,7 @@ public class SkeletonMovementAI : MonoBehaviour
         if (animator == null) return;
         
         animator.SetFloat("AnimationSpeed", currentSpeed * 0.5f);
+
+        animator.SetBool("IsMoving", currentSpeed > 0.1f);
     }
 }
