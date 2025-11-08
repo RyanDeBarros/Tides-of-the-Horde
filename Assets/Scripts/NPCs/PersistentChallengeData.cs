@@ -4,7 +4,6 @@ using UnityEngine;
 
 public static class PersistentChallengeData
 {
-    // TODO rewards should not be claimed multiple times. Once a reward is claimed, it cannot show up again. Handle edge case where no rewards are left. Also, make rewards level specific so that challenges are spread out over multiple levels.
     public class ChallengeData
     {
         private int _startingBonus = 0;

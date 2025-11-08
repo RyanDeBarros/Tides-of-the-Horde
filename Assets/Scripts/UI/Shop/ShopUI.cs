@@ -54,7 +54,6 @@ public class ShopUI : MonoBehaviour
                 else
                     Open();
             }
-            // TODO else popup message saying shop is disabled?
         }
     }
 

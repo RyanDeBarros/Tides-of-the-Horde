@@ -105,8 +105,6 @@ public class ChallengeTracker : MonoBehaviour
 
         currentChallenge?.Initialize(currentChallengeJSON.values);
         currentReward?.Initialize(currentRewardJSON.values);
-
-        // TODO display current challenge + reward in pause menu.
     }
     private T CreateInstanceFromJSON<T>(string className) where T : class
     {
