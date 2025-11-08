@@ -91,7 +91,7 @@ public class OrcMovementAI : MonoBehaviour
     private void UpdateAnimationSpeed(float speed)
     {
         if (animator == null) return;
-        animator.SetFloat("AnimationSpeed", speed);
+        animator.SetFloat("AnimationSpeed", speed * 0.5f);
     }
 
     private void OnDrawGizmosSelected()

@@ -5,7 +5,6 @@ public class SkeletonMovementAI : MonoBehaviour
 {
      [Header("Animation Settings")]
     private Animator animator;
-    private float baseAnimationSpeed = 1f;
 
     public Transform player;
     public float moveSpeed = 5f;
@@ -72,8 +71,6 @@ public class SkeletonMovementAI : MonoBehaviour
     {
         if (animator == null) return;
         
-        float animationSpeed = baseAnimationSpeed * currentSpeed;
-        
-        animator.SetFloat("AnimationSpeed", animationSpeed);
+        animator.SetFloat("AnimationSpeed", currentSpeed * 0.5f);
     }
 }

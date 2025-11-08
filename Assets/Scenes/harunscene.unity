@@ -332,14 +332,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bishop
       objectReference: {fileID: 0}
-    - target: {fileID: 3914325643331020136, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3914325643331020136, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7154928835508353873, guid: 6a32ee4a23b3a41b98f372f2ff401c39, type: 3}
       propertyPath: m_LocalPosition.x
       value: -10.649497

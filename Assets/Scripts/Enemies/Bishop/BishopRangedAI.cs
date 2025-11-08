@@ -64,7 +64,7 @@ public class BishopRangedAI : MonoBehaviour
             controller.Move(moveDirection * Time.deltaTime);
             
             FacePlayer();
-            UpdateAnimationSpeed(moveSpeed * 0.5f);
+            UpdateAnimationSpeed(moveSpeed);
         }
         else
         {
@@ -89,7 +89,7 @@ public class BishopRangedAI : MonoBehaviour
     {
         if (animator == null) return;
         
-        animator.SetFloat("AnimationSpeed", currentSpeed);
+        animator.SetFloat("AnimationSpeed", currentSpeed * 0.5f);
         
         animator.SetBool("IsMoving", currentSpeed > 0.1f);
     }
