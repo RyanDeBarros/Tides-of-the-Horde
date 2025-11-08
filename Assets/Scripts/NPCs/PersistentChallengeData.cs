@@ -1,4 +1,5 @@
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class PersistentChallengeData
@@ -7,51 +8,61 @@ public static class PersistentChallengeData
     public class ChallengeData
     {
         private int _startingBonus = 0;
-        private float _shopDiscount = 0f;
-        private float _currencyBoost = 0f;
-
-        [JsonIgnore]
-        public bool saveOnSet = false;
-
         public int StartingBonus
         {
             get => _startingBonus;
-            set
-            {
-                if (_startingBonus != value)
-                {
-                    _startingBonus = value;
-                    if (saveOnSet)
-                        PersistentChallengeData.Save();
-                }
-            }
+            set => SetField(ref _startingBonus, value);
         }
 
+        private float _shopDiscount = 0f;
         public float ShopDiscount
         {
             get => _shopDiscount;
-            set
-            {
-                if (Mathf.Abs(_shopDiscount - value) > 0.0001f)
-                {
-                    _shopDiscount = value;
-                    if (saveOnSet)
-                        PersistentChallengeData.Save();
-                }
-            }
+            set => SetField(ref _shopDiscount, value);
         }
 
+        private float _currencyBoost = 0f;
         public float CurrencyBoost
         {
             get => _currencyBoost;
-            set
+            set => SetField(ref _currencyBoost, value);
+        }
+
+        private Dictionary<int, HashSet<string>> _completedRewardsPerLevel = new();
+        public Dictionary<int, HashSet<string>> CompletedRewardsPerLevel
+        {
+            get => _completedRewardsPerLevel;
+            set => SetField(ref _completedRewardsPerLevel, value);
+        }
+
+        private HashSet<string> GetCompletedRewards(int level)
+        {
+            if (!CompletedRewardsPerLevel.ContainsKey(level))
+                CompletedRewardsPerLevel[level] = new();
+            return CompletedRewardsPerLevel[level];
+        }
+
+        public bool IsRewardCompleted(int level, string reward)
+        {
+            return GetCompletedRewards(level).Contains(reward);
+        }
+
+        public void CompleteReward(int level, string reward)
+        {
+            GetCompletedRewards(level).Add(reward);
+            Save();
+        }
+
+        [JsonIgnore]
+        public bool SaveOnSet { get; set; }
+
+        private void SetField<T>(ref T field, T value)
+        {
+            if (!EqualityComparer<T>.Default.Equals(field, value))
             {
-                if (Mathf.Abs(_currencyBoost - value) > 0.0001f)
-                {
-                    _currencyBoost = value;
-                    if (saveOnSet)
-                        PersistentChallengeData.Save();
-                }
+                field = value;
+                if (SaveOnSet)
+                    Save();
             }
         }
     }
@@ -65,7 +76,7 @@ public static class PersistentChallengeData
         {
             data = new();
             PlayerDataManager.Get(KEY, ref data);
-            data.saveOnSet = true;
+            data.SaveOnSet = true;
         }
         return data;
     }
@@ -77,6 +88,6 @@ public static class PersistentChallengeData
 
     public static void Reset()
     {
-        data = new() { saveOnSet = true };
+        data = new() { SaveOnSet = true };
     }
 }

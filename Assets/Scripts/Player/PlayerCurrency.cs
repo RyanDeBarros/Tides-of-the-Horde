@@ -14,6 +14,7 @@ public class PlayerCurrency : MonoBehaviour
         currency += PersistentChallengeData.Data().StartingBonus;
         shopDiscount += PersistentChallengeData.Data().ShopDiscount * (1f - shopDiscount);
         currencyCollectMultiplier += PersistentChallengeData.Data().CurrencyBoost;
+        CurrencyChanged();
     }
 
     public int GetCurrency()
@@ -25,14 +26,14 @@ public class PlayerCurrency : MonoBehaviour
     {
         Assert.IsTrue(amount >= 0);
         currency += (int)(amount * currencyCollectMultiplier);
-        onCurrencyChanged?.Invoke(currency);
+        CurrencyChanged();
     }
 
     public void Pay(int amount)
     {
         Assert.IsTrue(currency >= amount && amount >= 0);
         currency -= amount;
-        onCurrencyChanged?.Invoke(currency);
+        CurrencyChanged();
     }
 
     public float GetMultiplier()
@@ -48,5 +49,10 @@ public class PlayerCurrency : MonoBehaviour
     public int ShopPrice(int originalPrice)
     {
         return Mathf.CeilToInt(originalPrice * (1f - shopDiscount));
+    }
+
+    private void CurrencyChanged()
+    {
+        onCurrencyChanged?.Invoke(currency);
     }
 }
