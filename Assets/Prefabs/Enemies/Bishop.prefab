@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 1941308534688048799}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -184,6 +184,8 @@ MonoBehaviour:
   - {fileID: 1001082693539445144}
   sinkDuration: 0.1
   sinkSpeed: 1
+  audioSource: {fileID: 0}
+  deathSFX: {fileID: 0}
 --- !u!114 &3620802734628203079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -256,6 +258,9 @@ MonoBehaviour:
   waypoints: []
   characterController: {fileID: 4359709406603153001}
   moveSpeed: 3.5
+  onMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &3978417593256799835
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -270,6 +275,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarContainer: {fileID: 362435641922987918}
   healthSlider: {fileID: 1666123820808401067}
+  enemyHealth: {fileID: 0}
   showDuration: 3
   healthBarOffset: {x: 0, y: 2.5, z: 0}
 --- !u!1 &3424555026866121806

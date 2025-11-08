@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Events;
 
 public class WaypointPatroller : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class WaypointPatroller : MonoBehaviour
     public List<Waypoint> waypoints;
     public CharacterController characterController;
     public float moveSpeed = 5f;
+    public UnityEvent<Vector3> onMove;
 
     private bool patrolling = false;
     private int current_waypoint_index = -1;
@@ -42,8 +44,9 @@ public class WaypointPatroller : MonoBehaviour
         }
 
         transform.LookAt(current_waypoint.transform.position);
-        float distance = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude);
-        characterController.Move(distance * displacement.normalized);
+        displacement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
+        characterController.Move(displacement);
+        onMove.Invoke(displacement);
     }
 
     private void TargetNextWaypoint()

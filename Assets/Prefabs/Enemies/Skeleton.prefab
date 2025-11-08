@@ -350,6 +350,9 @@ MonoBehaviour:
   waypoints: []
   characterController: {fileID: 5840853363918661323}
   moveSpeed: 5
+  onMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &60907412541661167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +367,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBarContainer: {fileID: 4683100621972104204}
   healthSlider: {fileID: 5973273622743462697}
+  enemyHealth: {fileID: 0}
   showDuration: 3
   healthBarOffset: {x: 0, y: 2.5, z: 0}
 --- !u!1 &4069443703503164984
@@ -391,7 +395,7 @@ Transform:
   m_GameObject: {fileID: 4069443703503164984}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

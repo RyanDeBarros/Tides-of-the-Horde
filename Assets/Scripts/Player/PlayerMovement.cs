@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float walkingSpeed = 10f;
     [SerializeField] private float runningSpeed = 15f;
     [SerializeField] private float rotationSpeed = 10f;
-    [SerializeField] private float inputDeadzone = 0.15f; // ignore tiny axis values
+    [SerializeField] private float inputDeadzone = 0.15f;
 
     private CharacterController characterController;
     private PlayerCamera cam;

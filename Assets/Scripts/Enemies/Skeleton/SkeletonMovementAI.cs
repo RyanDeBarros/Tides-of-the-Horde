@@ -3,11 +3,15 @@ using UnityEngine.Assertions;
 
 public class SkeletonMovementAI : MonoBehaviour
 {
+     [Header("Animation Settings")]
+    private Animator animator;
+
     public Transform player;
     public float moveSpeed = 5f;
     public float chaseRange = 10f;
     public float stoppingDistance = 2f;
     public float patrolSpeedMultiplier = 0.5f;
+    [SerializeField] private float animationSpeedMultiplier = 0.3f;
 
     private CharacterController controller;
     private WaypointPatroller waypointPatroller;
@@ -19,10 +23,14 @@ public class SkeletonMovementAI : MonoBehaviour
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
+        waypointPatroller.onMove.AddListener(OnWaypointPatrollerMove);
 
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
+
+        animator = GetComponentInChildren<Animator>();
+        Assert.IsNotNull(animator);
     }
 
     private void Start()
@@ -51,18 +59,23 @@ public class SkeletonMovementAI : MonoBehaviour
             {
                 Vector3 movement = moveSpeed * Time.deltaTime * direction;
                 controller.Move(movement);
+                UpdateAnimationSpeed(moveSpeed);
             }
+            else
+                UpdateAnimationSpeed(0f);
         }
         else
             waypointPatroller.StartPatrol();
     }
 
-    // Visualize ranges in the Scene view
-    private void OnDrawGizmosSelected()
+    private void OnWaypointPatrollerMove(Vector3 displacement)
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, chaseRange);
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
+        UpdateAnimationSpeed(displacement.magnitude / Time.deltaTime);
+    }
+
+    private void UpdateAnimationSpeed(float currentSpeed)
+    {
+        animator.SetFloat("AnimationSpeed", currentSpeed * animationSpeedMultiplier);
+        animator.SetBool("IsMoving", currentSpeed > 0.1f);
     }
 }

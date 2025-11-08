@@ -1,21 +1,15 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class BishopRangedAI : MonoBehaviour
 {
-    [Header("Target Settings")]
     public Transform player;
-    
-    [Header("Movement Settings")]
     public float moveSpeed = 3.5f;
-    public float stoppingDistance = 3f; // Reduced for better backing away
-    
-    [Header("Attack Settings")]
+    public float stoppingDistance = 3f;
     public float attackRange = 8f;
     public float attackCooldown = 2f;
     public float fireballSpeed = 12f;
     public int damagePerFireball = 15;
-    
-    [Header("References")]
     public GameObject fireballPrefab;
     public Transform firePoint;
     
@@ -27,10 +21,16 @@ public class BishopRangedAI : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
-        
+        Assert.IsNotNull(controller);
+
+        animator = GetComponentInChildren<Animator>();
+        Assert.IsNotNull(animator);
+
         if (player == null)
             player = GameObject.FindGameObjectWithTag("Player").transform;
+        Assert.IsNotNull(player);
+        
+        Assert.IsNotNull(fireballPrefab);
         
         if (firePoint == null)
         {
@@ -38,22 +38,20 @@ public class BishopRangedAI : MonoBehaviour
             firePoint.SetParent(transform);
             firePoint.localPosition = new Vector3(0, 1f, 1f);
         }
+        Assert.IsNotNull(firePoint);
     }
 
     void Update()
     {
-        if (player == null) return;
-
         HandleMovement();
         HandleAttack();
-        UpdateAnimations();
     }
 
     void HandleMovement()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
+        bool isMoving = false;
         
-        // Move towards player if outside attack range
         if (distanceToPlayer > attackRange)
         {
             Vector3 direction = (player.position - transform.position).normalized;
@@ -63,8 +61,8 @@ public class BishopRangedAI : MonoBehaviour
             controller.Move(moveDirection * Time.deltaTime);
             
             FacePlayer();
+            isMoving = true;
         }
-        // Back away if too close
         else if (distanceToPlayer < stoppingDistance)
         {
             Vector3 directionAway = (transform.position - player.position).normalized;
@@ -72,13 +70,16 @@ public class BishopRangedAI : MonoBehaviour
             Vector3 moveDirection = directionAway * moveSpeed * 0.5f;
             controller.Move(moveDirection * Time.deltaTime);
             
-            FacePlayer(); // Still face player while backing away!
+            FacePlayer();
+            isMoving = true;
         }
-        // In perfect position - just face player
         else
         {
             FacePlayer();
+            isMoving = false;
         }
+        
+        animator.SetBool("IsMoving", isMoving);
     }
 
     void HandleAttack()
@@ -93,18 +94,6 @@ public class BishopRangedAI : MonoBehaviour
         }
     }
 
-    void UpdateAnimations()
-    {
-        if (animator == null) return;
-
-        // Calculate movement speed for walk/idle animations
-        float horizontalSpeed = new Vector3(controller.velocity.x, 0, controller.velocity.z).magnitude;
-        animator.SetFloat("Speed", horizontalSpeed);
-        
-        // Handle attack animation
-        animator.SetBool("IsAttacking", isAttacking);
-    }
-
     void FacePlayer()
     {
         Vector3 lookPos = player.position - transform.position;
@@ -117,63 +106,33 @@ public class BishopRangedAI : MonoBehaviour
 
     void Attack()
     {
-        if (fireballPrefab == null) return;
-
-        // Trigger attack animation
         StartCoroutine(PlayAttackAnimation());
     }
 
     System.Collections.IEnumerator PlayAttackAnimation()
     {
         isAttacking = true;
-        
-        // Wait for attack animation to reach the point where fireball should spawn
-        yield return new WaitForSeconds(0.3f); // Adjust this timing to match your animation
-        
-        // Spawn fireball during attack animation
-        GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
-        Vector3 attackDirection = (player.position + Vector3.up * 0.5f) - firePoint.position;
-        
-        FireballProjectile fireballScript = fireball.GetComponent<FireballProjectile>();
-        if (fireballScript != null)
-        {
-            fireballScript.speed = fireballSpeed;
-            fireballScript.damage = damagePerFireball;
-            fireballScript.Initialize(attackDirection);
-        }
-        
-        // Wait for attack animation to finish
-        yield return new WaitForSeconds(0.5f); // Adjust to match your animation length
-        
+        animator.SetTrigger("Fire");
+        yield return new WaitForSeconds(0.4f);
+        OnAttackSpawnFireball();
+        yield return new WaitForSeconds(0.5f);
         isAttacking = false;
     }
 
-    // Animation Event methods - call these from your attack animation if using animation events
     public void OnAttackSpawnFireball()
     {
         GameObject fireball = Instantiate(fireballPrefab, firePoint.position, firePoint.rotation);
         Vector3 attackDirection = (player.position + Vector3.up * 0.5f) - firePoint.position;
         
         FireballProjectile fireballScript = fireball.GetComponent<FireballProjectile>();
-        if (fireballScript != null)
-        {
-            fireballScript.speed = fireballSpeed;
-            fireballScript.damage = damagePerFireball;
-            fireballScript.Initialize(attackDirection);
-        }
+        Assert.IsNotNull(fireballScript);
+        fireballScript.speed = fireballSpeed;
+        fireballScript.damage = damagePerFireball;
+        fireballScript.Initialize(attackDirection);
     }
 
     public void OnAttackEnd()
     {
         isAttacking = false;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, attackRange);
-        
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, stoppingDistance);
     }
 }
