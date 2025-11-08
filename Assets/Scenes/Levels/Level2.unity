@@ -132,6 +132,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4900000, guid: 88c33012100681341945dd32be12fd1d, type: 3}
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+      propertyPath: levelIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: spawnWaveFile
       value: 
       objectReference: {fileID: 4900000, guid: 16a4f097b6148084aa14f0ca008fbdbc, type: 3}

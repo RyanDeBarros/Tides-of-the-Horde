@@ -1,16 +1,14 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 
 public class LevelSelectUI : MonoBehaviour
 {
     [Serializable]
     public class LevelItem
     {
-        public string sceneName;
+        public int levelIndex;
         public Button button;
         public GameObject dim;
         public GameObject lockIcon;
@@ -27,7 +25,7 @@ public class LevelSelectUI : MonoBehaviour
 
     public void BackToMain()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneSwitcher.OpenMainMenu();
     }
 
     private void InitUI()
@@ -46,7 +44,7 @@ public class LevelSelectUI : MonoBehaviour
             levels[i].button.onClick.RemoveAllListeners();
             levels[i].button.onClick.AddListener(() => {
                 if (captured <= PlayerDataManager.GetInt(HIGHEST_UNLOCKED_LEVEL_INDEX, 0))
-                    SceneManager.LoadScene(levels[captured].sceneName);
+                    SceneSwitcher.OpenLevel(levels[captured].levelIndex);
                 else
                     Debug.Log($"Level {captured + 1} is locked.");
             });
@@ -64,7 +62,7 @@ public class LevelSelectUI : MonoBehaviour
     public static void CompleteLevel(int levelIndex)
     {
         MarkLevelCompleted(levelIndex);
-        SceneManager.LoadScene("LevelSelectScene");
+        SceneSwitcher.OpenLevelSelect();
     }
 
     public static void ResetPersistentData()
