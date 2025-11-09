@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -30,7 +29,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
         public int spikesInitialDamage = 5;
         public float spikesDamageOverTime = 5f;
-        public float spikesSlowingFactor = 0.75f;
+        public float spikesSlowingFactor = 0.6f;
         public float spikesFocusRadius = 20f;
         public float spikesTelegraphDuration = 2f;
         public float spikesRisingDuration = 0.5f;

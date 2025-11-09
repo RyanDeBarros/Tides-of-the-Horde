@@ -21,7 +21,7 @@ class DemonKingAttackAI : MonoBehaviour
     [Header("Spike Traps")]
     public int spikesInitialDamage = 5;
     public float spikesDamageOverTime = 5f;
-    public float spikesSlowingFactor = 0.75f;
+    public float spikesSlowingFactor = 0.6f;
     public float spikesFocusRadius = 20f;
     public float spikesTelegraphDuration = 2f;
     public float spikesRisingDuration = 0.5f;
@@ -31,13 +31,11 @@ class DemonKingAttackAI : MonoBehaviour
 
     private enum RangedAttackState
     {
-        None,
-        Telegraph,
-        Cooldown
+        Cooldown,
+        Executing
     }
 
-    private RangedAttackState rangedAttackState = RangedAttackState.None;
-    private float timeElapsed = 0f;
+    private RangedAttackState rangedAttackState = RangedAttackState.Cooldown;
 
     private Transform player;
     private List<SpikeTrap> allSpikeTraps;
@@ -76,7 +74,7 @@ class DemonKingAttackAI : MonoBehaviour
     {
         switch (rangedAttackState)
         {
-            case RangedAttackState.None:
+            case RangedAttackState.Cooldown:
                 if (!detector.PlayerIsInRange() && !animator.IsMovementLocked() && !movement.IsTeleporting())
                 {
                     rangedAttackDelayElapsed += Time.deltaTime;
@@ -84,15 +82,9 @@ class DemonKingAttackAI : MonoBehaviour
                         StartRangedAttackTelegraph();
                 }
                 break;
-            case RangedAttackState.Telegraph:
-                timeElapsed += Time.deltaTime;
-                if (timeElapsed >= spikesTelegraphDuration)
-                {
-                    timeElapsed = 0f;
+            case RangedAttackState.Executing:
+                if (activeSpikeTraps.All(spikeTrap => spikeTrap.IsInactive()))
                     rangedAttackState = RangedAttackState.Cooldown;
-                }
-                break;
-            case RangedAttackState.Cooldown:
                 break;
         }
     }
@@ -121,7 +113,7 @@ class DemonKingAttackAI : MonoBehaviour
 
         if (count > 0)
         {
-            availableSpikeTraps.ToList().RemoveAt(0);
+            availableSpikeTraps.Skip(1);
             var closeSpikeTraps = availableSpikeTraps.Where(x => x.distance < spikesFocusRadius).Select(x => x.spikeTrap);
             
             if (count <= closeSpikeTraps.Count())
@@ -148,8 +140,7 @@ class DemonKingAttackAI : MonoBehaviour
             spikes.Execute();
         });
 
-        rangedAttackState = RangedAttackState.Telegraph;
-        timeElapsed = 0f;
+        rangedAttackState = RangedAttackState.Executing;
         animator.TriggerTelegraph();
         rangedAttackDelayElapsed = 0f;
         rangedAttackDelay = Random.Range(minRangedAttackDelay, maxRangedAttackDelay);
@@ -173,6 +164,6 @@ class DemonKingAttackAI : MonoBehaviour
 
     public bool IsMovementLocked()
     {
-        return rangedAttackState == RangedAttackState.Telegraph;
+        return rangedAttackState == RangedAttackState.Executing;
     }
 }
