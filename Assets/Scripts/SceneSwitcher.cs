@@ -25,6 +25,11 @@ public static class SceneSwitcher
         SceneManager.LoadScene("LevelSelectScene");
     }
 
+    public static void OpenLevelStatistics()
+    {
+        SceneManager.LoadScene("LevelStatistics");
+    }
+
     public static void OpenLevel(int levelIndex)
     {
         if (!levelScenes.ContainsKey(levelIndex))

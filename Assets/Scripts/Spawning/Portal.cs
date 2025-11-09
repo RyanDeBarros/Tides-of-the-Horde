@@ -21,8 +21,6 @@ class Portal : MonoBehaviour
     private Coroutine despawnRoutine = null;
     private bool despawnPlayer = false;
 
-    private readonly LevelStastics levelStastics = new();
-
     private void Awake()
     {
         Assert.IsNotNull(gateCollider);
@@ -48,7 +46,7 @@ class Portal : MonoBehaviour
         Assert.IsNotNull(model);
         playerModel = model.transform;
 
-        levelStastics.Initialize();
+        LevelStatistics.Initialize();
     }
 
     public void Initialize(int levelIndex)
@@ -58,7 +56,7 @@ class Portal : MonoBehaviour
 
     private void Update()
     {
-        if (despawnPlayer && despawnRoutine != null)
+        if (despawnPlayer && despawnRoutine == null)
         {
             Collider[] cols = new Collider[1];
             if (Physics.OverlapBoxNonAlloc(
@@ -99,14 +97,13 @@ class Portal : MonoBehaviour
     public void PrepareToDespawnPlayer()
     {
         despawnPlayer = true;
-        levelStastics.StopTimer();
+        LevelStatistics.StopTimer();
         // TODO VFX to show that player can enter portal
     }
 
     private void DespawnPlayer()
     {
-        if (despawnRoutine != null)
-            despawnRoutine = StartCoroutine(EndLevelRoutine());
+        despawnRoutine ??= StartCoroutine(EndLevelRoutine());
     }
 
     private IEnumerator EndLevelRoutine()
@@ -124,18 +121,6 @@ class Portal : MonoBehaviour
         playerModel.localScale = new(1f, 0f, 1f);
 
         playerCamera.DisableCamera();
-
-        var statistics = levelStastics.GatherStats();
-        // TODO display stastics in UI
-        Debug.Log($"finalHealth = {statistics.finalHealth}");
-        Debug.Log($"totalCurrency = {statistics.totalCurrency}");
-        Debug.Log($"totalTime = {statistics.totalTime}");
-        Debug.Log($"# skeletons defeated = {statistics.GetEnemiesDefeated(EnemyType.Skeleton)}");
-        Debug.Log($"# orcs defeated = {statistics.GetEnemiesDefeated(EnemyType.Orc)}");
-        Debug.Log($"# bishops defeated = {statistics.GetEnemiesDefeated(EnemyType.Bishop)}");
-        Debug.Log($"# dragons defeated = {statistics.GetEnemiesDefeated(EnemyType.Dragon)}");
-        Debug.Log($"# flying demons defeated = {statistics.GetEnemiesDefeated(EnemyType.FlyingDemon)}");
-        Debug.Log($"# demon kings defeated = {statistics.GetEnemiesDefeated(EnemyType.DemonKing)}");
 
         LevelSelectUI.CompleteLevel(levelIndex);
     }
@@ -157,10 +142,5 @@ class Portal : MonoBehaviour
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         Assert.IsNotNull(go);
         return go.transform;
-    }
-
-    public static LevelStastics GetLevelStatistics()
-    {
-        return GetLevelPortal().levelStastics;
     }
 }

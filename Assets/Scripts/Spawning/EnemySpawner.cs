@@ -148,7 +148,7 @@ public class EnemySpawner : MonoBehaviour
         if (instance.TryGetComponent(out WaypointPatroller waypointPatroller))
             waypointPatroller.waypoints = waypoints;
         if (instance.TryGetComponent(out Health health))
-            health.onDeath.AddListener(() => { Portal.GetLevelStatistics().AddEnemyDeath(type); });
+            health.onDeath.AddListener(() => { LevelStatistics.AddEnemyDeath(type); });
     }
 
     private GameObject GetEnemyPrefab(EnemyType type)

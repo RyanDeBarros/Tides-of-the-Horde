@@ -132,6 +132,7 @@ public class SpellManager : MonoBehaviour
         int activeIndex = Array.IndexOf(spellTypes, activeSpell);
         for (int offset = 1; offset < spellTypes.Length; ++offset)
         {
+            // TODO this doesn't work for out of order spells
             SpellType nextSpell = spellTypes[(activeIndex + offset * (up ? 1 : -1) + spellTypes.Length) % spellTypes.Length];
             if (IsUnlocked(nextSpell))
             {
