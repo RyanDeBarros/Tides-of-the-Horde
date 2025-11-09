@@ -128,17 +128,15 @@ public class SpellManager : MonoBehaviour
 
     private void ToggleActiveSpell(bool up)
     {
-        SpellType[] spellTypes = (SpellType[])Enum.GetValues(typeof(SpellType));
-        int activeIndex = Array.IndexOf(spellTypes, activeSpell);
-        for (int offset = 1; offset < spellTypes.Length; ++offset)
+        int numberOfUnlockedSpells = hud.NumberOfUnlockedSpells();
+        if (numberOfUnlockedSpells > 1)
         {
-            // TODO this doesn't work for out of order spells
-            SpellType nextSpell = spellTypes[(activeIndex + offset * (up ? 1 : -1) + spellTypes.Length) % spellTypes.Length];
-            if (IsUnlocked(nextSpell))
-            {
-                SetActiveSpell(nextSpell);
-                break;
-            }
+            int activeIndex = hud.GetSpellKey(activeSpell);
+            int nextIndex = activeIndex + (up ? 1 : -1);
+            int normalizedIndex = 1 + (-1 + nextIndex + numberOfUnlockedSpells) % numberOfUnlockedSpells; // +1, -1 to ensure normalizedIndex is in range [1, numberOfUnlockedSpells]
+            SpellType nextSpell = hud.GetMappedSpell(normalizedIndex);
+            Assert.IsTrue(IsUnlocked(nextSpell));
+            SetActiveSpell(nextSpell);
         }
     }
 
