@@ -39,9 +39,9 @@ public class MeleeHitbox : MonoBehaviour
 
         foreach (SphereCollider collider in colliders)
         {
-            Collider[] cols = new Collider[1];
             float maxScale = Mathf.Max(collider.transform.lossyScale.x, collider.transform.lossyScale.y, collider.transform.lossyScale.z);
-            if (Physics.OverlapSphereNonAlloc(collider.transform.TransformPoint(collider.center), collider.radius * maxScale, cols, targetMask) > 1)
+            Collider[] cols = new Collider[1];
+            if (Physics.OverlapSphereNonAlloc(collider.transform.TransformPoint(collider.center), collider.radius * maxScale, cols, targetMask) > 0)
             {
                 Health health = cols[0].GetComponentInParent<Health>();
                 Assert.IsNotNull(health);
