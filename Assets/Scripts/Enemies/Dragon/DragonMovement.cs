@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -8,6 +7,7 @@ public class DragonMovement : MonoBehaviour
     public float chaseRange = 40f;
     public float stoppingDistance = 4f;
     public float patrolSpeedMultiplier = 0.5f;
+    [SerializeField] private float turnSpeed = 800f;
 
     private CharacterController controller;
     private DragonAnimator animator;
@@ -57,7 +57,7 @@ public class DragonMovement : MonoBehaviour
             waypointPatroller.StopPatrol();
 
             direction.Normalize();
-            transform.rotation = Quaternion.LookRotation(direction);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
 
             float displacement = distanceToPlayer - stoppingDistance;
             displacement = Mathf.Min(Mathf.Abs(displacement), moveSpeed * Time.deltaTime) * Mathf.Sign(displacement);
