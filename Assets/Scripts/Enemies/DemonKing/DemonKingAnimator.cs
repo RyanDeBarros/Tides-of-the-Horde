@@ -5,32 +5,47 @@ public class DemonKingAnimator : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private DemonKingMovementAI movement;
+    [SerializeField] private DemonKingAttackAI attackAI;
 
     private bool movementLocked = false;
 
     private void Awake()
     {
-        if (!animator)
+        if (animator == null)
             animator = GetComponentInChildren<Animator>();
         Assert.IsNotNull(animator);
 
-        if (!movement)
+        if (movement == null)
             movement = GetComponentInParent<DemonKingMovementAI>();
         Assert.IsNotNull(movement);
+
+        if (attackAI == null)
+            attackAI = GetComponentInParent<DemonKingAttackAI>();
+        Assert.IsNotNull(attackAI);
     }
 
-    // Called by TargetDetector (UnityEvent)
-    public void TriggerRandomAttack()
+    public void TriggerAttack1()
     {
-        if (movement.IsTeleporting()) return;
-
         movementLocked = true;
-        SetSpeed(0f);
+        animator.SetTrigger("Attack1");
+    }
 
-        if (Random.Range(0, 2) == 0)
-            animator.SetTrigger("Attack1");
-        else
-            animator.SetTrigger("Attack2");
+    public void TriggerAttack2()
+    {
+        movementLocked = true;
+        animator.SetTrigger("Attack2");
+    }
+
+    public void TriggerComboAttack()
+    {
+        movementLocked = true;
+        animator.SetTrigger("ComboAttack");
+    }
+
+    // Called by animator
+    public void OnComboAttackReadjust()
+    {
+        movement.FacePlayer();
     }
 
     // Called by animator
@@ -47,5 +62,28 @@ public class DemonKingAnimator : MonoBehaviour
     public void SetSpeed(float speed)
     {
         animator.SetFloat("Speed", speed);
+    }
+
+    public void TriggerGetHit()
+    {
+        movementLocked = true;
+        animator.SetTrigger("GetHit");
+    }
+
+    public void OnGetHitEnd()
+    {
+        movement.StartTeleportSequence();
+        movementLocked = false;
+    }
+
+    public void TriggerTelegraph()
+    {
+        animator.SetTrigger("Telegraph");
+        movementLocked = true;
+    }
+
+    public void OnTelegraphEnd()
+    {
+        movementLocked = false;
     }
 }

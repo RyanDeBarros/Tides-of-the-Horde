@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DemonKing_Attack01
+  m_Name: Attack Combo 1
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -52550,7 +52550,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 1
-    functionName: UnlockMovement
+    functionName: OnComboAttackReadjust
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

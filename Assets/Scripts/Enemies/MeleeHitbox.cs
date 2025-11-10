@@ -12,7 +12,7 @@ public class MeleeHitbox : MonoBehaviour
     [SerializeField] private LayerMask targetMask;
     
     private readonly List<SphereCollider> colliders = new();
-    private readonly HashSet<Health> hitThisSwing = new();
+    private bool playerHit = false;
     private bool swinging = false;
 
     private void Awake()
@@ -23,32 +23,32 @@ public class MeleeHitbox : MonoBehaviour
 
     public void BeginSwing()
     {
-        hitThisSwing.Clear();
+        playerHit = false;
         swinging = true;
     }
 
     public void EndSwing()
     {
         swinging = false;
-        hitThisSwing.Clear();
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
-        if (!swinging)
+        if (!swinging || playerHit)
             return;
 
-        colliders.ForEach(collider => {
-            Collider[] cols = Physics.OverlapSphere(collider.transform.TransformPoint(collider.center), collider.radius, targetMask);
-            foreach (Collider col in cols)
+        foreach (SphereCollider collider in colliders)
+        {
+            float maxScale = Mathf.Max(collider.transform.lossyScale.x, collider.transform.lossyScale.y, collider.transform.lossyScale.z);
+            Collider[] cols = new Collider[1];
+            if (Physics.OverlapSphereNonAlloc(collider.transform.TransformPoint(collider.center), collider.radius * maxScale, cols, targetMask) > 0)
             {
-                Health h = col.GetComponentInParent<Health>();
-                if (h != null && !hitThisSwing.Contains(h))
-                {
-                    h.TakeDamage(damage);
-                    hitThisSwing.Add(h);
-                }
+                Health health = cols[0].GetComponentInParent<Health>();
+                Assert.IsNotNull(health);
+                health.TakeDamage(damage);
+                playerHit = true;
+                break;
             }
-        });
+        }
     }
 }

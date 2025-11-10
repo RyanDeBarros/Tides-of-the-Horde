@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float runningSpeed = 15f;
     [SerializeField] private float rotationSpeed = 10f;
     [SerializeField] private float inputDeadzone = 0.15f;
+    public float slowingFactor = 1f;
 
     private CharacterController characterController;
     private PlayerCamera cam;
@@ -73,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveDir.Normalize();
 
-            float moveSpeed = running ? runningSpeed : walkingSpeed;
+            float moveSpeed = (running ? runningSpeed : walkingSpeed) * slowingFactor;
             characterController.Move(moveSpeed * Time.deltaTime * moveDir);
 
             Quaternion targetRotation = Quaternion.LookRotation(moveDir);

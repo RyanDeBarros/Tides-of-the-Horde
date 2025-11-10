@@ -1,86 +1,22 @@
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
+using UnityEngine.Events;
 
 public class SwordHitbox : MonoBehaviour
 {
-    [Header("Damage")]
-    public int damage = 1;
-    [Space]
-    public float bounceBackStrength = 5f;
+    public UnityEvent<Transform> onCollision;
 
-    [Header("Hitbox Collider (reference only)")]
-    public BoxCollider hitCollider; // Disabled, used only for box dimensions
-
-    [Header("Detection")]
-    public LayerMask playerLayer;
-
-    private readonly HashSet<Health> hitThisSwing = new();
-
-    private bool attacking = false;
-
-    void Start()
+    public void EnableCollision()
     {
-        if (hitCollider) hitCollider.enabled = false;
+        gameObject.SetActive(true);
     }
 
-    void FixedUpdate()
+    public void DisableCollision()
     {
-        if (!attacking || hitCollider == null) return;
-
-        Vector3 center = hitCollider.transform.TransformPoint(hitCollider.center);
-        Vector3 halfExtents = hitCollider.size * 0.5f;
-
-        Collider[] hits = Physics.OverlapBox(center, halfExtents, hitCollider.transform.rotation, playerLayer);
-
-        foreach (Collider hit in hits)
-        {
-            Health health = hit.GetComponent<Health>();
-            if (health != null && !hitThisSwing.Contains(health))
-            {
-                health.TakeDamage(damage);
-
-                // Bounce back the player
-                Vector3 direction = hit.transform.position - transform.position;
-                direction.y = 0; // Keep bounce horizontal
-                TryBouncingBack(hit, direction.normalized);
-
-                hitThisSwing.Add(health);
-            }
-        }
+        gameObject.SetActive(false);
     }
 
-    private void TryBouncingBack(Collider target, Vector3 direction)
+    private void OnTriggerEnter(Collider other)
     {
-        if (target.TryGetComponent<BounceBack>(out var bounceBack))
-        {
-            bounceBack.Bounce(direction, bounceBackStrength);
-        }
+        onCollision?.Invoke(other.transform);
     }
-
-    // Animation Events
-    public void EnableHitbox()
-    {
-        hitThisSwing.Clear();
-        attacking = true;
-    }
-
-    public void DisableHitbox()
-    {
-        attacking = false;
-        hitThisSwing.Clear();
-    }
-
-    // Draw wireframe in editor
-    private void OnDrawGizmosSelected()
-    {
-        if (!hitCollider) return;
-
-        Gizmos.color = Color.red;
-        // Set the matrix to match the collider's transform
-        Gizmos.matrix = hitCollider.transform.localToWorldMatrix;
-        // Draw the wire cube using local center and size
-        Gizmos.DrawWireCube(hitCollider.center, hitCollider.size);
-    }
-
 }

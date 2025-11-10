@@ -9,8 +9,8 @@ using UnityEngine.Events;
 public class TargetDetector : MonoBehaviour
 {
     [Header("Target")]
-    public string playerTag = "Player";
-    public bool ignoreVertical = true;
+    [SerializeField] private string playerTag = "Player";
+    [SerializeField] private bool ignoreVertical = true;
 
     [Header("Attack Gate")]
     public float attackRange = 4.57f;
@@ -18,12 +18,10 @@ public class TargetDetector : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent OnCanAttack;
-    public UnityEvent<float> OnDistanceUpdated;
-
     public readonly List<Func<bool>> attackConditions = new();
 
-    Transform player;
-    float nextAttackTime;
+    private Transform player;
+    private float nextAttackTime = 0f;
 
     void Awake()
     {
@@ -35,13 +33,7 @@ public class TargetDetector : MonoBehaviour
 
     void Update()
     {
-        float dist = ignoreVertical
-            ? HorizontalDistance(transform.position, player.position)
-            : Vector3.Distance(transform.position, player.position);
-
-        OnDistanceUpdated?.Invoke(dist);
-
-        if (dist <= attackRange && Time.time >= nextAttackTime && ConditionsSatisfied())
+        if (PlayerIsInRange() && Time.time >= nextAttackTime && ConditionsSatisfied())
         {
             nextAttackTime = Time.time + attackInterval;
             OnCanAttack?.Invoke();
@@ -53,10 +45,21 @@ public class TargetDetector : MonoBehaviour
         return attackConditions.All(f => f());
     }
 
-    static float HorizontalDistance(Vector3 a, Vector3 b)
+    public float DistanceToPlayer()
     {
-        a.y = 0; b.y = 0;
+        Vector3 a = transform.position;
+        Vector3 b = player.position;
+        if (ignoreVertical)
+        {
+            a.y = 0f;
+            b.y = 0f;
+        }
         return Vector3.Distance(a, b);
+    }
+
+    public bool PlayerIsInRange()
+    {
+        return DistanceToPlayer() < attackRange;
     }
 
 #if UNITY_EDITOR

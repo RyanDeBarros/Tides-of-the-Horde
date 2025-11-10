@@ -6,21 +6,29 @@ using UnityEngine.Assertions;
 public class DemonKingMovementAI : MonoBehaviour
 {
     [Header("References")]
-    public Transform player;
-    public DemonKingAnimator animator;
-    public GameObject planeVFX; // The plane object to show during teleport
+    [SerializeField] private Transform player;
+    [SerializeField] private DemonKingAnimator animator;
+    [SerializeField] private DemonKingAttackAI attackAI;
+    [SerializeField] private GameObject planeVFX; // The plane object to show during teleport
 
     [Header("Movement")]
-    public float moveSpeed = 5f;
-    public float chaseRange = 10f;
-    public float stoppingDistance = 2f;
-    public float turnSpeed = 360f;
+    public float moveSpeed = 10f;
+    public float chaseRange = 60f;
+    [SerializeField] private float stoppingDistance = 2.8f;
+    public float turnSpeed = 800f;
 
     [Header("Teleport Settings")]
-    public float sinkSpeed = 3f; // Speed at which boss sinks into ground
+    public float sinkSpeed = 6f; // Speed at which boss sinks into ground
+    public float riseSpeed = 8f; // Speed at which boss rises from ground
     public float sinkDepth = 5f; // How far underground to go
     public float teleportDuration = 2f; // Total time underground
     public float behindPlayerDistance = 3f; // Distance behind player to spawn
+    public float minRegularTeleportDelay = 4f;
+    public float maxRegularTeleportDelay = 20f;
+
+    private bool isTeleporting = false;
+    private float teleportDelayElapsed = 0f;
+    private float regularTeleportDelay = 0f;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
@@ -28,21 +36,22 @@ public class DemonKingMovementAI : MonoBehaviour
     [SerializeField] private AudioClip AttackSFX2;
     [SerializeField] private AudioClip TeleportSfX;
 
-    private bool isTeleporting = false;
     private CharacterController controller;
-    private Vector3 velocity;
-    private Vector3 originalPosition;
 
-    void Awake()
+    private void Awake()
     {
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
 
-        if (!animator)
+        if (attackAI == null)
+            attackAI = GetComponent<DemonKingAttackAI>();
+        Assert.IsNotNull(attackAI);
+
+        if (animator == null)
             animator = GetComponentInChildren<DemonKingAnimator>();
         Assert.IsNotNull(animator);
 
-        if (!player)
+        if (player == null)
         {
             GameObject go = GameObject.FindGameObjectWithTag("Player");
             if (go != null)
@@ -56,54 +65,58 @@ public class DemonKingMovementAI : MonoBehaviour
 
         // Hook up to health threshold event
         if (TryGetComponent(out Health healthComponent))
-            healthComponent.onHealthThresholdReached.AddListener(StartTeleportSequence);
+            healthComponent.onHealthThresholdReached.AddListener(GetHit);
     }
 
-    void Update()
+    private void Start()
     {
-        if (animator.IsMovementLocked() || isTeleporting)
-        {
-            animator.SetSpeed(0f);
+        regularTeleportDelay = Random.Range(minRegularTeleportDelay, maxRegularTeleportDelay);
+    }
+
+    private void Update()
+    {
+        if (animator.IsMovementLocked() || isTeleporting || attackAI.IsMovementLocked())
             return;
-        }
 
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        bool shouldChase = distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance;
+        Vector3 myPos = transform.position;
+        myPos.y = 0f;
+        Vector3 playerPos = player.position;
+        playerPos.y = 0f;
+        float distanceToPlayer = Vector3.Distance(myPos, playerPos);
 
-        if (shouldChase) ChasePlayer();
-        else animator.SetSpeed(0f); // Idle
-
-        controller.Move(velocity * Time.deltaTime);
-    }
-
-    void ChasePlayer()
-    {
-        Vector3 direction = (player.position - transform.position);
-        direction.y = 0f;
-
-        if (direction.sqrMagnitude > 0.001f)
+        if (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance)
         {
-            direction.Normalize();
-
-            // Rotate towards the player smoothly
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
-
-            // Rotate a portion of the way each frame based on turnSpeed (degrees per second)
-            transform.rotation = Quaternion.RotateTowards(
-                transform.rotation,
-                targetRotation,
-                turnSpeed * Time.deltaTime
-            );
-
-            // Move towards the player
-            Vector3 movement = moveSpeed * Time.deltaTime * direction;
-            controller.Move(movement);
-
-            // Animation blending: walk only while moving
-            animator.SetSpeed(movement.magnitude > 0.01f ? 1f : 0f);
+            teleportDelayElapsed += Time.deltaTime;
+            if (teleportDelayElapsed >= regularTeleportDelay)
+                StartTeleportSequence();
+            else
+            {
+                ChasePlayer();
+                animator.SetSpeed(1f);
+            }
         }
         else
             animator.SetSpeed(0f);
+    }
+
+    private void ChasePlayer()
+    {
+        Vector3 direction = (player.position - transform.position);
+        direction.y = 0f;
+        direction.Normalize();
+
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
+
+        Vector3 movement = moveSpeed * Time.deltaTime * direction;
+        controller.Move(movement);
+    }
+
+    public void FacePlayer()
+    {
+        Vector3 direction = (player.position - transform.position);
+        direction.y = 0f;
+        transform.rotation = Quaternion.LookRotation(direction.normalized);
     }
 
     public bool IsTeleporting()
@@ -111,13 +124,18 @@ public class DemonKingMovementAI : MonoBehaviour
         return isTeleporting;
     }
 
-    // Called when health reaches a 10% threshold
+    private void GetHit()
+    {
+        animator.TriggerGetHit();
+        var difficulty = GetComponent<DemonKingDifficultyImplementer>();
+        Assert.IsNotNull(difficulty);
+        difficulty.GetSmarter();
+    }
+
     public void StartTeleportSequence()
     {
         if (!isTeleporting)
-        {
             StartCoroutine(TeleportBehindPlayer());
-        }
     }
 
     private IEnumerator TeleportBehindPlayer()
@@ -135,7 +153,7 @@ public class DemonKingMovementAI : MonoBehaviour
         planeVFX.SetActive(true);
 
         // Store original position
-        originalPosition = transform.position;
+        Vector3 originalPosition = transform.position;
         Vector3 targetSinkPosition = originalPosition - new Vector3(0, sinkDepth, 0);
 
         // Sink into ground
@@ -150,7 +168,6 @@ public class DemonKingMovementAI : MonoBehaviour
             yield return null;
         }
 
-        // Wait underground (optional - part of teleportDuration)
         yield return new WaitForSeconds(teleportDuration - sinkDuration);
 
         // Calculate position behind player
@@ -168,6 +185,7 @@ public class DemonKingMovementAI : MonoBehaviour
         if (lookDirection != Vector3.zero) transform.rotation = Quaternion.LookRotation(lookDirection);
 
         // Rise up from ground
+        sinkDuration = sinkDepth / riseSpeed;
         float riseTimer = 0f;
         while (riseTimer < sinkDuration)
         {
@@ -188,5 +206,7 @@ public class DemonKingMovementAI : MonoBehaviour
 
         // Unlock movement
         isTeleporting = false;
+        teleportDelayElapsed = 0f;
+        regularTeleportDelay = Random.Range(minRegularTeleportDelay, maxRegularTeleportDelay);
     }
 }
