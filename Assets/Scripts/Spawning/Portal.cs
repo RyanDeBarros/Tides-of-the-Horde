@@ -85,7 +85,7 @@ class Portal : MonoBehaviour
 
         for (float t = 0f; t < spawnDuration; t += Time.deltaTime)
         {
-            playerModel.localScale = new(1f, t / spawnDuration, 1f);
+            playerModel.localScale = new(1f, Mathf.Clamp01(t / spawnDuration), 1f);
             yield return null;
         }
 
@@ -114,7 +114,7 @@ class Portal : MonoBehaviour
 
         for (float t = 0f; t < despawnDuration; t += Time.deltaTime)
         {
-            playerModel.localScale = new(1f, 1f - t / despawnDuration, 1f);
+            playerModel.localScale = new(1f, Mathf.Clamp01(1f - t / despawnDuration), 1f);
             yield return null;
         }
 

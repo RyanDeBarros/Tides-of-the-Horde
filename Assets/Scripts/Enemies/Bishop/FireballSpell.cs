@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class FireballProjectile : MonoBehaviour
 {
@@ -15,8 +16,10 @@ public class FireballProjectile : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         Destroy(gameObject, lifetime);
+
+        rb = GetComponent<Rigidbody>();
+        Assert.IsNotNull(rb);
     }
 
     public void Initialize(Vector3 fireDirection)
@@ -31,28 +34,16 @@ public class FireballProjectile : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (rb != null)
-        {
-            rb.velocity = direction * speed;
-        }
-        else
-        {
-            transform.position += direction * speed * Time.deltaTime;
-        }
+        rb.velocity = direction * speed;
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy")) return;
         
-        if (other.CompareTag("Player"))
-        {
-            Health playerHealth = other.GetComponent<Health>();
-            if (playerHealth != null)
-            {
+        if (other.CompareTag("Player") && other.TryGetComponent<Health>(out var playerHealth))
                 playerHealth.TakeDamage((int)damage);
-            }
-        }
+
         SpawnExplosion();
         Destroy(gameObject);
     }
