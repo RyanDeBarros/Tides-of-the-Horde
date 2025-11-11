@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class Potion : MonoBehaviour
+public class Key : MonoBehaviour
 {
     [SerializeField] private float collectDespawnDuration = 0.5f;
 
