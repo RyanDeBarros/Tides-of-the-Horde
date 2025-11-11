@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: KeyMat
+  m_Name: ShieldMat
   m_Shader: {fileID: -6465566751694194690, guid: 97ae18f56456e864badd6796dec2d5a7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -70,15 +70,15 @@ Material:
     - _Amplitude: 5
     - _Depthpower: 1
     - _Emission: 500
-    - _Frequency: 10
+    - _Frequency: 5
     - _Opacity: 1
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _StartFrequency: 5
+    - _StartFrequency: 1
     - _Useblack: 1
     - _Usedepth: 0
     - __dirty: 1
     m_Colors:
-    - _Color: {r: 0, g: 1, b: 0.3333335, a: 1}
+    - _Color: {r: 0.5, g: 0, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

@@ -6,8 +6,8 @@ public class BossShield : MonoBehaviour
 {
     [SerializeField] private GameObject keyPrefab;
     [SerializeField] private Health bossHealth;
+    [SerializeField] private GameObject shieldVFX;
 
-    // TODO add to DemonKingDifficultyImplementer
     public int keysRequired = 3;
     public float keySpawnCooldown = 10f;
     private float timeElapsed = 0f;
@@ -23,13 +23,21 @@ public class BossShield : MonoBehaviour
             bossHealth = GetComponent<Health>();
         Assert.IsNotNull(bossHealth);
 
+        Assert.IsNotNull(shieldVFX);
+
         spawnZones = new(FindObjectsByType<KeySpawnZone>(FindObjectsSortMode.None));
         Assert.IsTrue(spawnZones.Count > 0);
     }
 
     private void Start()
     {
-        bossHealth.SetInvulnerable(true);
+        if (keysRequired > 0)
+        {
+            bossHealth.SetInvulnerable(true);
+            shieldVFX.SetActive(true);
+        }
+        else
+            RemoveShield();
     }
 
     private void Update()
@@ -40,6 +48,9 @@ public class BossShield : MonoBehaviour
             SpawnKey();
             timeElapsed -= keySpawnCooldown;
         }
+
+        // TODO remove log
+        Debug.Log($"Boss health: {bossHealth.GetCurrentHealth()}");
     }
 
     public void SpawnKey()
@@ -61,9 +72,13 @@ public class BossShield : MonoBehaviour
     {
         --keysRequired;
         if (keysRequired <= 0)
-        {
-            bossHealth.SetInvulnerable(false);
-            enabled = false;
-        }
+            RemoveShield();
+    }
+
+    private void RemoveShield()
+    {
+        bossHealth.SetInvulnerable(false);
+        enabled = false;
+        shieldVFX.SetActive(false);
     }
 }

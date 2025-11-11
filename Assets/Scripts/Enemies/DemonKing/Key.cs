@@ -5,17 +5,28 @@ using UnityEngine.Assertions;
 public class Key : MonoBehaviour
 {
     [SerializeField] private float lifetime = 5f;
-    [SerializeField] private float collectDespawnDuration = 0.5f;
+    [SerializeField] private float spawnDuration = 0.5f;
+    [SerializeField] private float despawnDuration = 0.5f;
     public BossShield shield;
+
+    [SerializeField] private AudioClip spawnSFX;
+    [SerializeField] private AudioClip collectSFX;
+    private AudioSource audioSource;
 
     private float timeElapsed = 0f;
     private bool despawning = false;
     private bool collected = false;
 
+    private void Awake()
+    {
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
+    }
+
     private void Start()
     {
         Assert.IsNotNull(shield);
-        // TODO spawn coroutine
+        StartCoroutine(Spawn());
     }
 
     private void Update()
@@ -39,7 +50,9 @@ public class Key : MonoBehaviour
         if (collected)
             yield break;
         collected = true;
-        // TODO play SFX
+
+        if (collectSFX)
+            audioSource.PlayOneShot(collectSFX);
 
         yield return Despawn();
         shield.CollectKey();
@@ -51,16 +64,34 @@ public class Key : MonoBehaviour
             yield break;
         despawning = true;
 
-        transform.localScale = Vector3.one;
+        Vector3 initialScale = transform.localScale;
 
-        for (float t = 0; t < collectDespawnDuration; t += Time.deltaTime)
+        for (float t = 0; t < despawnDuration; t += Time.deltaTime)
         {
-            float a = 1f - t / collectDespawnDuration;
-            transform.localScale = new Vector3(a, a, a);
+            transform.localScale = Vector3.Lerp(initialScale, Vector3.zero, t / despawnDuration);
             yield return null;
         }
 
         transform.localScale = Vector3.zero;
         Destroy(gameObject);
+    }
+
+    private IEnumerator Spawn()
+    {
+        if (spawnSFX)
+            audioSource.PlayOneShot(spawnSFX);
+
+        transform.localScale = Vector3.zero;
+
+        for (float t = 0; t < spawnDuration; t += Time.deltaTime)
+        {
+            if (despawning)
+                yield break;
+
+            transform.localScale = Vector3.Lerp(Vector3.zero, Vector3.one, t / spawnDuration);
+            yield return null;
+        }
+
+        transform.localScale = Vector3.one;
     }
 }
