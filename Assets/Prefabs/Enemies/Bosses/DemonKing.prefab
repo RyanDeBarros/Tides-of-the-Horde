@@ -424,6 +424,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1bba797c43369c40b0826569b92b176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyPrefab: {fileID: 2585116679079457375, guid: 7e046c0bc7de487458ddc9b4e09ccbf6, type: 3}
+  bossHealth: {fileID: 5225442633808930422}
+  keysRequired: 3
+  keySpawnCooldown: 10
 --- !u!1 &5612114110964857626
 GameObject:
   m_ObjectHideFlags: 0

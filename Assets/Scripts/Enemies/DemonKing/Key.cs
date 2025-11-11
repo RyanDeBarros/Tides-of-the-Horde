@@ -4,18 +4,53 @@ using UnityEngine.Assertions;
 
 public class Key : MonoBehaviour
 {
+    [SerializeField] private float lifetime = 5f;
     [SerializeField] private float collectDespawnDuration = 0.5f;
+    public BossShield shield;
 
-    private Coroutine collectRoutine = null;
+    private float timeElapsed = 0f;
+    private bool despawning = false;
+    private bool collected = false;
+
+    private void Start()
+    {
+        Assert.IsNotNull(shield);
+        // TODO spawn coroutine
+    }
+
+    private void Update()
+    {
+        if (!despawning)
+        {
+            timeElapsed += Time.deltaTime;
+            if (timeElapsed >= lifetime)
+                StartCoroutine(Despawn());
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         Assert.IsTrue(other.CompareTag("Player"));
-        collectRoutine ??= StartCoroutine(Collect());
+        StartCoroutine(Collect());
     }
 
     private IEnumerator Collect()
     {
+        if (collected)
+            yield break;
+        collected = true;
+        // TODO play SFX
+
+        yield return Despawn();
+        shield.CollectKey();
+    }
+
+    private IEnumerator Despawn()
+    {
+        if (despawning)
+            yield break;
+        despawning = true;
+
         transform.localScale = Vector3.one;
 
         for (float t = 0; t < collectDespawnDuration; t += Time.deltaTime)
@@ -27,6 +62,5 @@ public class Key : MonoBehaviour
 
         transform.localScale = Vector3.zero;
         Destroy(gameObject);
-        // TODO increment player's collectible count
     }
 }
