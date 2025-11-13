@@ -37,11 +37,15 @@ public class DemonKingMovementAI : MonoBehaviour
     [SerializeField] private AudioClip TeleportSfX;
 
     private CharacterController controller;
+    private Health health;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
+
+        health = GetComponent<Health>();
+        Assert.IsNotNull(health);
 
         if (attackAI == null)
             attackAI = GetComponent<DemonKingAttackAI>();
@@ -126,15 +130,18 @@ public class DemonKingMovementAI : MonoBehaviour
 
     private void GetHit()
     {
-        animator.TriggerGetHit();
-        var difficulty = GetComponent<DemonKingDifficultyImplementer>();
-        Assert.IsNotNull(difficulty);
-        difficulty.GetSmarter();
+        if (health.IsAlive())
+        {
+            animator.TriggerGetHit();
+            var difficulty = GetComponent<DemonKingDifficultyImplementer>();
+            Assert.IsNotNull(difficulty);
+            difficulty.GetSmarter();
+        }
     }
 
     public void StartTeleportSequence()
     {
-        if (!isTeleporting)
+        if (!isTeleporting && health.IsAlive())
             StartCoroutine(TeleportBehindPlayer());
     }
 

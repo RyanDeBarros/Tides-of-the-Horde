@@ -49,7 +49,7 @@ public static class LevelStatistics
         if (enemiesDefeated.ContainsKey(enemyType))
             ++enemiesDefeated[enemyType];
         else
-            enemiesDefeated[enemyType] = 0;
+            enemiesDefeated[enemyType] = 1;
     }
 
     public static void StopTimer()
