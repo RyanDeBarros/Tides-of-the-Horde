@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SpawnZone : MonoBehaviour
+public class KeySpawnZone : MonoBehaviour
 {
     [SerializeField] private Vector3 size = new(5, 1, 5);
     [SerializeField] private bool spawnable = true;
@@ -21,7 +21,7 @@ public class SpawnZone : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
+        Gizmos.color = Color.yellow;
         Matrix4x4 oldMatrix = Gizmos.matrix;
         Gizmos.matrix = transform.localToWorldMatrix;
         Gizmos.DrawWireCube(Vector3.zero, size);

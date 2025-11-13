@@ -48,6 +48,10 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         // Health
         public int maxHealth = 3000;
 
+        // BossShield
+        public int keysRequired = 3;
+        public float keySpawnCooldown = 15f;
+
         // BounceBack
         public float bounceBackResistance = 2f;
         public float bounceBackDuration = 0.07f;
@@ -71,6 +75,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
     private SwordHitboxController melee;
     private TargetDetector detector;
     private Health health;
+    private BossShield shield;
     private BounceBack bounceBack;
     private RewardOnDeath reward;
 
@@ -91,6 +96,8 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         Assert.IsNotNull(detector);
         health = GetComponent<Health>();
         Assert.IsNotNull(health);
+        shield = GetComponent<BossShield>();
+        Assert.IsNotNull(shield);
         bounceBack = GetComponent<BounceBack>();
         Assert.IsNotNull(bounceBack);
         reward = GetComponent<RewardOnDeath>();
@@ -134,6 +141,9 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
         detector.attackInterval = stats.attackInterval[intelligence];
 
         health.maxHealth = stats.maxHealth;
+
+        shield.keysRequired = stats.keysRequired;
+        shield.keySpawnCooldown = stats.keySpawnCooldown;
 
         bounceBack.resistance = stats.bounceBackResistance;
         bounceBack.duration = stats.bounceBackDuration;

@@ -100,7 +100,6 @@ public class WaveTimeline
         public void OnAfterDeserialize()
         {
             fullSpawnDuration = subwaves.Count > 0 ? subwaves.Select(subwave => subwave.timeOffset + subwave.duration).Max() : 0f;
-            // Avoid division by 0 later
             Assert.IsTrue(preWaveWaitTime >= 0f);
             Assert.IsTrue(postWaveWaitTime >= 0f);
         }
@@ -252,10 +251,10 @@ public class WaveTimeline
         Wave wave = waves[waveNumber];
         return waveState switch
         {
-            WaveState.PreSpawn => waveTimeElapsed / wave.preWaveWaitTime,
+            WaveState.PreSpawn => wave.preWaveWaitTime > 0f ? waveTimeElapsed / wave.preWaveWaitTime : 0f,
             WaveState.Spawning => 1f,
             WaveState.EnemiesRemain => 1f,
-            WaveState.PostSpawn => 1f - waveTimeElapsed / wave.postWaveWaitTime,
+            WaveState.PostSpawn => wave.postWaveWaitTime > 0f ? 1f - waveTimeElapsed / wave.postWaveWaitTime : 0f,
             _ => 0f
         };
     }
