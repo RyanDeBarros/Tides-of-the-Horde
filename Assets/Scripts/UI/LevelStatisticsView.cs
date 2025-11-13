@@ -41,7 +41,7 @@ public class LevelStatisticsView : MonoBehaviour
         int totalTime = (int)LevelStatistics.GetTotalTime();
         totalTimeText.SetText($"{(totalTime / 60)}:{totalTime % 60 :D2}");
 
-        void SetNumberOfEnemies(EnemyType enemyType, TextMeshProUGUI enemyText)
+        static void SetNumberOfEnemies(EnemyType enemyType, TextMeshProUGUI enemyText)
         {
             int enemies = LevelStatistics.GetEnemiesDefeated(enemyType);
             enemyText.SetText($"{enemies}");
@@ -56,7 +56,6 @@ public class LevelStatisticsView : MonoBehaviour
         SetNumberOfEnemies(EnemyType.DemonKing, demonKingsText);
     }
 
-    // TODO continue button
     public void OnContinue()
     {
         SceneSwitcher.OpenLevelSelect();

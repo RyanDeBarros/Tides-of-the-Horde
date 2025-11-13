@@ -8,7 +8,7 @@ public class Health : MonoBehaviour
 {
     [Header("Health Settings")]
     public int maxHealth = 100;
-    private int currentHealth;
+    [SerializeField] private int currentHealth;
     [Space]
     public float thresholdPercent = 10f; // Adjustable percentage threshold
 
@@ -93,6 +93,11 @@ public class Health : MonoBehaviour
     public bool IsInvulnerable()
     {
         return invulnerable;
+    }
+
+    public bool IsAlive()
+    {
+        return currentHealth > 0;
     }
 
     public void Die()
