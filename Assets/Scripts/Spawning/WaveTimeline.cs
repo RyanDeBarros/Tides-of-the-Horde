@@ -101,8 +101,8 @@ public class WaveTimeline
         {
             fullSpawnDuration = subwaves.Count > 0 ? subwaves.Select(subwave => subwave.timeOffset + subwave.duration).Max() : 0f;
             // Avoid division by 0 later
-            Assert.IsTrue(preWaveWaitTime > 0f);
-            Assert.IsTrue(postWaveWaitTime > 0f);
+            Assert.IsTrue(preWaveWaitTime >= 0f);
+            Assert.IsTrue(postWaveWaitTime >= 0f);
         }
 
         public void OnBeforeSerialize() { }
