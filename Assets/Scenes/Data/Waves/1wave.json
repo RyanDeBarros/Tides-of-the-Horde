@@ -1,0 +1,36 @@
+{
+    "waves": [
+        {
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 5.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 3.0,
+                    "enemy": "Orc",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 8.0,
+                    "enemy": "Bishop",
+                    "spawnRate": 0.5,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 5.0,
+                    "enemy": "Dragon",
+                    "spawnRate": 1.0,
+                    "difficulty": 1
+                }
+            ]
+        }
+    ],
+    "defaultSong": "Prologue",
+    "waitingSong": "Silent Forest"
+}

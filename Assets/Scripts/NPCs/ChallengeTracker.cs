@@ -59,11 +59,12 @@ public class ChallengeTracker : MonoBehaviour
         challengeMap = JsonConvert.DeserializeObject<Dictionary<int, LevelChallengeList>>(challengeFile.text);
     }
 
-    public bool SelectRandomChallenge(int levelIndex)
+    public bool SelectRandomChallenge()
     {
         currentChallenge = null;
         currentReward = null;
 
+        int levelIndex = Portal.GetLevelPortal().levelIndex;
         var rewards = challengeMap[levelIndex].rewards.Where(reward => !PersistentChallengeData.Data().IsRewardCompleted(levelIndex, reward.rewardClass));
         if (rewards.Any())
         {
@@ -145,12 +146,12 @@ public class ChallengeTracker : MonoBehaviour
         currentReward = null;
     }
 
-    public void RewardIfSuccess(int levelIndex)
+    public void RewardIfSuccess()
     {
         if (ChallengeCompleted())
         {
             currentReward.GiveReward();
-            PersistentChallengeData.Data().CompleteReward(levelIndex, currentReward.GetType().Name);
+            PersistentChallengeData.Data().CompleteReward(Portal.GetLevelPortal().levelIndex, currentReward.GetType().Name);
         }
     }
 

@@ -307,6 +307,9 @@ MonoBehaviour:
   waypoints: []
   characterController: {fileID: 1416211891270499744}
   moveSpeed: 5
+  onMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &8088306018587523817
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -132,9 +132,20 @@ public class HUDController : MonoBehaviour
         });
     }
 
+    public int GetSpellKey(SpellType spellType)
+    {
+        foreach (SpellSelectController controller in spellSelectControllers)
+            if (controller.GetSpellType() == spellType)
+                return controller.GetNumberKey();
+        throw new KeyNotFoundException();
+    }
+
     public SpellType GetMappedSpell(int keyNumber)
     {
-        return spellSelectControllers.ToDictionary(controller => controller.GetNumberKey())[keyNumber].GetSpellType();
+        foreach (SpellSelectController controller in spellSelectControllers)
+            if (controller.GetNumberKey() == keyNumber)
+                return controller.GetSpellType();
+        throw new IndexOutOfRangeException();
     }
 
     public int NumberOfUnlockedSpells()

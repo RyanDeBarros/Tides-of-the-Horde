@@ -62,7 +62,7 @@ public class LevelSelectUI : MonoBehaviour
     public static void CompleteLevel(int levelIndex)
     {
         MarkLevelCompleted(levelIndex);
-        SceneSwitcher.OpenLevelSelect();
+        SceneSwitcher.OpenLevelStatistics();
     }
 
     public static void ResetPersistentData()
