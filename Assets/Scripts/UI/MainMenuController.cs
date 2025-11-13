@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -38,9 +37,7 @@ public class MainMenuManager : MonoBehaviour
 
     public void PlayGame()
     {
-        //I comment this scripts to load the levelSelectScene instead of playing game directly
-        //SceneManager.LoadScene("purple-red-Arena");
-        SceneManager.LoadScene("LevelSelectScene");
+        SceneSwitcher.OpenLevelSelect();
     }
 
     public void ShowSettings()

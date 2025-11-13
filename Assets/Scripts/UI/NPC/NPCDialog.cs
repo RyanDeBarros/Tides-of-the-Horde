@@ -95,10 +95,7 @@ public class NPCDialog : MonoBehaviour
         player.DisablePlayer();
 
         if (dialogPhase == DialogPhase.Opening)
-        {
-            challengeTracker.SelectRandomChallenge();
-            SetOpeningTextPage();
-        }
+            SetOpeningTextPage(challengeTracker.SelectRandomChallenge(GetLevelIndex()));
         else if (dialogPhase == DialogPhase.Closing)
             SetClosingTextPage();
         else
@@ -116,14 +113,23 @@ public class NPCDialog : MonoBehaviour
         onClose.Invoke();
     }
 
-    private void SetOpeningTextPage()
+    private void SetOpeningTextPage(bool includeChallenge)
     {
         List<DialogOption> options = JsonUtility.FromJson<DialogPage>(openingDialogFile.text).options;
-        options.Add(new DialogOption() { text = "Complete this challenge and I'll reward you:", topPadding = 10f });
-        options.Add(new DialogOption() { challenge = true, halign = 0.5f });
-        options.Add(new DialogOption() { reward = true, halign = 0.5f });
-        options.Add(new DialogOption() { text = "Accept", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "accept" });
-        options.Add(new DialogOption() { text = "Decline", halign = 1f, clickable = true, clickResponse = "decline" });
+        if (includeChallenge)
+        {
+            options.Add(new DialogOption() { text = "Complete this challenge and I'll reward you:", topPadding = 10f });
+            options.Add(new DialogOption() { challenge = true, halign = 0.5f });
+            options.Add(new DialogOption() { reward = true, halign = 0.5f });
+            options.Add(new DialogOption() { text = "Accept", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "accept" });
+            options.Add(new DialogOption() { text = "Decline", halign = 1f, clickable = true, clickResponse = "decline" });
+        }
+        else
+        {
+            options.Add(new DialogOption() { text = "Unfortunately, I have no more rewards to give for this level...", topPadding = 10f });
+            options.Add(new DialogOption() { text = "Continue", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "decline" });
+        }
+
         SetTextPage(options);
     }
 
@@ -247,7 +253,7 @@ public class NPCDialog : MonoBehaviour
         Dictionary<string, Action> actions = new(StringComparer.InvariantCultureIgnoreCase) {
             ["accept"] = challengeTracker.AcceptChallenge,
             ["decline"] = challengeTracker.DeclineChallenge,
-            ["claim"] = challengeTracker.RewardIfSuccess
+            ["claim"] = () => challengeTracker.RewardIfSuccess(GetLevelIndex())
         };
 
         if (actions.TryGetValue(clickResponse, out Action action))
@@ -256,5 +262,10 @@ public class NPCDialog : MonoBehaviour
             Debug.LogError($"Unrecognized click response: {clickResponse}");
 
         Close();
+    }
+
+    public int GetLevelIndex()
+    {
+        return GlobalFind.FindUniqueObjectByType<Portal>(true).levelIndex;
     }
 }

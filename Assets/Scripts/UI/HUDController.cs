@@ -4,7 +4,6 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using TMPro;
 
 public class HUDController : MonoBehaviour
@@ -153,7 +152,7 @@ public class HUDController : MonoBehaviour
     public void Respawn()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneSwitcher.ReloadScene();
     }
 
     public void PauseGame()
@@ -179,6 +178,6 @@ public class HUDController : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneSwitcher.OpenMainMenu();
     }
 }

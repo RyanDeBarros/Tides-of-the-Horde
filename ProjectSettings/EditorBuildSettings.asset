@@ -12,7 +12,13 @@ EditorBuildSettings:
     path: Assets/Scenes/LevelSelectScene.unity
     guid: 35f9e8f7cebe99949a8f6a32f692bb86
   - enabled: 1
-    path: Assets/Scenes/Ryan's Sandbox.unity
-    guid: 9fc0d4010bbf28b4594072e72b8655ab
+    path: Assets/Scenes/Levels/Level1.unity
+    guid: ea3102e27f5b2c942826059b39d2a56b
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level2.unity
+    guid: 110b06751bf412645bdc5eb60bd080b4
+  - enabled: 1
+    path: Assets/Scenes/Levels/Level3.unity
+    guid: 2bf60c555ded163479e31fd6b1dbf6c1
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

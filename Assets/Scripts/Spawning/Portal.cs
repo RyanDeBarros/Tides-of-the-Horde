@@ -9,7 +9,7 @@ class Portal : MonoBehaviour
     [SerializeField] private Transform playerSpawnPosition;
     [SerializeField] private float spawnDuration = 2f;
     [SerializeField] private float despawnDuration = 2f;
-    [SerializeField] private int levelIndex;
+    public int levelIndex;
 
     private PlayerCamera playerCamera;
     private PlayerMovement playerMovement;

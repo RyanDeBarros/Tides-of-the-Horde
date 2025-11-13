@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelSelectUI : MonoBehaviour
@@ -9,15 +8,15 @@ public class LevelSelectUI : MonoBehaviour
     [Serializable]
     public class LevelItem
     {
-        public string sceneName;
+        public int levelIndex;
         public Button button;
         public GameObject dim;
         public GameObject lockIcon;
     }
 
-    public List<LevelItem> levels = new();
+    [SerializeField] private List<LevelItem> levels = new();
 
-    private const string HIGHEST_UNLOCKED_INDEX = "HIGHEST_UNLOCKED_INDEX";
+    private const string HIGHEST_UNLOCKED_LEVEL_INDEX = "HIGHEST_UNLOCKED_LEVEL_INDEX";
 
     void Awake()
     {
@@ -26,12 +25,12 @@ public class LevelSelectUI : MonoBehaviour
 
     public void BackToMain()
     {
-        SceneManager.LoadScene("MainMenu");
+        SceneSwitcher.OpenMainMenu();
     }
 
     private void InitUI()
     {
-        int highestUnlocked = PlayerPrefs.GetInt(HIGHEST_UNLOCKED_INDEX, 0);
+        int highestUnlocked = PlayerDataManager.GetInt(HIGHEST_UNLOCKED_LEVEL_INDEX, 0);
 
         for (int i = 0; i < levels.Count; i++)
         {
@@ -44,8 +43,8 @@ public class LevelSelectUI : MonoBehaviour
             int captured = i;
             levels[i].button.onClick.RemoveAllListeners();
             levels[i].button.onClick.AddListener(() => {
-                if (captured <= PlayerPrefs.GetInt(HIGHEST_UNLOCKED_INDEX, 0))
-                    SceneManager.LoadScene(levels[captured].sceneName);
+                if (captured <= PlayerDataManager.GetInt(HIGHEST_UNLOCKED_LEVEL_INDEX, 0))
+                    SceneSwitcher.OpenLevel(levels[captured].levelIndex);
                 else
                     Debug.Log($"Level {captured + 1} is locked.");
             });
@@ -54,19 +53,20 @@ public class LevelSelectUI : MonoBehaviour
 
     private static void MarkLevelCompleted(int indexJustCleared)
     {
-        int highest = PlayerPrefs.GetInt(HIGHEST_UNLOCKED_INDEX, 0);
+        int highest = PlayerDataManager.GetInt(HIGHEST_UNLOCKED_LEVEL_INDEX, 0);
         int next = indexJustCleared + 1;
         if (next > highest)
-        {
-            PlayerPrefs.SetInt(HIGHEST_UNLOCKED_INDEX, next);
-            PlayerPrefs.Save();
-        }
+            PlayerDataManager.SetInt(HIGHEST_UNLOCKED_LEVEL_INDEX, next);
     }
 
-    // TODO Call LevelSelectUI.CompleteLevel(levelIndex) when exiting portal
     public static void CompleteLevel(int levelIndex)
     {
         MarkLevelCompleted(levelIndex);
-        SceneManager.LoadScene("LevelSelectScene");
+        SceneSwitcher.OpenLevelSelect();
+    }
+
+    public static void ResetPersistentData()
+    {
+        PlayerDataManager.SetInt(HIGHEST_UNLOCKED_LEVEL_INDEX, 0);
     }
 }
