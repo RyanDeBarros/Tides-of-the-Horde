@@ -20,7 +20,7 @@ public class Health : MonoBehaviour
     private bool invulnerable = false;
     private bool dead = false;
 
-    private void Awake()
+    private void Start()
     {
         currentHealth = maxHealth;
         HealthChanged();

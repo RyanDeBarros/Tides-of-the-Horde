@@ -1,4 +1,3 @@
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -28,15 +27,24 @@ public class DragonAOEAttack : MonoBehaviour
     private float timeElapsed = 0f;
     private float explosionRadius = 0f;
     private bool playerWasHit = false;
+    private Transform colliderParent;
+    private Vector3 colliderLocalPosition;
 
     private void Awake()
     {
         Assert.IsNotNull(explosionCollider);
+        colliderParent = explosionCollider.transform.parent;
+        Assert.IsNotNull(colliderParent);
+        colliderLocalPosition = explosionCollider.transform.localPosition;
 
         var go = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(go);
         playerHealth = go.GetComponent<Health>();
         Assert.IsNotNull(playerHealth);
+
+        Health myHealth = GetComponent<Health>();
+        Assert.IsNotNull(myHealth);
+        myHealth.onDeath.AddListener(CancelExplosion);
 
         SetExplosionRadius(0f);
     }
@@ -49,11 +57,7 @@ public class DragonAOEAttack : MonoBehaviour
                 SetExplosionRadius(explosionRadius + Time.deltaTime * aoeFillSpeed);
                 CheckForCollisions();
                 if (explosionRadius >= aoeRadius)
-                {
-                    SetExplosionRadius(0f);
-                    state = State.PostExplosionDelay;
-                    timeElapsed = 0f;
-                }
+                    CancelExplosion();
                 break;
             case State.PostExplosionDelay:
                 timeElapsed += Time.deltaTime;
@@ -95,10 +99,13 @@ public class DragonAOEAttack : MonoBehaviour
 
     public void Explode()
     {
-        Assert.IsTrue(state == State.Ready);
-        state = State.Exploding;
-        playerWasHit = false;
-        SetExplosionRadius(0f);
+        if (state == State.Ready)
+        {
+            state = State.Exploding;
+            playerWasHit = false;
+            SetExplosionRadius(0f);
+            explosionCollider.transform.SetParent(null, true);
+        }
     }
 
     public bool CanExplode()
@@ -109,5 +116,14 @@ public class DragonAOEAttack : MonoBehaviour
     public bool CanMove()
     {
         return state == State.Ready || state == State.Cooldown;
+    }
+    
+    private void CancelExplosion()
+    {
+        SetExplosionRadius(0f);
+        state = State.PostExplosionDelay;
+        timeElapsed = 0f;
+        explosionCollider.transform.SetParent(colliderParent, false);
+        explosionCollider.transform.SetLocalPositionAndRotation(colliderLocalPosition, Quaternion.identity);
     }
 }

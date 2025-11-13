@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class HUDController : MonoBehaviour
 {
@@ -46,16 +47,17 @@ public class HUDController : MonoBehaviour
         Assert.IsNotNull(playerHealth);
         Assert.IsNotNull(playerCurrency);
         Assert.IsTrue(spellSelectControllers.Count == spells.Count && spells.Count == Enum.GetValues(typeof(SpellType)).Length);
+
+        playerHealth.onHealthChanged.AddListener(UpdateHealthHUD);
+        playerHealth.onDeath.AddListener(ShowDeathScreen);
+        playerCurrency.onCurrencyChanged.AddListener(UpdateCrystalsHUD);
     }
 
     void Start()
     {
         // Subscribe to player status events
-        playerHealth.onHealthChanged.AddListener(UpdateHealthHUD);
         UpdateHealthHUD(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
-        playerCurrency.onCurrencyChanged.AddListener(UpdateCrystalsHUD);
         UpdateCrystalsHUD(playerCurrency.GetCurrency());
-        playerHealth.onDeath.AddListener(ShowDeathScreen);
 
         LoadSavedSettings();
     }
@@ -168,7 +170,14 @@ public class HUDController : MonoBehaviour
 
     public void PauseGame()
     {
+        StartCoroutine(PauseNextFrame());
+    }
+
+    private IEnumerator PauseNextFrame()
+    {
+        yield return new WaitForEndOfFrame();
         isPaused = true;
+        Physics.SyncTransforms();
         Time.timeScale = 0f;
         pauseMenuPanel.SetActive(true);
         enablePlayerOnResume = player.CameraEnabled();
@@ -177,10 +186,17 @@ public class HUDController : MonoBehaviour
 
     public void ResumeGame()
     {
+        StartCoroutine(ResumeNextFrame());
+    }
+
+    private IEnumerator ResumeNextFrame()
+    {
+        yield return new WaitForEndOfFrame();
         isPaused = false;
         pauseMenuPanel.SetActive(false);
         if (enablePlayerOnResume)
         {
+            Physics.SyncTransforms();
             Time.timeScale = 1f;
             player.EnablePlayer();
         }

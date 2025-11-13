@@ -71,7 +71,7 @@ public class OrcMovementAI : MonoBehaviour
             if (Mathf.Abs(moveDisplacement) > 0.01f)
             {
                 cc.Move(toXZ.normalized * moveDisplacement);
-                UpdateAnimationSpeed(moveDisplacement / Time.deltaTime);
+                UpdateAnimationSpeed(Time.deltaTime > 1e-5f ? moveDisplacement / Time.deltaTime : 0f);
             }
             else
                 UpdateAnimationSpeed(0f);
@@ -82,7 +82,7 @@ public class OrcMovementAI : MonoBehaviour
 
     private void OnWaypointPatrollerMove(Vector3 displacement)
     {
-        UpdateAnimationSpeed(displacement.magnitude / Time.deltaTime);
+        UpdateAnimationSpeed(Time.deltaTime > 1e-5f ? displacement.magnitude / Time.deltaTime : 0f);
     }
 
     private void UpdateAnimationSpeed(float speed)

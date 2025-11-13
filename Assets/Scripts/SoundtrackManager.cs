@@ -101,7 +101,7 @@ public class SoundtrackManager : MonoBehaviour
     private IEnumerator FadeOut(AudioSource source, string identifier)
     {
         float fromVolume = source.volume;
-        for (float t = 0f; t < crossFadeDuration; t += Time.deltaTime)
+        for (float t = 0f; t < crossFadeDuration; t += Time.unscaledDeltaTime)
         {
             source.volume = Mathf.Clamp01(1f - t / crossFadeDuration) * fromVolume;
             yield return null;
@@ -118,7 +118,7 @@ public class SoundtrackManager : MonoBehaviour
         source.volume = 0f;
         source.Play();
 
-        for (float t = 0f; t < crossFadeDuration; t += Time.deltaTime)
+        for (float t = 0f; t < crossFadeDuration; t += Time.unscaledDeltaTime)
         {
             source.volume = Mathf.Clamp01(t / crossFadeDuration) * toVolume;
             yield return null;
@@ -152,7 +152,7 @@ public class SoundtrackManager : MonoBehaviour
     private IEnumerator DimTrackRoutine(AudioSource source, float fromVolume, float toVolume)
     {
         source.volume = fromVolume;
-        for (float t = 0f; t < dimmedTransitionDuration; t += Time.deltaTime)
+        for (float t = 0f; t < dimmedTransitionDuration; t += Time.unscaledDeltaTime)
         {
             source.volume = Mathf.Lerp(fromVolume, toVolume, Mathf.Clamp01(t / dimmedTransitionDuration));
             yield return null;

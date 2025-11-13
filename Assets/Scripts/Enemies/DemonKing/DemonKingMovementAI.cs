@@ -163,7 +163,7 @@ public class DemonKingMovementAI : MonoBehaviour
         while (sinkTimer < sinkDuration)
         {
             sinkTimer += Time.deltaTime;
-            float t = sinkTimer / sinkDuration;
+            float t = Mathf.Clamp01(sinkTimer / sinkDuration);
             transform.position = Vector3.Lerp(originalPosition, targetSinkPosition, t);
             yield return null;
         }
@@ -190,7 +190,7 @@ public class DemonKingMovementAI : MonoBehaviour
         while (riseTimer < sinkDuration)
         {
             riseTimer += Time.deltaTime;
-            float t = riseTimer / sinkDuration;
+            float t = Mathf.Clamp01(riseTimer / sinkDuration);
             transform.position = Vector3.Lerp(spawnUnderground, behindPlayerPos, t);
             yield return null;
         }

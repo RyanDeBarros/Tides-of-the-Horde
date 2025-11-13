@@ -70,7 +70,7 @@ public class SkeletonMovementAI : MonoBehaviour
 
     private void OnWaypointPatrollerMove(Vector3 displacement)
     {
-        UpdateAnimationSpeed(displacement.magnitude / Time.deltaTime);
+        UpdateAnimationSpeed(Time.deltaTime > 1e-5f ? displacement.magnitude / Time.deltaTime : 0f);
     }
 
     private void UpdateAnimationSpeed(float currentSpeed)

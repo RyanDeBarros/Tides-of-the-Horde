@@ -37,7 +37,7 @@ public class BounceBack : MonoBehaviour
             }
 
             float alpha = Mathf.Sin(Mathf.PI * Mathf.Pow(t, 0.2f));
-            characterController.Move(direction * peakVelocity * alpha * Time.deltaTime);
+            characterController.Move(alpha * peakVelocity * Time.deltaTime * direction);
         }
     }
 
