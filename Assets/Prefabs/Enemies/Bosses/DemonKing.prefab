@@ -416,7 +416,6 @@ MonoBehaviour:
   extraDelay: 0.15
   disableOnDeath:
   - {fileID: 9199881825282460984}
-  - {fileID: 0}
   - {fileID: 3729822997592497888}
   - {fileID: 4486287939115185358}
   sinkDuration: 2.5
@@ -514,7 +513,7 @@ MonoBehaviour:
   bossHealth: {fileID: 5225442633808930422}
   shieldVFX: {fileID: 2368347160231029843}
   keysRequired: 3
-  keySpawnCooldown: 10
+  keySpawnCooldown: 15
 --- !u!1 &5612114110964857626
 GameObject:
   m_ObjectHideFlags: 0

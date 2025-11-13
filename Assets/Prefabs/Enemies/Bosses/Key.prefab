@@ -153,9 +153,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a91dcb6efebe2343b15fc3ade42e8f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 5
-  spawnDuration: 0.5
-  despawnDuration: 0.5
+  lifetime: 8
+  spawnDuration: 1
+  despawnDuration: 1
   shield: {fileID: 0}
   spawnSFX: {fileID: 0}
   collectSFX: {fileID: 0}

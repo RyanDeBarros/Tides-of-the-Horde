@@ -50,7 +50,7 @@ public class DemonKingDifficultyImplementer : MonoBehaviour, IDifficultyImplemen
 
         // BossShield
         public int keysRequired = 3;
-        public float keySpawnCooldown = 10f;
+        public float keySpawnCooldown = 15f;
 
         // BounceBack
         public float bounceBackResistance = 2f;

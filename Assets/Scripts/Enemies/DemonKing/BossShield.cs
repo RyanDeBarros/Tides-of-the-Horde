@@ -9,7 +9,7 @@ public class BossShield : MonoBehaviour
     [SerializeField] private GameObject shieldVFX;
 
     public int keysRequired = 3;
-    public float keySpawnCooldown = 10f;
+    public float keySpawnCooldown = 15f;
     private float timeElapsed = 0f;
 
     private List<KeySpawnZone> spawnZones;
