@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
@@ -14,6 +15,7 @@ public class ChallengeGiver : MonoBehaviour
     [SerializeField] private Color keyHintActiveColor;
     [SerializeField] private Color keyHintInactiveColor;
     [SerializeField] private string songIdentifier = "Worm";
+    [SerializeField] private Portal portal;
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
@@ -106,6 +108,8 @@ public class ChallengeGiver : MonoBehaviour
     private void DespawnNPC()
     {
         despawnRoutine ??= StartCoroutine(DespawnRoutine());
+        bool hasPortalVfx = portal.GetPortalVfx();
+        portal.SetPortalVfx(!hasPortalVfx);
     }
 
     private IEnumerator DespawnRoutine()
