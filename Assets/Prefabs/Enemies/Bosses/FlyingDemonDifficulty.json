@@ -1,18 +1,24 @@
 {
     "stats": [
         {
-            "damage": 5,
             "maxHealth": 1000,
+
+            "damage": 5,
+
             "reward": 100
         },
         {
-            "damage": 12,
             "maxHealth": 2000,
+
+            "damage": 12,
+
             "reward": 200
         },
         {
-            "damage": 20,
             "maxHealth": 3000,
+
+            "damage": 20,
+
             "reward": 300
         }
     ]
