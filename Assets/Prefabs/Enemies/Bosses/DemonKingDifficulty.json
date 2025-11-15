@@ -1,18 +1,135 @@
 {
     "stats": [
         {
+            "moveSpeed": 10.0,
+            "chaseRange": 60.0,
+            "turnSpeed": 800.0,
+
+            "sinkSpeed": 6.0,
+            "riseSpeed": 8.0,
+            "sinkDepth": 5.0,
+            "teleportDuration": 2.0,
+            "behindPlayerDistance": 4.0,
+            "minRegularTeleportDelay": [4.0, 3.7, 3.4, 3.1, 2.8],
+            "maxRegularTeleportDelay": [20.0, 19.0, 18.0, 17.0, 16.0],
+
+            "comboProbability": [0.1, 0.15, 0.2, 0.25, 0.3],
+
+            "minRangedAttackDelay" : [4.0, 3.7, 3.4, 3.1, 2.8],
+            "maxRangedAttackDelay" : [20.0, 19.0, 18.0, 17.0, 16.0],
+
+            "spikesInitialDamage": 5,
+            "spikesDamageOverTime": 5.0,
+            "spikesSlowingFactor": 0.6,
+            "spikesFocusRadius": 20.0,
+            "spikesTelegraphDuration": 2.0,
+            "spikesRisingDuration": 0.5,
+            "spikesStayingDuration": 0.5,
+            "spikesFallingDuration": 0.2,
+            "spikeTrapCount": [4, 5, 6, 7, 8],
+
             "damage": [5, 6, 7, 8, 9],
+            "bounceBackStrength": 75.0,
+            
+            "attackRange": [7.0, 7.25, 7.5, 7.75, 8.0],
+            "attackInterval": [1.7, 1.65, 0.6, 1.55, 1.5],
+
             "maxHealth": 3000,
+
+            "keysRequired": 3,
+            "keySpawnCooldown": 15.0,
+
+            "bounceBackResistance": 2.0,
+            "bounceBackDuration": 0.07,
+
             "reward": 500
         },
         {
+            "moveSpeed": 10.0,
+            "chaseRange": 60.0,
+            "turnSpeed": 800.0,
+
+            "sinkSpeed": 6.0,
+            "riseSpeed": 8.0,
+            "sinkDepth": 5.0,
+            "teleportDuration": 2.0,
+            "behindPlayerDistance": 4.0,
+            "minRegularTeleportDelay": [4.0, 3.7, 3.4, 3.1, 2.8],
+            "maxRegularTeleportDelay": [20.0, 19.0, 18.0, 17.0, 16.0],
+
+            "comboProbability": [0.1, 0.15, 0.2, 0.25, 0.3],
+
+            "minRangedAttackDelay" : [4.0, 3.7, 3.4, 3.1, 2.8],
+            "maxRangedAttackDelay" : [20.0, 19.0, 18.0, 17.0, 16.0],
+
+            "spikesInitialDamage": 5,
+            "spikesDamageOverTime": 5.0,
+            "spikesSlowingFactor": 0.6,
+            "spikesFocusRadius": 20.0,
+            "spikesTelegraphDuration": 2.0,
+            "spikesRisingDuration": 0.5,
+            "spikesStayingDuration": 0.5,
+            "spikesFallingDuration": 0.2,
+            "spikeTrapCount": [4, 5, 6, 7, 8],
+
             "damage": [12, 13, 14, 15, 16],
+            "bounceBackStrength": 75.0,
+            
+            "attackRange": [7.0, 7.25, 7.5, 7.75, 8.0],
+            "attackInterval": [1.7, 1.65, 0.6, 1.55, 1.5],
+
             "maxHealth": 4500,
+
+            "keysRequired": 3,
+            "keySpawnCooldown": 15.0,
+
+            "bounceBackResistance": 2.0,
+            "bounceBackDuration": 0.07,
+
             "reward": 750
         },
         {
+            "moveSpeed": 10.0,
+            "chaseRange": 60.0,
+            "turnSpeed": 800.0,
+
+            "sinkSpeed": 6.0,
+            "riseSpeed": 8.0,
+            "sinkDepth": 5.0,
+            "teleportDuration": 2.0,
+            "behindPlayerDistance": 4.0,
+            "minRegularTeleportDelay": [4.0, 3.7, 3.4, 3.1, 2.8],
+            "maxRegularTeleportDelay": [20.0, 19.0, 18.0, 17.0, 16.0],
+
+            "comboProbability": [0.1, 0.15, 0.2, 0.25, 0.3],
+
+            "minRangedAttackDelay" : [4.0, 3.7, 3.4, 3.1, 2.8],
+            "maxRangedAttackDelay" : [20.0, 19.0, 18.0, 17.0, 16.0],
+
+            "spikesInitialDamage": 5,
+            "spikesDamageOverTime": 5.0,
+            "spikesSlowingFactor": 0.6,
+            "spikesFocusRadius": 20.0,
+            "spikesTelegraphDuration": 2.0,
+            "spikesRisingDuration": 0.5,
+            "spikesStayingDuration": 0.5,
+            "spikesFallingDuration": 0.2,
+            "spikeTrapCount": [4, 5, 6, 7, 8],
+
             "damage": [20, 21, 22, 23, 24],
+            "bounceBackStrength": 75.0,
+            
+            "attackRange": [7.0, 7.25, 7.5, 7.75, 8.0],
+            "attackInterval": [1.7, 1.65, 0.6, 1.55, 1.5],
+
             "maxHealth": 6000,
+
+            "keysRequired": 3,
+            "keySpawnCooldown": 15.0,
+
+            "bounceBackResistance": 2.0,
+            "bounceBackDuration": 0.07,
+
             "reward": 1000
         }
     ]
