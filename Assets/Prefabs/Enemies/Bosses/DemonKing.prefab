@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
+  currentHealth: 0
   thresholdPercent: 20
   onHealthChanged:
     m_PersistentCalls:
