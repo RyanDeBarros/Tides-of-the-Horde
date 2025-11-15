@@ -389,6 +389,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1000
+  currentHealth: 0
   thresholdPercent: 20
   onHealthChanged:
     m_PersistentCalls:
@@ -514,7 +515,7 @@ MonoBehaviour:
   bossHealth: {fileID: 5225442633808930422}
   shieldVFX: {fileID: 2368347160231029843}
   keysRequired: 3
-  keySpawnCooldown: 15
+  keySpawnCooldown: 2
 --- !u!82 &5208570685143511649
 AudioSource:
   m_ObjectHideFlags: 0

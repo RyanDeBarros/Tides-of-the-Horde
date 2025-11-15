@@ -48,9 +48,6 @@ public class BossShield : MonoBehaviour
             SpawnKey();
             timeElapsed -= keySpawnCooldown;
         }
-
-        // TODO remove log
-        Debug.Log($"Boss health: {bossHealth.GetCurrentHealth()}");
     }
 
     public void SpawnKey()

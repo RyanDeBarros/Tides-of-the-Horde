@@ -1,0 +1,31 @@
+{
+    "waves": [
+        {
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 5.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                }                
+            ]
+        },
+        {
+            "preWaveWaitTime": 0.0,
+            "postWaveWaitTime": 3.0,
+            "song": "Battle 1",
+            "subwaves": [
+                {
+                    "enemy": "DemonKing",
+                    "spawnOnce": true,
+                    "timeOffset": 1.0,
+                    "difficulty": 1
+                }
+            ]
+        }
+    ],
+    "defaultSong": "Prologue",
+    "waitingSong": "Silent Forest"
+}

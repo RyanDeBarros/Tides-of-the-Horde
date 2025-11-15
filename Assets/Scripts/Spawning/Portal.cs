@@ -11,6 +11,9 @@ class Portal : MonoBehaviour
     [SerializeField] private float despawnDuration = 2f;
     public int levelIndex;
 
+    [SerializeField] private GameObject portalVFX; // portal vfx only active when the portal is usable
+    [SerializeField] private GameObject portalDespawnVFX; // vfx when the player despawns and goes to main menu
+
     private PlayerCamera playerCamera;
     private PlayerMovement playerMovement;
     private PlayerDash playerDash;
@@ -73,6 +76,7 @@ class Portal : MonoBehaviour
 
     public void SpawnPlayer(Action playerSpawnedCallback)
     {
+        portalDespawnVFX.SetActive(true);
         StartCoroutine(SpawnPlayerRoutine(playerSpawnedCallback));
     }
 
@@ -103,6 +107,8 @@ class Portal : MonoBehaviour
 
     private void DespawnPlayer()
     {
+        portalDespawnVFX.SetActive(false);
+        portalDespawnVFX.SetActive(true);
         despawnRoutine ??= StartCoroutine(EndLevelRoutine());
     }
 
@@ -142,5 +148,15 @@ class Portal : MonoBehaviour
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         Assert.IsNotNull(go);
         return go.transform;
+    }
+
+    public bool GetPortalVfx()
+    {
+        return portalVFX.activeSelf;
+    }
+
+    public void SetPortalVfx(bool isActive)
+    {
+        portalVFX.SetActive(isActive);
     }
 }
