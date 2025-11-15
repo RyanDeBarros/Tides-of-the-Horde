@@ -1,23 +1,131 @@
 {
     "stats": [
         {
+            "moveSpeed": 5.0,
+            "chargeSpeed": 15.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "chaseRange": 50.0,
+            "runToRange": 15.0,
+            "stoppingDistance": 3.5,
+
+            "sideStepSpeed": 10.0,
+            "sideStepDuration": 0.8,
+            "minSideStepCooldown": 1.5,
+            "maxSideStepCooldown": 3.0,
+
+            "punchDamage": 5.0,
+            "punchBounceBackStrength": 120.0,
+            "punchProbabilityWeight": 1.0,
+            "punchAttackRange": 5.0,
+
+            "biteDamage": 10,
+            "biteBounceBackStrength": 100.0,
+            "biteProbabilityWeight": 0.75,
+            "biteAttackRange": 5.0,
+
+            "chargeDamage": 8,
+            "chargeBounceBackStrength": 100.0,
+            "chargeProbabilityWeight": 0.3,
+            "chargeAttackRange": 8.0,
+            "chargeBackDistance": 3.5,
+            "chargeBackSpeed": 8.0,
+            "charge.0orwardSpeed": 20.0,
+            "dizzyDuration": 3.0,
+
+            "minAttackCooldown": 1.0,
+            "maxAttackCooldown": 2.0,
+
             "maxHealth": 1000,
 
-            "damage": 5,
+            "bounceBackResistance": 6.0,
+            "bounceBackDuration": 0.1,
 
             "reward": 100
         },
         {
-            "maxHealth": 2000,
+            "moveSpeed": 5.0,
+            "chargeSpeed": 15.0,
+            "patrolSpeedMultiplier": 0.5,
 
-            "damage": 12,
+            "chaseRange": 50.0,
+            "runToRange": 15.0,
+            "stoppingDistance": 3.5,
+
+            "sideStepSpeed": 10.0,
+            "sideStepDuration": 0.8,
+            "minSideStepCooldown": 1.5,
+            "maxSideStepCooldown": 3.0,
+
+            "punchDamage": 5.0,
+            "punchBounceBackStrength": 120.0,
+            "punchProbabilityWeight": 1.0,
+            "punchAttackRange": 5.0,
+
+            "biteDamage": 10,
+            "biteBounceBackStrength": 100.0,
+            "biteProbabilityWeight": 0.75,
+            "biteAttackRange": 5.0,
+
+            "chargeDamage": 8,
+            "chargeBounceBackStrength": 100.0,
+            "chargeProbabilityWeight": 0.3,
+            "chargeAttackRange": 8.0,
+            "chargeBackDistance": 3.5,
+            "chargeBackSpeed": 8.0,
+            "charge.0orwardSpeed": 20.0,
+            "dizzyDuration": 3.0,
+
+            "minAttackCooldown": 1.0,
+            "maxAttackCooldown": 2.0,
+
+            "maxHealth": 1500,
+
+            "bounceBackResistance": 6.0,
+            "bounceBackDuration": 0.1,
 
             "reward": 200
         },
         {
-            "maxHealth": 3000,
+            "moveSpeed": 5.0,
+            "chargeSpeed": 15.0,
+            "patrolSpeedMultiplier": 0.5,
 
-            "damage": 20,
+            "chaseRange": 50.0,
+            "runToRange": 15.0,
+            "stoppingDistance": 3.5,
+
+            "sideStepSpeed": 10.0,
+            "sideStepDuration": 0.8,
+            "minSideStepCooldown": 1.5,
+            "maxSideStepCooldown": 3.0,
+
+            "punchDamage": 5.0,
+            "punchBounceBackStrength": 120.0,
+            "punchProbabilityWeight": 1.0,
+            "punchAttackRange": 5.0,
+
+            "biteDamage": 10,
+            "biteBounceBackStrength": 100.0,
+            "biteProbabilityWeight": 0.75,
+            "biteAttackRange": 5.0,
+
+            "chargeDamage": 8,
+            "chargeBounceBackStrength": 100.0,
+            "chargeProbabilityWeight": 0.3,
+            "chargeAttackRange": 8.0,
+            "chargeBackDistance": 3.5,
+            "chargeBackSpeed": 8.0,
+            "charge.0orwardSpeed": 20.0,
+            "dizzyDuration": 3.0,
+
+            "minAttackCooldown": 1.0,
+            "maxAttackCooldown": 2.0,
+
+            "maxHealth": 2000,
+
+            "bounceBackResistance": 6.0,
+            "bounceBackDuration": 0.1,
 
             "reward": 300
         }
