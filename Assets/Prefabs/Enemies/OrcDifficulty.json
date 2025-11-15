@@ -1,28 +1,88 @@
 {
     "stats": [
         {
-            "damage": 3,
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 200,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 3,
+
             "reward": 10
         },
         {
-            "damage": 6,
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 250,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 6,
+
             "reward": 15
         },
         {
-            "damage": 10,
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 300,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 10,
+
             "reward": 20
         },
         {
-            "damage": 15,
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 350,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 15,
+
             "reward": 25
         },
         {
-            "damage": 20,
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 400,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 20,
+
             "reward": 30
         }
     ]
