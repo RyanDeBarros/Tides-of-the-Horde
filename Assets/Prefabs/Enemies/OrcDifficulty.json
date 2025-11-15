@@ -14,6 +14,16 @@
             "damage": 10,
             "maxHealth": 300,
             "reward": 20
+        },
+        {
+            "damage": 15,
+            "maxHealth": 350,
+            "reward": 25
+        },
+        {
+            "damage": 20,
+            "maxHealth": 400,
+            "reward": 30
         }
     ]
 }
