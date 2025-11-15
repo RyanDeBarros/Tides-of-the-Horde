@@ -17,6 +17,18 @@
             "attackRange": 12.0,
             "maxHealth": 150,
             "reward": 15
+        },
+        {
+            "damagePerFireball": 10,
+            "attackRange": 14.0,
+            "maxHealth": 180,
+            "reward": 20
+        },
+        {
+            "damagePerFireball": 12,
+            "attackRange": 16.0,
+            "maxHealth": 230,
+            "reward": 25
         }
     ]
 }

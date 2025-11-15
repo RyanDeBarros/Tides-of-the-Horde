@@ -9,17 +9,31 @@
         },
         {
             "damage": 7,
-            "aoeRadius": 12.5,
+            "aoeRadius": 12,
             "postExplosionDelay": 0.75,
             "maxHealth": 150,
             "reward": 10
         },
         {
             "damage": 9,
-            "aoeRadius": 15,
+            "aoeRadius": 14,
             "postExplosionDelay": 0.5,
             "maxHealth": 200,
             "reward": 15
+        },
+        {
+            "damage": 11,
+            "aoeRadius": 16,
+            "postExplosionDelay": 0.4,
+            "maxHealth": 240,
+            "reward": 20
+        },
+        {
+            "damage": 13,
+            "aoeRadius": 18,
+            "postExplosionDelay": 0.35,
+            "maxHealth": 280,
+            "reward": 25
         }
     ]
 }
