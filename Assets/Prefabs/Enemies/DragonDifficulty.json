@@ -1,38 +1,108 @@
 {
     "stats": [
         {
+            "moveSpeed": 5.0,
+            "chaseRange": 40.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "aoeRadius": 10.0,
+            "aoeFillSpeed": 20.0,
             "damage": 5,
-            "aoeRadius": 10,
             "postExplosionDelay": 1,
+            "cooldown": 3.0,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 100,
+
+            "bounceBackResistance": 2.0,
+            "bounceBackDuration": 0.1,
+
             "reward": 5
         },
         {
+            "moveSpeed": 5.0,
+            "chaseRange": 40.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "aoeRadius": 12.0,
+            "aoeFillSpeed": 20.0,
             "damage": 7,
-            "aoeRadius": 12,
             "postExplosionDelay": 0.75,
+            "cooldown": 3.0,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 150,
+
+            "bounceBackResistance": 2.0,
+            "bounceBackDuration": 0.1,
+
             "reward": 10
         },
         {
+            "moveSpeed": 5.0,
+            "chaseRange": 40.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "aoeRadius": 14.0,
+            "aoeFillSpeed": 20.0,
             "damage": 9,
-            "aoeRadius": 14,
             "postExplosionDelay": 0.5,
+            "cooldown": 3.0,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 200,
+
+            "bounceBackResistance": 2.0,
+            "bounceBackDuration": 0.1,
+
             "reward": 15
         },
         {
+            "moveSpeed": 5.0,
+            "chaseRange": 40.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "aoeRadius": 16.0,
+            "aoeFillSpeed": 20.0,
             "damage": 11,
-            "aoeRadius": 16,
             "postExplosionDelay": 0.4,
+            "cooldown": 3.0,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 240,
+
+            "bounceBackResistance": 2.0,
+            "bounceBackDuration": 0.1,
+
             "reward": 20
         },
         {
+            "moveSpeed": 5.0,
+            "chaseRange": 40.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "aoeRadius": 18.0,
+            "aoeFillSpeed": 20.0,
             "damage": 13,
-            "aoeRadius": 18,
             "postExplosionDelay": 0.35,
+            "cooldown": 3.0,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 280,
+
+            "bounceBackResistance": 2.0,
+            "bounceBackDuration": 0.1,
+
             "reward": 25
         }
     ]
