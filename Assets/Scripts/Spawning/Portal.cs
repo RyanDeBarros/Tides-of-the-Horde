@@ -96,7 +96,6 @@ class Portal : MonoBehaviour
         playerModel.localScale = Vector3.one;
         SetPlayerEnable(true);
         playerSpawnedCallback();
-        portalDespawnVFX.SetActive(false);
     }
 
     public void PrepareToDespawnPlayer()
@@ -108,6 +107,7 @@ class Portal : MonoBehaviour
 
     private void DespawnPlayer()
     {
+        portalDespawnVFX.SetActive(false);
         portalDespawnVFX.SetActive(true);
         despawnRoutine ??= StartCoroutine(EndLevelRoutine());
     }
