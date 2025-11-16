@@ -352,18 +352,174 @@
             "tiers": [
                 {
                     "cost": 25,
-                    "description": "<color=red><b>+</b></color> Bounce back (<color=yellow>1</color>)",
+                    "description": "<color=red><b>+</b></color> Bounce Back (<color=yellow>1</color>)",
                     "values": [0.25]
                 },
                 {
                     "cost": 50,
-                    "description": "<color=red><b>+</b></color> Bounce back (<color=yellow>2</color>)",
+                    "description": "<color=red><b>+</b></color> Bounce Back (<color=yellow>2</color>)",
                     "values": [0.25]
                 },
                 {
                     "cost": 75,
-                    "description": "<color=red><b>+</b></color> Bounce back (<color=yellow>3</color>)",
+                    "description": "<color=red><b>+</b></color> Bounce Back (<color=yellow>3</color>)",
                     "values": [0.25]
+                }
+            ]
+        },
+
+        {
+            "id": "SniperSpell-Upgrade-Damage",
+            "name": "Sniper Spell",
+            "defaultIcon": "SniperSpell",
+            "prerequisites": ["SniperSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Sniper", "Damage"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "SniperSpell-Upgrade-Range",
+            "name": "Sniper Spell",
+            "defaultIcon": "SniperSpell",
+            "prerequisites": ["SniperSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Sniper", "Range"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "SniperSpell-Upgrade-Cooldown",
+            "name": "Sniper Spell",
+            "defaultIcon": "SniperSpell",
+            "prerequisites": ["SniperSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Sniper", "Cooldown"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "SniperSpell-Upgrade-Radius",
+            "name": "Sniper Spell",
+            "defaultIcon": "SniperSpell",
+            "prerequisites": ["SniperSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Sniper", "Radius"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "SniperSpell-Upgrade-Speed",
+            "name": "Sniper Spell",
+            "defaultIcon": "SniperSpell",
+            "prerequisites": ["SniperSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Sniper", "Speed"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Speed (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>+</b></color> Speed (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>+</b></color> Speed (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "SniperSpell-Upgrade-MaxEnemiesHit",
+            "name": "Sniper Spell",
+            "defaultIcon": "SniperSpell",
+            "prerequisites": ["SniperSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Sniper", "MaxEnemiesHit"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Penetration (<color=yellow>1</color>)",
+                    "values": [1]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>+</b></color> Penetration (<color=yellow>2</color>)",
+                    "values": [1]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>+</b></color> Penetration (<color=yellow>3</color>)",
+                    "values": [1]
+                },
+                {
+                    "cost": 60,
+                    "description": "<color=red><b>+</b></color> Penetration (<color=yellow>4</color>)",
+                    "values": [1]
                 }
             ]
         },
