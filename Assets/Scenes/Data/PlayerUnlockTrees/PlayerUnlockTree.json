@@ -301,28 +301,183 @@
             "tiers": [
                 {
                     "cost": 20,
-                    "description": "Increase Max Health (<color=yellow>1</color>)\n & Heal <color=red>20%</color>",
-                    "values": [20, 0.20]
+                    "description": "Increase Max Health (<color=yellow>1</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
                 },
                 {
-                    "cost": 50,
-                    "description": "Increase Max Health (<color=yellow>2</color>)\n & Heal <color=red>20%</color>",
-                    "values": [20, 0.20]
+                    "cost": 40,
+                    "description": "Increase Max Health (<color=yellow>2</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 60,
+                    "description": "Increase Max Health (<color=yellow>3</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 80,
+                    "description": "Increase Max Health (<color=yellow>4</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
                 },
                 {
                     "cost": 100,
-                    "description": "Increase Max Health (<color=yellow>3</color>)\n & Heal <color=red>20%</color>",
-                    "values": [20, 0.20]
+                    "description": "Increase Max Health (<color=yellow>5</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
                 },
                 {
-                    "cost": 150,
-                    "description": "Increase Max Health (<color=yellow>4</color>)\n & Heal <color=red>20%</color>",
-                    "values": [20, 0.20]
+                    "cost": 120,
+                    "description": "Increase Max Health (<color=yellow>6</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 140,
+                    "description": "Increase Max Health (<color=yellow>7</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 160,
+                    "description": "Increase Max Health (<color=yellow>8</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 180,
+                    "description": "Increase Max Health (<color=yellow>9</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
                 },
                 {
                     "cost": 200,
-                    "description": "Increase Max Health (<color=yellow>5</color>)\n & Heal <color=red>20%</color>",
-                    "values": [20, 0.20]
+                    "description": "Increase Max Health (<color=yellow>10</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 220,
+                    "description": "Increase Max Health (<color=yellow>11</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 240,
+                    "description": "Increase Max Health (<color=yellow>12</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 260,
+                    "description": "Increase Max Health (<color=yellow>13</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 280,
+                    "description": "Increase Max Health (<color=yellow>14</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 300,
+                    "description": "Increase Max Health (<color=yellow>15</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 320,
+                    "description": "Increase Max Health (<color=yellow>16</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 340,
+                    "description": "Increase Max Health (<color=yellow>17</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 360,
+                    "description": "Increase Max Health (<color=yellow>18</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 380,
+                    "description": "Increase Max Health (<color=yellow>19</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 400,
+                    "description": "Increase Max Health (<color=yellow>20</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 420,
+                    "description": "Increase Max Health (<color=yellow>21</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 440,
+                    "description": "Increase Max Health (<color=yellow>22</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 460,
+                    "description": "Increase Max Health (<color=yellow>23</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 480,
+                    "description": "Increase Max Health (<color=yellow>24</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 500,
+                    "description": "Increase Max Health (<color=yellow>25</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 520,
+                    "description": "Increase Max Health (<color=yellow>26</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 540,
+                    "description": "Increase Max Health (<color=yellow>27</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 560,
+                    "description": "Increase Max Health (<color=yellow>28</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 580,
+                    "description": "Increase Max Health (<color=yellow>29</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 600,
+                    "description": "Increase Max Health (<color=yellow>30</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 620,
+                    "description": "Increase Max Health (<color=yellow>31</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 640,
+                    "description": "Increase Max Health (<color=yellow>32</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 660,
+                    "description": "Increase Max Health (<color=yellow>33</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
+                },
+                {
+                    "cost": 680,
+                    "description": "Increase Max Health (<color=yellow>34</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 700,
+                    "description": "Increase Max Health (<color=yellow>35</color>)\n & Heal <color=red>15%</color>",
+                    "values": [10, 0.15]
+                },
+                {
+                    "cost": 720,
+                    "description": "Increase Max Health (<color=yellow>36</color>)\n & Heal <color=red>20%</color>",
+                    "values": [10, 0.20]
                 }
             ]
         },
