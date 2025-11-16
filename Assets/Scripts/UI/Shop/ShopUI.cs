@@ -16,6 +16,8 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private float checkShopPopupFadeTime = 0.3f;
     [SerializeField] private float checkShopPopupDuration = 1f;
     [SerializeField] private int checkShopPopupRepetitions = 3;
+    [SerializeField] private TextMeshProUGUI multiplierText;
+    [SerializeField] private TextMeshProUGUI discountText;
 
     private PlayerEnabler player;
     private PlayerUnlockTree playerUnlock;
@@ -68,6 +70,7 @@ public class ShopUI : MonoBehaviour
         if (popup != null)
             StopCoroutine(popup);
         SetCheckShopPopupAlpha(0f);
+        RefreshMetaInfo();
     }
 
     private void Close()
@@ -154,4 +157,25 @@ public class ShopUI : MonoBehaviour
     {
         shopEnabled = false;
     }
+
+    private void RefreshMetaInfo()
+    {
+        if (playerCurrency == null)
+            return;
+
+        if (multiplierText != null)
+        {
+            float m = playerCurrency.GetMultiplier();
+            
+            multiplierText.text = $"Currency Gain: x{m:0.##}";
+        }
+
+        if (discountText != null)
+        {
+            float d = playerCurrency.GetShopDiscount(); // 0~1
+
+            discountText.text = "Shop Discount: " + (d * 100f).ToString("0.#") + "%";
+        }
+    }
+
 }

@@ -55,4 +55,10 @@ public class PlayerCurrency : MonoBehaviour
     {
         onCurrencyChanged?.Invoke(currency);
     }
+
+    public float GetShopDiscount()
+    {
+        return shopDiscount;
+    }
+
 }
