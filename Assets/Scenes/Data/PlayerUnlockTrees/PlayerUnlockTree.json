@@ -178,6 +178,16 @@
                     "cost": 25,
                     "description": "<color=red><b>+</b></color> Damage (<color=yellow>1</color>)",
                     "values": [0.25]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 75,
+                    "description": "<color=red><b>+</b></color> Damage (<color=yellow>3</color>)",
+                    "values": [0.25]
                 }
             ]
         },
@@ -197,6 +207,86 @@
                 {
                     "cost": 50,
                     "description": "<color=red><b>+</b></color> Range (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 75,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "BombSpell-Upgrade-Cooldown",
+            "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
+            "prerequisites": ["BombSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bomb", "Cooldown"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 75,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "BombSpell-Upgrade-BounceBack",
+            "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
+            "prerequisites": ["BombSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bomb", "BounceBack"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>+</b></color> BounceBack (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> BounceBack (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 75,
+                    "description": "<color=red><b>+</b></color> BounceBack (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "BombSpell-Upgrade-Radius",
+            "name": "Bomb Spell",
+            "defaultIcon": "BombSpell",
+            "prerequisites": ["BombSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bomb", "Radius"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 75,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>3</color>)",
                     "values": [0.25]
                 }
             ]
