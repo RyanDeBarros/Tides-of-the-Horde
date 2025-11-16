@@ -293,6 +293,82 @@
         },
 
         {
+            "id": "BubbleSpell-Upgrade-Radius",
+            "name": "Bubble Spell",
+            "defaultIcon": "BubbleSpell",
+            "prerequisites": ["BubbleSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bubble", "Radius"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 75,
+                    "description": "<color=red><b>+</b></color> Radius (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "BubbleSpell-Upgrade-Cooldown",
+            "name": "Bubble Spell",
+            "defaultIcon": "BubbleSpell",
+            "prerequisites": ["BubbleSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bubble", "Cooldown"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 75,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "BubbleSpell-Upgrade-BounceBack",
+            "name": "Bubble Spell",
+            "defaultIcon": "BubbleSpell",
+            "prerequisites": ["BubbleSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Bubble", "BounceBack"],
+            "tiers": [
+                {
+                    "cost": 25,
+                    "description": "<color=red><b>+</b></color> Bounce back (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 50,
+                    "description": "<color=red><b>+</b></color> Bounce back (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 75,
+                    "description": "<color=red><b>+</b></color> Bounce back (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+
+        {
             "id": "Health-Upgrade",
             "name": "Health",
             "defaultIcon": "Health",
