@@ -74,6 +74,7 @@
                 }
             ]
         },
+
         {
             "id": "MeleeSpell-Upgrade-Damage",
             "name": "Melee Spell",
@@ -89,6 +90,82 @@
                 }
             ]
         },
+        {
+            "id": "MeleeSpell-Upgrade-Range",
+            "name": "Melee Spell",
+            "defaultIcon": "MeleeSpell",
+            "prerequisites": ["MeleeSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Melee", "Range"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>+</b></color> Range (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "MeleeSpell-Upgrade-Cooldown",
+            "name": "Melee Spell",
+            "defaultIcon": "MeleeSpell",
+            "prerequisites": ["MeleeSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Melee", "Cooldown"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>-</b></color> Cooldown (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+        {
+            "id": "MeleeSpell-Upgrade-BounceBack",
+            "name": "Melee Spell",
+            "defaultIcon": "MeleeSpell",
+            "prerequisites": ["MeleeSpell-Unlock"],
+            "action": "UpgradeSpell",
+            "parameters": ["Melee", "BounceBack"],
+            "tiers": [
+                {
+                    "cost": 15,
+                    "description": "<color=red><b>+</b></color> Bounce Back (<color=yellow>1</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 30,
+                    "description": "<color=red><b>+</b></color> Bounce Back (<color=yellow>2</color>)",
+                    "values": [0.25]
+                },
+                {
+                    "cost": 45,
+                    "description": "<color=red><b>+</b></color> Bounce Back (<color=yellow>3</color>)",
+                    "values": [0.25]
+                }
+            ]
+        },
+
         {
             "id": "BombSpell-Upgrade-Damage",
             "name": "Bomb Spell",
@@ -124,6 +201,7 @@
                 }
             ]
         },
+
         {
             "id": "Health-Upgrade",
             "name": "Health",
@@ -158,6 +236,7 @@
                 }
             ]
         },
+
         {
             "id": "Dash-Upgrade-Cooldown",
             "name": "Dash",
