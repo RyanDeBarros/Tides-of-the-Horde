@@ -42,7 +42,7 @@ public class BossHealthBar : MonoBehaviour
     {
         bossHealth = bossHealthComponent;
         
-        string bossName = bossTarget.displayName.ToUpper();
+        string bossName = bossTarget.displayName;
         bossNameText.text = bossName;
 
         bossHealth.onHealthChanged.AddListener(OnBossHealthChanged);
