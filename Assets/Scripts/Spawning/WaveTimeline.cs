@@ -28,6 +28,7 @@ public class WaveTimeline
         public int difficulty = 0;
         public bool spawnInitial = false;
         public bool spawnOnce = false;
+        public bool isBoss = false;
 
         private float spawnDebt = 0f;
         private float elapsed = 0f;
@@ -126,7 +127,7 @@ public class WaveTimeline
     private int waveNumber = 0;
     private float waveTimeElapsed = 0f;
     private WaveState waveState = WaveState.PreSpawn;
-    private readonly Dictionary<(EnemyType, int), int> toSpawn = new();
+    private readonly Dictionary<(EnemyType, int, bool), int> toSpawn = new();
 
     public Action<int> onWaveNumberChanged;
     public Func<bool> doEnemiesRemain;
@@ -199,7 +200,7 @@ public class WaveTimeline
     {
         waves[waveNumber].subwaves.ForEach(subwave => {
             subwave.Sync(waveTimeElapsed);
-            var key = (subwave.type, subwave.difficulty);
+            var key = (subwave.type, subwave.difficulty, subwave.isBoss);
             if (toSpawn.ContainsKey(key))
                 toSpawn[key] += subwave.GetNumberToSpawn();
             else
@@ -230,7 +231,7 @@ public class WaveTimeline
         SyncTimeline();
     }
 
-    public Dictionary<(EnemyType enemy, int difficulty), int> GetEnemiesToSpawn()
+    public Dictionary<(EnemyType enemy, int difficulty, bool isBoss), int> GetEnemiesToSpawn()
     {
         return toSpawn;
     }

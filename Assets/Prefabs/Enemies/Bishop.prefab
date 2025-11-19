@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 50
+  currentHealth: 0
   thresholdPercent: 10
   onHealthChanged:
     m_PersistentCalls:
@@ -274,11 +275,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60737cb6f18cfb2797e38d7a5ba11da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarContainer: {fileID: 362435641922987918}
+  healthBarContainer: {fileID: 3639551396797548523}
   healthSlider: {fileID: 1666123820808401067}
-  enemyHealth: {fileID: 0}
+  enemyHealth: {fileID: 2721521129437341166}
   showDuration: 3
-  healthBarOffset: {x: 0, y: 2.5, z: 0}
 --- !u!82 &7264195963702152951
 AudioSource:
   m_ObjectHideFlags: 0
@@ -537,15 +537,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -36.047
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.25678182
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 41.97326
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalRotation.w
@@ -580,11 +580,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
---- !u!1 &362435641922987918 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7913734487012878717, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
-  m_PrefabInstance: {fileID: 7553832751601520371}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1666123820808401067 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9208691443515948632, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
@@ -599,5 +594,10 @@ MonoBehaviour:
 --- !u!4 &2158178054727400123 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
+  m_PrefabInstance: {fileID: 7553832751601520371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3639551396797548523 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6509621671770360088, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
   m_PrefabInstance: {fileID: 7553832751601520371}
   m_PrefabAsset: {fileID: 0}
