@@ -27,11 +27,13 @@ public class PauseMenuChallengeUI : MonoBehaviour
             string reward = challengeTracker.GetRewardStatement();
 
             challengeText.text = "<b>Current Challenge:</b>\n" + challenge;
+            challengeText.color = Color.white;
             rewardText.text = "<b>Reward:</b>\n" + reward;
+            rewardText.color = Color.white;
         }
         else
         {
-            challengeText.text = "No active challenge";
+            challengeText.text = "No active challenge...";
             rewardText.text = "";
         }
     }
