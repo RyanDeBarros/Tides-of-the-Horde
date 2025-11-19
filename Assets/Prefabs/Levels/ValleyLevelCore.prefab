@@ -4332,13 +4332,45 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1586759823251657863, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1586759823251657863, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597660678671990345, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1597660678671990345, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 42.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1597660678671990345, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 271.5
+      value: 286
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741674971569803318, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 2741674971569803318, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 42.5
       objectReference: {fileID: 0}
     - target: {fileID: 2741674971569803318, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 215.10002
+      value: 229.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748647774687066872, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 2748647774687066872, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2931550023029920000, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: maxHealth
