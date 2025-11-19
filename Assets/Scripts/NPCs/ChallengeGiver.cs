@@ -107,8 +107,6 @@ public class ChallengeGiver : MonoBehaviour
     private void DespawnNPC()
     {
         despawnRoutine ??= StartCoroutine(DespawnRoutine());
-        bool hasPortalVfx = portal.GetPortalVfx();
-        portal.SetPortalVfx(!hasPortalVfx);
     }
 
     private IEnumerator DespawnRoutine()
