@@ -11,7 +11,6 @@ public class EnemyHealthBar : MonoBehaviour
 
     [Header("Settings")]
     public float showDuration = 3f;
-    public Vector3 healthBarOffset = new Vector3(0, 2.5f, 0);
 
     private float hideTimer = 0f;
     private bool isVisible = false;
@@ -29,7 +28,6 @@ public class EnemyHealthBar : MonoBehaviour
     {
         if (isVisible)
         {
-            healthBarContainer.transform.position = transform.position + healthBarOffset;
             healthBarContainer.transform.rotation = Camera.main.transform.rotation;
             
             hideTimer -= Time.deltaTime;
@@ -40,8 +38,15 @@ public class EnemyHealthBar : MonoBehaviour
         }
     }
 
+    private void OnDisable()
+    {
+        HideHealthBar();
+    }
+
     public void OnHealthChanged(int currentHealth, int maxHealth)
     {
+        if (!enabled) return;
+
         float healthPercent = (float)currentHealth / maxHealth;
         healthSlider.value = healthPercent;
         
@@ -58,7 +63,7 @@ public class EnemyHealthBar : MonoBehaviour
         }
     }
 
-    void ShowHealthBar()
+    private void ShowHealthBar()
     {
         if (!isVisible)
         {
@@ -67,7 +72,7 @@ public class EnemyHealthBar : MonoBehaviour
         }
     }
 
-    void HideHealthBar()
+    private void HideHealthBar()
     {
         if (isVisible)
         {

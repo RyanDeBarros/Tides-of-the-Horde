@@ -121,11 +121,11 @@ public class EnemySpawner : MonoBehaviour
         uiController.SetNormalizedSpawningTimeLeft(waveTimeline.GetNormalizedSpawningTimeLeft());
         uiController.SetNormalizedWaitTime(waveTimeline.GetNormalizedWaitTime());
 
-        foreach (((EnemyType type, int difficultyLevel), int toSpawn) in waveTimeline.GetEnemiesToSpawn())
-            SpawnEnemies(type, toSpawn, difficultyLevel);
+        foreach (((EnemyType type, int difficultyLevel, bool isBoss), int toSpawn) in waveTimeline.GetEnemiesToSpawn())
+            SpawnEnemies(type, toSpawn, difficultyLevel, isBoss);
     }
 
-    public void SpawnEnemies(EnemyType type, int numEnemies, int difficultyLevel)
+    public void SpawnEnemies(EnemyType type, int numEnemies, int difficultyLevel, bool isBoss)
     {
         if (numEnemies <= 0) return;
         List<SpawnZone> activeSpawnZones = spawnZones.Where(spawner => spawner.IsSpawnable()).ToList();
@@ -134,11 +134,11 @@ public class EnemySpawner : MonoBehaviour
         for (int _ = 0; _ < numEnemies; ++_)
         {
             Vector3 spawnPoint = activeSpawnZones.GetRandomElement().GetRandomPoint();
-            SpawnAtPoint(type, spawnPoint, difficultyLevel);
+            SpawnAtPoint(type, spawnPoint, difficultyLevel, isBoss);
         }
     }
 
-    private void SpawnAtPoint(EnemyType type, Vector3 point, int difficultyLevel)
+    private void SpawnAtPoint(EnemyType type, Vector3 point, int difficultyLevel, bool isBoss)
     {
         GameObject instance = Instantiate(GetEnemyPrefab(type), point, Quaternion.identity);
         spawnedEnemies.Add(instance);
@@ -149,6 +149,8 @@ public class EnemySpawner : MonoBehaviour
             waypointPatroller.waypoints = waypoints;
         if (instance.TryGetComponent(out Health health))
             health.onDeath.AddListener(() => { LevelStatistics.AddEnemyDeath(type); });
+        if (instance.TryGetComponent(out BossHealthBarSelector selector))
+            selector.SetBoss(isBoss);
     }
 
     private GameObject GetEnemyPrefab(EnemyType type)

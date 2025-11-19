@@ -243,6 +243,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   thresholdPercent: 10
   onHealthChanged:
     m_PersistentCalls:
@@ -364,11 +365,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60737cb6f18cfb2797e38d7a5ba11da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarContainer: {fileID: 4683100621972104204}
+  healthBarContainer: {fileID: 8608734907334214761}
   healthSlider: {fileID: 5973273622743462697}
-  enemyHealth: {fileID: 0}
+  enemyHealth: {fileID: 2787592504715518654}
   showDuration: 3
-  healthBarOffset: {x: 0, y: 2.5, z: 0}
 --- !u!82 &1899066603062477048
 AudioSource:
   m_ObjectHideFlags: 0
@@ -523,7 +523,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -562,11 +562,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
---- !u!1 &4683100621972104204 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7913734487012878717, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
-  m_PrefabInstance: {fileID: 3255694209342492017}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5973273622743462697 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 9208691443515948632, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
@@ -581,6 +576,11 @@ MonoBehaviour:
 --- !u!4 &6343731285199796537 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
+  m_PrefabInstance: {fileID: 3255694209342492017}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8608734907334214761 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6509621671770360088, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
   m_PrefabInstance: {fileID: 3255694209342492017}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5868744215218998149

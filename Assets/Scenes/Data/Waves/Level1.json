@@ -76,6 +76,7 @@
                 {
                     "enemy": "DemonKing",
                     "spawnOnce": true,
+                    "isBoss": true,
                     "timeOffset": 1.0,
                     "difficulty": 1
                 }

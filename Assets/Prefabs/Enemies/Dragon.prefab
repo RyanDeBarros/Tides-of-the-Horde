@@ -88,6 +88,7 @@ MonoBehaviour:
   chaseRange: 40
   stoppingDistance: 4
   patrolSpeedMultiplier: 0.5
+  turnSpeed: 800
 --- !u!114 &5984126950147037728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,9 +141,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnDistanceUpdated:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1083798657103641924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   thresholdPercent: 10
   onHealthChanged:
     m_PersistentCalls:
@@ -195,6 +194,9 @@ MonoBehaviour:
   waypoints: []
   characterController: {fileID: 3953587957358604670}
   moveSpeed: 5
+  onMove:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &1499814353859219318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,10 +209,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c60737cb6f18cfb2797e38d7a5ba11da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthBarContainer: {fileID: 2094524578201743127}
+  healthBarContainer: {fileID: 3068313624640327538}
   healthSlider: {fileID: 1083639644329965618}
+  enemyHealth: {fileID: 1083798657103641924}
   showDuration: 3
-  healthBarOffset: {x: 0, y: 4, z: 0}
 --- !u!114 &1397774575576606774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1076,7 +1078,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8441990200094782536, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1131,8 +1133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &2094524578201743127 stripped
+--- !u!1 &3068313624640327538 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 7913734487012878717, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6509621671770360088, guid: a1fa56aaf5ccf6a50a39323bf51c14aa, type: 3}
   m_PrefabInstance: {fileID: 8125061728076760682}
   m_PrefabAsset: {fileID: 0}

@@ -27,7 +27,6 @@ public class BossHealthBar : MonoBehaviour
 
         healthBarContainer.SetActive(false);
         canvasGroup.alpha = 0f;
-        InvokeRepeating("CheckForBoss", 0f, 1f);
     }
 
     void Update()
@@ -41,12 +40,10 @@ public class BossHealthBar : MonoBehaviour
     public void InitializeBoss(Health bossHealthComponent, BossHealthBarTarget bossTarget)
     {
         bossHealth = bossHealthComponent;
-        
-        string bossName = bossTarget.displayName;
-        bossNameText.text = bossName;
-
         bossHealth.onHealthChanged.AddListener(OnBossHealthChanged);
         bossHealth.onDeath.AddListener(OnBossDeath);
+
+        bossNameText.text = bossTarget.displayName;
 
         healthSlider.maxValue = bossHealth.maxHealth;
         healthSlider.value = bossHealth.GetCurrentHealth();
@@ -106,22 +103,6 @@ public class BossHealthBar : MonoBehaviour
             if (canvasGroup.alpha <= 0f)
             {
                 healthBarContainer.SetActive(false);
-            }
-        }
-    }
-
-    void CheckForBoss()
-    {
-        if (healthBarContainer.activeInHierarchy) return;
-        
-        BossHealthBarTarget bossTarget = FindObjectOfType<BossHealthBarTarget>();
-        if (bossTarget != null)
-        {
-            Health bossHealth = bossTarget.GetComponent<Health>();
-            if (bossHealth != null)
-            {
-                InitializeBoss(bossHealth, bossTarget);
-                CancelInvoke("CheckForBoss"); 
             }
         }
     }
