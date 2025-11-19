@@ -12,7 +12,7 @@ public class ButtonSFX : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
         if (audioSource == null)
         {
             // try find a global UI AudioSource in scene
-            audioSource = FindObjectOfType<AudioSource>();
+            audioSource = FindFirstObjectByType<AudioSource>();
             if (audioSource != null)
                 Debug.Log($"[ButtonSFX] Auto-assigned AudioSource from scene to '{gameObject.name}'");
         }
