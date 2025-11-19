@@ -125,6 +125,7 @@ GameObject:
   - component: {fileID: 3299712059124125513}
   - component: {fileID: 9102878451973881690}
   - component: {fileID: 160752166260935403}
+  - component: {fileID: 618609987056149324}
   m_Layer: 8
   m_Name: FlyingDemon
   m_TagString: Boss
@@ -441,6 +442,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &618609987056149324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4565950493443346975}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00967b37da3f6073812979ed5529e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: FLYING DEMON
 --- !u!1 &6056564345800127664
 GameObject:
   m_ObjectHideFlags: 0

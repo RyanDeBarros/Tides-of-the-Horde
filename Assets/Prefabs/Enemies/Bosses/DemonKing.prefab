@@ -217,6 +217,7 @@ GameObject:
   - component: {fileID: 1427956218210571630}
   - component: {fileID: 8269115829709230679}
   - component: {fileID: 5208570685143511649}
+  - component: {fileID: 3865934464121498255}
   m_Layer: 8
   m_Name: DemonKing
   m_TagString: Enemy
@@ -613,6 +614,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3865934464121498255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522856944775851731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b00967b37da3f6073812979ed5529e88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayName: DEMON KING
 --- !u!1 &5612114110964857626
 GameObject:
   m_ObjectHideFlags: 0

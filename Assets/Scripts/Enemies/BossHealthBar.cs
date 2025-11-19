@@ -38,11 +38,11 @@ public class BossHealthBar : MonoBehaviour
         HandleShowHideAnimation();
     }
 
-    public void InitializeBoss(Health bossHealthComponent)
+    public void InitializeBoss(Health bossHealthComponent, BossHealthBarTarget bossTarget)
     {
         bossHealth = bossHealthComponent;
         
-        string bossName = AddSpacesToName(bossHealth.gameObject.name).ToUpper();
+        string bossName = bossTarget.displayName.ToUpper();
         bossNameText.text = bossName;
 
         bossHealth.onHealthChanged.AddListener(OnBossHealthChanged);
@@ -114,28 +114,15 @@ public class BossHealthBar : MonoBehaviour
     {
         if (healthBarContainer.activeInHierarchy) return;
         
-        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-        if (boss != null)
+        BossHealthBarTarget bossTarget = FindObjectOfType<BossHealthBarTarget>();
+        if (bossTarget != null)
         {
-            Health bossHealth = boss.GetComponent<Health>();
-            InitializeBoss(bossHealth);
-            CancelInvoke("CheckForBoss"); 
-        }
-    }
-
-    string AddSpacesToName(string name)
-    {
-        string result = "";
-        
-        for (int i = 0; i < name.Length; i++)
-        {
-            if (i > 0 && char.IsUpper(name[i]))
+            Health bossHealth = bossTarget.GetComponent<Health>();
+            if (bossHealth != null)
             {
-                result += " ";
+                InitializeBoss(bossHealth, bossTarget);
+                CancelInvoke("CheckForBoss"); 
             }
-            result += name[i];
         }
-        
-        return result;
     }
 }
