@@ -10,12 +10,18 @@ public class ShopUI : MonoBehaviour
     [SerializeField] private GameObject uiRoot;
     [SerializeField] private List<UnlockSelect> unlockSelects;
 
+    [Header("Shop Disabled Banner")]
+    [SerializeField] private GameObject shopPanel;              
+    [SerializeField] private TextMeshProUGUI shopDisabledText;
+
     [Header("Check Shop Popup")]
     [SerializeField] private TextMeshProUGUI checkShopPopup;
     [SerializeField] private Image checkShopPopupBKG;
     [SerializeField] private float checkShopPopupFadeTime = 0.3f;
     [SerializeField] private float checkShopPopupDuration = 1f;
     [SerializeField] private int checkShopPopupRepetitions = 3;
+    [SerializeField] private TextMeshProUGUI multiplierText;
+    [SerializeField] private TextMeshProUGUI discountText;
 
     private PlayerEnabler player;
     private PlayerUnlockTree playerUnlock;
@@ -30,12 +36,17 @@ public class ShopUI : MonoBehaviour
         Assert.IsNotNull(uiRoot);
         Assert.IsNotNull(checkShopPopup);
         Assert.IsNotNull(checkShopPopupBKG);
+        Assert.IsNotNull(shopPanel);
+        Assert.IsNotNull(shopDisabledText);
 
         player = GlobalFind.FindUniqueObjectByType<PlayerEnabler>(true);
         playerUnlock = GlobalFind.FindUniqueObjectByType<PlayerUnlockTree>(true);
         playerCurrency = GlobalFind.FindUniqueObjectByType<PlayerCurrency>(true);
 
         SetCheckShopPopupAlpha(0f);
+
+        shopPanel.SetActive(true);
+        shopDisabledText.gameObject.SetActive(false);
     }
 
     private void Start()
@@ -47,13 +58,12 @@ public class ShopUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            if (shopEnabled)
-            {
-                if (open)
-                    Close();
-                else
-                    Open();
-            }
+            
+           if (open)
+               Close();
+           else
+               Open();
+            
         }
     }
 
@@ -68,6 +78,22 @@ public class ShopUI : MonoBehaviour
         if (popup != null)
             StopCoroutine(popup);
         SetCheckShopPopupAlpha(0f);
+        RefreshMetaInfo();
+        if (shopEnabled)
+        {
+            
+            shopPanel.SetActive(true);
+            shopDisabledText.gameObject.SetActive(false);
+        }
+        else
+        {
+            
+            shopPanel.SetActive(false);
+            shopDisabledText.gameObject.SetActive(true);
+            //I think the text should mostly be the same, but still keep it here in case you need to write something else
+            //shopDisabledText.text = "According to the current challenge,\n" +
+            //                        "the shop is not available in this level.";
+        }
     }
 
     private void Close()
@@ -154,4 +180,25 @@ public class ShopUI : MonoBehaviour
     {
         shopEnabled = false;
     }
+
+    private void RefreshMetaInfo()
+    {
+        if (playerCurrency == null)
+            return;
+
+        if (multiplierText != null)
+        {
+            float m = playerCurrency.GetMultiplier();
+            
+            multiplierText.text = $"Currency Gain: x{m:0.##}";
+        }
+
+        if (discountText != null)
+        {
+            float d = playerCurrency.GetShopDiscount(); // 0~1
+
+            discountText.text = "Shop Discount: " + (d * 100f).ToString("0.#") + "%";
+        }
+    }
+
 }

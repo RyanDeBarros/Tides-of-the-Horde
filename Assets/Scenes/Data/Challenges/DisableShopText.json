@@ -1,0 +1,27 @@
+{
+    "0": {
+        "challenges": [
+        {
+            "statement": "<color=blue>Survive</color> the Tide with the shop <color=red>disabled</color>",
+            "challengeClass": "C_ShopDisabled",
+            "weight": 0.5
+        }
+        ],
+"rewards": [{
+                "statement": "Start levels with <color=green>+200</color> crystals",
+                "rewardClass": "CR_CurrencyStartingBonus",
+                "values": [200]
+            },
+            {
+                "statement": "Add <color=green>100%</color> crystal gain multiplier",
+                "rewardClass": "CR_CurrencyMultiplierBoost",
+                "values": [1.0]
+            },
+            {
+                "statement": "<color=green>x50%</color> shop discount",
+                "rewardClass": "CR_ShopDiscount",
+                "values": [0.50]
+            }
+        ]
+    }
+}
