@@ -1,0 +1,87 @@
+{
+    "waves": [
+        {
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 5.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 5.0,
+                    "enemy": "Dragon",
+                    "spawnRate": 1.0,
+                    "difficulty": 1
+                }
+            ]
+        },
+        {
+            "preWaveWaitTime": 0.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 3.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 1.5,
+                    "difficulty": 2
+                },
+                {
+                    "duration": 1.0,
+                    "spawnInitial": true,
+                    "enemy": "Orc",
+                    "spawnRate": 1.0,
+                    "difficulty": 1
+                },
+                {
+                    "enemy": "FlyingDemon",
+                    "spawnOnce": true,
+                    "timeOffset": 3.0,
+                    "difficulty": 1
+                },
+                {
+                    "enemy": "FlyingDemon",
+                    "spawnOnce": true,
+                    "timeOffset": 4.0,
+                    "difficulty": 1
+                }
+            ]
+        },
+        {
+            "preWaveWaitTime": 0.0,
+            "postWaveWaitTime": 3.0,
+            "song": "Battle 1",
+            "subwaves": [
+                {
+                    "duration": 10.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 2.0,
+                    "difficulty": 3
+                },
+                {
+                    "duration": 10.0,
+                    "enemy": "Orc",
+                    "spawnRate": 0.8,
+                    "difficulty": 2
+                },
+                {
+                    "timeOffset": 5.0,
+                    "duration": 10.0,
+                    "enemy": "Bishop",
+                    "spawnRate": 0.5,
+                    "difficulty": 1
+                },
+                {
+                    "enemy": "DemonKing",
+                    "spawnOnce": true,
+                    "timeOffset": 1.0,
+                    "difficulty": 1
+                }
+            ]
+        }
+    ],
+    "defaultSong": "Prologue",
+    "waitingSong": "Silent Forest"
+}

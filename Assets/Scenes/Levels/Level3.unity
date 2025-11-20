@@ -154,15 +154,15 @@ PrefabInstance:
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: spawnWaveFile
       value: 
-      objectReference: {fileID: 4900000, guid: 35bbbdfd7cc9ffd43b7a961c701b6d06, type: 3}
+      objectReference: {fileID: 4900000, guid: 9bd5c47a0ea9b3f4e825a1fe4cd5bda0, type: 3}
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: closingDialogFile
       value: 
-      objectReference: {fileID: 4900000, guid: 194350c16246fcf48b4def6aead17f27, type: 3}
+      objectReference: {fileID: 4900000, guid: ab449b819480b8847beb58b1de01328f, type: 3}
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: openingDialogFile
       value: 
-      objectReference: {fileID: 4900000, guid: 88c33012100681341945dd32be12fd1d, type: 3}
+      objectReference: {fileID: 4900000, guid: 30300f734bfb73043be27d5b6117fe42, type: 3}
     - target: {fileID: 1673077428205777203, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
