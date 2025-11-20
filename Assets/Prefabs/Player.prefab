@@ -298,6 +298,7 @@ MonoBehaviour:
   runningSpeed: 16
   rotationSpeed: 10
   inputDeadzone: 0.15
+  slowingFactor: 1
 --- !u!114 &6328866537227378538
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -375,6 +376,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  currentHealth: 0
   thresholdPercent: 10
   onHealthChanged:
     m_PersistentCalls:

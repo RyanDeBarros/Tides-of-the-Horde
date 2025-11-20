@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
-using static System.Net.Mime.MediaTypeNames;
 
 public class HUDController : MonoBehaviour
 {
@@ -15,6 +15,8 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthAnim;
     [SerializeField] private TextMeshProUGUI crystalsAnim;
     [SerializeField] private float statsAnimationDuration = 0.2f;
+    [SerializeField] private RawImage vignette;
+    [SerializeField] private float lowHealthThreshold = 0.2f;
 
     [Header("Player References")]
     [SerializeField] private PlayerEnabler player;
@@ -95,6 +97,7 @@ public class HUDController : MonoBehaviour
         Assert.IsNotNull(crystalsText);
         Assert.IsNotNull(healthAnim);
         Assert.IsNotNull(crystalsAnim);
+        Assert.IsNotNull(vignette);
 
         Assert.IsNotNull(player);
         Assert.IsNotNull(playerHealth);
@@ -166,6 +169,15 @@ public class HUDController : MonoBehaviour
         healthText.SetText($"{currentHP}/{maxHP}");
         Vector2 sz = healthText.rectTransform.sizeDelta;
         healthText.rectTransform.sizeDelta = new(healthText.preferredWidth, sz.y);
+
+        UpdateVignette((float)currentHP / maxHP);
+    }
+
+    private void UpdateVignette(float normalizedHP)
+    {
+        Color color = vignette.color;
+        color.a = Mathf.Clamp01(1f - normalizedHP / lowHealthThreshold);
+        vignette.color = color;
     }
 
     public void UpdateCrystalsHUD(int currentEXP)
