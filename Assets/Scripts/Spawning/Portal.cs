@@ -120,6 +120,7 @@ class Portal : MonoBehaviour
         playerMovement.enabled = enabled;
         playerDash.enabled = enabled;
         spellManager.enabled = enabled;
+        playerCamera.enabled = enabled;
     }
 
     public static Portal GetLevelPortal()
