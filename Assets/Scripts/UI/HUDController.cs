@@ -1,16 +1,19 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
-using TMPro;
-using System.Collections;
+using static System.Net.Mime.MediaTypeNames;
 
 public class HUDController : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI healthText;
     [SerializeField] private TextMeshProUGUI crystalsText;
+    [SerializeField] private TextMeshProUGUI healthAnim;
+    [SerializeField] private TextMeshProUGUI crystalsAnim;
 
     [Header("Player References")]
     [SerializeField] private PlayerEnabler player;
@@ -43,6 +46,11 @@ public class HUDController : MonoBehaviour
 
     private void Awake()
     {
+        Assert.IsNotNull(healthText);
+        Assert.IsNotNull(crystalsText);
+        Assert.IsNotNull(healthAnim);
+        Assert.IsNotNull(crystalsAnim);
+
         Assert.IsNotNull(player);
         Assert.IsNotNull(playerHealth);
         Assert.IsNotNull(playerCurrency);
@@ -55,6 +63,9 @@ public class HUDController : MonoBehaviour
 
     void Start()
     {
+        healthAnim.SetText("");
+        crystalsAnim.SetText("");
+
         // Subscribe to player status events
         UpdateHealthHUD(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
         UpdateCrystalsHUD(playerCurrency.GetCurrency());
@@ -90,12 +101,30 @@ public class HUDController : MonoBehaviour
 
     public void UpdateHealthHUD(int currentHP, int maxHP)
     {
+        if (healthText.text != "")
+            AnimateDelta(currentHP - int.Parse(healthText.text.Split('/')[0]), healthAnim);
+        
         healthText.SetText($"{currentHP}/{maxHP}");
+        Vector2 sz = healthText.rectTransform.sizeDelta;
+        healthText.rectTransform.sizeDelta = new(healthText.preferredWidth, sz.y);
     }
 
     public void UpdateCrystalsHUD(int currentEXP)
     {
+        if (crystalsText.text != "")
+            AnimateDelta(currentEXP - int.Parse(crystalsText.text), crystalsAnim);
+
         crystalsText.SetText($"{currentEXP}");
+        Vector2 sz = crystalsText.rectTransform.sizeDelta;
+        crystalsText.rectTransform.sizeDelta = new(crystalsText.preferredWidth, sz.y);
+    }
+
+    private void AnimateDelta(int delta, TextMeshProUGUI anim)
+    {
+        // TODO
+        if (delta == 0) return;
+
+        anim.SetText($"{(delta > 0 ? '+' : '-')}{delta}");
     }
 
     public void SetSpellCooldowns(Dictionary<SpellType, float> cooldowns)
