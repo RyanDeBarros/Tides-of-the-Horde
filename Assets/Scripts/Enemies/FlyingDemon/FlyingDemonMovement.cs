@@ -23,7 +23,7 @@ public class FlyingDemonMovement : MonoBehaviour
     private FlyingDemonAnimator animator;
     private FlyingDemonAttackAI attacker;
     private WaypointPatroller waypointPatroller;
-    private CharacterController characterController;
+    private CharacterController controller;
     private Transform player;
 
     private float lockY = 0f;
@@ -41,9 +41,10 @@ public class FlyingDemonMovement : MonoBehaviour
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
+        waypointPatroller.onMove.AddListener(OnWaypointPatrollerMove);
 
-        characterController = GetComponent<CharacterController>();
-        Assert.IsNotNull(characterController);
+        controller = GetComponent<CharacterController>();
+        Assert.IsNotNull(controller);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
@@ -51,13 +52,12 @@ public class FlyingDemonMovement : MonoBehaviour
 
     private void Start()
     {
-        waypointPatroller.moveSpeed = moveSpeed * patrolSpeedMultiplier;
         lockY = transform.position.y;
     }
 
     private void Update()
     {
-        if (!characterController.enabled || !attacker.AllowMovement())
+        if (!controller.enabled || !attacker.AllowMovement())
             return;
 
         Vector3 direction = player.position - transform.position;
@@ -75,14 +75,14 @@ public class FlyingDemonMovement : MonoBehaviour
             {
                 ResetSideStep();
 
-                characterController.Move(chargeSpeed * Time.deltaTime * direction);
+                controller.Move(chargeSpeed * Time.deltaTime * direction);
                 animator.SetRunning();
             }
             else
             {
                 float displacement = distanceToPlayer - stoppingDistance;
                 displacement = Mathf.Min(Mathf.Abs(displacement), moveSpeed * Time.deltaTime) * Mathf.Sign(displacement);
-                characterController.Move(displacement * direction);
+                controller.Move(displacement * direction);
 
                 UpdateSideStep();
 
@@ -98,12 +98,22 @@ public class FlyingDemonMovement : MonoBehaviour
             }
         }
         else
-        {
             waypointPatroller.StartPatrol();
-            animator.SetMovingForward();
-        }
 
         LockY();
+    }
+
+    private void LookInDirection(Vector3 direction)
+    {
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
+    }
+
+    private void OnWaypointPatrollerMove(Vector3 displacement)
+    {
+        displacement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
+        LookInDirection(displacement);
+        controller.Move(displacement);
+        animator.SetMovingForward();
     }
 
     public void LockY()
@@ -117,7 +127,7 @@ public class FlyingDemonMovement : MonoBehaviour
     {
         Vector3 direction = player.transform.position - transform.position;
         direction.y = 0f;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
+        LookInDirection(direction);
     }
 
     private void UpdateSideStep()
@@ -145,7 +155,7 @@ public class FlyingDemonMovement : MonoBehaviour
             }
             else
             {
-                characterController.Move(sideStepSpeed * Time.deltaTime * sideSteppingDir * transform.right);
+                controller.Move(sideStepSpeed * Time.deltaTime * sideSteppingDir * transform.right);
                 if (sideStepSpeed > 0)
                     animator.SetMovingRight();
                 else

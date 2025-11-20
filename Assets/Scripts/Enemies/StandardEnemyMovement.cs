@@ -49,12 +49,6 @@ public class StandardEnemyMovement : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        waypointPatroller.characterController = controller;
-        waypointPatroller.moveSpeed = patrolSpeedMultiplier * moveSpeed;
-    }
-
     private void Update()
     {
         if (!controller.enabled) return;
@@ -84,6 +78,7 @@ public class StandardEnemyMovement : MonoBehaviour
         else
             waypointPatroller.StartPatrol();
     }
+
     private void LookInDirection(Vector3 direction)
     {
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
@@ -91,6 +86,9 @@ public class StandardEnemyMovement : MonoBehaviour
 
     private void OnWaypointPatrollerMove(Vector3 displacement)
     {
+        displacement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
+        LookInDirection(displacement);
+        controller.Move(displacement);
         UpdateAnimationSpeed(Time.deltaTime > 1e-5f ? displacement.magnitude / Time.deltaTime : 0f);
     }
 

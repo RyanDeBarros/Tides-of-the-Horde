@@ -273,7 +273,7 @@ MonoBehaviour:
   dieStateName: Die
   extraDelay: 0
   disableOnDeath:
-  - {fileID: 0}
+  - {fileID: 260441385098305972}
   - {fileID: 1374632408338838039}
   - {fileID: 2143102535228542233}
   sinkDuration: 0.1
@@ -350,8 +350,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceptance_threshold: 1
   waypoints: []
-  characterController: {fileID: 5840853363918661323}
-  moveSpeed: 5
   onMove:
     m_PersistentCalls:
       m_Calls: []

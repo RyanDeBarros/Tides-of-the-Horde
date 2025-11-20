@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoSize: {x: 0.5, y: 2, z: 0.5}
+  index: 8
 --- !u!1 &1993299666569736106
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoSize: {x: 0.5, y: 2, z: 0.5}
+  index: 4
 --- !u!1 &2420124498465953009
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoSize: {x: 0.5, y: 2, z: 0.5}
+  index: 5
 --- !u!1 &4746259811200784918
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,6 +699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoSize: {x: 0.5, y: 2, z: 0.5}
+  index: 1
 --- !u!1 &6063426160740505232
 GameObject:
   m_ObjectHideFlags: 0
@@ -778,6 +782,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoSize: {x: 0.5, y: 2, z: 0.5}
+  index: 2
 --- !u!1 &6701200562442521388
 GameObject:
   m_ObjectHideFlags: 0
@@ -959,6 +964,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoSize: {x: 0.5, y: 2, z: 0.5}
+  index: 7
 --- !u!1 &7412285557089507857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,6 +1102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoSize: {x: 0.5, y: 2, z: 0.5}
+  index: 3
 --- !u!1 &8612161954113394671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1312,6 +1319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gizmoSize: {x: 0.5, y: 2, z: 0.5}
+  index: 6
 --- !u!1001 &342197454309635097
 PrefabInstance:
   m_ObjectHideFlags: 0
