@@ -1,9 +1,10 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 public class SkeletonMovementAI : MonoBehaviour
 {
-     [Header("Animation Settings")]
+    [Header("Animation Settings")]
     private Animator animator;
 
     public Transform player;
@@ -14,12 +15,19 @@ public class SkeletonMovementAI : MonoBehaviour
     [SerializeField] private float animationSpeedMultiplier = 0.3f;
 
     private CharacterController controller;
+    private NavMeshAgent agent;
     private WaypointPatroller waypointPatroller;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
+
+        agent = GetComponent<NavMeshAgent>();
+        Assert.IsNotNull(agent);
+        // Manual movement with NavMeshAgent pathfinding
+        agent.updatePosition = false;
+        agent.updateRotation = false;
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
@@ -57,8 +65,9 @@ public class SkeletonMovementAI : MonoBehaviour
             waypointPatroller.StopPatrol();
             if (distanceToPlayer > stoppingDistance)
             {
-                Vector3 movement = moveSpeed * Time.deltaTime * direction;
-                controller.Move(movement);
+                agent.nextPosition = transform.position;
+                agent.SetDestination(transform.position + direction * distanceToPlayer);
+                controller.Move(moveSpeed * Time.deltaTime * agent.desiredVelocity.normalized);
                 UpdateAnimationSpeed(moveSpeed);
             }
             else
