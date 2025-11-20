@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 7409806717346102057}
   - component: {fileID: 4433923307364158376}
   - component: {fileID: 5840853363918661323}
-  - component: {fileID: 5430280978657833039}
+  - component: {fileID: 260441385098305972}
   - component: {fileID: 2143102535228542233}
   - component: {fileID: 1374632408338838039}
   - component: {fileID: 2787592504715518654}
@@ -168,7 +168,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.9, z: 0.2}
---- !u!114 &5430280978657833039
+--- !u!114 &260441385098305972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -177,14 +177,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 877391312677472464}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d755c3c83b744b41aac62cc6da7c408, type: 3}
+  m_Script: {fileID: 11500000, guid: e6cdcdbc46e1e704587bf6a19724ab4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  moveSpeed: 5
   chaseRange: 30
   stoppingDistance: 2
+  moveSpeed: 5
   patrolSpeedMultiplier: 0.5
+  turnSpeed: 600
   animationSpeedMultiplier: 0.3
 --- !u!114 &2143102535228542233
 MonoBehaviour:
@@ -272,7 +273,7 @@ MonoBehaviour:
   dieStateName: Die
   extraDelay: 0
   disableOnDeath:
-  - {fileID: 5430280978657833039}
+  - {fileID: 0}
   - {fileID: 1374632408338838039}
   - {fileID: 2143102535228542233}
   sinkDuration: 0.1
