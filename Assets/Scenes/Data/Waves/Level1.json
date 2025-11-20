@@ -1,6 +1,118 @@
 {
     "waves": [
         {
+            "#": 1,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 5.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 1.0,
+                    "difficulty": 1
+                }
+            ]
+        },
+        {
+            "#": 2,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 10.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 1.5,
+                    "difficulty": 1
+                }
+            ]
+        },
+        {
+            "#": 3,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 10.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 1.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 3.0,
+                    "timeOffset": 5.0,
+                    "enemy": "Orc",
+                    "spawnRate": 1.0,
+                    "difficulty": 1
+                }
+            ]
+        },
+        {
+            "#": 4,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 5.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 1.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 3.0,
+                    "difficulty": 2
+                }
+            ]
+        },
+        {
+            "#": 5,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 10.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 1.5,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 3.0,
+                    "enemy": "Orc",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                }
+            ]
+        },
+        {
+            "#": 6,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 1.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 10.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 1.0,
+                    "timeOffset": 16.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 5.0,
+                    "difficulty": 2
+                },
+                {
+                    "duration": 1.0,
+                    "timeOffset": 8.0,
+                    "enemy": "Orc",
+                    "spawnRate": 10.0,
+                    "difficulty": 1
+                }
+            ]
+        },
+        {
+            "#": 7,
             "preWaveWaitTime": 3.0,
             "postWaveWaitTime": 3.0,
             "subwaves": [
@@ -12,77 +124,83 @@
                 },
                 {
                     "duration": 5.0,
-                    "enemy": "Dragon",
-                    "spawnRate": 1.0,
+                    "enemy": "Orc",
+                    "spawnRate": 2.0,
                     "difficulty": 1
-                }
-            ]
-        },
-        {
-            "preWaveWaitTime": 0.0,
-            "postWaveWaitTime": 3.0,
-            "subwaves": [
+                },
                 {
                     "duration": 3.0,
-                    "enemy": "Skeleton",
-                    "spawnRate": 1.5,
-                    "difficulty": 2
-                },
-                {
-                    "duration": 1.0,
-                    "spawnInitial": true,
-                    "enemy": "Orc",
+                    "enemy": "Bishop",
                     "spawnRate": 1.0,
-                    "difficulty": 1
-                },
-                {
-                    "enemy": "FlyingDemon",
-                    "spawnOnce": true,
-                    "timeOffset": 3.0,
-                    "difficulty": 1
-                },
-                {
-                    "enemy": "FlyingDemon",
-                    "spawnOnce": true,
-                    "timeOffset": 4.0,
                     "difficulty": 1
                 }
             ]
         },
         {
-            "preWaveWaitTime": 0.0,
+            "#": 8,
+            "preWaveWaitTime": 3.0,
             "postWaveWaitTime": 3.0,
-            "song": "Battle 1",
             "subwaves": [
                 {
-                    "duration": 10.0,
-                    "enemy": "Skeleton",
-                    "spawnRate": 2.0,
-                    "difficulty": 3
-                },
-                {
-                    "duration": 10.0,
+                    "duration": 15.0,
                     "enemy": "Orc",
-                    "spawnRate": 0.8,
-                    "difficulty": 2
-                },
-                {
-                    "timeOffset": 5.0,
-                    "duration": 10.0,
-                    "enemy": "Bishop",
-                    "spawnRate": 0.5,
-                    "difficulty": 1
-                },
-                {
-                    "enemy": "DemonKing",
-                    "spawnOnce": true,
-                    "isBoss": true,
-                    "timeOffset": 1.0,
+                    "spawnRate": 1.5,
                     "difficulty": 1
                 }
             ]
+        },
+        {
+            "#": 9,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 5.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 4.0,
+                    "enemy": "Orc",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 3.0,
+                    "enemy": "Bishop",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                }
+            ]
+        },
+        {
+            "#": 10,
+            "preWaveWaitTime": 3.0,
+            "postWaveWaitTime": 3.0,
+            "subwaves": [
+                {
+                    "duration": 5.0,
+                    "enemy": "Skeleton",
+                    "spawnRate": 2.0,
+                    "difficulty": 1
+                },
+                {
+                    "duration": 4.0,
+                    "enemy": "Orc",
+                    "spawnRate": 2.0,
+                    "difficulty": 2
+                },
+                {
+                    "duration": 5.0,
+                    "enemy": "Bishop",
+                    "spawnRate": 2.0,
+                    "difficulty": 2
+                }
+            ],
+            "song": "Mini Boss"
         }
     ],
-    "defaultSong": "Prologue",
+    "defaultSong": "Level 1",
     "waitingSong": "Silent Forest"
 }

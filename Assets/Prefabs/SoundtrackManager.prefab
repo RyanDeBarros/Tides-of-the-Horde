@@ -52,15 +52,31 @@ MonoBehaviour:
   - identifier: Silent Forest
     clip: {fileID: 8300000, guid: 632ad97168e467842bdc7d41a9e416e9, type: 3}
     loop: 1
-    volume: 0.2
-  - identifier: Battle 1
-    clip: {fileID: 8300000, guid: 55474439cb2959942a431507585ef56e, type: 3}
-    loop: 1
     volume: 0.3
   - identifier: Worm
     clip: {fileID: 8300000, guid: 5564d5bc6a8be9640aa617d127654c7f, type: 3}
     loop: 1
-    volume: 0.23
+    volume: 0.3
+  - identifier: Level 1
+    clip: {fileID: 8300000, guid: 55474439cb2959942a431507585ef56e, type: 3}
+    loop: 1
+    volume: 0.3
+  - identifier: Level 2
+    clip: {fileID: 8300000, guid: a143d352905c2cd4c9684210c5ebfcb0, type: 3}
+    loop: 1
+    volume: 0.3
+  - identifier: Level 3
+    clip: {fileID: 8300000, guid: bc1a24abfd598c140afb5990f4ff661a, type: 3}
+    loop: 1
+    volume: 0.3
+  - identifier: Mini Boss
+    clip: {fileID: 8300000, guid: 3d3bf875a3be4964b89413fe5bb82f8f, type: 3}
+    loop: 1
+    volume: 0.3
+  - identifier: Final Boss
+    clip: {fileID: 8300000, guid: 846fcc4283ef2ae41a32132ddbaeb4fd, type: 3}
+    loop: 1
+    volume: 0.3
   crossFadeDuration: 1
   dimmedVolumeFactor: 0.5
   dimmedTransitionDuration: 0.3
