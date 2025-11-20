@@ -189,6 +189,7 @@ MonoBehaviour:
   crystalsText: {fileID: 3209034132579709502}
   healthAnim: {fileID: 9169005054833997978}
   crystalsAnim: {fileID: 8916083500628492048}
+  statsAnimationDuration: 0.5
   player: {fileID: 0}
   playerHealth: {fileID: 0}
   playerCurrency: {fileID: 0}

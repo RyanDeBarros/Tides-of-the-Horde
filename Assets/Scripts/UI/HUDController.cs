@@ -14,6 +14,7 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI crystalsText;
     [SerializeField] private TextMeshProUGUI healthAnim;
     [SerializeField] private TextMeshProUGUI crystalsAnim;
+    [SerializeField] private float statsAnimationDuration = 0.2f;
 
     [Header("Player References")]
     [SerializeField] private PlayerEnabler player;
@@ -44,6 +45,50 @@ public class HUDController : MonoBehaviour
     private bool isPaused = false;
     private bool enablePlayerOnResume = true;
 
+    private class StatsAnimation
+    {
+        public TextMeshProUGUI text;
+        public float lifetime = 0.2f;
+        private float time = 0f;
+        private int delta = 0;
+
+        public void Start()
+        {
+            text.SetText("");
+            time = lifetime;
+        }
+
+        public void Update()
+        {
+            if (time < lifetime)
+            {
+                time += Time.deltaTime;
+                text.alpha = Mathf.Clamp01(1f - time / lifetime);
+            }
+            else
+            {
+                delta = 0;
+                text.alpha = 0f;
+            }
+        }
+
+        public void Animate(int d)
+        {
+            delta += d;
+            if (delta != 0f)
+            {
+                text.SetText($"{(delta > 0 ? "+" : "")}{delta}");
+                text.alpha = 1f;
+                time = 0f;
+            }
+            else
+                time = lifetime;
+        }
+    }
+
+    private readonly StatsAnimation healthAnimation = new();
+    private readonly StatsAnimation crystalsAnimation = new();
+
     private void Awake()
     {
         Assert.IsNotNull(healthText);
@@ -56,6 +101,17 @@ public class HUDController : MonoBehaviour
         Assert.IsNotNull(playerCurrency);
         Assert.IsTrue(spellSelectControllers.Count == spells.Count && spells.Count == Enum.GetValues(typeof(SpellType)).Length);
 
+        healthText.SetText("");
+        crystalsText.SetText("");
+
+        healthAnimation.text = healthAnim;
+        healthAnimation.lifetime = statsAnimationDuration;
+        healthAnimation.Start();
+
+        crystalsAnimation.text = crystalsAnim;
+        crystalsAnimation.lifetime = statsAnimationDuration;
+        crystalsAnimation.Start();
+
         playerHealth.onHealthChanged.AddListener(UpdateHealthHUD);
         playerHealth.onDeath.AddListener(ShowDeathScreen);
         playerCurrency.onCurrencyChanged.AddListener(UpdateCrystalsHUD);
@@ -63,9 +119,6 @@ public class HUDController : MonoBehaviour
 
     void Start()
     {
-        healthAnim.SetText("");
-        crystalsAnim.SetText("");
-
         // Subscribe to player status events
         UpdateHealthHUD(playerHealth.GetCurrentHealth(), playerHealth.maxHealth);
         UpdateCrystalsHUD(playerCurrency.GetCurrency());
@@ -97,12 +150,18 @@ public class HUDController : MonoBehaviour
             else
                 PauseGame();
         }
+
+        if (!isPaused)
+        {
+            healthAnimation.Update();
+            crystalsAnimation.Update();
+        }
     }
 
     public void UpdateHealthHUD(int currentHP, int maxHP)
     {
         if (healthText.text != "")
-            AnimateDelta(currentHP - int.Parse(healthText.text.Split('/')[0]), healthAnim);
+            healthAnimation.Animate(currentHP - int.Parse(healthText.text.Split('/')[0]));
         
         healthText.SetText($"{currentHP}/{maxHP}");
         Vector2 sz = healthText.rectTransform.sizeDelta;
@@ -112,19 +171,11 @@ public class HUDController : MonoBehaviour
     public void UpdateCrystalsHUD(int currentEXP)
     {
         if (crystalsText.text != "")
-            AnimateDelta(currentEXP - int.Parse(crystalsText.text), crystalsAnim);
+            crystalsAnimation.Animate(currentEXP - int.Parse(crystalsText.text));
 
         crystalsText.SetText($"{currentEXP}");
         Vector2 sz = crystalsText.rectTransform.sizeDelta;
         crystalsText.rectTransform.sizeDelta = new(crystalsText.preferredWidth, sz.y);
-    }
-
-    private void AnimateDelta(int delta, TextMeshProUGUI anim)
-    {
-        // TODO
-        if (delta == 0) return;
-
-        anim.SetText($"{(delta > 0 ? '+' : '-')}{delta}");
     }
 
     public void SetSpellCooldowns(Dictionary<SpellType, float> cooldowns)
