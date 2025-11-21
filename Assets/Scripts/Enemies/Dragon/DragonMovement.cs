@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 public class DragonMovement : MonoBehaviour
@@ -10,6 +11,7 @@ public class DragonMovement : MonoBehaviour
     [SerializeField] private float turnSpeed = 800f;
 
     private CharacterController controller;
+    private NavMover mover;
     private DragonAnimator animator;
     private DragonAOEAttack attacker;
     private WaypointPatroller waypointPatroller;
@@ -22,6 +24,9 @@ public class DragonMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
 
+        mover = GetComponent<NavMover>();
+        Assert.IsNotNull(mover);
+
         animator = GetComponentInChildren<DragonAnimator>();
         Assert.IsNotNull(animator);
 
@@ -30,6 +35,7 @@ public class DragonMovement : MonoBehaviour
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
+        waypointPatroller.onMove.AddListener(OnWaypointPatrollerMove);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
@@ -37,9 +43,6 @@ public class DragonMovement : MonoBehaviour
 
     private void Start()
     {
-        waypointPatroller.characterController = controller;
-        waypointPatroller.moveSpeed = patrolSpeedMultiplier * moveSpeed;
-
         lockY = transform.position.y;
     }
 
@@ -48,33 +51,26 @@ public class DragonMovement : MonoBehaviour
         if (!controller.enabled || !animator.CanFly() || !attacker.CanMove())
             return;
 
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
+        Vector3 displacement = player.position - transform.position;
+        displacement.y = 0;
 
-        float distanceToPlayer = direction.magnitude;
-        if (distanceToPlayer <= chaseRange)
+        if (displacement.magnitude <= chaseRange)
         {
             waypointPatroller.StopPatrol();
 
-            direction.Normalize();
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
-
-            float displacement = distanceToPlayer - stoppingDistance;
-            displacement = Mathf.Min(Mathf.Abs(displacement), moveSpeed * Time.deltaTime) * Mathf.Sign(displacement);
-            Vector3 movement = Vector3.zero;
-            if (Mathf.Abs(displacement) > 0.01f)
-                movement = displacement * direction;
-
-            controller.Move(movement);
+            Vector3 movement = mover.MoveController(displacement, stoppingDistance, moveSpeed, turnSpeed);
             animator.SetFlying(movement);
         }
         else
-        {
             waypointPatroller.StartPatrol();
-            animator.SetFlying(transform.forward);
-        }
 
         LockY();
+    }
+
+    private void OnWaypointPatrollerMove(Vector3 displacement)
+    {
+        Vector3 movement = mover.MoveController(displacement, moveSpeed, turnSpeed);
+        animator.SetFlying(movement);
     }
 
     private void LockY()

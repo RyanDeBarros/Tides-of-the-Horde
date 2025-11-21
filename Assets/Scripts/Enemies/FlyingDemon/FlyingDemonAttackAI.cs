@@ -39,7 +39,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
     private FlyingDemonAnimator animator;
     private FlyingDemonMovement movement;
-    private CharacterController characterController;
+    private CharacterController controller;
     private Transform player;
     private Health playerHealth;
     private BounceBack playerBounceBack;
@@ -71,8 +71,8 @@ public class FlyingDemonAttackAI : MonoBehaviour
         movement = GetComponent<FlyingDemonMovement>();
         Assert.IsNotNull(movement);
 
-        characterController = GetComponent<CharacterController>();
-        Assert.IsNotNull(characterController);
+        controller = GetComponent<CharacterController>();
+        Assert.IsNotNull(controller);
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
@@ -160,12 +160,12 @@ public class FlyingDemonAttackAI : MonoBehaviour
     private void UpdateChargeBackward()
     {
         timeElapsed += Time.deltaTime;
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction = player.position - transform.position;
         direction.y = 0f;
         movement.FacePlayer();
         if (timeElapsed < chargeTimeLeft)
         {
-            characterController.Move(chargeBackSpeed * Time.deltaTime * -direction.normalized);
+            controller.Move(chargeBackSpeed * Time.deltaTime * -direction.normalized);
             animator.SetMovingBackward();
         }
         else
@@ -181,13 +181,13 @@ public class FlyingDemonAttackAI : MonoBehaviour
         timeElapsed += Time.deltaTime;
         if (timeElapsed < chargeTimeLeft)
         {
-            characterController.Move(chargeForwardSpeed * Time.deltaTime * transform.forward);
+            controller.Move(chargeForwardSpeed * Time.deltaTime * transform.forward);
             animator.SetRunning();
         }
         else
         {
             attackState = AttackState.ChargeBite;
-            characterController.enabled = false;
+            controller.enabled = false;
             animator.SmallBiteAttack();
         }
     }
@@ -199,7 +199,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
             if (playerHealth.IsInvulnerable())
             {
                 Stun();
-                characterController.enabled = true;
+                controller.enabled = true;
             }
             else if (!playerWasHit)
             {
@@ -212,7 +212,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
     private void BouncePlayer(float strength)
     {
-        Vector3 direction = player.transform.position - transform.position;
+        Vector3 direction = player.position - transform.position;
         direction.y = 0f;
         playerBounceBack.Bounce(direction.normalized, strength);
     }
@@ -222,7 +222,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
         timeElapsed = 0f;
         playerWasHit = false;
 
-        float distance = Vector3.Distance(transform.position, player.transform.position);
+        float distance = Vector3.Distance(transform.position, player.position);
         float totalWeight = 0f;
         if (distance <= punchAttackRange) totalWeight += punchProbabilityWeight;
         if (distance <= biteAttackRange) totalWeight += biteProbabilityWeight;
@@ -302,7 +302,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
         timeElapsed = 0f;
         cooldown = Random.Range(minCooldown, maxCooldown);
         attackState = AttackState.Cooldown;
-        characterController.enabled = true;
+        controller.enabled = true;
     }
 
     public void Stun()

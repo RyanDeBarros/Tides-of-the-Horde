@@ -7,7 +7,7 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
     [System.Serializable]
     public class DifficultyStats
     {
-        // OrcMovementAI
+        // StandardEnemyMovement
         public float moveSpeed = 5f;
         public float chaseRange = 30f;
         public float patrolSpeedMultiplier = 0.5f;
@@ -40,7 +40,7 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
 
     private static DifficultyStatsList difficultyStatsList = null;
 
-    private OrcMovementAI movement;
+    private StandardEnemyMovement movement;
     private TargetDetector detector;
     private Health health;
     private BounceBack bounceBack;
@@ -53,7 +53,7 @@ public class OrcDifficultyImplementer : MonoBehaviour, IDifficultyImplementer
     {
         difficultyStatsList ??= JsonUtility.FromJson<DifficultyStatsList>(statsFile.text);
 
-        movement = GetComponent<OrcMovementAI>();
+        movement = GetComponent<StandardEnemyMovement>();
         Assert.IsNotNull(movement);
         detector = GetComponent<TargetDetector>();
         Assert.IsNotNull(detector);

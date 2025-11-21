@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -6,14 +7,18 @@ public class BishopRangedAI : MonoBehaviour
     public Transform player;
     public float moveSpeed = 3.5f;
     public float stoppingDistance = 3f;
+    [SerializeField] private float turnSpeed = 600f;
+
     public float attackRange = 8f;
     public float attackCooldown = 2f;
+
     public float fireballSpeed = 12f;
     public int damagePerFireball = 15;
     public GameObject fireballPrefab;
     public Transform firePoint;
-    
+
     private CharacterController controller;
+    private NavMover mover;
     private Animator animator;
     private float lastAttackTime;
     private bool isAttacking = false;
@@ -22,6 +27,9 @@ public class BishopRangedAI : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
+
+        mover = GetComponent<NavMover>();
+        Assert.IsNotNull(mover);
 
         animator = GetComponentInChildren<Animator>();
         Assert.IsNotNull(animator);
@@ -43,46 +51,17 @@ public class BishopRangedAI : MonoBehaviour
 
     void Update()
     {
-        HandleMovement();
-        HandleAttack();
+        UpdateMovement();
+        UpdateAttack();
     }
 
-    void HandleMovement()
+    private void UpdateMovement()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, player.position);
-        bool isMoving = false;
-        
-        if (distanceToPlayer > attackRange)
-        {
-            Vector3 direction = (player.position - transform.position).normalized;
-            direction.y = 0;
-            
-            Vector3 moveDirection = direction * moveSpeed;
-            controller.Move(moveDirection * Time.deltaTime);
-            
-            FacePlayer();
-            isMoving = true;
-        }
-        else if (distanceToPlayer < stoppingDistance)
-        {
-            Vector3 directionAway = (transform.position - player.position).normalized;
-            directionAway.y = 0;
-            Vector3 moveDirection = directionAway * moveSpeed * 0.5f;
-            controller.Move(moveDirection * Time.deltaTime);
-            
-            FacePlayer();
-            isMoving = true;
-        }
-        else
-        {
-            FacePlayer();
-            isMoving = false;
-        }
-        
-        animator.SetBool("IsMoving", isMoving);
+        Vector3 movement = mover.MoveController(player.position - transform.position, stoppingDistance, moveSpeed, turnSpeed);
+        animator.SetBool("IsMoving", movement.magnitude > 0.01f);
     }
 
-    void HandleAttack()
+    private void UpdateAttack()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, player.position);
         bool playerInRange = (distanceToPlayer <= attackRange && distanceToPlayer >= stoppingDistance);
@@ -94,22 +73,12 @@ public class BishopRangedAI : MonoBehaviour
         }
     }
 
-    void FacePlayer()
-    {
-        Vector3 lookPos = player.position - transform.position;
-        lookPos.y = 0;
-        if (lookPos != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(lookPos);
-        }
-    }
-
-    void Attack()
+    private void Attack()
     {
         StartCoroutine(PlayAttackAnimation());
     }
 
-    System.Collections.IEnumerator PlayAttackAnimation()
+    private IEnumerator PlayAttackAnimation()
     {
         isAttacking = true;
         animator.SetTrigger("Fire");

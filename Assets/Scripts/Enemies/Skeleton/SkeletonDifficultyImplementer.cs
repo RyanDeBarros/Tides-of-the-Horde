@@ -7,7 +7,7 @@ public class SkeletonDifficultyImplementer : MonoBehaviour, IDifficultyImplement
     [System.Serializable]
     public class DifficultyStats
     {
-        // SkeletonMovementAI
+        // StandardEnemyMovement
         public float moveSpeed = 5f;
         public float chaseRange = 30f;
         public float patrolSpeedMultiplier = 0.5f;
@@ -40,7 +40,7 @@ public class SkeletonDifficultyImplementer : MonoBehaviour, IDifficultyImplement
 
     private static DifficultyStatsList difficultyStatsList = null;
 
-    private SkeletonMovementAI movement;
+    private StandardEnemyMovement movement;
     private TargetDetector detector;
     private Health health;
     private BounceBack bounceBack;
@@ -53,7 +53,7 @@ public class SkeletonDifficultyImplementer : MonoBehaviour, IDifficultyImplement
     {
         difficultyStatsList ??= JsonUtility.FromJson<DifficultyStatsList>(statsFile.text);
 
-        movement = GetComponent<SkeletonMovementAI>();
+        movement = GetComponent<StandardEnemyMovement>();
         Assert.IsNotNull(movement);
         detector = GetComponent<TargetDetector>();
         Assert.IsNotNull(detector);

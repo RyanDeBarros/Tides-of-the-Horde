@@ -2,7 +2,6 @@
     "stats": [
         {
             "moveSpeed": 10.0,
-            "chaseRange": 60.0,
             "turnSpeed": 800.0,
 
             "sinkSpeed": 6.0,
@@ -46,7 +45,6 @@
         },
         {
             "moveSpeed": 10.0,
-            "chaseRange": 60.0,
             "turnSpeed": 800.0,
 
             "sinkSpeed": 6.0,
@@ -90,7 +88,6 @@
         },
         {
             "moveSpeed": 10.0,
-            "chaseRange": 60.0,
             "turnSpeed": 800.0,
 
             "sinkSpeed": 6.0,

@@ -72,6 +72,7 @@ public class EnemySpawner : MonoBehaviour
 
         spawnZones = new(FindObjectsByType<SpawnZone>(FindObjectsSortMode.None));
         waypoints = new(FindObjectsByType<Waypoint>(FindObjectsSortMode.InstanceID));
+        waypoints.Sort((w1, w2) => w1.index - w2.index);
     }
 
     private void Start()

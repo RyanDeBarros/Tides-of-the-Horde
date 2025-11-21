@@ -3,6 +3,7 @@ using UnityEngine;
 public class Waypoint : MonoBehaviour
 {
     public Vector3 gizmoSize = new(0.5f, 2f, 0.5f);
+    public int index;
 
     private void OnDrawGizmos()
     {

@@ -8,20 +8,11 @@ public class WaypointPatroller : MonoBehaviour
     [SerializeField] private float acceptance_threshold = 1f;
     
     public List<Waypoint> waypoints;
-    public CharacterController characterController;
-    public float moveSpeed = 5f;
     public UnityEvent<Vector3> onMove;
 
     private bool patrolling = false;
     private int current_waypoint_index = -1;
     private Waypoint current_waypoint = null;
-
-    private void Awake()
-    {
-        if (characterController == null)
-            characterController = GetComponent<CharacterController>();
-        Assert.IsNotNull(characterController);
-    }
 
     private void Start()
     {
@@ -31,8 +22,12 @@ public class WaypointPatroller : MonoBehaviour
 
     private void Update()
     {
-        if (!patrolling || !characterController.enabled)
-            return;
+        if (patrolling) UpdatePatrol();
+    }
+
+    private void UpdatePatrol()
+    {
+        if (!enabled) return;
 
         Vector3 displacement = current_waypoint.transform.position - transform.position;
         displacement.y = 0f;
@@ -43,9 +38,6 @@ public class WaypointPatroller : MonoBehaviour
             displacement.y = 0f;
         }
 
-        transform.LookAt(current_waypoint.transform.position);
-        displacement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
-        characterController.Move(displacement);
         onMove.Invoke(displacement);
     }
 
@@ -57,6 +49,9 @@ public class WaypointPatroller : MonoBehaviour
 
     private void TargetClosestWaypoint()
     {
+        if (!enabled) return;
+
+        current_waypoint = null;
         float minDistance = float.MaxValue;
         for (int i = 0; i < waypoints.Count; i++)
         {
@@ -69,6 +64,7 @@ public class WaypointPatroller : MonoBehaviour
                 current_waypoint = waypoint;
             }
         }
+        Assert.IsNotNull(current_waypoint);
     }
 
     public void StartPatrol()
@@ -77,6 +73,7 @@ public class WaypointPatroller : MonoBehaviour
         {
             patrolling = true;
             TargetClosestWaypoint();
+            UpdatePatrol();
         }
     }
 

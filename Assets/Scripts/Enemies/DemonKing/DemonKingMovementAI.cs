@@ -13,7 +13,6 @@ public class DemonKingMovementAI : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 10f;
-    public float chaseRange = 60f;
     [SerializeField] private float stoppingDistance = 2.8f;
     public float turnSpeed = 800f;
 
@@ -37,12 +36,17 @@ public class DemonKingMovementAI : MonoBehaviour
     [SerializeField] private AudioClip TeleportSfX;
 
     private CharacterController controller;
+    private NavMover mover;
     private Health health;
+    private float lockY = 0f;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
+
+        mover = GetComponent<NavMover>();
+        Assert.IsNotNull(mover);
 
         health = GetComponent<Health>();
         Assert.IsNotNull(health);
@@ -75,6 +79,7 @@ public class DemonKingMovementAI : MonoBehaviour
     private void Start()
     {
         regularTeleportDelay = Random.Range(minRegularTeleportDelay, maxRegularTeleportDelay);
+        lockY = transform.position.y;
     }
 
     private void Update()
@@ -88,37 +93,34 @@ public class DemonKingMovementAI : MonoBehaviour
         playerPos.y = 0f;
         float distanceToPlayer = Vector3.Distance(myPos, playerPos);
 
-        if (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance)
+        if (distanceToPlayer > stoppingDistance)
         {
             teleportDelayElapsed += Time.deltaTime;
             if (teleportDelayElapsed >= regularTeleportDelay)
                 StartTeleportSequence();
             else
             {
-                ChasePlayer();
+                // Chase player
+                mover.MoveController(player.position - transform.position, moveSpeed, turnSpeed);
                 animator.SetSpeed(1f);
             }
         }
         else
             animator.SetSpeed(0f);
+
+        LockY();
     }
 
-    private void ChasePlayer()
+    private void LockY()
     {
-        Vector3 direction = (player.position - transform.position);
-        direction.y = 0f;
-        direction.Normalize();
-
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, turnSpeed * Time.deltaTime);
-
-        Vector3 movement = moveSpeed * Time.deltaTime * direction;
-        controller.Move(movement);
+        Vector3 pos = transform.position;
+        pos.y = lockY;
+        transform.position = pos;
     }
 
     public void FacePlayer()
     {
-        Vector3 direction = (player.position - transform.position);
+        Vector3 direction = player.position - transform.position;
         direction.y = 0f;
         transform.rotation = Quaternion.LookRotation(direction.normalized);
     }
