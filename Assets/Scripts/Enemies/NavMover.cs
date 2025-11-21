@@ -37,6 +37,8 @@ class NavMover : MonoBehaviour
 
     public Vector3 MoveController(Vector3 displacement, float moveSpeed, float turnSpeed)
     {
+        if (!controller.enabled) return Vector3.zero;
+
         RecomputeAgentPath(displacement);
 
         Vector3 velocity = agent.desiredVelocity;
@@ -52,6 +54,8 @@ class NavMover : MonoBehaviour
 
     public Vector3 MoveController(Vector3 displacement, float stoppingDistance, float moveSpeed, float turnSpeed)
     {
+        if (!controller.enabled) return Vector3.zero;
+
         RecomputeAgentPath((displacement.magnitude - stoppingDistance) * displacement.normalized);
 
         Vector3 velocity = agent.desiredVelocity;
