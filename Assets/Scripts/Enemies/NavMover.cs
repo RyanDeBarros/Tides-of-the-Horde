@@ -23,6 +23,7 @@ class NavMover : MonoBehaviour
 
     public void LookInDirection(Vector3 direction, float turnSpeed)
     {
+        direction.y = 0f;
         transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
     }
 
@@ -35,18 +36,37 @@ class NavMover : MonoBehaviour
             agent.SetDestination(target);
     }
 
-    public Vector3 MoveController(Vector3 displacement, float moveSpeed, float turnSpeed)
+    private Vector3 ComputeAgentVelocity(Vector3 displacement)
     {
-        if (!controller.enabled) return Vector3.zero;
-
         RecomputeAgentPath(displacement);
-
         Vector3 velocity = agent.desiredVelocity;
         velocity.y = 0f;
+        return velocity.normalized;
+    }
+
+    public Vector3 MoveController(Vector3 displacement, float moveSpeed, float turnSpeed)
+    {
+        Vector3 movement = Vector3.zero;
+
+        if (!controller.enabled)
+            return movement;
+
+
+        if (!agent.isOnNavMesh)
+        {
+            LookInDirection(displacement, turnSpeed);
+
+            movement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
+            controller.Move(movement);
+
+            return movement;
+        }
+
+        Vector3 velocity = ComputeAgentVelocity(displacement);
 
         LookInDirection(velocity.magnitude > 0.001f ? velocity : displacement, turnSpeed);
 
-        Vector3 movement = moveSpeed * Time.deltaTime * velocity.normalized;
+        movement = moveSpeed * Time.deltaTime * velocity;
         controller.Move(movement);
 
         return movement;
@@ -54,16 +74,29 @@ class NavMover : MonoBehaviour
 
     public Vector3 MoveController(Vector3 displacement, float stoppingDistance, float moveSpeed, float turnSpeed)
     {
-        if (!controller.enabled) return Vector3.zero;
+        Vector3 movement = Vector3.zero;
 
-        RecomputeAgentPath((displacement.magnitude - stoppingDistance) * displacement.normalized);
+        if (!controller.enabled)
+            return movement;
 
-        Vector3 velocity = agent.desiredVelocity;
-        velocity.y = 0f;
+        Vector3 lookDirection = displacement;
+        displacement = (displacement.magnitude - stoppingDistance) * displacement.normalized;
 
-        LookInDirection(displacement.normalized, turnSpeed);
+        if (!agent.isOnNavMesh)
+        {
+            LookInDirection(lookDirection, turnSpeed);
 
-        Vector3 movement = moveSpeed * Time.deltaTime * velocity.normalized;
+            movement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
+            controller.Move(movement);
+
+            return movement;
+        }
+
+        Vector3 velocity = ComputeAgentVelocity(displacement);
+
+        LookInDirection(lookDirection, turnSpeed);
+
+        movement = moveSpeed * Time.deltaTime * velocity;
         controller.Move(movement);
 
         return movement;

@@ -9,7 +9,6 @@ public class DragonMovement : MonoBehaviour
     public float stoppingDistance = 4f;
     public float patrolSpeedMultiplier = 0.5f;
     [SerializeField] private float turnSpeed = 800f;
-    [SerializeField] private float navRecalculateThreshold = 0.1f;
 
     private CharacterController controller;
     private NavMover mover;
