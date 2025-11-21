@@ -13,7 +13,6 @@ public class DemonKingMovementAI : MonoBehaviour
 
     [Header("Movement")]
     public float moveSpeed = 10f;
-    public float chaseRange = 60f;
     [SerializeField] private float stoppingDistance = 2.8f;
     public float turnSpeed = 800f;
 
@@ -94,8 +93,7 @@ public class DemonKingMovementAI : MonoBehaviour
         playerPos.y = 0f;
         float distanceToPlayer = Vector3.Distance(myPos, playerPos);
 
-        // TODO remove chaseRange after rebasing with main (fill-json)
-        if (distanceToPlayer <= chaseRange && distanceToPlayer > stoppingDistance)
+        if (distanceToPlayer > stoppingDistance)
         {
             teleportDelayElapsed += Time.deltaTime;
             if (teleportDelayElapsed >= regularTeleportDelay)
