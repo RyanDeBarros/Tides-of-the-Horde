@@ -86,10 +86,11 @@ public class SoundtrackManager : MonoBehaviour
         toSource.clip = track.clip;
         toSource.loop = track.loop;
 
-        if (!restart)
-            toSource.time = Time.time - trackCache[identifier].lastTime + trackCache[identifier].position;
+        if (restart)
+            toSource.time = 0f;
+        else
+            toSource.time = (Time.time - trackCache[identifier].lastTime + trackCache[identifier].position) % toSource.clip.length;
 
-        StartCoroutine(PrepareClip(toSource.clip));
         if (dimCoroutine != null)
             StopCoroutine(dimCoroutine);
         dimmed = false;
