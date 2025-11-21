@@ -18,7 +18,7 @@ public class StandardEnemyMovement : MonoBehaviour
     [SerializeField] private float animationSpeedMultiplier = 0.3f;
 
     private CharacterController controller;
-    private NavMeshAgent agent;
+    private NavMover mover;
     private WaypointPatroller waypointPatroller;
     private Animator animator;
 
@@ -27,11 +27,8 @@ public class StandardEnemyMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
 
-        agent = GetComponent<NavMeshAgent>();
-        Assert.IsNotNull(agent);
-        // Manual movement with NavMeshAgent pathfinding
-        agent.updatePosition = false;
-        agent.updateRotation = false;
+        mover = GetComponent<NavMover>();
+        Assert.IsNotNull(mover);
 
         waypointPatroller = GetComponent<WaypointPatroller>();
         Assert.IsNotNull(waypointPatroller);
@@ -61,17 +58,12 @@ public class StandardEnemyMovement : MonoBehaviour
             waypointPatroller.StopPatrol();
             if (displacement.magnitude > stoppingDistance)
             {
-                agent.nextPosition = transform.position;
-                agent.SetDestination(transform.position + displacement);
-                Vector3 velocity = agent.velocity;
-                velocity.y = 0f;
-                LookInDirection(velocity.magnitude > 0.001f ? velocity : displacement);
-                controller.Move(moveSpeed * Time.deltaTime * velocity.normalized);
-                UpdateAnimationSpeed(moveSpeed);
+                Vector3 movement = mover.MoveController(displacement, stoppingDistance, moveSpeed, turnSpeed);
+                UpdateAnimationSpeedByMovement(movement);
             }
             else
             {
-                LookInDirection(displacement);
+                mover.LookInDirection(displacement, turnSpeed);
                 UpdateAnimationSpeed(0f);
             }
         }
@@ -79,17 +71,15 @@ public class StandardEnemyMovement : MonoBehaviour
             waypointPatroller.StartPatrol();
     }
 
-    private void LookInDirection(Vector3 direction)
-    {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
-    }
-
     private void OnWaypointPatrollerMove(Vector3 displacement)
     {
-        displacement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
-        LookInDirection(displacement);
-        controller.Move(displacement);
-        UpdateAnimationSpeed(Time.deltaTime > 1e-5f ? displacement.magnitude / Time.deltaTime : 0f);
+        Vector3 movement = mover.MoveController(displacement, moveSpeed, turnSpeed);
+        UpdateAnimationSpeedByMovement(movement);
+    }
+
+    private void UpdateAnimationSpeedByMovement(Vector3 movement)
+    {
+        UpdateAnimationSpeed(Time.deltaTime > 1e-5f ? movement.magnitude / Time.deltaTime : 0f);
     }
 
     private void UpdateAnimationSpeed(float speed)

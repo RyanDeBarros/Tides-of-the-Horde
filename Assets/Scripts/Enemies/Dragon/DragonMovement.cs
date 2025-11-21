@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 public class DragonMovement : MonoBehaviour
@@ -8,8 +9,10 @@ public class DragonMovement : MonoBehaviour
     public float stoppingDistance = 4f;
     public float patrolSpeedMultiplier = 0.5f;
     [SerializeField] private float turnSpeed = 800f;
+    [SerializeField] private float navRecalculateThreshold = 0.1f;
 
     private CharacterController controller;
+    private NavMover mover;
     private DragonAnimator animator;
     private DragonAOEAttack attacker;
     private WaypointPatroller waypointPatroller;
@@ -21,6 +24,9 @@ public class DragonMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
+
+        mover = GetComponent<NavMover>();
+        Assert.IsNotNull(mover);
 
         animator = GetComponentInChildren<DragonAnimator>();
         Assert.IsNotNull(animator);
@@ -53,15 +59,7 @@ public class DragonMovement : MonoBehaviour
         {
             waypointPatroller.StopPatrol();
 
-            LookInDirection(displacement);
-
-            float dist = displacement.magnitude - stoppingDistance;
-            dist = Mathf.Min(Mathf.Abs(dist), moveSpeed * Time.deltaTime) * Mathf.Sign(dist);
-            Vector3 movement = Vector3.zero;
-            if (Mathf.Abs(dist) > 0.01f)
-                movement = dist * displacement.normalized;
-
-            controller.Move(movement);
+            Vector3 movement = mover.MoveController(displacement, stoppingDistance, moveSpeed, turnSpeed);
             animator.SetFlying(movement);
         }
         else
@@ -70,17 +68,10 @@ public class DragonMovement : MonoBehaviour
         LockY();
     }
 
-    private void LookInDirection(Vector3 direction)
-    {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
-    }
-
     private void OnWaypointPatrollerMove(Vector3 displacement)
     {
-        displacement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
-        LookInDirection(displacement);
-        controller.Move(displacement);
-        animator.SetFlying(displacement);
+        Vector3 movement = mover.MoveController(displacement, moveSpeed, turnSpeed);
+        animator.SetFlying(movement);
     }
 
     private void LockY()
