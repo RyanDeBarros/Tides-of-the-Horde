@@ -30,7 +30,7 @@
             "chargeAttackRange": 8.0,
             "chargeBackDistance": 3.5,
             "chargeBackSpeed": 8.0,
-            "charge.0orwardSpeed": 20.0,
+            "chargeForwardSpeed": 20.0,
             "dizzyDuration": 3.0,
 
             "minAttackCooldown": 1.0,
@@ -73,7 +73,7 @@
             "chargeAttackRange": 8.0,
             "chargeBackDistance": 3.5,
             "chargeBackSpeed": 8.0,
-            "charge.0orwardSpeed": 20.0,
+            "chargeForwardSpeed": 20.0,
             "dizzyDuration": 3.0,
 
             "minAttackCooldown": 1.0,
@@ -116,7 +116,7 @@
             "chargeAttackRange": 8.0,
             "chargeBackDistance": 3.5,
             "chargeBackSpeed": 8.0,
-            "charge.0orwardSpeed": 20.0,
+            "chargeForwardSpeed": 20.0,
             "dizzyDuration": 3.0,
 
             "minAttackCooldown": 1.0,
