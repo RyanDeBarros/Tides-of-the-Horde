@@ -151,7 +151,7 @@ public class UnlockActionTable
     {
         switch (upgradeParameter)
         {
-            case UpgradeParameter.Range:
+            case UpgradeParameter.Radius:
                 spellCaster.repelRadius *= (1f + value);
                 break;
             case UpgradeParameter.Cooldown:

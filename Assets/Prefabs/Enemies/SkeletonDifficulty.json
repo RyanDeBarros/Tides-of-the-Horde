@@ -1,19 +1,89 @@
 {
     "stats": [
         {
-            "damage": 1,
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+            
             "maxHealth": 100,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 1,
+            
             "reward": 2
         },
         {
-            "damage": 2,
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 125,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 2,
+
             "reward": 4
         },
         {
-            "damage": 3,
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
             "maxHealth": 150,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 3,
+
             "reward": 6
+        },
+        {
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
+            "maxHealth": 175,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 4,
+
+            "reward": 8
+        },
+        {
+            "moveSpeed": 5.0,
+            "chaseRange": 30.0,
+            "patrolSpeedMultiplier": 0.5,
+
+            "attackRange": 5.0,
+            "attackInterval": 1.0,
+
+            "maxHealth": 200,
+
+            "bounceBackResistance": 1.0,
+            "bounceBackDuration": 0.1,
+
+            "damage": 5,
+
+            "reward": 10
         }
     ]
 }
