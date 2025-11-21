@@ -4372,10 +4372,6 @@ PrefabInstance:
       propertyPath: m_fontSizeBase
       value: 18
       objectReference: {fileID: 0}
-    - target: {fileID: 2931550023029920000, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
-      propertyPath: maxHealth
-      value: 1000
-      objectReference: {fileID: 0}
     - target: {fileID: 2993382712568215142, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: BombSFX
       value: 
@@ -4508,10 +4504,6 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2889501740546728806}
-    - target: {fileID: 7418886318112114532, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
-      propertyPath: spawnDuration
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8441387111944882292, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: BubbleSFX
       value: 

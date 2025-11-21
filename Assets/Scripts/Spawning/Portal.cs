@@ -19,7 +19,6 @@ class Portal : MonoBehaviour
     private PlayerDash playerDash;
     private SpellManager spellManager;
     private Transform player;
-    private Transform playerModel;
 
     private Coroutine despawnRoutine = null;
     private bool despawnPlayer = false;
@@ -44,10 +43,6 @@ class Portal : MonoBehaviour
 
         spellManager = go.GetComponent<SpellManager>();
         Assert.IsNotNull(spellManager);
-
-        var model = go.GetComponentInChildren<PlayerAnimatorController>();
-        Assert.IsNotNull(model);
-        playerModel = model.transform;
 
         LevelStatistics.Initialize();
     }
@@ -76,6 +71,7 @@ class Portal : MonoBehaviour
 
     public void SpawnPlayer(Action playerSpawnedCallback)
     {
+        portalVFX.SetActive(true);
         portalDespawnVFX.SetActive(true);
         StartCoroutine(SpawnPlayerRoutine(playerSpawnedCallback));
     }
@@ -83,17 +79,10 @@ class Portal : MonoBehaviour
     private IEnumerator SpawnPlayerRoutine(Action playerSpawnedCallback)
     {
         SetPlayerEnable(false);
-
         player.SetPositionAndRotation(playerSpawnPosition.position, transform.rotation);
-        playerModel.localScale = new (1f, 0f, 1f);
-
-        for (float t = 0f; t < spawnDuration; t += Time.deltaTime)
-        {
-            playerModel.localScale = new(1f, Mathf.Clamp01(t / spawnDuration), 1f);
-            yield return null;
-        }
-
-        playerModel.localScale = Vector3.one;
+        yield return new WaitForSeconds(spawnDuration);
+        portalVFX.SetActive(false);
+        portalDespawnVFX.SetActive(false);
         SetPlayerEnable(true);
         playerSpawnedCallback();
     }
@@ -102,32 +91,27 @@ class Portal : MonoBehaviour
     {
         despawnPlayer = true;
         LevelStatistics.StopTimer();
-        // TODO VFX to show that player can enter portal
+        portalVFX.SetActive(true);
     }
 
     private void DespawnPlayer()
     {
-        portalDespawnVFX.SetActive(false);
-        portalDespawnVFX.SetActive(true);
         despawnRoutine ??= StartCoroutine(EndLevelRoutine());
     }
 
     private IEnumerator EndLevelRoutine()
     {
+        portalDespawnVFX.SetActive(true);
         SetPlayerEnable(false);
 
-        playerModel.localScale = Vector3.one;
-
+        Vector3 initialPos = player.position;
         for (float t = 0f; t < despawnDuration; t += Time.deltaTime)
         {
-            playerModel.localScale = new(1f, Mathf.Clamp01(1f - t / despawnDuration), 1f);
+            player.position = Vector3.Lerp(initialPos, playerSpawnPosition.position, Mathf.Clamp01(t / despawnDuration));
             yield return null;
         }
-
-        playerModel.localScale = new(1f, 0f, 1f);
-
+        player.position = playerSpawnPosition.position;
         playerCamera.DisableCamera();
-
         LevelSelectUI.CompleteLevel(levelIndex);
     }
 
@@ -136,6 +120,7 @@ class Portal : MonoBehaviour
         playerMovement.enabled = enabled;
         playerDash.enabled = enabled;
         spellManager.enabled = enabled;
+        playerCamera.enabled = enabled;
     }
 
     public static Portal GetLevelPortal()
@@ -148,15 +133,5 @@ class Portal : MonoBehaviour
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         Assert.IsNotNull(go);
         return go.transform;
-    }
-
-    public bool GetPortalVfx()
-    {
-        return portalVFX.activeSelf;
-    }
-
-    public void SetPortalVfx(bool isActive)
-    {
-        portalVFX.SetActive(isActive);
     }
 }

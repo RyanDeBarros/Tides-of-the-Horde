@@ -23,7 +23,6 @@ public class ButtonSFX : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log($"[ButtonSFX] Pointer Enter on '{gameObject.name}'");
         if (audioSource == null) return;
         if (hoverSFX == null)
         {
@@ -35,7 +34,6 @@ public class ButtonSFX : MonoBehaviour, IPointerEnterHandler, IPointerClickHandl
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log($"[ButtonSFX] Pointer Click on '{gameObject.name}'");
         if (audioSource == null) return;
         if (clickSFX == null)
         {

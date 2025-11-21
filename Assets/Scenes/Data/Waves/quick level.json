@@ -5,21 +5,9 @@
             "postWaveWaitTime": 0.5,
             "subwaves": [
                 {
-                    "enemy": "FlyingDemon",
-                    "spawnOnce": true,
-                    "isBoss": true,
-                    "difficulty": 1
-                },
-                {
-                    "enemy": "FlyingDemon",
-                    "spawnOnce": true,
-                    "isBoss": false,
-                    "difficulty": 1
-                },
-                {
-                    "duration": 0.5,
+                    "duration": 1.0,
                     "enemy": "Skeleton",
-                    "spawnRate": 1.0,
+                    "spawnRate": 3.0,
                     "difficulty": 1
                 }
             ]
