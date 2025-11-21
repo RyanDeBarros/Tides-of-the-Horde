@@ -24,6 +24,7 @@ public class FlyingDemonMovement : MonoBehaviour
     private FlyingDemonAttackAI attacker;
     private WaypointPatroller waypointPatroller;
     private CharacterController controller;
+    private NavMover mover;
     private Transform player;
 
     private float lockY = 0f;
@@ -46,6 +47,9 @@ public class FlyingDemonMovement : MonoBehaviour
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
 
+        mover = GetComponent<NavMover>();
+        Assert.IsNotNull(mover);
+
         player = GameObject.FindGameObjectWithTag("Player").transform;
         Assert.IsNotNull(player);
     }
@@ -60,37 +64,28 @@ public class FlyingDemonMovement : MonoBehaviour
         if (!controller.enabled || !attacker.AllowMovement())
             return;
 
-        Vector3 direction = player.position - transform.position;
-        direction.y = 0;
+        Vector3 displacement = player.position - transform.position;
+        displacement.y = 0;
 
-        float distanceToPlayer = direction.magnitude;
-        if (distanceToPlayer <= chaseRange)
+        if (displacement.magnitude <= chaseRange)
         {
             waypointPatroller.StopPatrol();
 
-            FacePlayer();
-            direction.Normalize();
-
-            if (distanceToPlayer >= runToRange)
+            if (displacement.magnitude >= runToRange)
             {
                 ResetSideStep();
-
-                controller.Move(chargeSpeed * Time.deltaTime * direction);
+                mover.MoveController(displacement, chargeSpeed, turnSpeed);
                 animator.SetRunning();
             }
             else
             {
-                float displacement = distanceToPlayer - stoppingDistance;
-                displacement = Mathf.Min(Mathf.Abs(displacement), moveSpeed * Time.deltaTime) * Mathf.Sign(displacement);
-                controller.Move(displacement * direction);
-
+                float movement = Vector3.Dot(mover.MoveController(displacement, stoppingDistance, moveSpeed, turnSpeed), displacement.normalized);
                 UpdateSideStep();
-
                 if (sideSteppingDir == 0)
                 {
-                    if (displacement > 0.1f)
+                    if (movement > 0.1f)
                         animator.SetMovingForward();
-                    else if (displacement < -0.1f)
+                    else if (movement < -0.1f)
                         animator.SetMovingBackward();
                     else
                         animator.SetIdle();
@@ -103,16 +98,9 @@ public class FlyingDemonMovement : MonoBehaviour
         LockY();
     }
 
-    private void LookInDirection(Vector3 direction)
-    {
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direction), turnSpeed * Time.deltaTime);
-    }
-
     private void OnWaypointPatrollerMove(Vector3 displacement)
     {
-        displacement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
-        LookInDirection(displacement);
-        controller.Move(displacement);
+        mover.MoveController(displacement, moveSpeed, turnSpeed);
         animator.SetMovingForward();
     }
 
@@ -125,9 +113,7 @@ public class FlyingDemonMovement : MonoBehaviour
 
     public void FacePlayer()
     {
-        Vector3 direction = player.transform.position - transform.position;
-        direction.y = 0f;
-        LookInDirection(direction);
+        mover.LookInDirection(player.position - transform.position, turnSpeed);
     }
 
     private void UpdateSideStep()
@@ -155,7 +141,9 @@ public class FlyingDemonMovement : MonoBehaviour
             }
             else
             {
-                controller.Move(sideStepSpeed * Time.deltaTime * sideSteppingDir * transform.right);
+                Vector3 displacement = sideStepSpeed * Time.deltaTime * sideSteppingDir * transform.right;
+                mover.RestrictMovement(ref displacement);
+                controller.Move(displacement);
                 if (sideStepSpeed > 0)
                     animator.SetMovingRight();
                 else

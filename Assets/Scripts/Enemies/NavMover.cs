@@ -4,7 +4,9 @@ using UnityEngine.Assertions;
 
 class NavMover : MonoBehaviour
 {
-    [SerializeField] private float navRecalculateThreshold = 0.1f;
+    [SerializeField, Min(0f)] private float navRecalculateThreshold = 0.1f;
+    [SerializeField, Min(0f)] private float rejoinMeshMaxDistance = 0.5f;
+    [SerializeField, Min(0f)] private float onMeshThreshold = 0.1f;
 
     private CharacterController controller;
     private NavMeshAgent agent;
@@ -19,6 +21,14 @@ class NavMover : MonoBehaviour
         // Manual movement with NavMeshAgent pathfinding
         agent.updatePosition = false;
         agent.updateRotation = false;
+
+        int count = NavMesh.GetSettingsCount();
+        Debug.Log("Agent settings count: " + count);
+        int defaultAgentType = NavMesh.GetSettingsByIndex(0).agentTypeID;
+        int defaultAgentType2 = NavMesh.GetSettingsByIndex(1).agentTypeID;
+        Debug.Log("Default agent type ID: " + defaultAgentType);
+        Debug.Log("Second agent type ID: " + defaultAgentType2);
+        Debug.Log("My agent type ID: " + agent.agentTypeID);
     }
 
     public void LookInDirection(Vector3 direction, float turnSpeed)
@@ -46,27 +56,18 @@ class NavMover : MonoBehaviour
 
     public Vector3 MoveController(Vector3 displacement, float moveSpeed, float turnSpeed)
     {
-        Vector3 movement = Vector3.zero;
-
         if (!controller.enabled)
-            return movement;
+            return Vector3.zero;
 
 
         if (!agent.isOnNavMesh)
-        {
-            LookInDirection(displacement, turnSpeed);
-
-            movement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
-            controller.Move(movement);
-
-            return movement;
-        }
+            return MoveWithoutAI(displacement, displacement, moveSpeed, turnSpeed);
 
         Vector3 velocity = ComputeAgentVelocity(displacement);
 
         LookInDirection(velocity.magnitude > 0.001f ? velocity : displacement, turnSpeed);
 
-        movement = moveSpeed * Time.deltaTime * velocity;
+        Vector3 movement = moveSpeed * Time.deltaTime * velocity;
         controller.Move(movement);
 
         return movement;
@@ -74,31 +75,66 @@ class NavMover : MonoBehaviour
 
     public Vector3 MoveController(Vector3 displacement, float stoppingDistance, float moveSpeed, float turnSpeed)
     {
-        Vector3 movement = Vector3.zero;
-
         if (!controller.enabled)
-            return movement;
+            return Vector3.zero;
 
         Vector3 lookDirection = displacement;
         displacement = (displacement.magnitude - stoppingDistance) * displacement.normalized;
 
         if (!agent.isOnNavMesh)
-        {
-            LookInDirection(lookDirection, turnSpeed);
-
-            movement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
-            controller.Move(movement);
-
-            return movement;
-        }
+            return MoveWithoutAI(displacement, lookDirection, moveSpeed, turnSpeed);
 
         Vector3 velocity = ComputeAgentVelocity(displacement);
 
         LookInDirection(lookDirection, turnSpeed);
 
-        movement = moveSpeed * Time.deltaTime * velocity;
+        Vector3 movement = moveSpeed * Time.deltaTime * velocity;
         controller.Move(movement);
 
         return movement;
+    }
+
+    private Vector3 MoveWithoutAI(Vector3 displacement, Vector3 lookDirection, float moveSpeed, float turnSpeed)
+    {
+        // Try to rejoin mesh
+        if (NavMesh.SamplePosition(transform.position, out NavMeshHit hit, rejoinMeshMaxDistance, NavMesh.AllAreas))
+            displacement = hit.position - transform.position;
+        
+        LookInDirection(lookDirection, turnSpeed);
+
+        Vector3 movement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
+        controller.Move(movement);
+
+        return movement;
+    }
+
+    public void RestrictMovement(ref Vector3 displacement)
+    {
+        if (displacement.sqrMagnitude < Mathf.Epsilon) return;
+
+        Vector3 start = transform.position;
+        Vector3 end = start + displacement;
+
+        float bestFactor = 0f;
+        float low = 0f;
+        float high = 1f;
+
+        // Binary search
+        int maxIterations = 10;
+        for (int i = 0; i < maxIterations; ++i)
+        {
+            float mid = (low + high) * 0.5f;
+            Vector3 test = Vector3.Lerp(start, end, mid);
+            if (NavMesh.SamplePosition(test, out NavMeshHit _, onMeshThreshold, NavMesh.AllAreas))
+            {
+                bestFactor = mid;
+                low = mid;
+            }
+            else
+                high = mid;
+        }
+
+        Debug.Log(bestFactor);
+        displacement *= bestFactor;
     }
 }

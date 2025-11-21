@@ -91,7 +91,6 @@ MonoBehaviour:
   stoppingDistance: 4
   patrolSpeedMultiplier: 0.5
   turnSpeed: 800
-  navRecalculateThreshold: 0.1
 --- !u!114 &5984126950147037728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,7 +383,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 4.3
   m_BaseOffset: 0
-  m_WalkableMask: 1
+  m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &7592830980806223842
 MonoBehaviour:

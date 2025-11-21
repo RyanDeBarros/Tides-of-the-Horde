@@ -122,7 +122,7 @@ public class DemonKingMovementAI : MonoBehaviour
 
     public void FacePlayer()
     {
-        Vector3 direction = (player.position - transform.position);
+        Vector3 direction = player.position - transform.position;
         direction.y = 0f;
         transform.rotation = Quaternion.LookRotation(direction.normalized);
     }
