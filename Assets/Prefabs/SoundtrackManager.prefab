@@ -49,7 +49,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 97576925574fcfa42b95682b3c07f6f3, type: 3}
     loop: 1
     volume: 0.3
-  - identifier: Silent Forest
+  - identifier: Peaceful
     clip: {fileID: 8300000, guid: 632ad97168e467842bdc7d41a9e416e9, type: 3}
     loop: 1
     volume: 0.3
@@ -75,6 +75,14 @@ MonoBehaviour:
     volume: 0.3
   - identifier: Final Boss
     clip: {fileID: 8300000, guid: 846fcc4283ef2ae41a32132ddbaeb4fd, type: 3}
+    loop: 1
+    volume: 0.3
+  - identifier: Main Menu
+    clip: {fileID: 8300000, guid: c70ec004bb60db0469b0701b13fb2173, type: 3}
+    loop: 1
+    volume: 0.3
+  - identifier: Level Statistics
+    clip: {fileID: 8300000, guid: 6aee9ace738fa104aa8f34ff95bcdbae, type: 3}
     loop: 1
     volume: 0.3
   crossFadeDuration: 1

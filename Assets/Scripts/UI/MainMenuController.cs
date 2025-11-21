@@ -3,6 +3,8 @@ using UnityEngine.UI;
 
 public class MainMenuManager : MonoBehaviour
 {
+    [SerializeField] private string song = "Main Menu";
+
     [Header("Menu Panels")]
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
@@ -33,6 +35,8 @@ public class MainMenuManager : MonoBehaviour
         LoadSettings();
 
         ShowMainMenu();
+
+        SoundtrackManager.Instance.PlayTrack(song);
     }
 
     public void PlayGame()

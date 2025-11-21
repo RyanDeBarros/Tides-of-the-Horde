@@ -6,7 +6,27 @@ using UnityEngine;
 
 public class SoundtrackManager : MonoBehaviour
 {
-    public static SoundtrackManager Instance { get; private set; }
+    private static SoundtrackManager _instance;
+    public static SoundtrackManager Instance {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindFirstObjectByType<SoundtrackManager>();
+                if (_instance == null)
+                {
+                    GameObject obj = new("SoundtrackManager");
+                    _instance = obj.AddComponent<SoundtrackManager>();
+                }
+            }
+            return _instance;
+        }
+
+        private set
+        {
+            _instance = value;
+        }
+    }
 
     [Serializable]
     private class Track
@@ -86,7 +106,7 @@ public class SoundtrackManager : MonoBehaviour
         toSource.clip = track.clip;
         toSource.loop = track.loop;
 
-        if (restart)
+        if (restart || !trackCache.ContainsKey(identifier))
             toSource.time = 0f;
         else
             toSource.time = (Time.time - trackCache[identifier].lastTime + trackCache[identifier].position) % toSource.clip.length;
