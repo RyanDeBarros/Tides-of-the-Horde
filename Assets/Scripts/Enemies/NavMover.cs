@@ -21,14 +21,6 @@ class NavMover : MonoBehaviour
         // Manual movement with NavMeshAgent pathfinding
         agent.updatePosition = false;
         agent.updateRotation = false;
-
-        int count = NavMesh.GetSettingsCount();
-        Debug.Log("Agent settings count: " + count);
-        int defaultAgentType = NavMesh.GetSettingsByIndex(0).agentTypeID;
-        int defaultAgentType2 = NavMesh.GetSettingsByIndex(1).agentTypeID;
-        Debug.Log("Default agent type ID: " + defaultAgentType);
-        Debug.Log("Second agent type ID: " + defaultAgentType2);
-        Debug.Log("My agent type ID: " + agent.agentTypeID);
     }
 
     public void LookInDirection(Vector3 direction, float turnSpeed)
