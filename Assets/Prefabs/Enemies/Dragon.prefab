@@ -265,7 +265,7 @@ MonoBehaviour:
   sinkDuration: 1
   sinkSpeed: 0
   audioSource: {fileID: 8186671327767500097}
-  deathSFX: {fileID: 0}
+  deathSFX: {fileID: 8300000, guid: 278076e71831ce14eb3095eb20276d44, type: 3}
 --- !u!82 &8186671327767500097
 AudioSource:
   m_ObjectHideFlags: 0
