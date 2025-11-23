@@ -13,6 +13,7 @@ class Portal : MonoBehaviour
 
     [SerializeField] private GameObject portalVFX; // portal vfx only active when the portal is usable
     [SerializeField] private GameObject portalDespawnVFX; // vfx when the player despawns and goes to main menu
+    [SerializeField] private AudioSource portalSFX;
 
     private PlayerCamera playerCamera;
     private PlayerMovement playerMovement;
@@ -27,6 +28,12 @@ class Portal : MonoBehaviour
     {
         Assert.IsNotNull(gateCollider);
         Assert.IsNotNull(playerSpawnPosition);
+
+        Assert.IsNotNull(portalVFX);
+        Assert.IsNotNull(portalDespawnVFX);
+        if (portalSFX == null)
+            portalSFX = GetComponent<AudioSource>();
+        Assert.IsNotNull(portalSFX);
 
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         Assert.IsNotNull(go);
@@ -45,6 +52,11 @@ class Portal : MonoBehaviour
         Assert.IsNotNull(spellManager);
 
         LevelStatistics.Initialize();
+    }
+
+    private void Start()
+    {
+        portalSFX.Play();
     }
 
     public void Initialize(int levelIndex)
@@ -72,6 +84,7 @@ class Portal : MonoBehaviour
     public void SpawnPlayer(Action playerSpawnedCallback)
     {
         portalVFX.SetActive(true);
+        portalSFX.Play();
         portalDespawnVFX.SetActive(true);
         StartCoroutine(SpawnPlayerRoutine(playerSpawnedCallback));
     }
@@ -82,6 +95,7 @@ class Portal : MonoBehaviour
         player.SetPositionAndRotation(playerSpawnPosition.position, transform.rotation);
         yield return new WaitForSeconds(spawnDuration);
         portalVFX.SetActive(false);
+        portalSFX.Stop();
         portalDespawnVFX.SetActive(false);
         SetPlayerEnable(true);
         playerSpawnedCallback();
@@ -92,6 +106,7 @@ class Portal : MonoBehaviour
         despawnPlayer = true;
         LevelStatistics.StopTimer();
         portalVFX.SetActive(true);
+        portalSFX.Play();
     }
 
     private void DespawnPlayer()

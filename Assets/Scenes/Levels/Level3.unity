@@ -182,7 +182,7 @@ PrefabInstance:
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: spawnWaveFile
       value: 
-      objectReference: {fileID: 4900000, guid: 9bd5c47a0ea9b3f4e825a1fe4cd5bda0, type: 3}
+      objectReference: {fileID: 4900000, guid: 16a4f097b6148084aa14f0ca008fbdbc, type: 3}
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: closingDialogFile
       value: 
