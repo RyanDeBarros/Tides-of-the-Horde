@@ -247,8 +247,9 @@ public class HUDController : MonoBehaviour
         return spellSelectControllers.Where(controller => controller.IsUnlocked()).Count();
     }
 
-    public void ShowDeathScreen()
+    private void ShowDeathScreen()
     {
+        // TODO play player death VFX first
         Time.timeScale = 0f;
         deathScreenPanel.SetActive(true);
         player.DisablePlayer();

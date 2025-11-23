@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 2840767228657566480}
   - component: {fileID: 929097096339481985}
   - component: {fileID: 9124406864226310757}
+  - component: {fileID: 1662943720460974249}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -320,6 +321,7 @@ MonoBehaviour:
   dashDuration: 0.15
   dashSpeed: 30
   cooldown: 1
+  unlocked: 0
 --- !u!114 &7622766684650392044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,6 +574,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1662943720460974249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4381584739051638850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 268eca3b8d862804ca459d821874f1d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  takeDamageAudioClip: {fileID: 8300000, guid: b35f15b52243036458e725ec29439e25, type: 3}
+  gainCurrencyAudioClip: {fileID: 8300000, guid: 67f64ec98da69f1448f4a750dd260114, type: 3}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0
