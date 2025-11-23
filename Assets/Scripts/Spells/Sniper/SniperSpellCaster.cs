@@ -22,7 +22,7 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip SniperSFX;
+    [SerializeField] private AudioClip sniperSFX;
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
@@ -37,7 +37,9 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
         crosshairsController = FindFirstObjectByType<CrosshairsController>();
         Assert.IsNotNull(crosshairsController);
         Assert.IsNotNull(spellPrefab);
+
         Assert.IsNotNull(audioSource);
+        Assert.IsNotNull(sniperSFX);
     }
 
     void Start()
@@ -78,8 +80,8 @@ public class SniperSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack2
             Assert.IsNotNull(spell);
 
             // play sniper sound
-            if (audioSource != null && SniperSFX != null)
-                audioSource.PlayOneShot(SniperSFX);
+            if (sniperSFX != null)
+                audioSource.PlayOneShot(sniperSFX);
 
             spell.range = range;
             spell.maxEnemiesCanHit = maxEnemiesCanHit;

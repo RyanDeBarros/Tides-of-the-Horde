@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Audio;
 
 public class PlayerDash : MonoBehaviour
 {
@@ -7,11 +8,14 @@ public class PlayerDash : MonoBehaviour
     [SerializeField] private PlayerCamera cam;
     [SerializeField] private float inputDeadzone = 0.15f; // ignore tiny axis values
 
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip dashAudioClip;
+
     public float dashDuration = 0.15f;
     public float dashSpeed = 30f;
     public float cooldown = 1f;
 
-    private bool unlocked = false;
+    [SerializeField] private bool unlocked = false;
     private float timeElapsed = 0f;
     private bool dashing = false;
     private Vector3 dashDir = Vector3.zero;
@@ -25,6 +29,10 @@ public class PlayerDash : MonoBehaviour
         if (cam == null)
             cam = GetComponent<PlayerCamera>();
         Assert.IsNotNull(cam);
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+        Assert.IsNotNull(audioSource);
     }
 
     public void Unlock()
@@ -75,6 +83,8 @@ public class PlayerDash : MonoBehaviour
         if (Mathf.Abs(horizontal) > inputDeadzone || Mathf.Abs(vertical) > inputDeadzone)
         {
             dashing = true;
+            if (dashAudioClip != null)
+                audioSource.PlayOneShot(dashAudioClip);
             timeElapsed = dashDuration;
 
             Vector3 forward = cam.GetForwardVector();

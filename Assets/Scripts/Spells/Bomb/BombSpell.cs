@@ -16,7 +16,7 @@ public class BombSpell : MonoBehaviour
     public Vector3 velocity = Vector3.zero;
 
     [Header("Audio Settings")]
-    [SerializeField] private AudioClip BombSFX;
+    [SerializeField] private AudioClip bombSFX;
 
     private new SphereCollider collider;
     private new Rigidbody rigidbody;
@@ -75,9 +75,8 @@ public class BombSpell : MonoBehaviour
 
         if (explosion.TryGetComponent<ParticleSystem>(out var ps))
         {
-            explosion.TryGetComponent<AudioSource>(out var explosionAudioSource);
-            if (explosionAudioSource != null && BombSFX != null)
-                explosionAudioSource.PlayOneShot(BombSFX);
+            if (explosion.TryGetComponent<AudioSource>(out var explosionAudioSource) && bombSFX != null)
+                explosionAudioSource.PlayOneShot(bombSFX);
 
             ps.Play();
             explosion.transform.localScale = Vector3.one * aoeRadius;

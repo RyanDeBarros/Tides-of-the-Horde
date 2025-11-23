@@ -17,7 +17,7 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip BubbleSFX;
+    [SerializeField] private AudioClip bubbleSFX;
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
@@ -31,7 +31,9 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
         Assert.IsNotNull(animator);
         crosshairsController = FindFirstObjectByType<CrosshairsController>();
         Assert.IsNotNull(spellPrefab);
+
         Assert.IsNotNull(audioSource);
+        Assert.IsNotNull(bubbleSFX);
     }
 
     void Update()
@@ -49,8 +51,8 @@ public class BubbleSpellCaster : MonoBehaviour, ISpellCaster
         if (cooldownLeft > 0f || bubbleOut) return;
 
         // play Bubble sound
-        if (audioSource != null && BubbleSFX != null)
-            audioSource.PlayOneShot(BubbleSFX);
+        if (bubbleSFX != null)
+            audioSource.PlayOneShot(bubbleSFX);
 
         bubbleOut = true;
         cooldownLeft = cooldown;
