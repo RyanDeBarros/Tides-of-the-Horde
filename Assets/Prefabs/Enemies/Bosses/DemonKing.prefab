@@ -2025,6 +2025,7 @@ MonoBehaviour:
   attackAI: {fileID: 4486287939115185358}
   attack1Clip: {fileID: 8300000, guid: 16cec6ba607d15041aa544b04674bef3, type: 3}
   attack2Clip: {fileID: 8300000, guid: cc0042b685115504ca7d83096eaea4fe, type: 3}
+  getHitAudioClip: {fileID: 8300000, guid: 867adf9becdd2ac4d805ddd68b7a8739, type: 3}
   audioSource: {fileID: 5208570685143511649}
 --- !u!1001 &9195961314267373946
 PrefabInstance:

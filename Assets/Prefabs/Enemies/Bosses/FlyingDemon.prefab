@@ -226,7 +226,7 @@ MonoBehaviour:
   punchColliders:
   - {fileID: 6624738009325856607}
   punchAudioClip: {fileID: 8300000, guid: 16b136ac19589ea4d8cbbd844a0999ac, type: 3}
-  punchAudioDelay: 0.5
+  punchAudioDelay: 0.1
   biteDamage: 10
   biteBounceBackStrength: 100
   biteProbabilityWeight: 0.75
@@ -1532,6 +1532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b95428c03613e40bfb01f4c0b8d260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getHitAudioClip: {fileID: 8300000, guid: 867adf9becdd2ac4d805ddd68b7a8739, type: 3}
+  audioSource: {fileID: 160752166260935403}
 --- !u!1001 &4501348627455403118
 PrefabInstance:
   m_ObjectHideFlags: 0

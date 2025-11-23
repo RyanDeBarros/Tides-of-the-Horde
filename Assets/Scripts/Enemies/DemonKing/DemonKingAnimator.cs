@@ -8,6 +8,7 @@ public class DemonKingAnimator : MonoBehaviour
     [SerializeField] private DemonKingAttackAI attackAI;
     [SerializeField] private AudioClip attack1Clip;
     [SerializeField] private AudioClip attack2Clip;
+    [SerializeField] private AudioClip getHitAudioClip;
     [SerializeField] private AudioSource audioSource;
 
     private bool movementLocked = false;
@@ -83,13 +84,14 @@ public class DemonKingAnimator : MonoBehaviour
     {
         movementLocked = true;
         animator.SetTrigger("GetHit");
+        if (getHitAudioClip != null)
+            audioSource.PlayOneShot(getHitAudioClip);
     }
 
     public void OnGetHitEnd()
     {
         movement.StartTeleportSequence();
         movementLocked = false;
-        // TODO get hit sfx for bosses
     }
 
     public void TriggerTelegraph()
