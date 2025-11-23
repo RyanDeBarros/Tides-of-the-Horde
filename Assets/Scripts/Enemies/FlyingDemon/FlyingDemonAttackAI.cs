@@ -1,12 +1,15 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Audio;
 
 public class FlyingDemonAttackAI : MonoBehaviour
 {
     [SerializeField] private LayerMask playerLayer;
+    [SerializeField] private AudioSource audioSource;
 
     [Header("Punch")]
     public int punchDamage = 5;
@@ -14,6 +17,8 @@ public class FlyingDemonAttackAI : MonoBehaviour
     public float punchProbabilityWeight = 1.0f;
     public float punchAttackRange = 5f;
     [SerializeField] private List<SphereCollider> punchColliders;
+    [SerializeField] private AudioClip punchAudioClip;
+    [SerializeField] private float punchAudioDelay = 0.5f;
 
     [Header("Bite")]
     public int biteDamage = 10;
@@ -21,6 +26,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
     public float biteProbabilityWeight = 0.75f;
     public float biteAttackRange = 5f;
     [SerializeField] private List<SphereCollider> bigBiteColliders;
+    [SerializeField] private AudioClip biteAudioClip;
 
     [Header("Charge")]
     public int chargeDamage = 8;
@@ -32,6 +38,7 @@ public class FlyingDemonAttackAI : MonoBehaviour
     public float chargeForwardSpeed = 20f;
     public float dizzyDuration = 3f;
     [SerializeField] private List<SphereCollider> smallBiteColliders;
+    [SerializeField] private AudioClip chargeAudioClip;
 
     [Header("Cooldowns")]
     public float minCooldown = 1.0f;
@@ -65,6 +72,10 @@ public class FlyingDemonAttackAI : MonoBehaviour
 
     private void Awake()
     {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+        Assert.IsNotNull(audioSource);
+
         animator = GetComponentInChildren<FlyingDemonAnimator>();
         Assert.IsNotNull(animator);
 
@@ -270,18 +281,33 @@ public class FlyingDemonAttackAI : MonoBehaviour
     {
         attackState = AttackState.Punch;
         animator.PunchAttack();
+        PlaySFX(punchAudioClip, punchAudioDelay);
     }
 
     private void StartBiteAttack()
     {
         attackState = AttackState.Bite;
         animator.BigBiteAttack();
+        PlaySFX(biteAudioClip);
     }
 
     private void StartChargeAttack()
     {
         attackState = AttackState.ChargeBackward;
         chargeTimeLeft = chargeBackDistance / chargeBackSpeed;
+        PlaySFX(chargeAudioClip);
+    }
+
+    private void PlaySFX(AudioClip audioClip, float delay = 0f)
+    {
+        IEnumerator Routine()
+        {
+            yield return new WaitForSeconds(delay);
+            audioSource.PlayOneShot(audioClip);
+        }
+        
+        if (audioClip != null)
+            StartCoroutine(Routine());
     }
 
     public bool IsAttacking()

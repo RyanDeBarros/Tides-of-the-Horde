@@ -218,18 +218,22 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  audioSource: {fileID: 160752166260935403}
   punchDamage: 5
   punchBounceBackStrength: 120
   punchProbabilityWeight: 1
   punchAttackRange: 5
   punchColliders:
   - {fileID: 6624738009325856607}
+  punchAudioClip: {fileID: 8300000, guid: 16b136ac19589ea4d8cbbd844a0999ac, type: 3}
+  punchAudioDelay: 0.5
   biteDamage: 10
   biteBounceBackStrength: 100
   biteProbabilityWeight: 0.75
   biteAttackRange: 5
   bigBiteColliders:
   - {fileID: 4287093122360859726}
+  biteAudioClip: {fileID: 8300000, guid: 44a34505f1489bd4e89c1ffd4a4908b9, type: 3}
   chargeDamage: 8
   chargeBounceBackStrength: 100
   chargeProbabilityWeight: 0.3
@@ -240,6 +244,7 @@ MonoBehaviour:
   dizzyDuration: 3
   smallBiteColliders:
   - {fileID: 2547167615446399068}
+  chargeAudioClip: {fileID: 8300000, guid: 30b642b0abb62004cb4ceddecf159d85, type: 3}
   minCooldown: 1
   maxCooldown: 2
 --- !u!114 &6346164076468609636
