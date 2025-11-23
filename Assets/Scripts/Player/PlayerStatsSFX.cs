@@ -3,42 +3,54 @@ using UnityEngine;
 public class PlayerStatsSFX : MonoBehaviour
 {
     [SerializeField] private AudioClip takeDamageAudioClip;
-    private int lastHealth = 0;
-
     [SerializeField] private AudioClip deathAudioClip;
-
     [SerializeField] private AudioClip gainCurrencyAudioClip;
-    private int lastCurrency = 0;
+    [SerializeField] private AudioClip shopBuyAudioClip;
+    [SerializeField] private AudioClip openShopAudioClip;
+    [SerializeField] private AudioClip closeShopAudioClip;
+
+    // Two independent audio sources for health sfx and currency sfx
+    private AudioSource healthAudioSource;
+    private AudioSource currencyAudioSource;
     
     private void Start()
     {
         GameObject go = new("Stats SFX");
         go.transform.SetParent(transform, false);
+        healthAudioSource = go.AddComponent<AudioSource>();
+        currencyAudioSource = go.AddComponent<AudioSource>();
 
-        if (takeDamageAudioClip != null && TryGetComponent(out Health health))
-        {
-            AudioSource audioSource = go.AddComponent<AudioSource>();
-            lastHealth = health.maxHealth;
-            health.onHealthChanged.AddListener((h, m) => {
-                if (h < lastHealth && h > 0)
-                {
-                    lastHealth = h;
-                    audioSource.PlayOneShot(takeDamageAudioClip);
-                }
-            });
-            health.onDeath.AddListener(() => audioSource.PlayOneShot(deathAudioClip));
-        }
+        if (deathAudioClip != null && TryGetComponent(out Health health))
+            health.onDeath.AddListener(() => healthAudioSource.PlayOneShot(deathAudioClip));
+    }
 
-        if (gainCurrencyAudioClip != null && TryGetComponent(out PlayerCurrency currency))
-        {
-            AudioSource audioSource = go.AddComponent<AudioSource>();
-            currency.onCurrencyChanged.AddListener(c => {
-                if (c > lastCurrency)
-                {
-                    lastCurrency = c;
-                    audioSource.PlayOneShot(gainCurrencyAudioClip);
-                }
-            });
-        }
+    public void PlayTakeDamageSFX()
+    {
+        if (takeDamageAudioClip != null)
+            currencyAudioSource.PlayOneShot(takeDamageAudioClip);
+    }
+
+    public void PlayGainCurrencySFX()
+    {
+        if (gainCurrencyAudioClip != null)
+            currencyAudioSource.PlayOneShot(gainCurrencyAudioClip);
+    }
+
+    public void PlayPurchaseSFX()
+    {
+        if (shopBuyAudioClip != null)
+            currencyAudioSource.PlayOneShot(shopBuyAudioClip);
+    }
+
+    public void PlayShopOpen()
+    {
+        if (openShopAudioClip != null)
+            currencyAudioSource.PlayOneShot(openShopAudioClip);
+    }
+
+    public void PlayShopClose()
+    {
+        if (closeShopAudioClip != null)
+            currencyAudioSource.PlayOneShot(closeShopAudioClip);
     }
 }

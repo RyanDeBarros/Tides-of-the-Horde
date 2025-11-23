@@ -26,7 +26,8 @@ public class ShopUI : MonoBehaviour
     private PlayerEnabler player;
     private PlayerUnlockTree playerUnlock;
     private PlayerCurrency playerCurrency;
-    
+    private PlayerStatsSFX playerStatsSFX;
+
     private bool open = false;
     private Coroutine popup;
     private bool shopEnabled = true;
@@ -42,6 +43,7 @@ public class ShopUI : MonoBehaviour
         player = GlobalFind.FindUniqueObjectByType<PlayerEnabler>(true);
         playerUnlock = GlobalFind.FindUniqueObjectByType<PlayerUnlockTree>(true);
         playerCurrency = GlobalFind.FindUniqueObjectByType<PlayerCurrency>(true);
+        playerStatsSFX = GlobalFind.FindUniqueObjectByType<PlayerStatsSFX>(true);
 
         SetCheckShopPopupAlpha(0f);
 
@@ -58,12 +60,10 @@ public class ShopUI : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            
            if (open)
                Close();
            else
                Open();
-            
         }
     }
 
@@ -71,6 +71,7 @@ public class ShopUI : MonoBehaviour
     {
         if (open || !player.CameraEnabled()) return;
 
+        playerStatsSFX.PlayShopOpen();
         open = true;
         Time.timeScale = 0f;
         uiRoot.SetActive(true);
@@ -81,18 +82,13 @@ public class ShopUI : MonoBehaviour
         RefreshMetaInfo();
         if (shopEnabled)
         {
-            
             shopPanel.SetActive(true);
             shopDisabledText.gameObject.SetActive(false);
         }
         else
         {
-            
             shopPanel.SetActive(false);
             shopDisabledText.gameObject.SetActive(true);
-            //I think the text should mostly be the same, but still keep it here in case you need to write something else
-            //shopDisabledText.text = "According to the current challenge,\n" +
-            //                        "the shop is not available in this level.";
         }
     }
 
@@ -100,6 +96,7 @@ public class ShopUI : MonoBehaviour
     {
         if (!open) return;
 
+        playerStatsSFX.PlayShopClose();
         open = false;
         Time.timeScale = 1f;
         uiRoot.SetActive(false);
@@ -189,16 +186,13 @@ public class ShopUI : MonoBehaviour
         if (multiplierText != null)
         {
             float m = playerCurrency.GetMultiplier();
-            
             multiplierText.text = $"Currency Gain: x{m:0.##}";
         }
 
         if (discountText != null)
         {
-            float d = playerCurrency.GetShopDiscount(); // 0~1
-
+            float d = Mathf.Clamp01(playerCurrency.GetShopDiscount());
             discountText.text = "Shop Discount: " + (d * 100f).ToString("0.#") + "%";
         }
     }
-
 }

@@ -589,6 +589,9 @@ MonoBehaviour:
   takeDamageAudioClip: {fileID: 8300000, guid: b35f15b52243036458e725ec29439e25, type: 3}
   deathAudioClip: {fileID: 8300000, guid: cb17341212e0cf941a7a46119dc96d60, type: 3}
   gainCurrencyAudioClip: {fileID: 8300000, guid: 67f64ec98da69f1448f4a750dd260114, type: 3}
+  shopBuyAudioClip: {fileID: 8300000, guid: f488489daab2727479e0fa72052b797d, type: 3}
+  openShopAudioClip: {fileID: 8300000, guid: 7315da0b33a8b4a4c98b1a33e81e5f61, type: 3}
+  closeShopAudioClip: {fileID: 8300000, guid: b2144afd138b5504ca197d292c95588c, type: 3}
 --- !u!1001 &2476890956049948875
 PrefabInstance:
   m_ObjectHideFlags: 0

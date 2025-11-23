@@ -13,6 +13,7 @@ public class UnlockSelect : MonoBehaviour
 
     private PlayerUnlockNode node = null;
     private PlayerCurrency playerCurrency;
+    private PlayerStatsSFX playerStatsSFX;
 
     private void Awake()
     {
@@ -23,6 +24,7 @@ public class UnlockSelect : MonoBehaviour
         Assert.IsNotNull(availableInfoRoot);
 
         playerCurrency = GlobalFind.FindUniqueObjectByType<PlayerCurrency>(true);
+        playerStatsSFX = GlobalFind.FindUniqueObjectByType<PlayerStatsSFX>(true);
     }
 
     public void Setup(PlayerUnlockNode node)
@@ -41,6 +43,7 @@ public class UnlockSelect : MonoBehaviour
             if (playerCurrency.GetCurrency() >= node.GetCost())
             {
                 playerCurrency.Pay(node.GetCost());
+                playerStatsSFX.PlayPurchaseSFX();
                 node.Activate();
                 ShowUnavailable();
             }
