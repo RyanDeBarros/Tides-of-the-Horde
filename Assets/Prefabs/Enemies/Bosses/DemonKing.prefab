@@ -2023,7 +2023,7 @@ MonoBehaviour:
   animator: {fileID: 4872275864640833774}
   movement: {fileID: 9199881825282460984}
   attackAI: {fileID: 4486287939115185358}
-  attack1Clip: {fileID: 8300000, guid: a17e699b9dd2e2a4e982eeb6fb497265, type: 3}
+  attack1Clip: {fileID: 8300000, guid: 16cec6ba607d15041aa544b04674bef3, type: 3}
   attack2Clip: {fileID: 8300000, guid: cc0042b685115504ca7d83096eaea4fe, type: 3}
   audioSource: {fileID: 5208570685143511649}
 --- !u!1001 &9195961314267373946
