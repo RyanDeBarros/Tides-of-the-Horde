@@ -38,6 +38,11 @@ public class PlayerEnabler : MonoBehaviour
     public void DisablePlayer()
     {
         camera.DisableCamera();
+        DisableInput();
+    }
+
+    public void DisableInput()
+    {
         movement.enabled = false;
         dash.enabled = false;
         spellManager.enabled = false;

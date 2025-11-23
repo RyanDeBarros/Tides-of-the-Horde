@@ -587,6 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   takeDamageAudioClip: {fileID: 8300000, guid: b35f15b52243036458e725ec29439e25, type: 3}
+  deathAudioClip: {fileID: 8300000, guid: cb17341212e0cf941a7a46119dc96d60, type: 3}
   gainCurrencyAudioClip: {fileID: 8300000, guid: 67f64ec98da69f1448f4a750dd260114, type: 3}
 --- !u!1001 &2476890956049948875
 PrefabInstance:

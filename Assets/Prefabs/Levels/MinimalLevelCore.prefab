@@ -574,6 +574,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+--- !u!114 &518882848577907417 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3490023471173445572, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
+  m_PrefabInstance: {fileID: 3989200708847455517}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ce2972d62b4a614dbc464da9bbee29a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1166452467909676557 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2840767228657566480, guid: f3d7cb2bfe3b4eb458127f11048dc8a8, type: 3}
@@ -942,6 +953,10 @@ PrefabInstance:
       propertyPath: mainMenuButton
       value: 
       objectReference: {fileID: 8380541835332909711}
+    - target: {fileID: 1839483178472882230, guid: 9133876c6c261edbcb084a122361753d, type: 3}
+      propertyPath: playerAnimator
+      value: 
+      objectReference: {fileID: 518882848577907417}
     - target: {fileID: 1839483178472882230, guid: 9133876c6c261edbcb084a122361753d, type: 3}
       propertyPath: playerCurrency
       value: 

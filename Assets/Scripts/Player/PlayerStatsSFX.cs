@@ -1,10 +1,11 @@
 using UnityEngine;
-using UnityEngine.Assertions;
 
 public class PlayerStatsSFX : MonoBehaviour
 {
     [SerializeField] private AudioClip takeDamageAudioClip;
     private int lastHealth = 0;
+
+    [SerializeField] private AudioClip deathAudioClip;
 
     [SerializeField] private AudioClip gainCurrencyAudioClip;
     private int lastCurrency = 0;
@@ -19,19 +20,13 @@ public class PlayerStatsSFX : MonoBehaviour
             AudioSource audioSource = go.AddComponent<AudioSource>();
             lastHealth = health.maxHealth;
             health.onHealthChanged.AddListener((h, m) => {
-                if (h < lastHealth)
+                if (h < lastHealth && h > 0)
                 {
-                    if (h > 0)
-                    {
-                        lastHealth = h;
-                        audioSource.PlayOneShot(takeDamageAudioClip);
-                    }
-                    else
-                    {
-                        // TODO death sfx
-                    }
+                    lastHealth = h;
+                    audioSource.PlayOneShot(takeDamageAudioClip);
                 }
             });
+            health.onDeath.AddListener(() => audioSource.PlayOneShot(deathAudioClip));
         }
 
         if (gainCurrencyAudioClip != null && TryGetComponent(out PlayerCurrency currency))

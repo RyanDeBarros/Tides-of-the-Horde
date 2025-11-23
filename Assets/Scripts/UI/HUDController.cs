@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -15,13 +14,18 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthAnim;
     [SerializeField] private TextMeshProUGUI crystalsAnim;
     [SerializeField] private float statsAnimationDuration = 0.2f;
+    
     [SerializeField] private RawImage vignette;
     [SerializeField] private float lowHealthThreshold = 0.2f;
+    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip gameOverAudioClip;
 
     [Header("Player References")]
     [SerializeField] private PlayerEnabler player;
     [SerializeField] private Health playerHealth;
     [SerializeField] private PlayerCurrency playerCurrency;
+    [SerializeField] private PlayerAnimatorController playerAnimator;
 
     [Serializable]
     private class SpellSelectTexture
@@ -98,10 +102,12 @@ public class HUDController : MonoBehaviour
         Assert.IsNotNull(healthAnim);
         Assert.IsNotNull(crystalsAnim);
         Assert.IsNotNull(vignette);
+        Assert.IsNotNull(audioSource);
 
         Assert.IsNotNull(player);
         Assert.IsNotNull(playerHealth);
         Assert.IsNotNull(playerCurrency);
+        Assert.IsNotNull(playerAnimator);
         Assert.IsTrue(spellSelectControllers.Count == spells.Count && spells.Count == Enum.GetValues(typeof(SpellType)).Length);
 
         healthText.SetText("");
@@ -116,7 +122,7 @@ public class HUDController : MonoBehaviour
         crystalsAnimation.Start();
 
         playerHealth.onHealthChanged.AddListener(UpdateHealthHUD);
-        playerHealth.onDeath.AddListener(ShowDeathScreen);
+        playerHealth.onDeath.AddListener(() => StartCoroutine(DeathTransition()));
         playerCurrency.onCurrencyChanged.AddListener(UpdateCrystalsHUD);
     }
 
@@ -247,9 +253,15 @@ public class HUDController : MonoBehaviour
         return spellSelectControllers.Where(controller => controller.IsUnlocked()).Count();
     }
 
-    private void ShowDeathScreen()
+    private IEnumerator DeathTransition()
     {
-        // TODO play player death VFX first
+        player.DisableInput();
+        yield return playerAnimator.PlayDeathAnimation();
+
+        if (gameOverAudioClip != null)
+            audioSource.PlayOneShot(gameOverAudioClip);
+        // TODO play game over music
+
         Time.timeScale = 0f;
         deathScreenPanel.SetActive(true);
         player.DisablePlayer();
