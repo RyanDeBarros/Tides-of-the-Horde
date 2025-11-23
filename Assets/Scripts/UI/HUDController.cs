@@ -260,7 +260,7 @@ public class HUDController : MonoBehaviour
 
         if (gameOverAudioClip != null)
             audioSource.PlayOneShot(gameOverAudioClip);
-        // TODO play game over music
+        SoundtrackManager.Instance.PlayTrack("Game Over");
 
         Time.timeScale = 0f;
         deathScreenPanel.SetActive(true);

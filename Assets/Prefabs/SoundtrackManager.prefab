@@ -85,6 +85,10 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 6aee9ace738fa104aa8f34ff95bcdbae, type: 3}
     loop: 1
     volume: 0.3
+  - identifier: Game Over
+    clip: {fileID: 8300000, guid: e442fb0c0a7d57d4c89e25804069fc24, type: 3}
+    loop: 1
+    volume: 0.3
   crossFadeDuration: 1
   dimmedVolumeFactor: 0.5
   dimmedTransitionDuration: 0.3
