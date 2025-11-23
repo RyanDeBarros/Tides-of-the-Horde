@@ -134,6 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 389bdd063d20367daa255debc0819c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 7264195963702152951}
+  attackAudioClip: {fileID: 8300000, guid: b65aa710255d25842ab0759c2d8874f6, type: 3}
   player: {fileID: 0}
   moveSpeed: 3.5
   stoppingDistance: 5

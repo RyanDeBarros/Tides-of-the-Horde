@@ -210,6 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1192491411146982190}
+  audioSource: {fileID: 1765274193361657032}
+  attackSFX: {fileID: 8300000, guid: 910ae0507f36e1a42a44f29c05d61df1, type: 3}
   attackTrigger: Fire
 --- !u!114 &1961417952955607821
 MonoBehaviour:
@@ -405,7 +407,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.4
       inSlope: 0
       outSlope: 0
       tangentMode: 0
