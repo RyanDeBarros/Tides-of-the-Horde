@@ -220,7 +220,7 @@ GameObject:
   - component: {fileID: 3865934464121498255}
   - component: {fileID: 6524860535197160035}
   - component: {fileID: 973897351702163919}
-  - component: {fileID: 8823352445877180869}
+  - component: {fileID: 7081406233862084411}
   m_Layer: 8
   m_Name: DemonKing
   m_TagString: Enemy
@@ -662,7 +662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealthBar: {fileID: 6524860535197160035}
   bossHealthBar: {fileID: 3865934464121498255}
---- !u!114 &8823352445877180869
+--- !u!114 &7081406233862084411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -671,11 +671,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5522856944775851731}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a408b04aa3d06d46a4fbe429132fe11, type: 3}
+  m_Script: {fileID: 11500000, guid: c9a9ceaaacc32674b98868b806009059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  riseHeight: 2
-  riseTime: 1
+  spawnType: 0
+  duration: 1.2
+  heightOffset: 2
+  disabledComponents:
+  - {fileID: 9199881825282460984}
+  - {fileID: 4486287939115185358}
 --- !u!1 &5612114110964857626
 GameObject:
   m_ObjectHideFlags: 0

@@ -503,8 +503,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnType: 1
-  duration: 1.2
-  heightOffset: 2
+  duration: 2
+  heightOffset: 5
+  disabledComponents:
+  - {fileID: 8971591378966497812}
+  - {fileID: 1187491437838976808}
 --- !u!1 &6056564345800127664
 GameObject:
   m_ObjectHideFlags: 0
