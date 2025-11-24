@@ -1,6 +1,4 @@
-using System.Diagnostics.Tracing;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Assertions;
 
 [RequireComponent(typeof(CharacterController))]
@@ -63,16 +61,8 @@ public class StandardEnemyMovement : MonoBehaviour
         if (displacement.magnitude <= chaseRange)
         {
             waypointPatroller.StopPatrol();
-            if (displacement.magnitude > stoppingDistance)
-            {
-                Vector3 movement = mover.MoveController(displacement, stoppingDistance, moveSpeed, turnSpeed);
-                UpdateAnimationSpeedByMovement(movement);
-            }
-            else
-            {
-                mover.LookInDirection(displacement, turnSpeed);
-                UpdateAnimationSpeed(0f);
-            }
+            Vector3 movement = mover.MoveController(displacement, stoppingDistance, moveSpeed, turnSpeed);
+            UpdateAnimationSpeedByMovement(movement.magnitude * Mathf.Sign(Vector3.Dot(movement, displacement)));
         }
         else
             waypointPatroller.StartPatrol();
@@ -83,17 +73,13 @@ public class StandardEnemyMovement : MonoBehaviour
     private void OnWaypointPatrollerMove(Vector3 displacement)
     {
         Vector3 movement = mover.MoveController(displacement, moveSpeed, turnSpeed);
-        UpdateAnimationSpeedByMovement(movement);
+        UpdateAnimationSpeedByMovement(movement.magnitude * Mathf.Sign(Vector3.Dot(movement, displacement)));
     }
 
-    private void UpdateAnimationSpeedByMovement(Vector3 movement)
+    private void UpdateAnimationSpeedByMovement(float movement)
     {
-        UpdateAnimationSpeed(Time.deltaTime > 1e-5f ? movement.magnitude / Time.deltaTime : 0f);
-    }
-
-    private void UpdateAnimationSpeed(float speed)
-    {
+        float speed = Mathf.Abs(movement) < 0.01f ? 0f : Time.deltaTime > 1e-5f ? movement / Time.deltaTime : 0f;
         animator.SetFloat("AnimationSpeed", speed * animationSpeedMultiplier);
-        animator.SetBool("IsMoving", speed > 0.1f);
+        animator.SetBool("IsMoving", Mathf.Abs(speed) > 0.1f);
     }
 }

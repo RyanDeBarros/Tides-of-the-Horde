@@ -51,6 +51,8 @@ class NavMover : MonoBehaviour
         if (!controller.enabled)
             return Vector3.zero;
 
+        if (displacement.magnitude < 0.01f)
+            return Vector3.zero;
 
         if (!agent.isOnNavMesh)
             return MoveWithoutAI(displacement, displacement, moveSpeed, turnSpeed);
@@ -60,6 +62,7 @@ class NavMover : MonoBehaviour
         LookInDirection(velocity.magnitude > 0.001f ? velocity : displacement, turnSpeed);
 
         Vector3 movement = moveSpeed * Time.deltaTime * velocity;
+        movement = Mathf.Min(movement.magnitude, displacement.magnitude) * movement.normalized;
         controller.Move(movement);
 
         return movement;
@@ -73,6 +76,9 @@ class NavMover : MonoBehaviour
         Vector3 lookDirection = displacement;
         displacement = (displacement.magnitude - stoppingDistance) * displacement.normalized;
 
+        if (displacement.magnitude < 0.01f)
+            return Vector3.zero;
+
         if (!agent.isOnNavMesh)
             return MoveWithoutAI(displacement, lookDirection, moveSpeed, turnSpeed);
 
@@ -81,6 +87,7 @@ class NavMover : MonoBehaviour
         LookInDirection(lookDirection, turnSpeed);
 
         Vector3 movement = moveSpeed * Time.deltaTime * velocity;
+        movement = Mathf.Min(movement.magnitude, displacement.magnitude) * movement.normalized;
         controller.Move(movement);
 
         return movement;
@@ -94,7 +101,8 @@ class NavMover : MonoBehaviour
         
         LookInDirection(lookDirection, turnSpeed);
 
-        Vector3 movement = Mathf.Min(moveSpeed * Time.deltaTime, displacement.magnitude) * displacement.normalized;
+        Vector3 movement = moveSpeed * Time.deltaTime * displacement.normalized;
+        movement = Mathf.Min(movement.magnitude, displacement.magnitude) * movement.normalized;
         controller.Move(movement);
 
         return movement;
