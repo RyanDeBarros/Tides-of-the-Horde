@@ -112,7 +112,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: BishopKnight_Die
+  m_Name: Die
   m_Speed: 2
   m_CycleOffset: 0
   m_Transitions: []
@@ -152,7 +152,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 3b7a6df7ec1445b788b3f5304c3e4262, type: 3}
+  m_Motion: {fileID: 7400000, guid: 153755f9228f208468411c063f3494cb, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -296,7 +296,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 1827226128182048838, guid: 8d42ff79aa654ebebff5b15b23bf5780, type: 3}
+  m_Motion: {fileID: 7400000, guid: f81c858ba10400a4d8752ae9a12e2059, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

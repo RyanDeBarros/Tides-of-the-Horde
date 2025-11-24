@@ -22,6 +22,8 @@ public class StandardEnemyMovement : MonoBehaviour
     private WaypointPatroller waypointPatroller;
     private Animator animator;
 
+    private float lockY = 0f;
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
@@ -44,6 +46,11 @@ public class StandardEnemyMovement : MonoBehaviour
             player = go.transform;
             Assert.IsNotNull(player);
         }
+    }
+
+    private void Start()
+    {
+        lockY = transform.position.y;
     }
 
     private void Update()
@@ -69,6 +76,8 @@ public class StandardEnemyMovement : MonoBehaviour
         }
         else
             waypointPatroller.StartPatrol();
+
+        transform.position = new(transform.position.x, lockY, transform.position.z);
     }
 
     private void OnWaypointPatrollerMove(Vector3 displacement)

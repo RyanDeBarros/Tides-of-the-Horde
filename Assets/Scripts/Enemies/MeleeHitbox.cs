@@ -18,6 +18,7 @@ public class MeleeHitbox : MonoBehaviour
     private void Awake()
     {
         Assert.IsNotNull(colliderRoot);
+        colliders.AddRange(colliderRoot.GetComponents<SphereCollider>());
         colliders.AddRange(colliderRoot.GetComponentsInChildren<SphereCollider>());
     }
 
