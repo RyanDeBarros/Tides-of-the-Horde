@@ -677,9 +677,7 @@ MonoBehaviour:
   spawnType: 0
   duration: 1.2
   heightOffset: 2
-  disabledComponents:
-  - {fileID: 9199881825282460984}
-  - {fileID: 4486287939115185358}
+  disabledComponents: []
 --- !u!1 &5612114110964857626
 GameObject:
   m_ObjectHideFlags: 0
