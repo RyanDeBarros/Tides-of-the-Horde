@@ -221,6 +221,7 @@ GameObject:
   - component: {fileID: 973897351702163919}
   - component: {fileID: 3940831794543227698}
   - component: {fileID: 2935718355930588309}
+  - component: {fileID: 6724582317566035391}
   m_Layer: 8
   m_Name: DemonKing
   m_TagString: Enemy
@@ -308,7 +309,6 @@ MonoBehaviour:
   attackAI: {fileID: 0}
   planeVFX: {fileID: 8864811851381855948}
   moveSpeed: 10
-  chaseRange: 60
   stoppingDistance: 2.8
   turnSpeed: 800
   sinkSpeed: 6
@@ -678,6 +678,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navRecalculateThreshold: 0.1
+  rejoinMeshMaxDistance: 0.5
+  onMeshThreshold: 0.1
+--- !u!114 &6724582317566035391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522856944775851731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33af7ee2e29c6849abdb9675c5cd386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  duration: 3
+  heightOffset: 4
+  disabledComponents:
+  - {fileID: 9199881825282460984}
+  - {fileID: 4486287939115185358}
+  - {fileID: 8083836066227628466}
+  - {fileID: 4046973865690285927}
+  - {fileID: 8269115829709230679}
 --- !u!1 &5612114110964857626
 GameObject:
   m_ObjectHideFlags: 0
