@@ -178,7 +178,7 @@ public class EnemySpawner : MonoBehaviour
             uiController.SetWaveNumber(waveNumber);
             shopUI.RefreshOptions();
         }
-        else
+        else if (Portal.GetPlayer().TryGetComponent(out Health health) && health.IsAlive())
         {
             uiController.HideUI();
             levelPhase = LevelPhase.ChallengeGiverEnd;

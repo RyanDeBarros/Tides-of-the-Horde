@@ -146,13 +146,10 @@ public class ChallengeTracker : MonoBehaviour
         currentReward = null;
     }
 
-    public void RewardIfSuccess()
+    public void GiveReward()
     {
-        if (ChallengeCompleted())
-        {
-            currentReward.GiveReward();
-            PersistentChallengeData.Data().CompleteReward(Portal.GetLevelPortal().levelIndex, currentReward.GetType().Name);
-        }
+        currentReward.GiveReward();
+        PersistentChallengeData.Data().CompleteReward(Portal.GetLevelPortal().levelIndex, currentReward.GetType().Name);
     }
 
     public bool HasChallenge()

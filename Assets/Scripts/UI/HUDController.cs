@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
@@ -15,13 +14,19 @@ public class HUDController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI healthAnim;
     [SerializeField] private TextMeshProUGUI crystalsAnim;
     [SerializeField] private float statsAnimationDuration = 0.2f;
+    
     [SerializeField] private RawImage vignette;
     [SerializeField] private float lowHealthThreshold = 0.2f;
+    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip gameOverAudioClip;
 
     [Header("Player References")]
     [SerializeField] private PlayerEnabler player;
     [SerializeField] private Health playerHealth;
     [SerializeField] private PlayerCurrency playerCurrency;
+    [SerializeField] private PlayerAnimatorController playerAnimator;
+    [SerializeField] private PlayerStatsSFX playerStatsSFX;
 
     [Serializable]
     private class SpellSelectTexture
@@ -98,10 +103,13 @@ public class HUDController : MonoBehaviour
         Assert.IsNotNull(healthAnim);
         Assert.IsNotNull(crystalsAnim);
         Assert.IsNotNull(vignette);
+        Assert.IsNotNull(audioSource);
 
         Assert.IsNotNull(player);
         Assert.IsNotNull(playerHealth);
         Assert.IsNotNull(playerCurrency);
+        Assert.IsNotNull(playerAnimator);
+        Assert.IsNotNull(playerStatsSFX);
         Assert.IsTrue(spellSelectControllers.Count == spells.Count && spells.Count == Enum.GetValues(typeof(SpellType)).Length);
 
         healthText.SetText("");
@@ -116,7 +124,7 @@ public class HUDController : MonoBehaviour
         crystalsAnimation.Start();
 
         playerHealth.onHealthChanged.AddListener(UpdateHealthHUD);
-        playerHealth.onDeath.AddListener(ShowDeathScreen);
+        playerHealth.onDeath.AddListener(() => StartCoroutine(DeathTransition()));
         playerCurrency.onCurrencyChanged.AddListener(UpdateCrystalsHUD);
     }
 
@@ -164,7 +172,12 @@ public class HUDController : MonoBehaviour
     public void UpdateHealthHUD(int currentHP, int maxHP)
     {
         if (healthText.text != "")
-            healthAnimation.Animate(currentHP - int.Parse(healthText.text.Split('/')[0]));
+        {
+            int delta = currentHP - int.Parse(healthText.text.Split('/')[0]);
+            healthAnimation.Animate(delta);
+            if (delta < 0)
+                playerStatsSFX.PlayTakeDamageSFX();
+        }
         
         healthText.SetText($"{currentHP}/{maxHP}");
         Vector2 sz = healthText.rectTransform.sizeDelta;
@@ -183,7 +196,12 @@ public class HUDController : MonoBehaviour
     public void UpdateCrystalsHUD(int currentEXP)
     {
         if (crystalsText.text != "")
-            crystalsAnimation.Animate(currentEXP - int.Parse(crystalsText.text));
+        {
+            int delta = currentEXP - int.Parse(crystalsText.text);
+            crystalsAnimation.Animate(delta);
+            if (delta > 0)
+                playerStatsSFX.PlayGainCurrencySFX();
+        }
 
         crystalsText.SetText($"{currentEXP}");
         Vector2 sz = crystalsText.rectTransform.sizeDelta;
@@ -247,8 +265,15 @@ public class HUDController : MonoBehaviour
         return spellSelectControllers.Where(controller => controller.IsUnlocked()).Count();
     }
 
-    public void ShowDeathScreen()
+    private IEnumerator DeathTransition()
     {
+        player.DisableInput();
+        yield return playerAnimator.PlayDeathAnimation();
+
+        if (gameOverAudioClip != null)
+            audioSource.PlayOneShot(gameOverAudioClip);
+        SoundtrackManager.Instance.PlayTrack("Game Over");
+
         Time.timeScale = 0f;
         deathScreenPanel.SetActive(true);
         player.DisablePlayer();

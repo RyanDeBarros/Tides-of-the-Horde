@@ -8,20 +8,27 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
 
+enum ClickResponse
+{
+    Accept,
+    Decline,
+    Claim,
+    Continue
+}
+
 [Serializable]
-public class DialogOption
+class DialogOption
 {
     public string text;
     public bool clickable = false;
-    public string clickResponse;
+    public ClickResponse clickResponse = ClickResponse.Continue;
     public float topPadding = 0f;
-    public float halign = 0f;
     public bool challenge = false;
     public bool reward = false;
 }
 
 [SerializeField]
-public class DialogPage
+class DialogPage
 {
     public List<DialogOption> options;
 }
@@ -31,6 +38,13 @@ public class NPCDialog : MonoBehaviour
     [SerializeField] private RectTransform textArea;
     [SerializeField] private TextAsset openingDialogFile;
     [SerializeField] private TextAsset closingDialogFile;
+
+    [Header("Audio")]
+    [SerializeField] private AudioSource typingSFX;
+    [SerializeField] private AudioClip acceptAudioClip;
+    [SerializeField] private AudioClip declineAudioClip;
+    [SerializeField] private AudioClip claimAudioClip;
+    [SerializeField] private AudioClip continueAudioClip;
 
     [Header("Text Parameters")]
     [SerializeField] private float typingSeconds = 0.01f;
@@ -69,6 +83,12 @@ public class NPCDialog : MonoBehaviour
 
     private void Awake()
     {
+        Assert.IsNotNull(typingSFX);
+        Assert.IsNotNull(acceptAudioClip);
+        Assert.IsNotNull(declineAudioClip);
+        Assert.IsNotNull(claimAudioClip);
+        Assert.IsNotNull(continueAudioClip);
+
         Assert.IsNotNull(textArea);
         Assert.IsNotNull(font);
 
@@ -119,15 +139,15 @@ public class NPCDialog : MonoBehaviour
         if (includeChallenge)
         {
             options.Add(new DialogOption() { text = "Complete this challenge and I'll reward you:", topPadding = 10f });
-            options.Add(new DialogOption() { challenge = true, halign = 0.5f });
-            options.Add(new DialogOption() { reward = true, halign = 0.5f });
-            options.Add(new DialogOption() { text = "Accept", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "accept" });
-            options.Add(new DialogOption() { text = "Decline", halign = 1f, clickable = true, clickResponse = "decline" });
+            options.Add(new DialogOption() { challenge = true });
+            options.Add(new DialogOption() { reward = true });
+            options.Add(new DialogOption() { text = "Accept", topPadding = 10f, clickable = true, clickResponse = ClickResponse.Accept });
+            options.Add(new DialogOption() { text = "Decline", clickable = true, clickResponse = ClickResponse.Decline });
         }
         else
         {
             options.Add(new DialogOption() { text = "Unfortunately, I have no more rewards to give for this level...", topPadding = 10f });
-            options.Add(new DialogOption() { text = "Continue", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "decline" });
+            options.Add(new DialogOption() { text = "Continue", topPadding = 10f, clickable = true, clickResponse = ClickResponse.Continue });
         }
 
         SetTextPage(options);
@@ -142,25 +162,40 @@ public class NPCDialog : MonoBehaviour
             if (challengeTracker.ChallengeCompleted())
             {
                 options.Add(new DialogOption() { text = "You completed my challenge! Here is your reward:", topPadding = 10f });
-                options.Add(new DialogOption() { reward = true, halign = 0.5f });
+                options.Add(new DialogOption() { reward = true });
+                options.Add(new DialogOption() { text = "Claim Reward", topPadding = 10f, clickable = true, clickResponse = ClickResponse.Claim });
             }
             else
+            {
                 options.Add(new DialogOption() { text = "Unfortunately, you failed my challenge!", topPadding = 10f });
+                options.Add(new DialogOption() { text = "Continue", topPadding = 10f, clickable = true, clickResponse = ClickResponse.Continue });
+            }
+        }
+        else
+        {
+            options.Add(new DialogOption() { text = "Continue", topPadding = 10f, clickable = true, clickResponse = ClickResponse.Continue });
         }
 
-        options.Add(new DialogOption() { text = "Continue", topPadding = 10f, halign = 1f, clickable = true, clickResponse = "claim" });
         SetTextPage(options);
     }
 
     private void SetTextPage(List<DialogOption> options)
     {
         ClearTextPage();
-        // TODO while typewriting - play typing SFX: begin continuously playing here, and then stop it in RunAtEnd().
+        typingSFX.Play();
+
         options.ForEach(option => typewriterAnimationQueue.AppendCoroutine(AddText(option)));
         typewriterAnimationQueue.RunAtEnd(() => {
             textButtons.ForEach(button => button.enabled = true);
             textOnHovers.ForEach(onHover => onHover.enabled = true);
+            StartCoroutine(StopTypingSFX());
         });
+    }
+
+    private IEnumerator StopTypingSFX()
+    {
+        yield return new WaitForSeconds(typingSFX.clip.length - typingSFX.time);
+        typingSFX.Stop();
     }
 
     private void ClearTextPage()
@@ -177,9 +212,10 @@ public class NPCDialog : MonoBehaviour
         RectTransform rect = go.GetComponent<RectTransform>();
         rect.SetParent(textArea, false);
 
-        rect.pivot = new(option.halign, 1f);
-        rect.anchorMin = new(option.halign, 1f);
-        rect.anchorMax = new(option.halign, 1f);
+        float halign = option.clickable ? 1f : option.challenge || option.reward ? 0.5f : 0f;
+        rect.pivot = new(halign, 1f);
+        rect.anchorMin = new(halign, 1f);
+        rect.anchorMax = new(halign, 1f);
         rect.anchoredPosition = Vector2.zero;
 
         if (textComponents.Count > 0)
@@ -211,7 +247,7 @@ public class NPCDialog : MonoBehaviour
         textComponents.Add(textComponent);
     }
 
-    private void MakeTextClickable(TextMeshProUGUI textComponent, string clickResponse)
+    private void MakeTextClickable(TextMeshProUGUI textComponent, ClickResponse clickResponse)
     {
         Button button = textComponent.gameObject.AddComponent<Button>();
         button.targetGraphic = textComponent;
@@ -248,18 +284,29 @@ public class NPCDialog : MonoBehaviour
         textComponent.SetText(text);
     }
 
-    private void OnTextClicked(string clickResponse)
+    private void OnTextClicked(ClickResponse clickResponse)
     {
-        Dictionary<string, Action> actions = new(StringComparer.InvariantCultureIgnoreCase) {
-            ["accept"] = challengeTracker.AcceptChallenge,
-            ["decline"] = challengeTracker.DeclineChallenge,
-            ["claim"] = () => challengeTracker.RewardIfSuccess()
-        };
-
-        if (actions.TryGetValue(clickResponse, out Action action))
-            action();
-        else
-            Debug.LogError($"Unrecognized click response: {clickResponse}");
+        switch (clickResponse)
+        {
+            case ClickResponse.Accept:
+                SoundEffectPlayer.Play(acceptAudioClip);
+                challengeTracker.AcceptChallenge();
+                break;
+            case ClickResponse.Decline:
+                SoundEffectPlayer.Play(declineAudioClip);
+                challengeTracker.DeclineChallenge();
+                break;
+            case ClickResponse.Claim:
+                SoundEffectPlayer.Play(claimAudioClip);
+                challengeTracker.GiveReward();
+                break;
+            case ClickResponse.Continue:
+                SoundEffectPlayer.Play(continueAudioClip);
+                break;
+            default:
+                Debug.LogError($"Unrecognized click response: {clickResponse}");
+                break;
+        }
 
         Close();
     }

@@ -1,18 +1,19 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerAnimatorController : MonoBehaviour
 {
-    private Animator playerAnimator;
+    private Animator animator;
     private Gravity gravity;
 
-    private List<ICallbackOnAttack1Climax> onAttack1ClimaxCallbacks = new();
-    private List<ICallbackOnAttack2Climax> onAttack2ClimaxCallbacks = new();
+    private readonly List<ICallbackOnAttack1Climax> onAttack1ClimaxCallbacks = new();
+    private readonly List<ICallbackOnAttack2Climax> onAttack2ClimaxCallbacks = new();
 
     void Awake()
     {
-        playerAnimator = GetComponent<Animator>();
-        if (playerAnimator == null)
+        animator = GetComponent<Animator>();
+        if (animator == null)
         {
             Debug.LogError("Animator component not found on " + gameObject.name);
         }
@@ -26,22 +27,22 @@ public class PlayerAnimatorController : MonoBehaviour
 
     public void SetWalking(bool isWalking)
     {
-        playerAnimator.SetBool("isWalkingFWD", isWalking && gravity.GetIsGrounded());
+        animator.SetBool("isWalkingFWD", isWalking && gravity.GetIsGrounded());
     }
 
     public void SetRunning(bool isRunning)
     {
-        playerAnimator.SetBool("isRunning", isRunning && gravity.GetIsGrounded());
+        animator.SetBool("isRunning", isRunning && gravity.GetIsGrounded());
     }
 
     public void SetAttackAnimSpeed(float speedMultiplier)
     {
-        playerAnimator.SetFloat("AttackAnimSpeed", speedMultiplier);
+        animator.SetFloat("AttackAnimSpeed", speedMultiplier);
     }
 
     public void ExecuteAttack1()
     {
-        playerAnimator.SetTrigger("Attack1");
+        animator.SetTrigger("Attack1");
     }
 
     public void RegisterOnAttack1Climax(ICallbackOnAttack1Climax callback)
@@ -57,7 +58,7 @@ public class PlayerAnimatorController : MonoBehaviour
 
     public void ExecuteAttack2()
     {
-        playerAnimator.SetTrigger("Attack2");
+        animator.SetTrigger("Attack2");
     }
 
     public void RegisterOnAttack2Climax(ICallbackOnAttack2Climax callback)
@@ -69,5 +70,14 @@ public class PlayerAnimatorController : MonoBehaviour
     {
         foreach (var c in onAttack2ClimaxCallbacks)
             c.OnAttack2Climax();
+    }
+
+    public IEnumerator PlayDeathAnimation()
+    {
+        animator.SetTrigger("Die");
+        while (!animator.GetCurrentAnimatorStateInfo(0).IsName("Die"))
+            yield return null;
+
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
     }
 }

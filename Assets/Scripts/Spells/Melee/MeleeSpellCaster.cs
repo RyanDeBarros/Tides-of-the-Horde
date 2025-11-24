@@ -18,7 +18,7 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack1C
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip MeleeSFX;
+    [SerializeField] private AudioClip meleeSFX;
 
     private PlayerAnimatorController animator;
     private CrosshairsController crosshairsController;
@@ -33,7 +33,9 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack1C
         Assert.IsNotNull(animator);
         crosshairsController = FindFirstObjectByType<CrosshairsController>();
         Assert.IsNotNull(spellPrefab);
+
         Assert.IsNotNull(audioSource);
+        Assert.IsNotNull(meleeSFX);
     }
 
     void Start()
@@ -58,8 +60,8 @@ public class MeleeSpellCaster : MonoBehaviour, ISpellCaster, ICallbackOnAttack1C
         cooldownLeft = cooldown;
         
         // play melee sound
-        if (audioSource != null && MeleeSFX != null)
-            audioSource.PlayOneShot(MeleeSFX);
+        if (meleeSFX != null)
+            audioSource.PlayOneShot(meleeSFX);
 
         animator.SetAttackAnimSpeed(animationSpeedMultiplier);
         attacking = true;

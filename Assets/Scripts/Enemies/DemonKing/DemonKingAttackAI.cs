@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Audio;
 
 class DemonKingAttackAI : MonoBehaviour
 {
@@ -9,10 +10,12 @@ class DemonKingAttackAI : MonoBehaviour
     [SerializeField] private DemonKingMovementAI movement;
     [SerializeField] private DemonKingAnimator animator;
     [SerializeField] private TargetDetector detector;
+    [SerializeField] private AudioSource audioSource;
 
     public float comboProbability = 0.2f;
 
     [Header("Ranged Attack")]
+    [SerializeField] private AudioClip rangedAudioClip;
     public float minRangedAttackDelay = 4f;
     public float maxRangedAttackDelay = 20f;
     private float rangedAttackDelayElapsed = 0f;
@@ -56,6 +59,10 @@ class DemonKingAttackAI : MonoBehaviour
         if (detector == null)
             detector = GetComponent<TargetDetector>();
         Assert.IsNotNull(detector);
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+        Assert.IsNotNull(audioSource);
 
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         Assert.IsNotNull(go);
@@ -141,6 +148,8 @@ class DemonKingAttackAI : MonoBehaviour
         });
 
         rangedAttackState = RangedAttackState.Executing;
+        if (rangedAudioClip != null)
+            audioSource.PlayOneShot(rangedAudioClip);
         animator.TriggerTelegraph();
         rangedAttackDelayElapsed = 0f;
         rangedAttackDelay = Random.Range(minRangedAttackDelay, maxRangedAttackDelay);

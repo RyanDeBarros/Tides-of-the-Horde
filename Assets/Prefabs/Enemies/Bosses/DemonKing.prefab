@@ -318,10 +318,8 @@ MonoBehaviour:
   behindPlayerDistance: 4
   minRegularTeleportDelay: 4
   maxRegularTeleportDelay: 20
-  audioSource: {fileID: 0}
-  AttackSFX: {fileID: 8300000, guid: cc0042b685115504ca7d83096eaea4fe, type: 3}
-  AttackSFX2: {fileID: 8300000, guid: 30b642b0abb62004cb4ceddecf159d85, type: 3}
-  TeleportSfX: {fileID: 8300000, guid: 35cd71d006d5edd4586e1d8b7b335f96, type: 3}
+  audioSource: {fileID: 5208570685143511649}
+  teleportAudioClip: {fileID: 8300000, guid: 35cd71d006d5edd4586e1d8b7b335f96, type: 3}
 --- !u!114 &3729822997592497888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -368,8 +366,10 @@ MonoBehaviour:
   spikesPrefab: {fileID: 3256864734209685171, guid: eb1b6823b87d89e4c81ba5b501b02e19, type: 3}
   movement: {fileID: 9199881825282460984}
   animator: {fileID: 7582381997971118884}
-  detector: {fileID: 0}
+  detector: {fileID: 3729822997592497888}
+  audioSource: {fileID: 5208570685143511649}
   comboProbability: 0.2
+  rangedAudioClip: {fileID: 8300000, guid: 448bff2cb287b45468f6ab34c4604470, type: 3}
   minRangedAttackDelay: 4
   maxRangedAttackDelay: 20
   spikesInitialDamage: 5
@@ -428,7 +428,7 @@ MonoBehaviour:
   sinkDuration: 2.5
   sinkSpeed: 1
   audioSource: {fileID: 5208570685143511649}
-  deathSFX: {fileID: 8300000, guid: e6a96e4a3c87004409259113a3684442, type: 3}
+  deathSFX: {fileID: 8300000, guid: 2904976cd3dcebc439492cbaf04a8fd1, type: 3}
 --- !u!114 &4046973865690285927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +559,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.3
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -2023,6 +2023,10 @@ MonoBehaviour:
   animator: {fileID: 4872275864640833774}
   movement: {fileID: 9199881825282460984}
   attackAI: {fileID: 4486287939115185358}
+  attack1Clip: {fileID: 8300000, guid: 16cec6ba607d15041aa544b04674bef3, type: 3}
+  attack2Clip: {fileID: 8300000, guid: cc0042b685115504ca7d83096eaea4fe, type: 3}
+  getHitAudioClip: {fileID: 8300000, guid: 867adf9becdd2ac4d805ddd68b7a8739, type: 3}
+  audioSource: {fileID: 5208570685143511649}
 --- !u!1001 &9195961314267373946
 PrefabInstance:
   m_ObjectHideFlags: 0

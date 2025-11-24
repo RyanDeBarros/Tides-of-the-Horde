@@ -218,18 +218,22 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  audioSource: {fileID: 160752166260935403}
   punchDamage: 5
   punchBounceBackStrength: 120
   punchProbabilityWeight: 1
   punchAttackRange: 5
   punchColliders:
   - {fileID: 6624738009325856607}
+  punchAudioClip: {fileID: 8300000, guid: 16b136ac19589ea4d8cbbd844a0999ac, type: 3}
+  punchAudioDelay: 0.1
   biteDamage: 10
   biteBounceBackStrength: 100
   biteProbabilityWeight: 0.75
   biteAttackRange: 5
   bigBiteColliders:
   - {fileID: 4287093122360859726}
+  biteAudioClip: {fileID: 8300000, guid: 44a34505f1489bd4e89c1ffd4a4908b9, type: 3}
   chargeDamage: 8
   chargeBounceBackStrength: 100
   chargeProbabilityWeight: 0.3
@@ -240,6 +244,7 @@ MonoBehaviour:
   dizzyDuration: 3
   smallBiteColliders:
   - {fileID: 2547167615446399068}
+  chargeAudioClip: {fileID: 8300000, guid: 30b642b0abb62004cb4ceddecf159d85, type: 3}
   minCooldown: 1
   maxCooldown: 2
 --- !u!114 &6346164076468609636
@@ -347,7 +352,7 @@ MonoBehaviour:
   sinkDuration: 1.5
   sinkSpeed: 0.6
   audioSource: {fileID: 160752166260935403}
-  deathSFX: {fileID: 0}
+  deathSFX: {fileID: 8300000, guid: c2b805ba2180af94fa3bf6384fa30e61, type: 3}
 --- !u!82 &160752166260935403
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1527,6 +1532,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28b95428c03613e40bfb01f4c0b8d260, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  getHitAudioClip: {fileID: 8300000, guid: 867adf9becdd2ac4d805ddd68b7a8739, type: 3}
+  audioSource: {fileID: 160752166260935403}
 --- !u!1001 &4501348627455403118
 PrefabInstance:
   m_ObjectHideFlags: 0

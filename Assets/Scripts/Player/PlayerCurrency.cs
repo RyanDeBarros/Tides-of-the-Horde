@@ -36,6 +36,11 @@ public class PlayerCurrency : MonoBehaviour
         CurrencyChanged();
     }
 
+    public void PlayPurchaseSFX()
+    {
+
+    }
+
     public float GetMultiplier()
     {
         return currencyCollectMultiplier;

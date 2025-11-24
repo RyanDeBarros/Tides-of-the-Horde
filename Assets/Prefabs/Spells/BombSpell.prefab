@@ -59,8 +59,7 @@ MonoBehaviour:
   explosionFX: {fileID: 4979637674263650540, guid: b8bcb63e9438b7148bb2c273d333ba06, type: 3}
   gravity: -18
   velocity: {x: 0, y: 0, z: 0}
-  audioSource: {fileID: 5541894344861420376}
-  BombSFX: {fileID: 8300000, guid: 04aa591ff2e636748bce6bc4f2b5fd5a, type: 3}
+  bombSFX: {fileID: 8300000, guid: 04aa591ff2e636748bce6bc4f2b5fd5a, type: 3}
 --- !u!135 &842051815952284954
 SphereCollider:
   m_ObjectHideFlags: 0

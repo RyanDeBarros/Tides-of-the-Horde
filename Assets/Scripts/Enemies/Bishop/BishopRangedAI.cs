@@ -1,9 +1,13 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
+using UnityEngine.Audio;
 
 public class BishopRangedAI : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip attackAudioClip;
+
     public Transform player;
     public float moveSpeed = 3.5f;
     public float stoppingDistance = 3f;
@@ -23,8 +27,12 @@ public class BishopRangedAI : MonoBehaviour
     private float lastAttackTime;
     private bool isAttacking = false;
 
-    void Start()
+    private void Awake()
     {
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+        Assert.IsNotNull(audioSource);
+
         controller = GetComponent<CharacterController>();
         Assert.IsNotNull(controller);
 
@@ -49,7 +57,7 @@ public class BishopRangedAI : MonoBehaviour
         Assert.IsNotNull(firePoint);
     }
 
-    void Update()
+    private void Update()
     {
         UpdateMovement();
         UpdateAttack();
@@ -80,6 +88,9 @@ public class BishopRangedAI : MonoBehaviour
 
     private IEnumerator PlayAttackAnimation()
     {
+        if (attackAudioClip != null)
+            audioSource.PlayOneShot(attackAudioClip);
+
         isAttacking = true;
         animator.SetTrigger("Fire");
         yield return new WaitForSeconds(0.4f);

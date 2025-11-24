@@ -31,9 +31,7 @@ public class DemonKingMovementAI : MonoBehaviour
 
     [Header("Audio Settings")]
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip AttackSFX;
-    [SerializeField] private AudioClip AttackSFX2;
-    [SerializeField] private AudioClip TeleportSfX;
+    [SerializeField] private AudioClip teleportAudioClip;
 
     private CharacterController controller;
     private NavMover mover;
@@ -74,6 +72,10 @@ public class DemonKingMovementAI : MonoBehaviour
         // Hook up to health threshold event
         if (TryGetComponent(out Health healthComponent))
             healthComponent.onHealthThresholdReached.AddListener(GetHit);
+
+        if (audioSource == null)
+            audioSource = GetComponent<AudioSource>();
+        Assert.IsNotNull(audioSource);
     }
 
     private void Start()
@@ -152,8 +154,8 @@ public class DemonKingMovementAI : MonoBehaviour
         isTeleporting = true;
 
         // play sfx
-        if (audioSource != null && TeleportSfX != null)
-            audioSource.PlayOneShot(TeleportSfX);
+        if (teleportAudioClip != null)
+            audioSource.PlayOneShot(teleportAudioClip);
 
         // Disable character controller to manually control position
         controller.enabled = false;
@@ -192,6 +194,10 @@ public class DemonKingMovementAI : MonoBehaviour
         Vector3 lookDirection = (player.position - transform.position);
         lookDirection.y = 0;
         if (lookDirection != Vector3.zero) transform.rotation = Quaternion.LookRotation(lookDirection);
+
+        // play sfx
+        if (teleportAudioClip != null)
+            audioSource.PlayOneShot(teleportAudioClip);
 
         // Rise up from ground
         sinkDuration = sinkDepth / riseSpeed;

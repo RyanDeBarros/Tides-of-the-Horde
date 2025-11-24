@@ -1005,8 +1005,8 @@ MonoBehaviour:
   - {fileID: 2554858521708236508}
   - {fileID: 5407336346246912785}
   - {fileID: 9184761050377895465}
-  shopPanel: {fileID: 0}
-  shopDisabledText: {fileID: 0}
+  shopPanel: {fileID: 392077832546170561}
+  shopDisabledText: {fileID: 6864419119536008602}
   checkShopPopup: {fileID: 6363000866566216598}
   checkShopPopupBKG: {fileID: 1475101356499387225}
   checkShopPopupFadeTime: 0.3
@@ -1353,8 +1353,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000022888, y: 38.224}
-  m_SizeDelta: {x: 432.9004, y: 76.4481}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 430, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5369298196954634296
 CanvasRenderer:
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: according to the challenge, the shop is not available in this level
+  m_text: According to the challenge, the shop is not available in this level
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -1418,7 +1418,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0

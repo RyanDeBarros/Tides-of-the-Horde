@@ -161,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   chaseRange: 30
-  stoppingDistance: 1
+  stoppingDistance: 2.5
   moveSpeed: 4
   patrolSpeedMultiplier: 0.5
   turnSpeed: 600
@@ -210,6 +210,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1192491411146982190}
+  audioSource: {fileID: 1765274193361657032}
+  attackSFX: {fileID: 8300000, guid: 910ae0507f36e1a42a44f29c05d61df1, type: 3}
   attackTrigger: Fire
 --- !u!114 &1961417952955607821
 MonoBehaviour:
@@ -258,7 +260,7 @@ MonoBehaviour:
   sinkDuration: 0.1
   sinkSpeed: 1
   audioSource: {fileID: 1765274193361657032}
-  deathSFX: {fileID: 8300000, guid: 8cfb3f240818ee644a37a914306e77a0, type: 3}
+  deathSFX: {fileID: 8300000, guid: 310124f3e40fb124faa94e21182721e6, type: 3}
 --- !u!114 &5512871995234863560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -405,7 +407,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 0.4
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -480,6 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navRecalculateThreshold: 0.1
+  rejoinMeshMaxDistance: 0.5
+  onMeshThreshold: 0.1
 --- !u!1 &8236134914262174659
 GameObject:
   m_ObjectHideFlags: 0

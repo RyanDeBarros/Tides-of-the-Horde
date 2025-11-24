@@ -3,11 +3,18 @@ using UnityEngine.Assertions;
 
 public class FlyingDemonAnimator : MonoBehaviour
 {
+    [SerializeField] private AudioClip getHitAudioClip;
+    [SerializeField] private AudioSource audioSource;
+
     private Animator animator;
     private FlyingDemonAttackAI attacker;
 
     private void Awake()
     {
+        if (audioSource == null)
+            audioSource = GetComponentInParent<AudioSource>();
+        Assert.IsNotNull(audioSource);
+
         animator = GetComponent<Animator>();
         Assert.IsNotNull(animator);
 
@@ -24,6 +31,8 @@ public class FlyingDemonAnimator : MonoBehaviour
         OnAttackEnd();
         ResetTriggers();
         animator.SetTrigger("GetHit");
+        if (getHitAudioClip != null)
+            audioSource.PlayOneShot(getHitAudioClip);
     }
 
     public void SetIdle()
