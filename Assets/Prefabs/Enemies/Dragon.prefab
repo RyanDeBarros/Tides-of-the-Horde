@@ -419,6 +419,7 @@ MonoBehaviour:
   disabledComponents:
   - {fileID: 4334499410462472118}
   - {fileID: 5984126950147037728}
+  - {fileID: 1397774575576606774}
 --- !u!1 &7475851343837136096
 GameObject:
   m_ObjectHideFlags: 0

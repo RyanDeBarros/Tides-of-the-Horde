@@ -416,6 +416,8 @@ MonoBehaviour:
   heightOffset: 2
   disabledComponents:
   - {fileID: 1001082693539445144}
+  - {fileID: 1241448911030014027}
+  - {fileID: 3620802734628203079}
 --- !u!1 &3424555026866121806
 GameObject:
   m_ObjectHideFlags: 0

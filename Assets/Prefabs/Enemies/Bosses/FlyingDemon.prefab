@@ -546,10 +546,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnType: 1
   duration: 2
-  heightOffset: 5
+  heightOffset: 10
   disabledComponents:
   - {fileID: 8971591378966497812}
   - {fileID: 1187491437838976808}
+  - {fileID: 8088306018587523817}
 --- !u!1 &6056564345800127664
 GameObject:
   m_ObjectHideFlags: 0

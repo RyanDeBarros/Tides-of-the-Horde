@@ -3,11 +3,16 @@ using System.Collections.Generic;
 
 public class EnemySpawnEffect : MonoBehaviour
 {
-    public enum SpawnType { RiseFromGround, FlyDown }
-    public SpawnType spawnType = SpawnType.RiseFromGround;
+    enum SpawnType
+    {
+        RiseFromGround,
+        FlyDown
+    }
+    
+    [SerializeField] private SpawnType spawnType = SpawnType.RiseFromGround;
 
-    public float duration = 1.2f;
-    public float heightOffset = 2f;
+    [SerializeField] private float duration = 1.2f;
+    [SerializeField] private float heightOffset = 2f;
 
     private Vector3 startPos;
     private Vector3 endPos;
@@ -16,19 +21,13 @@ public class EnemySpawnEffect : MonoBehaviour
     [Tooltip("These components will be disabled at spawn and re-enabled after the spawn animation.")]
     [SerializeField] private List<Behaviour> disabledComponents;
 
-    void Awake()
+    private void Start()
     {
         foreach (var comp in disabledComponents)
         {
             if (comp != null)
                 comp.enabled = false;
         }
-    }
-
-    void Start()
-    {
-        if (!Application.isPlaying)
-            return;
 
         endPos = transform.position;
 
@@ -44,29 +43,20 @@ public class EnemySpawnEffect : MonoBehaviour
         }
 
         transform.position = startPos;
-
     }
 
-    void Update()
+    private void Update()
     {
         timer += Time.deltaTime;
         float t = Mathf.Clamp01(timer / duration);
-
-        switch (spawnType)
-        {
-            case SpawnType.RiseFromGround:
-            case SpawnType.FlyDown:
-                transform.position = Vector3.Lerp(startPos, endPos, t);
-                break;
-        }
+        transform.position = Vector3.Lerp(startPos, endPos, t);
 
         if (t >= 1f)
             FinishSpawn();
     }
 
-    void FinishSpawn()
+    private void FinishSpawn()
     {
-
         foreach (var comp in disabledComponents)
         {
             if (comp != null)
