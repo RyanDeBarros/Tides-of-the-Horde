@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 3597290828824335131}
   - component: {fileID: 3978417593256799835}
   - component: {fileID: 7264195963702152951}
+  - component: {fileID: 2294654042704487651}
   m_Layer: 8
   m_Name: Bishop
   m_TagString: Enemy
@@ -376,6 +377,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2294654042704487651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3329783544436130698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a9ceaaacc32674b98868b806009059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  duration: 1.2
+  heightOffset: 2
 --- !u!1 &3424555026866121806
 GameObject:
   m_ObjectHideFlags: 0

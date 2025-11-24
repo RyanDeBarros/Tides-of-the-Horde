@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 2422754742542669783}
   - component: {fileID: 8209752110854130650}
   - component: {fileID: 8186671327767500097}
+  - component: {fileID: 3766351447707211225}
   m_Layer: 8
   m_Name: Dragon
   m_TagString: Enemy
@@ -363,6 +364,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3766351447707211225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443340333259638365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a9ceaaacc32674b98868b806009059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 1
+  duration: 2
+  heightOffset: 5
 --- !u!1 &7475851343837136096
 GameObject:
   m_ObjectHideFlags: 0

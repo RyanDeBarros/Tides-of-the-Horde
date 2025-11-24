@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 1822851808941021713}
   - component: {fileID: 60907412541661167}
   - component: {fileID: 1899066603062477048}
+  - component: {fileID: -7190317164130597816}
   m_Layer: 8
   m_Name: Skeleton
   m_TagString: Enemy
@@ -466,6 +467,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-7190317164130597816
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877391312677472464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a9ceaaacc32674b98868b806009059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  duration: 1.2
+  heightOffset: 2
 --- !u!1 &4069443703503164984
 GameObject:
   m_ObjectHideFlags: 0
