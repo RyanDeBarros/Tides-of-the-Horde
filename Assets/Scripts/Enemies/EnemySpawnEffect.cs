@@ -13,26 +13,15 @@ public class EnemySpawnEffect : MonoBehaviour
     private Vector3 endPos;
     private float timer;
 
-    private Animator animator;
-    private List<Behaviour> disabledComponents = new List<Behaviour>();
-    private Renderer[] renderers;
+    [Tooltip("These components will be disabled at spawn and re-enabled after the spawn animation.")]
+    [SerializeField] private List<Behaviour> disabledComponents;
 
     void Awake()
     {
-        animator = GetComponentInChildren<Animator>();
-        renderers = GetComponentsInChildren<Renderer>();
-
-        
-        foreach (var comp in GetComponents<Behaviour>())
+        foreach (var comp in disabledComponents)
         {
-            if (comp == this) continue;
-
-            string name = comp.GetType().Name.ToLower();
-            if (name.Contains("ai"))
-            {
+            if (comp != null)
                 comp.enabled = false;
-                disabledComponents.Add(comp);
-            }
         }
     }
 
@@ -76,7 +65,10 @@ public class EnemySpawnEffect : MonoBehaviour
     {
 
         foreach (var comp in disabledComponents)
-            if (comp) comp.enabled = true;
+        {
+            if (comp != null)
+                comp.enabled = true;
+        }
 
         Destroy(this);
     }
