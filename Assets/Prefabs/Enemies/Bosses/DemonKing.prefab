@@ -214,12 +214,13 @@ GameObject:
   - component: {fileID: 1416742053595806769}
   - component: {fileID: 5753715555274969651}
   - component: {fileID: 476565866697689289}
-  - component: {fileID: 1427956218210571630}
   - component: {fileID: 8269115829709230679}
   - component: {fileID: 5208570685143511649}
   - component: {fileID: 3865934464121498255}
   - component: {fileID: 6524860535197160035}
   - component: {fileID: 973897351702163919}
+  - component: {fileID: 3940831794543227698}
+  - component: {fileID: 2935718355930588309}
   m_Layer: 8
   m_Name: DemonKing
   m_TagString: Enemy
@@ -484,25 +485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   statsFile: {fileID: 4900000, guid: 8c76f37b6ae46c44b82eb93a1f4e36eb, type: 3}
---- !u!114 &1427956218210571630
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5522856944775851731}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 545eefbe73a117e4fb099b1668568193, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  acceptance_threshold: 1
-  waypoints: []
-  characterController: {fileID: 6265030949369529525}
-  moveSpeed: 10
-  onMove:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &8269115829709230679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -519,7 +501,7 @@ MonoBehaviour:
   bossHealth: {fileID: 5225442633808930422}
   shieldVFX: {fileID: 2368347160231029843}
   keysRequired: 3
-  keySpawnCooldown: 2
+  keySpawnCooldown: 15
 --- !u!82 &5208570685143511649
 AudioSource:
   m_ObjectHideFlags: 0
@@ -661,6 +643,41 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealthBar: {fileID: 6524860535197160035}
   bossHealthBar: {fileID: 3865934464121498255}
+--- !u!195 &3940831794543227698
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522856944775851731}
+  m_Enabled: 1
+  m_AgentTypeID: -334000983
+  m_Radius: 2
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 4
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &2935718355930588309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5522856944775851731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d01b9cd33345a04dad2b3271a5381b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  navRecalculateThreshold: 0.1
 --- !u!1 &5612114110964857626
 GameObject:
   m_ObjectHideFlags: 0
