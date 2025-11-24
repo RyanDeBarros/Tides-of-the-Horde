@@ -78,6 +78,7 @@ GameObject:
   - component: {fileID: 1765274193361657032}
   - component: {fileID: 7389225157489766930}
   - component: {fileID: 6297522698426478415}
+  - component: {fileID: 8883231719819920206}
   m_Layer: 8
   m_Name: Orc
   m_TagString: Enemy
@@ -484,6 +485,24 @@ MonoBehaviour:
   navRecalculateThreshold: 0.1
   rejoinMeshMaxDistance: 0.5
   onMeshThreshold: 0.1
+--- !u!114 &8883231719819920206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3045373013286125374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33af7ee2e29c6849abdb9675c5cd386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 0
+  duration: 1.2
+  heightOffset: 2
+  disabledComponents:
+  - {fileID: 7476458676621689791}
+  - {fileID: 458530350395169553}
 --- !u!1 &8236134914262174659
 GameObject:
   m_ObjectHideFlags: 0

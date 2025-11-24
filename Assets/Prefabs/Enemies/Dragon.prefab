@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 8186671327767500097}
   - component: {fileID: 714426331447591792}
   - component: {fileID: 7592830980806223842}
+  - component: {fileID: -2357844569543242903}
   m_Layer: 8
   m_Name: Dragon
   m_TagString: Enemy
@@ -398,6 +399,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   navRecalculateThreshold: 0.1
+  rejoinMeshMaxDistance: 0.5
+  onMeshThreshold: 0.1
+--- !u!114 &-2357844569543242903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443340333259638365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a33af7ee2e29c6849abdb9675c5cd386, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnType: 1
+  duration: 2
+  heightOffset: 5
+  disabledComponents:
+  - {fileID: 4334499410462472118}
+  - {fileID: 5984126950147037728}
 --- !u!1 &7475851343837136096
 GameObject:
   m_ObjectHideFlags: 0
