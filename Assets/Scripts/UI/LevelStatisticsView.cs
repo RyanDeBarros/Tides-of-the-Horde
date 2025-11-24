@@ -4,6 +4,8 @@ using UnityEngine.Assertions;
 
 public class LevelStatisticsView : MonoBehaviour
 {
+    [SerializeField] private string song = "Level Statistics";
+
     [Header("Main Stats")]
     [SerializeField] private TextMeshProUGUI finalHealthText;
     [SerializeField] private TextMeshProUGUI totalCurrencyText;
@@ -36,6 +38,8 @@ public class LevelStatisticsView : MonoBehaviour
 
     private void Start()
     {
+        SoundtrackManager.Instance.PlayTrack(song);
+
         finalHealthText.SetText($"{LevelStatistics.GetFinalHealth()}/{LevelStatistics.GetMaxHealth()}");
         totalCurrencyText.SetText($"{LevelStatistics.GetTotalCurrency()}");
         int totalTime = (int)LevelStatistics.GetTotalTime();

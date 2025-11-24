@@ -123,7 +123,8 @@ public class WaveTimeline
 
     [SerializeField] private List<Wave> waves;
     [SerializeField] private string defaultSong;
-    [SerializeField] private string waitingSong;
+    [SerializeField] private string waitingSong = "Peaceful";
+
     private int waveNumber = 0;
     private float waveTimeElapsed = 0f;
     private WaveState waveState = WaveState.PreSpawn;

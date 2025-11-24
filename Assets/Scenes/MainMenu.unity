@@ -943,6 +943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a67a961e49a8ee2e83b803f74a746a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  song: Main Menu
   mainMenuPanel: {fileID: 558264603}
   settingsPanel: {fileID: 1893963871}
   creditsPanel: {fileID: 1073271175}
@@ -2919,6 +2920,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1675422986
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4542268320645861354, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9178492192000602168, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
+      propertyPath: m_Name
+      value: SoundtrackManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7a0c696eb327d7643bd76f0f119dab3a, type: 3}
 --- !u!1 &1795269442
 GameObject:
   m_ObjectHideFlags: 0
@@ -3775,3 +3833,4 @@ SceneRoots:
   - {fileID: 476584720}
   - {fileID: 56066765}
   - {fileID: 1185962768}
+  - {fileID: 1675422986}

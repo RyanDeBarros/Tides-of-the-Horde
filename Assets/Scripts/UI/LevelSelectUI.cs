@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class LevelSelectUI : MonoBehaviour
 {
+    [SerializeField] private string song = "Main Menu";
+
     [Serializable]
     public class LevelItem
     {
@@ -21,6 +23,11 @@ public class LevelSelectUI : MonoBehaviour
     void Awake()
     {
         InitUI();
+    }
+
+    private void Start()
+    {
+        SoundtrackManager.Instance.PlayTrack(song);
     }
 
     public void BackToMain()

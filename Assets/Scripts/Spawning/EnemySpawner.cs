@@ -23,7 +23,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private ChallengeGiver challengeGiver;
     [SerializeField] private ChallengeTracker challengeTracker;
     [SerializeField] private Portal portal;
-    [SerializeField] private string waitForChallengerSong;
+    [SerializeField] private string waitForChallengerSong = "Peaceful";
+    [SerializeField] private string wavesCompletedSong = "Peaceful";
 
     [Header("Enemy Prefabs")]
     [SerializeField] private GameObject skeletonPrefab;
@@ -181,6 +182,7 @@ public class EnemySpawner : MonoBehaviour
         {
             uiController.HideUI();
             levelPhase = LevelPhase.ChallengeGiverEnd;
+            SoundtrackManager.Instance.PlayTrack(wavesCompletedSong);
             challengeGiver.GetDialog().dialogPhase = NPCDialog.DialogPhase.Closing;
             challengeGiver.SpawnNPC();
         }
