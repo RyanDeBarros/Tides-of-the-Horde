@@ -199,6 +199,7 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   playerCurrency: {fileID: 0}
   playerAnimator: {fileID: 0}
+  playerStatsSFX: {fileID: 0}
   spellSelectControllers:
   - {fileID: 628050106469985120}
   - {fileID: 4378143338922906117}
@@ -3235,10 +3236,6 @@ PrefabInstance:
     - target: {fileID: 5531433577952381853, guid: 8da70bd417fe16b48bac57b2fcec6390, type: 3}
       propertyPath: m_Name
       value: NPCDialog
-      objectReference: {fileID: 0}
-    - target: {fileID: 5531433577952381853, guid: 8da70bd417fe16b48bac57b2fcec6390, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

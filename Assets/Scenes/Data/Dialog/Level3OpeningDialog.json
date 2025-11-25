@@ -1,10 +1,10 @@
 {
     "options": [
         {
-            "text": "<b>Worm</b>: Welcome to <i>The Valley</i>!"
+            "text": "<color=#AE49FF>Worm</color>: This is it… the final village. Stay strong, hero."
         },
         {
-            "text": "[Add lore...]"
+            "text": "Beyond these ruins lies the throne of the <color=#AE49FF>Demon King</color>—the source of all our suffering. His power poisons the land, and he will not fall easily.\n\nUse your gems wisely to buy the abilities you truely need.\n\nAnd remember: the <color=#AE49FF>Demon King</color> is bound by an ancient spell. He is <color=#AE49FF>invincible</color> until you gather the three <color=#AE49FF>Mysterious Gems</color>. Only then will his shield break… and your final battle truly begin.\n\nGo, brave soul. End this darkness."
         }
     ]
 }

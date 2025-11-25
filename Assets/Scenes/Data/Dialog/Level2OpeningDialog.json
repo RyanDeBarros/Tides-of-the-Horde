@@ -1,10 +1,10 @@
 {
     "options": [
         {
-            "text": "<b>Worm</b>: Welcome to <i>The Valley</i>!"
+            "text": "<color=#AE49FF>Worm</color>: You’ve come far, traveler. Let your <color=#AE49FF>focus</color> guide you here."
         },
         {
-            "text": "[Add lore...]"
+            "text": "These lands demand more than strength. Survive these waves by playing with <color=#AE49FF>patience</color>… and <color=#AE49FF>tactics</color>. Slow your mind, watch the rhythm of the horde, and strike only when you see their weakness.\n\nBut beware… a flying horror lurks above this village. A monster unlike anything you’ve faced. Its speed is unnatural, its strikes unforgiving.\n"
         }
     ]
 }
