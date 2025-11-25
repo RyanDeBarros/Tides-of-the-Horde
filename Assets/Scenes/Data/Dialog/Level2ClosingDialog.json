@@ -1,10 +1,10 @@
 {
     "options": [
         {
-            "text": "<b>Worm</b>: Congratulations on surviving <i>The Tide</i>!"
+            "text": "<b>Worm</b>: You’ve conquered the skies and survived the village’s storm."
         },
         {
-            "text": "[Add lore...]"
+            "text": "Because of you, hope begins to breathe again in our little hearts. The fear that once ruled us now loosens its grip.\n\nThe journey continues… Step into the <color=#AE49FF>portal</color>. Another village awaits your courage."
         }
     ]
 }

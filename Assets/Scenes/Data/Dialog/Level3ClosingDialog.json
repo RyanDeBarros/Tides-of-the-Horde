@@ -1,10 +1,13 @@
 {
     "options": [
         {
-            "text": "<b>Worm</b>: Congratulations on surviving <i>The Tide</i>!"
+            "text": "***<color=#AE49FF>============================================</color>***"
         },
         {
-            "text": "[Add lore...]"
+            "text": "<b>Worm</b>: You did it… You defeated the <color=#AE49FF>Demon King</color> and ended the age of terror!"
+        },
+        {
+            "text": "You are the hero of our lands—the savior of every worm who dreamed of peace. Songs will be sung about your courage for generations.\n\nWalk into the <color=#AE49FF>portal</color> one last time, champion. Hold your head high. Let your heart rest.\n\n***<color=#AE49FF>============================================</color>***"
         }
     ]
 }

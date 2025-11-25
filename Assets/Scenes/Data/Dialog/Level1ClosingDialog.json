@@ -1,10 +1,10 @@
 {
     "options": [
         {
-            "text": "<b>Worm</b>: Congratulations on surviving <i>The Tide</i>!"
+            "text": "<b>Worm</b>: You survived <i>The <color=#AE49FF>Tide</color></i>... the first great trial of our village. Hope returns because of you."
         },
         {
-            "text": "[Add lore...]"
+            "text": "You fought with a strength that shines brighter than our legends. On behalf of every worm who still draws breath… thank you.\n\nBut your mission is not over. Other villages still tremble beneath the shadow of the <color=#AE49FF>Demon Kingdom</color>.\n\nStep through the <color=#AE49FF>portal</color>, brave one. Continue your path toward becoming the <color=#AE49FF>hero</color> our world desperately needs."
         }
     ]
 }

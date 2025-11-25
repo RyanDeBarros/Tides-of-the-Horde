@@ -1,10 +1,10 @@
 {
     "options": [
         {
-            "text": "<b>Worm</b>: Welcome to <i>The Valley</i>!"
+            "text": "<color=#AE49FF>Worm</color>: Traveler... welcome to our shattered land. We have prayed for someone touched by <color=#AE49FF>magic</color> like you."
         },
         {
-            "text": "[Add lore...]"
+            "text": "Our villages lie hollow and dim. The hordes of the <color=#AE49FF>Demon Kingdom</color> swarm from the cracks of the earth, hunting us without mercy.\n\nWe are small, fragile… and powerless to stop them. But you—your aura burns with ancient <color=#AE49FF>mystic power</color>.\n\nPlease… help us purge this darkness. Help us reclaim our home, so our children may once again crawl beneath a sky of <color=#AE49FF>peace</color>."
         }
     ]
 }
