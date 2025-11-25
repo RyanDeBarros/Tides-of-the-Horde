@@ -299,7 +299,7 @@ PrefabInstance:
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: spawnWaveFile
       value: 
-      objectReference: {fileID: 4900000, guid: a0128056548187744a5f4d8e836465b3, type: 3}
+      objectReference: {fileID: 4900000, guid: 5d60b6e53cd48a941810f2b22e13fcf8, type: 3}
     - target: {fileID: 1664472983803175169, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: closingDialogFile
       value: 
@@ -763,7 +763,7 @@ PrefabInstance:
     - target: {fileID: 7631584832262936920, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: waveFile
       value: 
-      objectReference: {fileID: 4900000, guid: a0128056548187744a5f4d8e836465b3, type: 3}
+      objectReference: {fileID: 4900000, guid: 5d60b6e53cd48a941810f2b22e13fcf8, type: 3}
     - target: {fileID: 7634775932796877449, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
