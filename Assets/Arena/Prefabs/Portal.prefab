@@ -52,8 +52,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gateCollider: {fileID: 1498186754805904591}
   playerSpawnPosition: {fileID: 8284432539282599779}
-  spawnDuration: 1
-  despawnDuration: 1
+  spawnDuration: 1.6
+  despawnDuration: 1.6
   levelIndex: 0
   portalVFX: {fileID: 8200015639255515429}
   portalDespawnVFX: {fileID: 1175525033582294039}

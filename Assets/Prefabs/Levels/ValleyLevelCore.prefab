@@ -5291,6 +5291,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4437247871125852387, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4437247871125852387, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448728668126853677, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 4448728668126853677, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 42.5
+      objectReference: {fileID: 0}
     - target: {fileID: 5320236217061405832, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: MeleeSFX
       value: 
@@ -5399,6 +5415,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7928523385831729773, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928523385831729773, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 42.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928523385831729773, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 167.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939437442472083619, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 7939437442472083619, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 8441387111944882292, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: BubbleSFX
       value: 
@@ -5407,6 +5443,10 @@ PrefabInstance:
       propertyPath: audioSource
       value: 
       objectReference: {fileID: 2889501740546728806}
+    - target: {fileID: 8560045265004453521, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 42
+      objectReference: {fileID: 0}
     - target: {fileID: 8629053048481401357, guid: f412b76e16e5e084a9ba9da748baacdf, type: 3}
       propertyPath: objects.Array.size
       value: 3
