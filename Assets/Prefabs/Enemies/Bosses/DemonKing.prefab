@@ -428,7 +428,7 @@ MonoBehaviour:
   sinkDuration: 2.5
   sinkSpeed: 1
   audioSource: {fileID: 5208570685143511649}
-  deathSFX: {fileID: 8300000, guid: 2904976cd3dcebc439492cbaf04a8fd1, type: 3}
+  deathSFX: {fileID: 8300000, guid: 0a8ae3e76b04ea047bc5263fd970eab4, type: 3}
 --- !u!114 &4046973865690285927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,7 +559,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.3
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
