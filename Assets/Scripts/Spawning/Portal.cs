@@ -94,7 +94,7 @@ class Portal : MonoBehaviour
         SetPlayerEnable(false);
         player.SetPositionAndRotation(playerSpawnPosition.position, transform.rotation);
         yield return new WaitForSeconds(spawnDuration);
-        portalVFX.SetActive(false);
+        //portalVFX.SetActive(false);
         portalSFX.Stop();
         portalDespawnVFX.SetActive(false);
         SetPlayerEnable(true);
@@ -148,5 +148,15 @@ class Portal : MonoBehaviour
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         Assert.IsNotNull(go);
         return go.transform;
+    }
+
+    public void setPortalVfx(bool isActive)
+    {
+        portalVFX.SetActive(isActive);
+    }
+
+    public bool getPortalVfx()
+    {
+        return portalVFX.activeSelf;
     }
 }

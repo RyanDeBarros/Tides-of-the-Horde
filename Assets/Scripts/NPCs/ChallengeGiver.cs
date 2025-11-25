@@ -114,6 +114,7 @@ public class ChallengeGiver : MonoBehaviour
         if (audioSource != null && npcSFX != null)
             audioSource.PlayOneShot(npcSFX);
 
+        portal.setPortalVfx(false); 
         keyHint.enabled = false;
         yield return animator.AnimateDespawn();
         gameObject.SetActive(false);
