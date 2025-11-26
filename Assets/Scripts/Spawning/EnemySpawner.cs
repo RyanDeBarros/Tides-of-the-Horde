@@ -36,7 +36,7 @@ public class EnemySpawner : MonoBehaviour
 
     [Min(0)] public int difficultyLevelOffset = 0;
 
-    private WaveTimeline waveTimeline;
+    [SerializeField] private WaveTimeline waveTimeline;
     private List<SpawnZone> spawnZones;
     private List<Waypoint> waypoints;
     private readonly HashSet<GameObject> spawnedEnemies = new();

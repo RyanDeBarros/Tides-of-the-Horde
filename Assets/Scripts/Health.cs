@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Events;
 using System;
-using UnityEngine.Rendering;
 
 public class Health : MonoBehaviour
 {

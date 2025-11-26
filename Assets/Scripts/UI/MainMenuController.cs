@@ -9,11 +9,13 @@ public class MainMenuManager : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
     public GameObject creditsPanel;
+    public GameObject TutprialPanel;
 
     [Header("Main Menu Buttons")]
     public Button playButton;
     public Button settingsButton;
     public Button creditsButton;
+    public Button TutorialButton;
     public Button quitButton;
 
     [Header("Settings References")]
@@ -47,6 +49,7 @@ public class MainMenuManager : MonoBehaviour
     public void ShowSettings()
     {
         mainMenuPanel.SetActive(false);
+        TutprialPanel.SetActive(false);
         settingsPanel.SetActive(true);
         creditsPanel.SetActive(false);
     }
@@ -55,7 +58,16 @@ public class MainMenuManager : MonoBehaviour
     {
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
+        TutprialPanel.SetActive(false);
         creditsPanel.SetActive(true);
+    }
+    
+    public void ShowTutorial()
+    {
+        mainMenuPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
+        TutprialPanel.SetActive(true);
     }
 
     public void ShowMainMenu()
@@ -63,6 +75,7 @@ public class MainMenuManager : MonoBehaviour
         mainMenuPanel.SetActive(true);
         settingsPanel.SetActive(false);
         creditsPanel.SetActive(false);
+        TutprialPanel.SetActive(false);
     }
 
     public void QuitGame()
