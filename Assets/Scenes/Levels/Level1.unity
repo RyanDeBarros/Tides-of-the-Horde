@@ -519,6 +519,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -400
       objectReference: {fileID: 0}
+    - target: {fileID: 7610185100140582573, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7631584832262936920, guid: 948e6bc6677bb3249bd15e5f7be35397, type: 3}
       propertyPath: waveFile
       value: 
