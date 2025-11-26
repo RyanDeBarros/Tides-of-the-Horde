@@ -249,6 +249,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1914257580}
     m_Modifications:
+    - target: {fileID: 2523952979871987883, guid: f596962e3aef9aa4faf15890a2b6dd35, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3340207813232123824, guid: f596962e3aef9aa4faf15890a2b6dd35, type: 3}
       propertyPath: m_Name
       value: LevelCoreSelection01
@@ -561,6 +565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0e258540b3794c41a79604526d7d77b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  song: Main Menu
   levels:
   - levelIndex: 0
     button: {fileID: 1489112288173275100}
