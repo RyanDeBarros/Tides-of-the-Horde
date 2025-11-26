@@ -134,7 +134,6 @@ class NavMover : MonoBehaviour
                 high = mid;
         }
 
-        Debug.Log(bestFactor);
         displacement *= bestFactor;
     }
 }

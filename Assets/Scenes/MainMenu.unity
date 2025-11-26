@@ -1030,9 +1030,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u2022 Move: WASD\n\u2022 Run: Hold Shift\n\u2022 Dash: Press Space\n\u2022
-    Attack / Use Ability: Left-click\n\u2022 Switch Abilities: Mouse Scroll Wheel
-    or Number Keys"
+  m_text: "\u2022 Move: WASD\n\u2022 Run: Hold Shift\n\u2022 Dash: Press Space (If
+    Unlocked)\n\u2022 Attack / Use Ability: Left-click\n\u2022 Switch Abilities:
+    Mouse Scroll Wheel or Number Keys"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
