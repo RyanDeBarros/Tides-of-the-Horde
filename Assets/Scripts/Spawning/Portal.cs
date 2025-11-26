@@ -14,6 +14,7 @@ class Portal : MonoBehaviour
     [SerializeField] private GameObject portalVFX; // portal vfx only active when the portal is usable
     [SerializeField] private GameObject portalDespawnVFX; // vfx when the player despawns and goes to main menu
     [SerializeField] private AudioSource portalSFX;
+    [SerializeField] private float portalVFXTransitionDuration = 1f;
 
     private PlayerCamera playerCamera;
     private PlayerMovement playerMovement;
@@ -23,6 +24,7 @@ class Portal : MonoBehaviour
 
     private Coroutine despawnRoutine = null;
     private bool despawnPlayer = false;
+    private Vector3 portalVFXScale;
 
     private void Awake()
     {
@@ -57,6 +59,7 @@ class Portal : MonoBehaviour
     private void Start()
     {
         portalSFX.Play();
+        portalVFXScale = portalVFX.transform.localScale;
     }
 
     public void Initialize(int levelIndex)
@@ -94,17 +97,52 @@ class Portal : MonoBehaviour
         SetPlayerEnable(false);
         player.SetPositionAndRotation(playerSpawnPosition.position, transform.rotation);
         yield return new WaitForSeconds(spawnDuration);
-        portalVFX.SetActive(false);
+        TurnOffPortalVFX();
         portalSFX.Stop();
         portalDespawnVFX.SetActive(false);
         SetPlayerEnable(true);
         playerSpawnedCallback();
     }
 
+    private void TurnOnPortalVFX()
+    {
+        IEnumerator Routine()
+        {
+            portalVFX.SetActive(true);
+            portalVFX.transform.localScale = Vector3.zero;
+            for (float t = 0; t < portalVFXTransitionDuration; t += Time.deltaTime)
+            {
+                yield return null;
+                portalVFX.transform.localScale = Vector3.Lerp(Vector3.zero, portalVFXScale, Mathf.Clamp01(t / portalVFXTransitionDuration));
+            }
+            portalVFX.transform.localScale = portalVFXScale;
+        }
+
+        StartCoroutine(Routine());
+    }
+
+    private void TurnOffPortalVFX()
+    {
+        IEnumerator Routine()
+        {
+            portalVFX.transform.localScale = portalVFXScale;
+            for (float t = 0; t < portalVFXTransitionDuration; t += Time.deltaTime)
+            {
+                yield return null;
+                portalVFX.transform.localScale = Vector3.Lerp(portalVFXScale, Vector3.zero, Mathf.Clamp01(t / portalVFXTransitionDuration));
+            }
+            portalVFX.transform.localScale = Vector3.zero;
+            portalVFX.SetActive(false);
+        }
+
+        StartCoroutine(Routine());
+    }
+
     public void PrepareToDespawnPlayer()
     {
         despawnPlayer = true;
         LevelStatistics.StopTimer();
+        TurnOnPortalVFX();
         portalVFX.SetActive(true);
         portalSFX.Play();
     }
