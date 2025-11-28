@@ -20,13 +20,13 @@
                 "weight": 0.5
             },
             {
-                "statement": "<color=blue>Survive</color> the Tide with <color=red>+1</color> stronger enemies",
+                "statement": "<color=blue>Survive</color> the Tide with <color=red>+1</color> level stronger enemies",
                 "challengeClass": "C_EnemyDifficultyIncrease",
                 "values": [1],
                 "weight": 1
             },
             {
-                "statement": "<color=blue>Survive</color> the Tide with <color=red>+2</color> stronger enemies",
+                "statement": "<color=blue>Survive</color> the Tide with <color=red>+2</color> level stronger enemies",
                 "challengeClass": "C_EnemyDifficultyIncrease",
                 "values": [2],
                 "weight": 0.5
@@ -112,13 +112,13 @@
                 "weight": 0.5
             },
             {
-                "statement": "<color=blue>Survive</color> the Tide with <color=red>+1</color> stronger enemies",
+                "statement": "<color=blue>Survive</color> the Tide with <color=red>+1</color> level stronger enemies",
                 "challengeClass": "C_EnemyDifficultyIncrease",
                 "values": [1],
                 "weight": 1
             },
             {
-                "statement": "<color=blue>Survive</color> the Tide with <color=red>+2</color> stronger enemies",
+                "statement": "<color=blue>Survive</color> the Tide with <color=red>+2</color> level stronger enemies",
                 "challengeClass": "C_EnemyDifficultyIncrease",
                 "values": [2],
                 "weight": 0.5
@@ -204,13 +204,13 @@
                 "weight": 0.5
             },
             {
-                "statement": "<color=blue>Survive</color> the Tide with <color=red>+1</color> stronger enemies",
+                "statement": "<color=blue>Survive</color> the Tide with <color=red>+1</color> level stronger enemies",
                 "challengeClass": "C_EnemyDifficultyIncrease",
                 "values": [1],
                 "weight": 1
             },
             {
-                "statement": "<color=blue>Survive</color> the Tide with <color=red>+2</color> stronger enemies",
+                "statement": "<color=blue>Survive</color> the Tide with <color=red>+2</color> level stronger enemies",
                 "challengeClass": "C_EnemyDifficultyIncrease",
                 "values": [2],
                 "weight": 0.5

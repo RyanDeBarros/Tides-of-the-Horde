@@ -197,7 +197,7 @@ MonoBehaviour:
   chargeSpeed: 15
   patrolSpeedMultiplier: 0.5
   turnSpeed: 360
-  chaseRange: 50
+  chaseRange: 80
   runToRange: 15
   stoppingDistance: 3.5
   sideStepSpeed: 10

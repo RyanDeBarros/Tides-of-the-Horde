@@ -19,7 +19,7 @@
             "bounceBackResistance": 2.0,
             "bounceBackDuration": 0.1,
 
-            "reward": 5
+            "reward": 2
         },
         {
             "moveSpeed": 5.0,
@@ -40,7 +40,7 @@
             "bounceBackResistance": 2.0,
             "bounceBackDuration": 0.1,
 
-            "reward": 10
+            "reward": 4
         },
         {
             "moveSpeed": 5.0,
@@ -61,7 +61,7 @@
             "bounceBackResistance": 2.0,
             "bounceBackDuration": 0.1,
 
-            "reward": 15
+            "reward": 8
         },
         {
             "moveSpeed": 5.0,
@@ -82,7 +82,7 @@
             "bounceBackResistance": 2.0,
             "bounceBackDuration": 0.1,
 
-            "reward": 20
+            "reward": 13
         },
         {
             "moveSpeed": 5.0,
@@ -103,7 +103,7 @@
             "bounceBackResistance": 2.0,
             "bounceBackDuration": 0.1,
 
-            "reward": 25
+            "reward": 18
         }
     ]
 }

@@ -143,7 +143,7 @@ MonoBehaviour:
   turnSpeed: 600
   attackRange: 8
   attackCooldown: 2
-  fireballSpeed: 12
+  fireballSpeed: 15
   damagePerFireball: 2
   fireballPrefab: {fileID: 6545024157550446429, guid: f63da9200e6838161a47e53efca6433b, type: 3}
   firePoint: {fileID: 8150723851230086369}

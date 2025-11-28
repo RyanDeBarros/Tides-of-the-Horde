@@ -87,8 +87,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4a1f03db56627c4c8edcbbca8c233e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  chaseRange: 40
+  moveSpeed: 8
+  chaseRange: 70
   stoppingDistance: 4
   patrolSpeedMultiplier: 0.5
   turnSpeed: 800

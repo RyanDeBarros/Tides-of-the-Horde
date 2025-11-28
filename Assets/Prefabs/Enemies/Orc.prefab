@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  chaseRange: 30
+  chaseRange: 80
   stoppingDistance: 2.5
   moveSpeed: 4
   patrolSpeedMultiplier: 0.5
