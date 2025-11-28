@@ -65,7 +65,7 @@
             "name": "Dash",
             "defaultIcon": "Dash",
             "defaultDescription": "Unlock (SPACE to use)",
-            "defaultWeight": 3,
+            "defaultWeight": 7,
             "prerequisites": [],
             "action": "UnlockDash",
             "tiers": [

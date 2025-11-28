@@ -130,13 +130,12 @@
                     "enemy": "Bishop",
                     "spawnRate": 4,
                     "difficulty": 2
-                }, 
+                },
                 {
-                    "enemy": "FlyingDemon",
-                    "timeOffset": 20.0,
-                    "spawnOnce": true,
-                    "isBoss": true,
-                    "difficulty": 1
+                    "duration": 4.0,
+                    "enemy": "Dragon",
+                    "spawnRate": 5,
+                    "difficulty": 2
                 }
             ],
             "song": "Mini Boss"
