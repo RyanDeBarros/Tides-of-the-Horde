@@ -6,7 +6,7 @@
 
             "attackRange": 8.0,
             "attackCooldown": 2.0,
-            "fireballSpeed": 12.0,
+            "fireballSpeed": 15.0,
             "damagePerFireball": 2,
 
             "maxHealth": 50,
@@ -22,7 +22,7 @@
 
             "attackRange": 10.0,
             "attackCooldown": 2.0,
-            "fireballSpeed": 12.0,
+            "fireballSpeed": 15.0,
             "damagePerFireball": 5,
 
             "maxHealth": 100,
@@ -33,12 +33,12 @@
             "reward": 5
         },
         {
-            "moveSpeed": 3.5,
+            "moveSpeed": 4,
             "stoppingDistance": 5.0,
 
             "attackRange": 12.0,
             "attackCooldown": 2.0,
-            "fireballSpeed": 12.0,
+            "fireballSpeed": 16.0,
             "damagePerFireball": 8,
 
             "maxHealth": 150,
@@ -49,12 +49,12 @@
             "reward": 8
         },
         {
-            "moveSpeed": 3.5,
+            "moveSpeed": 4,
             "stoppingDistance": 5.0,
 
             "attackRange": 14.0,
             "attackCooldown": 2.0,
-            "fireballSpeed": 12.0,
+            "fireballSpeed": 17.0,
             "damagePerFireball": 10,
 
             "maxHealth": 180,
@@ -65,12 +65,12 @@
             "reward": 13
         },
         {
-            "moveSpeed": 3.5,
+            "moveSpeed": 5,
             "stoppingDistance": 5.0,
 
             "attackRange": 16.0,
             "attackCooldown": 2.0,
-            "fireballSpeed": 12.0,
+            "fireballSpeed": 18.0,
             "damagePerFireball": 12,
 
             "maxHealth": 230,

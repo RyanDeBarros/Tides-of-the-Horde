@@ -1,8 +1,8 @@
 {
     "stats": [
         {
-            "moveSpeed": 5.0,
-            "chaseRange": 40.0,
+            "moveSpeed": 7.0,
+            "chaseRange": 90.0,
             "patrolSpeedMultiplier": 0.5,
 
             "aoeRadius": 10.0,
@@ -22,8 +22,8 @@
             "reward": 2
         },
         {
-            "moveSpeed": 5.0,
-            "chaseRange": 40.0,
+            "moveSpeed": 8.0,
+            "chaseRange": 90.0,
             "patrolSpeedMultiplier": 0.5,
 
             "aoeRadius": 12.0,
@@ -43,13 +43,13 @@
             "reward": 4
         },
         {
-            "moveSpeed": 5.0,
-            "chaseRange": 40.0,
+            "moveSpeed": 9.0,
+            "chaseRange": 90.0,
             "patrolSpeedMultiplier": 0.5,
 
             "aoeRadius": 14.0,
             "aoeFillSpeed": 20.0,
-            "damage": 9,
+            "damage": 90,
             "postExplosionDelay": 0.5,
             "cooldown": 3.0,
 
@@ -64,8 +64,8 @@
             "reward": 8
         },
         {
-            "moveSpeed": 5.0,
-            "chaseRange": 40.0,
+            "moveSpeed": 10.0,
+            "chaseRange": 90.0,
             "patrolSpeedMultiplier": 0.5,
 
             "aoeRadius": 16.0,
@@ -85,8 +85,8 @@
             "reward": 13
         },
         {
-            "moveSpeed": 5.0,
-            "chaseRange": 40.0,
+            "moveSpeed": 10.0,
+            "chaseRange": 90.0,
             "patrolSpeedMultiplier": 0.5,
 
             "aoeRadius": 18.0,
