@@ -49,8 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 5248948003974826257, guid: 948b7ff8563479b45aa4f39abb15a176, type: 3}
-  cooldown: 0.5
-  damage: 35
+  cooldown: 0.3
+  damage: 40
   bounceBackStrength: 200
   animationSpeedMultiplier: 2
   lifetime: 0.3
@@ -120,10 +120,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spellPrefab: {fileID: 7676459378857334991, guid: d87ba39d96d33ff4ab97509252f8665f, type: 3}
-  cooldown: 0.5
-  range: 60
+  cooldown: 0.15
+  range: 70
   maxEnemiesCanHit: 3
-  damage: 20
+  damage: 120
   spellScale: 1
   vfxExplosionRadius: 1
   explosionFX: {fileID: 4979637674263650540, guid: b8bcb63e9438b7148bb2c273d333ba06, type: 3}
