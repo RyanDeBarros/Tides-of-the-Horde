@@ -19,7 +19,7 @@
             "postWaveWaitTime": 0.7,
             "subwaves": [
                 {
-                    "duration": 6.0,
+                    "duration": 5.0,
                     "enemy": "Skeleton",
                     "spawnRate": 3,
                     "difficulty": 1
@@ -38,7 +38,7 @@
             "postWaveWaitTime": 0.7,
             "subwaves": [
                 {
-                    "duration": 7.0,
+                    "duration": 6.0,
                     "enemy": "Skeleton",
                     "spawnRate": 2,
                     "difficulty": 1
@@ -79,7 +79,7 @@
                     "duration": 2.0,
                     "enemy": "Bishop",
                     "spawnRate": 2.5,
-                    "difficulty": 2
+                    "difficulty": 1
                 }
             ]
         },
@@ -89,7 +89,7 @@
             "postWaveWaitTime": 0.7,
             "subwaves": [
                 {
-                    "duration": 6.0,
+                    "duration": 5.0,
                     "enemy": "Skeleton",
                     "spawnRate": 2.0,
                     "difficulty": 1
@@ -134,8 +134,8 @@
                 {
                     "duration": 4.0,
                     "enemy": "Dragon",
-                    "spawnRate": 5,
-                    "difficulty": 2
+                    "spawnRate": 4,
+                    "difficulty": 1
                 }
             ],
             "song": "Mini Boss"

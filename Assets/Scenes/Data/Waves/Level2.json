@@ -25,7 +25,7 @@
                     "difficulty": 1
                 },
                 {
-                    "duration": 4.0,
+                    "duration": 2.0,
                     "enemy": "Bishop",
                     "spawnRate": 3,
                     "difficulty": 1
@@ -38,7 +38,7 @@
             "postWaveWaitTime": 0.7,
             "subwaves": [
                 {
-                    "duration": 7.0,
+                    "duration": 3.0,
                     "enemy": "Skeleton",
                     "spawnRate": 3,
                     "difficulty": 1
@@ -47,7 +47,7 @@
                     "duration": 3.0,
                     "timeOffset": 3.0,
                     "enemy": "Orc",
-                    "spawnRate": 3,
+                    "spawnRate": 2,
                     "difficulty": 1
                 },
                 {
@@ -59,7 +59,7 @@
                 {
                     "duration": 2.0,
                     "enemy": "Dragon",
-                    "spawnRate": 2,
+                    "spawnRate": 1,
                     "difficulty": 1
                 }
             ]
@@ -70,7 +70,7 @@
             "postWaveWaitTime": 0.7,
             "subwaves": [
                 {
-                    "duration": 4.0,
+                    "duration": 2.0,
                     "enemy": "Orc",
                     "spawnRate": 6,
                     "difficulty": 2
@@ -78,7 +78,7 @@
                 {
                     "duration": 4.0,
                     "enemy": "Bishop",
-                    "spawnRate": 6,
+                    "spawnRate": 3,
                     "difficulty": 3
                 }
             ]
@@ -91,13 +91,13 @@
                 {
                     "duration": 6.0,
                     "enemy": "Skeleton",
-                    "spawnRate": 5.0,
+                    "spawnRate": 3.0,
                     "difficulty": 3
                 },
                 {
                     "duration": 4.0,
                     "enemy": "Dragon",
-                    "spawnRate": 6,
+                    "spawnRate": 4,
                     "difficulty": 1
                 }
             ]
@@ -110,7 +110,7 @@
                 {
                     "duration": 3.0,
                     "enemy": "Skeleton",
-                    "spawnRate": 4.0,
+                    "spawnRate": 2.0,
                     "difficulty": 2
                 },
                 {
@@ -120,13 +120,13 @@
                     "difficulty": 2
                 },
                 {
-                    "duration": 4.0,
+                    "duration": 2.0,
                     "enemy": "Bishop",
                     "spawnRate": 4,
                     "difficulty": 3
                 }, 
                 {
-                    "duration": 4.0,
+                    "duration": 3.0,
                     "enemy": "Dragon",
                     "spawnRate": 3,
                     "difficulty": 3
@@ -145,9 +145,9 @@
                     "difficulty": 2
                 },
                 {
-                    "duration": 4.0,
+                    "duration": 3.0,
                     "enemy": "Bishop",
-                    "spawnRate": 4,
+                    "spawnRate": 2.5,
                     "difficulty": 2
                 }, 
                 {
@@ -168,5 +168,5 @@
             "song": "Mini Boss"
         }
     ],
-    "defaultSong": "Level 1"
+    "defaultSong": "Level 2"
 }
